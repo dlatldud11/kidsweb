@@ -1,0 +1,3 @@
+hello=kids.common.controller.HelloController
+world=kids.common.controller.WorldController
+
