@@ -1,0 +1,100 @@
+package kids.management.reservation.model;
+
+import java.util.Date;
+
+public class Reservation {
+	private int rid ;
+	private String tid ;
+	private String textarea ;
+	private String status ; 
+	private Date res_date ;
+	private Date reg_date ;
+	private String name ;
+	private String hp ;
+	private String remark ;
+	
+	public Reservation() {}
+
+	public int getRid() {
+		return rid;
+	}
+
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+
+	public String getTid() {
+		return tid;
+	}
+
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
+
+	public String getTextarea() {
+		return textarea;
+	}
+
+	public void setTextarea(String textarea) {
+		this.textarea = textarea;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getRes_date() {
+		return res_date;
+	}
+
+	public void setRes_date(Date res_date) {
+		this.res_date = res_date;
+	}
+
+	public Date getReg_date() {
+		return reg_date;
+	}
+
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getHp() {
+		return hp;
+	}
+
+	public void setHp(String hp) {
+		this.hp = hp;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservation [rid=" + rid + ", tid=" + tid + ", textarea=" + textarea + ", status=" + status
+				+ ", res_date=" + res_date + ", reg_date=" + reg_date + ", name=" + name + ", hp=" + hp + ", remark="
+				+ remark + "]";
+	}
+	
+	
+	
+
+}
