@@ -8,5 +8,6 @@
 	<a href="<%=imsi%>hello">헬로우</a>
 	<br><br><br>
 	<a href="<%=imsi%>world">월드</a>
+	String imsi = "시험용 글씨 써보기";
 </body>
 </html>
