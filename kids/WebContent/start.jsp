@@ -8,5 +8,6 @@
 	<a href="<%=imsi%>hello">헬로우</a>
 	<br><br><br>
 	<a href="<%=imsi%>world">월드</a>
+	지워도 되는 내용 적기
 </body>
 </html>
