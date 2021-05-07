@@ -8,5 +8,9 @@
 	<a href="<%=imsi%>hello">헬로우</a>
 	<br><br><br>
 	<a href="<%=imsi%>world">월드</a>
+<<<<<<< HEAD
+=======
+	뭐했다고 벌써 5시지?!
+>>>>>>> branch 'master' of https://github.com/dlatldud11/kidsweb.git
 </body>
 </html>
