@@ -5,7 +5,7 @@
 	String imsi = request.getContextPath() + "/Kids?command=" ; 	
 	//response.sendRedirect( imsi ) ;
 %>
-	<a href="<%=imsi%>hello">헬로우</a>
+	<a href="<%=imsi%>main">메인</a>
 	<br><br><br>
 	<a href="<%=imsi%>world">월드</a>
 </body>
