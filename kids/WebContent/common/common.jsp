@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	String imsi = request.getContextPath() + "/Kids?command=" ; 	
+	//response.sendRedirect( imsi ) ;
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +82,7 @@
                 <div id="collapseCommunity" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
-             			  	<a class="collapse-item" href="login.jsp">알림장</a>
+             			  	<a class="collapse-item" href="<%=imsi%>noList">알림장</a>
              			  	<a class="collapse-item" href="tables.jsp">
                     		특별활동 게시판</a>
                     		<a class="collapse-item" href="tables.jsp">
