@@ -2,6 +2,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!-- 로그인 상태 정보 -->
+<c:set var="whologin" value="0" /> 
+<c:if test="${empty sessionScope.loginfo}">
+	<c:set var="whologin" value="0" />
+</c:if>
+<c:if test="${not empty sessionScope.loginfo}">
+	<c:if test="${sessionScope.loginfo.responsibilities == '원장'}">
+		<c:set var="whologin" value="1" />
+	</c:if>
+	<c:if test="${sessionScope.loginfo.responsibilities == '직원'}">
+		<c:set var="whologin" value="2" />
+	</c:if>
+	<c:if test="${sessionScope.loginfo.responsibilities != '원장'}">
+		<c:if test="${sessionScope.loginfo.responsibilities != '직원'}">
+			<c:set var="whologin" value="3" />
+		</c:if>
+	</c:if>
+</c:if>
+
+<%
+	String contextPath = request.getContextPath() ;
+	String mappingName = "/Kids" ;
+	
+	String YesForm = contextPath + mappingName ;
+	String NoForm = contextPath + mappingName + "?command=" ;
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +93,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
      		    <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="<%=NoForm%>goList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>공지사항</span></a>
             </li>
@@ -81,7 +109,7 @@
              			  	<a class="collapse-item" href="login.jsp">알림장</a>
              			  	<a class="collapse-item" href="tables.jsp">
                     		특별활동 게시판</a>
-                    		<a class="collapse-item" href="tables.jsp">
+                    		<a class="collapse-item" href="<%=NoForm%>empbList">
                     		직원 게시판</a>
                     </div>
                 </div>
@@ -195,16 +223,87 @@
                                 </form>
                             </div>
                         </li>
+                    <!-- 원장님전용 관리 -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                관리
+                            </a>
+                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                  <a class="dropdown-item" href="<%=NoForm%>submit">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    가입 승인
+                                 	 </a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="<%=NoForm%>empList">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    직원 관리
+                                	  </a>
+                                   <a class="dropdown-item" href="login.jsp">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    원비 관리
+                                 	 </a>
+                                   <a class="dropdown-item" href="login.jsp">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    매출
+                                  	</a>
+                             </div>
+					<!-- 로그인 아이콘 -->		
+					 <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <c:if test="${whologin != 0}">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                               		 ${sessionScope.loginfo.name}(${sessionScope.loginfo.id}) 님
+                                </span>
+                                </c:if>
+                                <img class="img-profile rounded-circle"
+                                    src="<%=request.getContextPath()%>/bootstrap/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <c:if test="${whologin == 0}">
+                                  <a class="dropdown-item" href="login.jsp">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Login
+                                  </a>
+                                </c:if>
+                                <c:if test="${whologin != 0}">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                                </c:if>
+                            </div>
+                        </li>
 
+                    </ul> 
+                </nav>
+								
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                  <!--       <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                -- Counter - Alerts --
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                            -- Dropdown - Alerts --
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -247,15 +346,15 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages -->
+                        -- Nav Item - Messages --
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
+                                -- Counter - Messages --
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
+                            -- Dropdown - Messages --
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -315,7 +414,7 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
+                        -- Nav Item - User Information --
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -323,7 +422,7 @@
                                 <img class="img-profile rounded-circle"
                                     src="<%=request.getContextPath()%>/bootstrap/undraw_profile.svg">
                             </a>
-                            <!-- Dropdown - User Information -->
+                            -- Dropdown - User Information --
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -346,9 +445,9 @@
                             </div>
                         </li>
 
-                    </ul>
+                    </ul> 
 
-                </nav>
+                </nav> -->
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
