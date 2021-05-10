@@ -450,14 +450,14 @@
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 <!--선생님  --></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="#" class="btn btn-primary btn-icon-split ">
+                                            <a href="<%=NoForm%>empmOn" class="btn btn-primary btn-icon-split ">
                                         	<span class="icon text-white-50">
                                        			 <i class="fas fa-flag"></i>
                                         	</span>
                                         	<span class="text" >출근</span>
                                     		</a>
                                     	<div class="my-2"></div>
-                                    		<a href="#" class="btn btn-warning btn-icon-split">
+                                    		<a href="<%=NoForm%>empmOff" class="btn btn-warning btn-icon-split">
                                         	<span class="icon text-white-50">
                                         	<i class="fas fa-exclamation-triangle"></i>
                                         	</span>
@@ -478,7 +478,8 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 </div>
-                                            <div class="h5 mb-0 font-weight-bold text-primary">귀가동의서 <br>확인하기</div>
+                                            <div class="h5 mb-0 font-weight-bold text-primary">
+                                            <a herf="<%=NoForm%>hoCheck" >귀가동의서 <br>확인하기</div></a>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -500,7 +501,7 @@
                                         		<span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                        		 	</span>
-                                        	<span class="text">원생출석</span>
+                                        	<span class="text"><a herf="<%=NoForm%>hoCheck" >원생출석</span>
                                     		</a>
                                         </div>
                                         <div class="col-auto">
