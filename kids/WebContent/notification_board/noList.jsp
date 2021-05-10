@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-	Kids 메인
+	noList
 <%@ include file="./../common/footer.jsp" %>
 </body>
 </html>
