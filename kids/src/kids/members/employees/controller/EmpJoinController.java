@@ -17,8 +17,6 @@ public class EmpJoinController extends SuperClass {
 		if (this.validate(request) == true) {
 			System.out.println("가입신청이 완료되었습니다.");
 			
-			Str
-			
 			
 			String gotopage = "/employees/empJoinForm.jsp";
 			super.GotoPage(gotopage);

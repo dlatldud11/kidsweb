@@ -26,9 +26,26 @@
     <link href="<%=request.getContextPath()%>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+<style type="text/css">
 
+
+footer{ position:fixed; 
+  bottom:0px; 
+  height:60px; 
+  width:100%; 
+  background:grey;
+  left:0px; 
+</style>
+
+
+<!-- 출처: https://appsnuri.tistory.com/420 [이야기앱 세상]
+ -->
 <body id="page-top">
 
+
+
+
+<!-- 출처: https://appsnuri.tistory.com/420 [이야기앱 세상] -->
     <!-- Page Wrapper -->
    
             <!-- End of Main Content -->

@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-	noList
+	noList알림장
 <%@ include file="./../common/footer.jsp" %>
 </body>
 </html>
