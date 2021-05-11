@@ -111,3 +111,7 @@ stfList=kids.management.st_total.stu_fee.controller.ListStudentFeeController
 salInsert=kids.management.sales_table.controller.InsertSalesController
 salList=kids.management.sales_table.controller.ListSalesController
 salUpdate=kids.management.sales_table.controller.UpdateSalesController
+######################추가 todolist##########################
+submit=kids.members.common.controller.SubmitController
+empJoin=kids.members.employees.controller.EmpJoinController
+stmOn=kids.management.st_total.st_manage.controller.OnStudentManagerController
