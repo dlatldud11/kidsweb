@@ -1,43 +1,156 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./../start.jsp" %>
+<%
+	String contextPath = request.getContextPath() ;
+	String mappingName = "/Kids" ;
+	
+	String YesForm = contextPath + mappingName ;
+	String NoForm = contextPath + mappingName + "?command=" ;
+%>
 <!DOCTYPE html>
 <html>
 <head>
+
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="<%=request.getContextPath()%>/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="<%=request.getContextPath()%>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+	
+	 <script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="<%=request.getContextPath()%>/bootstrap/js/sb-admin-2.min.js"></script>
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script type="text/javascript">
+	function Checkid(){
+		var id = document.myform.id.value;
+		if(id.length < 4){
+		alert('아이디는 최소 4자리 이상이어야 합니다.');
+		document.myform.id.focus();
+		return false;
+		}
+		var url = '<%=NoForm%>idCheck&id=' + id;
+		window.open(url, 'mywin', 'height=150,width=300');
+	}
+	
 	$(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip();	
 	});
 	</script>
 </head>
-<body>
-	<h3>회원 가입</h3>
-	<form action="<%=NoForm%>" method="post">
-		<!-- <input type="hidden" name="command" value="empInsert"> -->
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">회원 가입</h1>
+                            </div>
+                            <form class="user" action="<%=YesForm%>" method="post">
+                                <div class="form-group row">
+                                	 <label class="control-label align-self-center" for="id">아이디</label>
+                                    <div class="col-sm-7">
+										<input type="text" class="form-control form-control-user align-self-auto" id="id" placeholder="아이디를 입력해 주세요"
+										name="id" data-toggle="tooltip" title="아이디는 4글자 이상 10글자 이하로 입력해 주세요."
+										onkeyup="isCheckFalse();" value="${bean.id}">
+									</div>
+									<div class="col-sm-3">
+										<input type="button" value="중복 체크" class="btn btn-info align-self-center" onclick="Checkid();">
+									</div>
+                                </div>
+                                <div class="form-group">
+                                 	<label class="control-label align-self-center" for="password">비밀번호</label>
+                                 	<div class="col-sm-8">
+										<input type="password" class="form-control form-control-user" id="password" placeholder="비밀번호를 입력해 주세요."
+										name="password" data-toggle="tooltip" title="비밀번호는 4글자 이상 12글자 이하로 입력해 주세요.">
+                                	</div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a>
+                                <hr>
+                                <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<form action="<%=YesForm%>" method="post">
+	
+		<input type="hidden" name="command" value="empInsert">
+		<input type="hidden" name="isCheck" value="false">
+		
 		<div class="form-group">
 			<div>
 				<label class="control-label" for="id">아이디</label>
 				<input type="text" class="form-control" id="id" placeholder="아이디를 입력해 주세요"
 				name="id" data-toggle="tooltip" title="아이디는 4글자 이상 10글자 이하로 입력해 주세요."
-				onkeyup="isCheclFalse();" value="${bean.id}">
+				onkeyup="isCheckFalse();" value="${bean.id}">
 			</div>
 			<div>
-				<input type="button" value="중복 체크" class="btn btn-info" onclick="idCheck();">
+				<input type="button" value="중복 체크" class="btn btn-info" onclick="Checkid();">
 			</div>
 		</div>
 		<div class="form-group">
 			<div>
 				<label class="control-label" for="password">비밀번호</label>
-				<input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요."
+				<input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요."
 				name="password" data-toggle="tooltip" title="비밀번호는 4글자 이상 12글자 이하로 입력해 주세요.">
 			</div>
 		</div>
 		<div class="form-group">
 			<div>
 				<label class="control-label" for="name">이름</label>
-				<input type="text" class="form-control" id="name" placeholder="이름을 입력해 주세요."
+				<input type="text" class="form-control-inline" id="name" placeholder="이름을 입력해 주세요."
 				name="name" data-toggle="tooltip" title="이름은 2글자 이상 10글자 이하로 입력해 주세요." value="${bean.name}">
 			</div>
 		</div>
@@ -81,7 +194,7 @@
 				<label class="control-label" for="zipcode">우편 번호</label>
 				<input type="text" class="form-control" id="fakezipcode" 
 				disabled="disabled" name="fakezipcode">
-				<input type="hidden" name="zipcode" id="zipcode">
+				<input type="text" name="zipcode" id="zipcode">
 			</div>
 			<div>
 				<input type="button" value="우편 번호 찾기" class="btn btn-info" onclick="zipfind();">
@@ -91,7 +204,7 @@
 			<div>
 				<label class="control-label" for="address1">주소</label>
 				<input type="text" class="form-control" id="fakeaddress1" name="fakeaddress1" disabled="disabled">
-				<input type="hidden" name="address1" id="address1"> 
+				<input type="text" name="address1" id="address1"> 
 			</div>
 		</div>
 		<div class="form-group">
@@ -123,7 +236,7 @@
 	      	</div>
 		</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-default" onclick="return checkForm();">가입</button>
+			<button type="submit" class="btn btn-default">가입</button>
 			&nbsp;&nbsp;&nbsp;
 			<button type="reset" class="btn btn-default">다시 쓰기</button>
 		</div>

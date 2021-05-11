@@ -6,6 +6,5 @@
 </head>
 <body>
 	Kids 메인
-<%@ include file="./../common/footer.jsp" %>
 </body>
 </html>

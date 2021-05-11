@@ -15,6 +15,6 @@ public class ListEmpBoardController extends SuperClass {
 		
 		String gotopage = "/emplo_board/empbList.jsp" ;
 		super.GotoPage(gotopage);
-		
+		 
 	}	
 }

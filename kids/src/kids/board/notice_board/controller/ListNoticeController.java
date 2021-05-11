@@ -15,7 +15,7 @@ public class ListNoticeController extends SuperClass {
 		
 		String gotopage = "/notice_board/goList.jsp" ;
 		super.GotoPage(gotopage);
-		
+		 
 	}	
 
 }

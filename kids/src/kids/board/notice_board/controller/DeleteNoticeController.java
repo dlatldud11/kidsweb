@@ -4,4 +4,5 @@ import kids.common.controller.SuperClass;
 
 public class DeleteNoticeController extends SuperClass {
 
-}
+}  
+ 
