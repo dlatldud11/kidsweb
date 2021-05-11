@@ -7,6 +7,9 @@
 	String YesForm = contextPath + mappingName ;
 	String NoForm = contextPath + mappingName + "?command=" ;
 %>
+<%
+	int twelve = 12;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,32 +75,68 @@
                             </div>
                             <form class="user" action="<%=YesForm%>" method="post">
                                 <div class="form-group row">
-                                	 <label class="control-label align-self-center" for="id">아이디</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-9">
 										<input type="text" class="form-control form-control-user align-self-auto" id="id" placeholder="아이디를 입력해 주세요"
 										name="id" data-toggle="tooltip" title="아이디는 4글자 이상 10글자 이하로 입력해 주세요."
 										onkeyup="isCheckFalse();" value="${bean.id}">
+										<span class="text-danger">${errid}</span>
 									</div>
 									<div class="col-sm-3">
 										<input type="button" value="중복 체크" class="btn btn-info align-self-center" onclick="Checkid();">
 									</div>
                                 </div>
                                 <div class="form-group">
-                                 	<label class="control-label align-self-center" for="password">비밀번호</label>
-                                 	<div class="col-sm-8">
-										<input type="password" class="form-control form-control-user" id="password" placeholder="비밀번호를 입력해 주세요."
-										name="password" data-toggle="tooltip" title="비밀번호는 4글자 이상 12글자 이하로 입력해 주세요.">
+                                	<div class="row">
+	                                 	<div class="col-sm-<%=twelve%>">
+											<input type="password" class="form-control form-control-user" id="password" placeholder="비밀번호를 입력해 주세요."
+											name="password" data-toggle="tooltip" title="비밀번호는 4글자 이상 12글자 이하로 입력해 주세요.">
+											<span class="text-danger">${errpassword}</span>
+	                                	</div>
                                 	</div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
-                                    </div>
+                                <div class="form-group">
+                                	<div class="row">
+	                                    <div class="col-sm-<%=twelve%>">
+											<input type="text" class="form-control form-control-user" id="name" placeholder="이름을 입력해 주세요."
+											name="name" data-toggle="tooltip" title="이름은 2글자 이상 10글자 이하로 입력해 주세요." value="${bean.name}">
+											<span class="text-danger">${errname}</span>
+										</div>
+									</div>
+                                </div>
+                                 <div class="form-group">
+                                	<div class="row">
+	                                    <div class="col-sm-<%=twelve%>">
+											<input type="date" class="form-control form-control-user" id="birth" placeholder="생일을 입력해 주세요."
+											name="birth" data-toggle="tooltip" title="생일은 yyyy/mm/dd형식으로 입력해 주세요." value="${bean.birth}">
+											<span class="text-danger">${errbirth}</span>
+										</div>
+									</div>
+                                </div>
+                                 <div class="form-group">
+                                	<div class="row">
+	                                    <div class="col-sm-<%=twelve%>">
+											<input type="text" class="form-control form-control-user" id="hp" placeholder="연락처를 입력해 주세요."
+											name="hp" data-toggle="tooltip" title="'-'없이 숫자만 10~11자리 입력해 주세요." value="${bean.hp}">
+										</div>
+									</div>
+                                </div>
+                                 <div class="form-group">
+                                	<div class="row">
+	                                    <div class="col-sm-<%=twelve%>">
+											<input type="text" class="form-control form-control-user" id="name" placeholder="이름을 입력해 주세요."
+											name="name" data-toggle="tooltip" title="이름은 2글자 이상 10글자 이하로 입력해 주세요." value="${bean.name}">
+											<span class="text-danger">${errname}</span>
+										</div>
+									</div>
+                                </div>
+                                <div class="form-group">
+                                	<div class="row">
+	                                    <div class="col-sm-<%=twelve%>">
+											<input type="text" class="form-control form-control-user" id="name" placeholder="이름을 입력해 주세요."
+											name="name" data-toggle="tooltip" title="이름은 2글자 이상 10글자 이하로 입력해 주세요." value="${bean.name}">
+											<span class="text-danger">${errname}</span>
+										</div>
+									</div>
                                 </div>
                                 <a href="login.html" class="btn btn-primary btn-user btn-block">
                                     Register Account
