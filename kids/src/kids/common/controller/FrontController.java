@@ -108,7 +108,9 @@ public class FrontController extends HttpServlet {//implements SuperController{
 		String method = request.getMethod().toLowerCase() ;
 		//해당 커맨드에 맞는 컨트롤러를 찾아서 해당 컨트롤러의 doProcess() 메소드를 호출한다.
 		//map 객체에서 해당 command에 해당하는 Controller 객체를 얻어 낸다.
+		System.out.println("command 확인 : "+ command);
 		SuperController controller = actionMaps.get(command);
+		System.out.println("controller 확인"+controller);
 		if(controller != null){			
 			if ( method.equals("get") ) {
 				System.out.println( controller.toString() + " GET 메소드 호출됨" );

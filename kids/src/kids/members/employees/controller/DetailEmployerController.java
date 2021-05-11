@@ -4,4 +4,4 @@ import kids.common.controller.SuperClass;
 
 public class DetailEmployerController extends SuperClass {
 
-}
+} 

@@ -29,10 +29,7 @@
 	String YesForm = contextPath + mappingName ;
 	String NoForm = contextPath + mappingName + "?command=" ;
 %>
-<%-- <%
-	String imsi = request.getContextPath() + "/Kids?command=" ; 	
-	//response.sendRedirect( imsi ) ;
-%> --%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,7 +106,7 @@
                 <div id="collapseCommunity" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
-             			  	<a class="collapse-item" href="<%=NoForm%>noList">알림장</a>
+             			  	<a class="collapse-item" href="login.jsp">알림장</a>
              			  	<a class="collapse-item" href="tables.jsp">
                     		특별활동 게시판</a>
                     		<a class="collapse-item" href="<%=NoForm%>empbList">
@@ -844,5 +841,6 @@
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-area-demo.js"></script>
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-pie-demo.js"></script>
 
+</body>
 
 </html>

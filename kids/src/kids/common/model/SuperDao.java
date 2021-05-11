@@ -9,8 +9,8 @@ public class SuperDao {
 	
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String id = "proman";
-	private String password = "oracle";
+	private String id = "honey";
+	private String password = "code";
 	
 	public SuperDao() {
 		try {
@@ -42,4 +42,15 @@ public class SuperDao {
 //			e.printStackTrace();
 //		}
 //	}
+
+	public void closeConnection(){
+		conn = null ;
+//		if (conn != null) {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}			
+//		}
+	}	
 }
