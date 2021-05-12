@@ -2,6 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	String contextPath = request.getContextPath() ;
+	String mappingName = "/Kids" ;
+	
+	// 폼 태그에서 사용할 변수
+	String YesForm = contextPath + mappingName ;
+	
+	// 폼이 아닌 다른 영역에서 사용할 변수
+	String NoForm = contextPath + mappingName + "?command=" ;	
+	
+	// out.print("contextPath=" + contextPath + "<br>") ;
+	// out.print("mappingName=" + mappingName + "<br>") ;
+	// out.print("NoForm=" + NoForm + "<br>") ;
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -145,7 +159,6 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -698,7 +711,6 @@
         </div>
         <!-- End of Content Wrapper -->
 
-    </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->

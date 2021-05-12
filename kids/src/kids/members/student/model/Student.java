@@ -1,17 +1,17 @@
 package kids.members.student.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Student {
 	private int sid ;
 	private int class_id ;
 	private String name ;
 	private String hp ;
-	private Date birth;
+	private String birth;
 	private String address1 ;
 	private String address2 ;
 	private String gender ;
-	private Date regdate ;
+	private String regdate ;
 	private String textarea ;
 	private String image ;
 	private String remark ;
@@ -42,12 +42,7 @@ public class Student {
 	public void setHp(String hp) {
 		this.hp = hp;
 	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
+
 	public String getAddress1() {
 		return address1;
 	}
@@ -66,12 +61,23 @@ public class Student {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Date getRegdate() {
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+
 	public String getTextarea() {
 		return textarea;
 	}
