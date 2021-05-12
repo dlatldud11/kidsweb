@@ -21,7 +21,7 @@
 	<script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script type="text/javascript">
 		function Close(){
-			opener.myform.idCheck.value = ${requestScope.pid};
+			opener.writeForm.idCheck.value = ${requestScope.pid};
 			window.close();
 		}
 	</script>

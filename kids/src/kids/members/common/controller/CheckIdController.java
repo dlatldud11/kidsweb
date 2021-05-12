@@ -20,6 +20,7 @@ public class CheckIdController extends SuperClass {
 		ParentsDao pdao = new ParentsDao();
 		Parents bean = pdao.selectDataByPk(pid);
 
+		System.out.println("상태확인");
 		String message = "";
 		if(bean == null) { // 존재 하지 않는 회원
 			message = pid + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디 입니다.";
