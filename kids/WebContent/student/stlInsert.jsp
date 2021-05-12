@@ -11,13 +11,8 @@
 
 <!DOCTYPE html><html>
 <head>
-	<script>
-		function zipfind(){
-			/* alert('우편 번호 찾기') ; */
-			var url = '<%=NoForm%>meZipcheck'  ; 
-			window.open(url, 'mywin', 'height=600,width=720,scrollbars=yes') ;
-		}
-		
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript">
 		function isCheckFalse(){
 			document.myform.isCheck.value = false ;
 		}
@@ -33,6 +28,48 @@
 		$(document).ready(function(){
 			$('[data-toggle="tooltip"]').tooltip();	
 		});
+		
+		 function checkPost() {
+				var width = 500; //팝업의 너비
+				var height = 500; //팝업의 높이
+					
+			    new daum.Postcode({
+					width : width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
+			  		height : height,
+				
+			        oncomplete: function(data) {
+			           var addr = ''; // 주소 변수
+			           var extraAddr = ''; // 참고항목 변수
+			           //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+			           if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+			                addr = data.roadAddress;
+			            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+			                addr = data.jibunAddress;
+			            }
+			            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+			            if(data.userSelectedType === 'R'){
+			                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+			                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+			                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+			                    extraAddr += data.bname;
+			                }
+			                // 건물명이 있고, 공동주택일 경우 추가한다.
+			                if(data.buildingName !== '' && data.apartment === 'Y'){
+			                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+			                }
+			        
+			            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+			            document.getElementById('fakezipcode').value = data.zonecode;
+			            document.getElementById("fakeaddress1").value = addr;
+			            // 커서를 상세주소 필드로 이동한다.
+			            document.getElementById("address2").focus();
+			        	}
+					}
+			    }).open({
+					left: (window.screen.width / 2) - (width / 2),
+					top: (window.screen.height / 2) - (height / 2)
+			});
+		 }
 	</script>
 	<link href="./../bootstrap/css/ab-admin-2.min.css" rel="stylesheet">
 </head>
@@ -105,7 +142,7 @@
 				      	</div>
 				      	<div class="col-sm-<%=rightButton%>">
 				        	<input type="button" value="우편 번호 찾기" class="btn btn-info"
-				        		onclick="zipfind();">
+				        		onclick="checkPost()">
 				      	</div>
 				      	</div>
 				    </div>			    

@@ -1,6 +1,7 @@
 package kids.members.student.model;
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,20 +57,46 @@ public class StudentDao extends SuperDao2{
 		return cnt ;
 	}
 
-	public int DeleteData(int no) {
-		String sql = " delete from students  " ;
-		sql += " where name = ? " ;
-		
-		PreparedStatement pstmt = null ;
+	@SuppressWarnings("resource")
+	public int DeleteData( int sid) {
+		String sql ;		
+		PreparedStatement pstmt = null ;		
+		Student bean = null ;
 		int cnt = -99999 ;
 		try {
+			bean = this.SelectDataByPk(sid) ;
+			
 			if( conn == null ){ super.conn = super.getConnection() ; }
-			conn.setAutoCommit( false );
+			conn.setAutoCommit( false );	
+		
+			sql = " update parents set remark = ?  " ;
+			sql += " where sid = ? " ;
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setInt(1, no);
+			String imsi = bean.getName() +  "(" + sid + ")가 회원 탈퇴를 하였습니다." ;
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, sid);
 			
-			cnt = pstmt.executeUpdate() ; 
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+		
+			sql = " update stu_fee set remark = ? " ;
+			sql += " where sid = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, sid);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql = " delete from students " ;
+			sql += " where sid = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			pstmt.setInt(2, sid);			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
 			conn.commit(); 
 		} catch (Exception e) {
 			SQLException err = (SQLException)e ;			
@@ -188,8 +215,10 @@ public class StudentDao extends SuperDao2{
 				bean.setGender(rs.getString("gender"));
 				bean.setAddress1(rs.getString("address1"));
 				bean.setAddress2(rs.getString("address2"));
+				bean.setRegdate(String.valueOf(rs.getDate("regdate")));
 				bean.setTextarea(rs.getString("textarea"));
 				bean.setImage(rs.getString("image"));
+				bean.setZipcode(rs.getString("zipcode"));
 
 			}
 			
@@ -206,5 +235,33 @@ public class StudentDao extends SuperDao2{
 		} 		
 		return bean  ;
 	}
-
+	public int selectSidByData(String name, String hp) {
+	      int sid = 0;
+	      PreparedStatement pstmt = null ;
+	      ResultSet rs = null;
+	      String sql = "select sid from student where name = ? and hp = ?";
+	      
+	      try {
+	         if(conn == null) {super.conn = super.getConnection() ; }
+	         pstmt = conn.prepareStatement(sql) ;
+	         pstmt.setString(1, name);
+	         pstmt.setString(2, hp);
+	         
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            sid = rs.getInt("sid");
+	         }
+	      } catch (Exception e) {   
+	         e.printStackTrace();
+	      }finally {
+	         try {
+	            if(rs != null) {rs.close();}
+	            if(pstmt != null) {pstmt.close();} 
+	            super.closeConnection();
+	         } catch (Exception e2) {
+	            e2.printStackTrace();
+	         }
+	      }
+	      return sid;
+	   }
 }

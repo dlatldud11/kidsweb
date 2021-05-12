@@ -21,7 +21,7 @@ public class UpdateStudentController extends SuperClass {
 		StudentDao dao = new StudentDao() ;
 		String data = dao.toString() ;
 		
-		String name = request.getParameter("name") ;
+		int sid = Integer.parseInt(request.getParameter("sid")) ;
 		
 		List<Student> lists = new ArrayList<Student>() ;
 		

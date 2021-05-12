@@ -15,11 +15,11 @@ public class DeleteStudentController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		int no = Integer.parseInt(request.getParameter("no")) ;
+		int sid = Integer.parseInt(request.getParameter("sid")) ;
 		
 		StudentDao dao = new StudentDao();
 		int cnt = -99999 ;
-		cnt = dao.DeleteData(no) ;
+		cnt = dao.DeleteData(sid) ;
 		
 		new ListStudentController().doGet(request, response);
 		
