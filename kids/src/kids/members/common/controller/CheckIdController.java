@@ -24,12 +24,13 @@ public class CheckIdController extends SuperClass {
 		if(bean == null) { // 존재 하지 않는 회원
 			message = pid + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디 입니다.";
 			request.setAttribute("message",message);
+			request.setAttribute("pid", pid);
 		}else { // 일반 사용자
 			message = pid + "은(는) <font color='red'><b>사용 중</b></font>인 아이디 입니다.";
 			request.setAttribute("message",message);
 		}
 		
-		String gotopage = "/parents/idCheck.jsp";
+		String gotopage = "/parents/pidCheck.jsp";
 		super.GotoPage(gotopage);
 	}
 }

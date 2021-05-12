@@ -21,24 +21,13 @@
 	<script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script type="text/javascript">
 		function Close(){
-			opener.myform.isCheck.value = isCheck;
+			opener.myform.idCheck.value = ${requestScope.pid};
 			window.close();
 		}
 	</script>
 </head>
 <body>
 	<div class="container mx-auto bg-light">
-		<form action="" method="post">
-			<div class="form-row">
-				<div class="col-10">
-					<input type="text" class="form-control" id="search" name="search">
-				</div>
-				<div class="col-2">
-					<input type="button" class="btn btn-primary" value="검색">
-				</div>
-			</div>
-		</form>
-		<br>
 		<br>
 		<p align="center">${requestScope.message}</p>
 		<br>
@@ -48,6 +37,5 @@
 			</button>
 		</div>
 	</div>
-
 </body>
 </html>
