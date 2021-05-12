@@ -47,8 +47,6 @@ public class LoginEmployerController extends SuperClass {
 		}else {
 			System.out.println("로그인에 성공하셨습니다.");
 			
-			super.session.setAttribute("loginfo", bean);
-			
 			new MainController().doGet(request, response);
 		}
 		
