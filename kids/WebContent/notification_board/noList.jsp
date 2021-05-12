@@ -6,6 +6,58 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+	
+	<!--로그인 세션 정보에 따라 send 값 다르게 주기 -->
+	<c:if test="whologin == 1 || whologin == 2">
+		<%-- <%session.setAttribute("send",1);%> --%>
+		<c:set var="send" value="1" scope="session" />
+	</c:if>
+	<c:if test="whologin == 3">
+		<c:set var="send" value="2" scope="session" />
+	</c:if>
+<%
+	int class_id = -99999;
+	if(session.getAttribute("class_id") != null){
+		class_id = (int)session.getAttribute("class_id");
+	}
+	String pid = null;
+	if(request.getParameter("pid") != null){
+		pid = (String)request.getParameter("pid");
+	}
+	
+%>	
+<script type="text/javascript">
+	function autoClosingAlert(selector, delay){
+		var alert = $(selector).alert();
+		alert.show();
+		window.setTimeout(function() { alert.hide()}, delay);
+	}
+	function insertFunction(){
+		<%-- alert("<%=NoForm%>noInsert"); --%>
+		var contents = $('#contents').val();
+		var command = 'noInsert';
+		$.ajax({
+			type: "POST",
+			url: "<%=NoForm%>noInsert",
+			data: {
+				class_id: encodeURIComponent(class_id),
+				/* command: encodeURIComponent(command), */
+				pid: encodeURIComponent(pid),
+				contents: encodeURIComponent(contents),
+			},
+			success: function(result){
+				if(result == 1){
+					autoClosingAlert('#successMessage', 2000);
+				}else if(result == 0){
+					autoClosingAlert('#dangerMessage', 2000);
+				}else{
+					autoClosingAlert('#warningMessage', 2000);
+				}
+			}
+		});
+		$('#contents').val('');
+	}
+</script>
 
 <style type="text/css">
 .container{max-width:1170px; margin:auto;}
@@ -121,12 +173,25 @@ img{ max-width:100%;}
   color: #4c4c4c;
   font-size: 15px;
   min-height: 48px;
-  width: 100%;
+  width: 80%;
 }
 
 .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
 .msg_send_btn {
   background: #05728f none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 50px;
+  top: 11px;
+  width: 33px;
+}
+.msg_send_btn1 {
+  background: #e74a3b none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
   color: #fff;
@@ -143,6 +208,8 @@ img{ max-width:100%;}
   height: 516px;
   overflow-y: auto;
 }
+
+
 </style>
 <head>
 
@@ -282,13 +349,40 @@ img{ max-width:100%;}
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              <input type="text" class="write_msg" id="contents" placeholder="Type a message"/>
+              <button class="msg_send_btn" type="button" onclick="insertFunction();"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              
+              <button class="msg_send_btn1" type="button" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                  <a class="dropdown-item" href="<%=NoForm%>submit">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    일일정보 입력
+                                 	 </a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="<%=NoForm%>empList">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    일일정보 수정
+                                	  </a>
+                                   <a class="dropdown-item" href="login.jsp">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    일일정보 삭제
+                                 	 </a>
+                             </div>
             </div>
           </div>
         </div>
       </div>
-      
+      <div class="alert alert-success" id="successMessage" style="display:none;">
+      	<strong>메세지 전송에 성공했습니다</strong>
+      </div>
+      <div class="alert alert-danger" id="dangerMessage" style="display:none;">
+      	<strong>이름과 내용을 모두 입력해주세요</strong>
+      </div>
+      <div class="alert alert-warnning" id="warnningMessage" style="display:none;">
+      	<strong>데이터베이스 오류가 발생했습니다</strong>
+      </div>
       
       <p class="text-center top_spac"> Design by <a target="_blank" href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/">Sunil Rajput</a></p>
       
