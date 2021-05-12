@@ -6,6 +6,7 @@
 </head>
 <body>
 	noList알림장
+	알림장 다 사라졌네 ㅎ
 <%@ include file="./../common/footer.jsp" %>
 </body>
 </html>

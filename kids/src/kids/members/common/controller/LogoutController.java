@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package kids.members.common.controller;
 
 import java.io.IOException;
@@ -11,22 +10,4 @@ import kids.common.controller.SuperClass;
 
 public class LogoutController extends SuperClass {
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
-		
-		super.session.invalidate(); 
-		
-		String gotopage = "/start.jsp" ;
-		super.GotoPage(gotopage);
-	}
-}
-=======
-package kids.members.common.controller;
-
-import kids.common.controller.SuperClass;
-
-public class LogoutController extends SuperClass {
-
 } 
->>>>>>> branch 'hoon' of https://github.com/dlatldud11/kidsweb

@@ -14,19 +14,8 @@ public class EmpJoinController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 			
-<<<<<<< HEAD
 			
-			String gotopage = "/employees/empJoinForm.jsp";
-			super.GotoPage(gotopage);
-		} else {
-
-		}
-		
-		
-	}
-=======
 		String gotopage = "/employees/empJoinForm.jsp" ;
 		super.GotoPage(gotopage);
 	}	
->>>>>>> branch 'hoon' of https://github.com/dlatldud11/kidsweb
 }
