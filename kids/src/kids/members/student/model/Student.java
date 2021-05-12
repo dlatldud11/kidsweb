@@ -15,6 +15,7 @@ public class Student {
 	private String textarea ;
 	private String image ;
 	private String remark ;
+	private String zipcode ;
 	
 	public Student() {}
 	
@@ -95,6 +96,20 @@ public class Student {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	/**
+	 * @return the zipcode
+	 */
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	/**
+	 * @param zipcode the zipcode to set
+	 */
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 	
 	
