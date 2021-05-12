@@ -7,7 +7,7 @@ public class Student {
 	private int class_id ;
 	private String name ;
 	private String hp ;
-	private Date birth;
+	private String birth;
 	private String address1 ;
 	private String address2 ;
 	private String gender ;
@@ -42,10 +42,10 @@ public class Student {
 	public void setHp(String hp) {
 		this.hp = hp;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getAddress1() {

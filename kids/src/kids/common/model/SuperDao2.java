@@ -1,16 +1,16 @@
 package kids.common.model;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 public class SuperDao2 {
 	protected Connection conn = null;
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String id = "proman";
-	private String password = "oracle";
+	private String id = "honey";
+	private String password = "code";
 	
 	protected Connection getConnection() {		
 		try {			 
