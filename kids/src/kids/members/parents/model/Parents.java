@@ -1,29 +1,39 @@
 package kids.members.parents.model;
 
-import java.util.Date;
-
 public class Parents {
 	
-	private String pid ;
+	private String pid ;//
 	private int sid ;
-	private String name ;
-	private String hp ;
-	private String address1 ;
-	private String address2 ;
-	private String gender ;
+	private String name ;//
+	private String hp ;//
+	private String address1 ;//
+	private String address2 ;//
+	private String gender ;//
 	private String relationship ;
 	private String submit ;
-	private Date birth ;
-	private String password ;
-	private String email ;
-	private String image ;
+	private String birth ;//
+	private String password ;//
+	private String email ;//
+	private String image ;//
 	private int childid ;
 	private int childid2 ;
 	private String remark ;
-	private int zipcode ;
+	private String zipcode ;//
+	private String responsibilities;
 	
+	public String getResponsibilities() {
+		return responsibilities;
+	}
+
+
+	public void setResponsibilities(String responsibilities) {
+		this.responsibilities = responsibilities;
+	}
+
+
 	public Parents() {}
 
+	
 	public String getPid() {
 		return pid;
 	}
@@ -96,11 +106,12 @@ public class Parents {
 		this.submit = submit;
 	}
 
-	public Date getBirth() {
+
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 
@@ -152,13 +163,16 @@ public class Parents {
 		this.remark = remark;
 	}
 
-	public int getZipcode() {
+
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+
 
 	@Override
 	public String toString() {

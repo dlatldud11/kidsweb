@@ -34,12 +34,12 @@ public class SuperDao {
 			return null;
 		}
 	}
-//	public void closeConnection(){
-//		// 커넥션 객체 닫기		
-//		try {
-//			if(conn != null) {conn.close();}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void closeConnection(){
+		// 커넥션 객체 닫기		
+		try {
+			if(conn != null) {conn.close();}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
