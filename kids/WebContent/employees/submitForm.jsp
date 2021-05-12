@@ -10,10 +10,10 @@
 		function search(){
 			var mode = $('#mode').val();
 			var keyword = $('#keyword').val();
-			location.href='<%=NoForm%>empList'+'&mode='+mode+'&keyword='+keyword;
+			location.href='<%=NoForm%>submit'+'&mode='+mode+'&keyword='+keyword;
 		}
 		function searchAll(){
-			locatoin.gref='<%=NoForm%>empList';
+			locatoin.gref='<%=NoForm%>submit';
 		}
 	</script>
    <style type="text/css">
@@ -24,12 +24,12 @@
    </style>
 </head>
 <body>
- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <div class="container col-sm-offset-4 col-sm-8">
          <div class="panel panel-primary">
             <div class="panel-heading">
-               <h4>직원 목록</h4>
-               <div class="search">
+               <h4>가입 대기 목록</h4>
+               <tbody class="search">
                   <tr>
                      <td align="center" colspan="11">
                         <form action="" class="form-inline" role="form" name="myform" method="get"> 
@@ -53,7 +53,7 @@
                         </form>
                      </td>
                   </tr>   
-               </div>
+            </tbody>
             <br>
                <table class="table table-hover">
 					<thead>
@@ -63,25 +63,27 @@
 							<th>성별</th>
 							<th>핸드폰 번호</th>
 							<th>이메일</th>
-							<th>학급</th>
+							<th>가입 상태</th>
+							<th>가입 승인</th>
 						</tr>
 					</thead>
-			  	 <tbody>
-						<c:forEach var="bean" items="${requestScope.lists}">
-							<tr onclick="location.href='<%=NoForm%>empDetail&tid=${bean.tid}&${requestScope.parameters}'">
-								<td>${bean.tid}</td>
-								<td>${bean.name}</td>
-								<td>${bean.gender}</td>
-								<td>${bean.hp}</td>
-								<td>${bean.email}</td>
-								<td>${bean.class_id}</td>
-							</tr>	
-						</c:forEach>
-				</tbody>		
-		 	</table>
-        </div> 
-      </div>
-    </div>
+					<c:forEach var="bean" items="${requestScope.lists}">
+						<tr>
+							<td>${bean.tid}</td>
+							<td>${bean.name}</td>
+							<td>${bean.gender}</td>
+							<td>${bean.hp}</td>
+							<td>${bean.email}</td>
+							<td>${bean.submit}</td>
+							<td>
+								<a href="<%=NoForm%>submitUpdate&tid=${bean.tid}&${requestScope.parameters}">가입 승인</a>
+							</td>							
+						</tr>							
+					</c:forEach>		
+				 </table>
+             </div> 
+          </div>
+       </div>
 
 </div>
 </body>

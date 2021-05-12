@@ -25,9 +25,11 @@ public class InsertEmployerController extends SuperClass {
 	@Override
 	public boolean validate(HttpServletRequest request) {
 		boolean isCheck = true;
+		System.out.println(bean);
 		
 		if(bean.getTid().length() < 4 || bean.getTid().length() > 10) {
-			request.setAttribute(super.PREFIX + "id", "아이디는 4자리 이상 10자리 이하여야 합니다.");
+			System.out.println("asdsad" + bean.getTid().length());
+			request.setAttribute(super.PREFIX + "tid", "아이디는 4자리 이상 10자리 이하여야 합니다.");
 			isCheck = false;
 		}
 		if(bean.getPassword().length() < 4 || bean.getPassword().length() > 12) {
@@ -75,16 +77,10 @@ public class InsertEmployerController extends SuperClass {
 			bean.setImage(request.getParameter("image"));
 			bean.setName(request.getParameter("name"));
 			bean.setPassword(request.getParameter("password"));
-			bean.setTid(request.getParameter("id"));
+			bean.setTid(request.getParameter("tid"));
 			bean.setZipcode(request.getParameter("zipcode"));
-			
-			if (request.getParameter("class_id") == null || request.getParameter("class_id").equals("")) {
-				bean.setClass_id(0);
-			} 
-			
-			if(request.getParameter("subject") == null || request.getParameter("subject").equals("")) {
-				bean.setSubject_code(0);
-			}
+			bean.setClass_id(Integer.parseInt(request.getParameter("Class_id")));
+			bean.setSubject_code(Integer.parseInt(request.getParameter("subject_code")));
 			
 			if(request.getParameter("responsibilities") == null || request.getParameter("responsibilities").equals("")) {
 				bean.setResponsibilities("직원");
@@ -113,8 +109,7 @@ public class InsertEmployerController extends SuperClass {
 				
 				request.setAttribute("bean", bean);
 				
-				String gotopage = "/employees/empInsertForm.jsp";
-				super.GotoPage(gotopage);
+				new InsertEmployerController().doGet(request, response);
 			}
 		}
 }

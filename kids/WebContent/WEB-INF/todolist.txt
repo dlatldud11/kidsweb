@@ -113,4 +113,5 @@ salList=kids.management.sales_table.controller.ListSalesController
 salUpdate=kids.management.sales_table.controller.UpdateSalesController
 ######################추가 todolist##########################
 submit=kids.members.common.controller.SubmitController
+submitUpdate=kids.members.common.controller.SubmitUpdateController
 empJoin=kids.members.employees.controller.EmpJoinController
