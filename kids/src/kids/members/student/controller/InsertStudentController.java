@@ -93,4 +93,3 @@ public class InsertStudentController extends SuperClass {
 		 return isCheck;
 	     }
 }
->>>>>>> refs/remotes/origin/honeycode2
