@@ -107,9 +107,10 @@
 		</table>
 		<hr>
 		<div class="col-sm-7" style="float:right;">
-			<button class="btn btn-info" onclick="location.href='<%=NoForm%>empList'">
+			<button class="btn btn-info" onclick="location.href='<%=NoForm%>empDetail&tid=${bean.tid}&${requestScope.parameters}'">
 				돌아 가기
 			</button>
+			&nbsp;
 			<button type="submit" class="btn btn-info">
 				직원 정보 수정
 			</button>
