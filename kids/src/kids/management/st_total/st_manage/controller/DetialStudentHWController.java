@@ -4,4 +4,4 @@ import kids.common.controller.SuperClass;
 
 public class DetialStudentHWController extends SuperClass {
 
-}
+} 

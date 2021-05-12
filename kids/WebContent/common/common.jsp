@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<!-- 05.11컨텐트 지움 176 줄-->
 <!-- 로그인 상태 정보 -->
 <c:set var="whologin" value="0" /> 
 <c:if test="${empty sessionScope.loginfo}">
@@ -15,10 +15,8 @@
 	<c:if test="${sessionScope.loginfo.responsibilities == '직원'}">
 		<c:set var="whologin" value="2" />
 	</c:if>
-	<c:if test="${sessionScope.loginfo.responsibilities != '원장'}">
-		<c:if test="${sessionScope.loginfo.responsibilities != '직원'}">
-			<c:set var="whologin" value="3" />
-		</c:if>
+	<c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
+		<c:set var="whologin" value="3" />
 	</c:if>
 </c:if>
 
@@ -29,10 +27,7 @@
 	String YesForm = contextPath + mappingName ;
 	String NoForm = contextPath + mappingName + "?command=" ;
 %>
-<%-- <%
-	String imsi = request.getContextPath() + "/Kids?command=" ; 	
-	//response.sendRedirect( imsi ) ;
-%> --%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -176,7 +171,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <!-- <div id="content"> -->
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -258,7 +253,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <c:if test="${whologin != 0}">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                               		 ${sessionScope.loginfo.name}(${sessionScope.loginfo.id}) 님
+                               		 ${sessionScope.loginfo.name} 님
                                 </span>
                                 </c:if>
                                 <img class="img-profile rounded-circle"
@@ -840,9 +835,10 @@
     <!-- Page level plugins -->
     <script src="<%=request.getContextPath()%>/bootstrap/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
+    <!— Page level custom scripts —>
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-area-demo.js"></script>
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-pie-demo.js"></script>
 
+</body>
 
 </html>

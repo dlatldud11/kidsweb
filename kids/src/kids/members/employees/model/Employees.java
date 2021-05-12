@@ -18,6 +18,15 @@ public class Employees {
 	private int subject_code;
 	private String remark;
 	private String email;
+	private String zipcode;
+	
+	
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
 	public String getTid() {
 		return tid;
 	}
@@ -130,8 +139,9 @@ public class Employees {
 				+ ", salary=" + salary + ", image=" + image + ", birth=" + birth + ", hp=" + hp + ", address1="
 				+ address1 + ", address2=" + address2 + ", gender=" + gender + ", responsibilities=" + responsibilities
 				+ ", password=" + password + ", submit=" + submit + ", subject_code=" + subject_code + ", remark="
-				+ remark + ", email=" + email + "]";
+				+ remark + ", email=" + email + ", zipcode=" + zipcode + "]";
 	}
+	
 	
 	
 }

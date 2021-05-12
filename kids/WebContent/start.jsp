@@ -47,12 +47,12 @@
                         	<input type="hidden" name="command" value="empLogin">
                             <div class="form-row text-center" style="width:100%">
                                 <div class="col-12 col-md-8 mb-2 mb-md-0" style="width:30%;float:none; margin:0 auto">
-                                	<input class="form-control form-control-lg" type="text" id="id" name="id" placeholder="Enter your id..." />
+                                	<input class="form-control form-control-lg" type="text" id="id" name="id" placeholder="아이디를 입력하세요." value="${id}"/>
                                 	<br>
-                                	<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="Enter your password..." />
-                                	<br>
+                                	<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." />
+                                	<span class="form-control-static err">${errmsg}</span>
                                 	<button class="btn btn-block btn-lg btn-primary" type="submit">로그인</button>
-                                	<a class="text-white" href="<%=NoForm%>empInsert">회원가입</a>
+                                	<a class="text-white" href="<%=NoForm%>empJoin">회원가입</a>
                                 	&nbsp;
 	                                <a class="text-white" href="<%=NoForm%>empIdSearch">아이디/</a>
 	                                <a class="text-white" href="<%=NoForm%>empPaSearch">비밀번호 찾기</a>
