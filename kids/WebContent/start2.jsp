@@ -8,5 +8,6 @@
 	<a href="<%=imsi%>hello">헬로우</a>
 	<br><br><br>
 	<a href="<%=imsi%>world">월드</a>
+	임시영 데스크탑에서 브랜치에서 수정하고 이따가 다시 머지하고 푸시할것임
 </body>
 </html>
