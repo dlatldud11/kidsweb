@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package kids.board.notification_board.controller;
 
 import java.io.IOException;
