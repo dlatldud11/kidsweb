@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="common.jsp" %>
+<%@ include file="./../common/common.jsp" %>   
 <!DOCTYPE>
 <html>
 <head>
@@ -473,13 +473,13 @@
                         </div>
                         <div class="col-xl-6 col-md-6 mb-3">
                             <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
+                                <div class="card-body" onclick="location.href='<%=NoForm%>hoCheck';">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
+                                        <div class="col mr-2" >
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 </div>
                                             <div class="h5 mb-0 font-weight-bold text-primary">
-                                            <a herf="<%=NoForm%>hoCheck" >귀가동의서 <br>확인하기</div></a>
+                                            귀가동의서 <br>확인하기</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -497,11 +497,11 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 </div>
-                                            <a href="#" class="btn btn-success btn-icon-split btn-lg">
+                                            <a href="<%=NoForm%>stmOn" class="btn btn-success btn-icon-split btn-lg">
                                         		<span class="icon text-white-50">
                                             <i class="fas fa-trash"></i>
                                        		 	</span>
-                                        	<span class="text"><a herf="<%=NoForm%>hoCheck" >원생출석</span>
+                                        	<span class="text">원생출석</span>
                                     		</a>
                                         </div>
                                         <div class="col-auto">
@@ -513,7 +513,7 @@
                         </div>
                         <div class="col-xl-6 col-md-6 mb-3">
                             <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
+                                <div class="card-body" onclick="location.href='<%=NoForm%>meCheck';">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
@@ -933,6 +933,9 @@
 
 
 <%@ include file="./../common/footer.jsp" %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/dlatldud11/kidsweb.git
 </body>
 </html>

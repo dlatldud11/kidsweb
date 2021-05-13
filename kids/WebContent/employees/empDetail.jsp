@@ -79,7 +79,7 @@
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<button class="btn btn-info" onclick="history.back();">
+				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empList'">
 					돌아 가기
 				</button>
 				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empUpdate&tid=${bean.tid}'">

@@ -292,8 +292,6 @@
 
                     </ul> 
                 </nav>
-                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-								
     <!-- Bootstrap core JavaScript-->
     <script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="<%=request.getContextPath()%>/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -312,5 +310,4 @@
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-pie-demo.js"></script>
 
 </body>
-
 </html>

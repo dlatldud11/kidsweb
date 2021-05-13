@@ -34,7 +34,6 @@ public class SuperDao {
 			return null;
 		}
 	}
-
 //	public void closeConnection(){
 //		// 커넥션 객체 닫기		
 //		try {
