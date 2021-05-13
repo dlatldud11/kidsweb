@@ -36,28 +36,34 @@
 		//초기화과정을 거쳐야 제값들어갈떄 값 정상적으로 출력
 		
 		if(document.writeForm.pid.value=="")
-		document.getElementById("piddiv").innerText="아이디를 입력하세요";
+		document.getElementById("piddiv").innerText="  아이디를 입력하세요";
 		else if(document.writeForm.password.value=="")
-		document.getElemnetById("pwddiv").innerText="비밀번호를 입력하세요";
+		document.getElemnetById("pwddiv").innerText="  비밀번호를 입력하세요";
 		else if(document.writeForm.repassword.value=="")
-		document.getElementById("repwddiv").innerText="비밀번호 확인을 입력하세요";
+		document.getElementById("repwddiv").innerText="  비밀번호 확인을 입력하세요";
 		else if(document.writeForm.password.value != document.writeform.repassword.value)
-		document.getElementById("repwddiv").innerText="비밀번호가 일치하지 않습니다";
+		document.getElementById("repwddiv").innerText="  비밀번호가 일치하지 않습니다";
 		else if(document.writeForm.check.value =="")
-		document.getElementById("piddiv").innerText= "중복체크 하세요";
+		document.getElementById("piddiv").innerText= "  중복체크 하세요";
 		else if(document.writeForm.pid.value != document.writeForm.idcheck.value)
-		document.getElementById("piddiv").innerText= "중복체크 하세요";
+		document.getElementById("piddiv").innerText= "  중복체크 하세요";
+		
 		else document.writeForm.submit();
 	}
 	
 	function checkPid(){
 		document.getElementById("piddiv").innerText="";
 		var pid = document.writeForm.pid.value;
-		if(pid=="") 
-		document.getElementById("piddiv").innerText="먼저 아이디를 입력하세요";
-	else
-		var url = '<%=request.getContextPath()%>/kids?command=idCheck&pid='+pid;
-		window.open(url,"checkPid","width=450 height=150 left=800 top=200");
+		
+		if(pid==""){
+			console.log('if문들어옴');
+			document.getElementById("piddiv").innerText="  먼저 아이디를 입력하세요";
+		} 
+		else{
+			console.log('else 들어옴');
+			var url = '<%=request.getContextPath()%>/Kids?command=idCheck&pid='+pid;
+			window.open(url,"checkPid","width=450 height=150 left=800 top=200");
+		}
 	}
 
 	 function checkPost() {
@@ -103,7 +109,30 @@
 			top: (window.screen.height / 2) - (height / 2)
 	});  
  }
+	 
+	 conset add_input=()=>{
+		 const box = document.getElementById("box");
+		 const newP = document.createElement('p');
+		 newP.innerHTML="<input type='text'><input type='button' value='삭제' onclick='remove(this)'>";
+		 box.appendChild(newP);
+	 }
+	 
+	const object = document.this.object;
+	 const remove=(obj)=>{
+		 document.getElementById('box').removeChild(obj.parentNode);
+	 }
+		 
+	 }
 	</script>
+	<style type="text/css">
+		div#piddiv,div#pwddiv,div#repwddiv{
+			color:red;
+			font-size:10pt;
+			font-weight:bold;
+			padding-left:5px;
+		}
+	</style>
+	
 </head>
 <body>
 	<br>
@@ -125,27 +154,27 @@
 							<input type="text" class="form-control" id="pid" name="pid">
 							<input type="hidden" name="idcheck" value="">
 						</div>
-						<div id="piddiv"></div>
-						
 						<div class="col-">
 							<input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
 						</div>
 					</div>
 				</div>
+				<div class="form-group" id="piddiv"></div>
 				<div class="form-group">
 					<label for="password" class="form-control-label col-sm-0">비밀번호</label>
 					<div class="col-">
 						<input type="password" class="form-control" id="password" name="password">
 					</div>
-					<div id="pwddiv"></div>
+				<div class="form-group" id="pwddiv"></div>
 				</div>
 				<div class="form-group">
 					<label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
 					<div class="col-">
 						<input type="password" class="form-control" id="repassword" name="repassword">
 					</div>
-					<div id="repwddiv"></div>
 				</div>
+				<div class="form-group" id="repwddiv"></div>
+				
 				<div class="form-group">
 					<label for="name" class="form-control-label col-sm-0">이름</label>
 					<div class="col-">
@@ -226,11 +255,12 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="sid" class="form-control-label col-sm-0">학생등록</label>
-					<div class="form-row">
+					<label for="sid" class="form-control-label col-sm-0">자녀등록</label>
+					<div class="form-row" id="box">
 						<div class="col-">
 							<input type="number" class="form-control" id="sid" name="sid" readonly>
 						</div>
+						<button class="btn btn-primary" onclick="add_input();">추가</button>
 						<div class="col-">
 							<input type="button" class="form-control btn btn-primary" value="학생 찾기" onclick="stSearch();">
 						</div>

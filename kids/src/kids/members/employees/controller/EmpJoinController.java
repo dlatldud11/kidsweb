@@ -14,7 +14,6 @@ public class EmpJoinController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 			
-			
 		String gotopage = "/employees/empJoinForm.jsp" ;
 		super.GotoPage(gotopage);
 	}	
