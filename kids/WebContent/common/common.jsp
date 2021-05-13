@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- 05.11컨텐트 지움 176 줄-->
+
 <!-- 로그인 상태 정보 -->
 <c:set var="whologin" value="0" /> 
 <c:if test="${empty sessionScope.loginfo}">
@@ -106,7 +106,7 @@
                 <div id="collapseCommunity" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
-             			  	<a class="collapse-item" href="<%=NoForm%>noList">알림장</a>
+             			  	<a class="collapse-item" href="login.jsp">알림장</a>
              			  	<a class="collapse-item" href="tables.jsp">
                     		특별활동 게시판</a>
                     		<a class="collapse-item" href="<%=NoForm%>empbList">
@@ -173,7 +173,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <!-- <div id="content"> -->
+            <div id="content">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">

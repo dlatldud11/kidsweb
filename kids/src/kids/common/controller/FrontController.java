@@ -111,7 +111,6 @@ public class FrontController extends HttpServlet {//implements SuperController{
 		System.out.println("command 확인 : "+ command);
 		SuperController controller = actionMaps.get(command);
 		System.out.println("controller 확인"+controller);
-		System.out.println(method);
 		if(controller != null){			
 			if ( method.equals("get") ) {
 				System.out.println( controller.toString() + " GET 메소드 호출됨" );

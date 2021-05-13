@@ -6,9 +6,10 @@ public class Notification_board {
 	private int dailyno ;
 	private int  class_id ;
 	private String pid ;
+	private String title ;
 	private String contents ;
 	private String image ;
-	private String regdate ;
+	private Date regdate ;
 	private String checks ;
 	private int send ;
 	private String remark ;
@@ -39,6 +40,13 @@ public class Notification_board {
 		this.pid = pid;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getContents() {
 		return contents;
@@ -56,11 +64,11 @@ public class Notification_board {
 		this.image = image;
 	}
 
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 
@@ -90,12 +98,10 @@ public class Notification_board {
 
 	@Override
 	public String toString() {
-		return "Notification_board [dailyno=" + dailyno + ", class_id=" + class_id + ", pid=" + pid + ", contents="
-				+ contents + ", image=" + image + ", regdate=" + regdate + ", checks=" + checks + ", send=" + send
-				+ ", remark=" + remark + "]";
+		return "Notification_board [dailyno=" + dailyno + ", class_id=" + class_id + ", pid=" + pid + ", title=" + title
+				+ ", contents=" + contents + ", image=" + image + ", regdate=" + regdate + ", checks=" + checks
+				+ ", send=" + send + ", remark=" + remark + "]";
 	}
-
-	
 	
 	
 	
