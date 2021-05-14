@@ -40,10 +40,17 @@
 <head>
 <script>	
 		function search(){
-			/* alert('검색');  */	
-			var mode = $('#mode').val() ;
-			var keyword = $('#keyword').val() ;
-			location.href='<%=NoForm%>boList' + '&mode=' + mode + '&keyword=' + keyword ;
+			alert('검색');
+			var month = $('#month').val() ;
+			/* var paid = $('#paid').val() ;
+			var class_name = $('#class_name').val() ;
+			var pageSize = $('#pageSize').val();
+			 */
+location.href='<%=NoForm%>stfList '+' &month=' + month + '&paid=' + paid + '&class_name=' + class_name + '&pageSize=' + pageSize;
+		}
+		function searchName(){
+			var name = $('#name').val() ;
+			location.href='<%=NoForm%>stfList '+' &name=' + name ;
 		}
 		function searchAll(){
 			/* alert('전체 검색'); */
@@ -78,48 +85,60 @@
 				</div>
 						<tr>
 							<td align="center" colspan="11">
-								<form action="" class="form-inline" role="form" name="myform"
+								<form action="<%=YesForm%>" class="form-inline" role="form" name="myform"
 									method="get">
-									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
+									<input type="hidden" id="command" name="name" value="stfInsert">
+									<!-- <div class="form-group"> -->
+										<!-- <select id="mode" name="mode" class="form-control">
 											<option value="all" selected="selected">-- 선택하세요.
 											<option value="name">이름
 											<option value="gender">성별
 										</select>
 									</div>
-									년 &nbsp;
+									년 &nbsp; -->
 									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
-											<option value="all" selected="selected">-- 선택하세요.
-											<option value="name">이름
-											<option value="gender">성별
+										<select id="month" name="month" class="form-control">
+											<option value="all" selected="selected">전체검색
+											<option value="1">1
+											<option value="2">2
+											<option value="3">3
+											<option value="4">4
+											<option value="5">5
+											<option value="6">6
+											<option value="7">7
+											<option value="8">8
+											<option value="9">9
+											<option value="10">10
+											<option value="11">11
+											<option value="12">12
 										</select>
 									</div>
 									월 &nbsp; 납부
 									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
-											<option value="all" selected="selected">-- 선택하세요.
-											<option value="name">이름
-											<option value="gender">성별
+										<select id="paid" name="paid" class="form-control">
+											<option value="all" selected="selected">전체검색
+											<option value="납부">납부
+											<option value="미납부">미납부
 										</select>
 									</div>
 									&nbsp;반 
 									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
-											<option value="all" selected="selected">-- 선택하세요.
-											<option value="name">이름
-											<option value="gender">성별
+										<select id="class_name" name="class_name" class="form-control">
+											<option value="all" selected="selected">전체검색
+											<c:forEach var="bean" items="${requestScope.lists}">
+												<option value="${bean.class_name}">${bean.class_name}
+											</c:forEach>
 										</select>
 									</div>
 									&nbsp;한 페이지에 표시할 갯수 
 									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
-											<option value="all" selected="selected">-- 선택하세요.
-											<option value="name">이름
-											<option value="gender">성별
+										<select id="pageSize" name="pageSize" class="form-control">
+											<option value="10" selected="selected">10
+											<option value="30">30
 										</select>
 									</div>
-									
+									<button class="btn btn-primary" type="button"
+											onclick="search();">검색</button>
 								</form>
 							</td>
 						</tr>
@@ -127,7 +146,7 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>번호</th>
+									<th>날짜</th>
 									<th>이름</th>
 									<th>반</th>
 									<th>납부</th>
@@ -135,36 +154,27 @@
 									<th>비고</th>
 								</tr>
 							</thead>
-							</table>
 							<tbody>
 							 	<c:forEach var="bean" items="${requestScope.lists}">		
 							<tr>
+								<td>${bean.month}</td>
 								<td>${bean.name}</td>
-								<td>${bean.gender}</td>
-								<td>${bean.hp}</td>
-								<td>${bean.birth}</td>
-								<td>${bean.address}</td>
-								<td>${bean.textarea}</td>
+								<td>${bean.class_name}</td>
+								<td>${bean.paid}</td>
+								<td>${bean.unpaid}</td>
+								<td>${bean.remark}</td>
 							</tr>
 								</c:forEach> 
 							</tbody>
+							</table>
 								<form action="" class="form-inline" role="form" name="myform" method="get">
-									<div class="form-group">
-										<select id="mode" name="mode" class="form-control">
-											<option value="all" selected="selected"> -- 선택하세요.
-											<option value="writer">번호
-											<option value="subject">이름
-											<option value="content">반
-										</select>
-									</div>
-									
 									<div class="form-group">
 										<input type="text" class="form-control" name="keyword"
 												id="keyword">
 									</div>
 										&nbsp;&nbsp;
 										<button class="btn btn-primary" type="button"
-											onclick="search();">검색</button>
+											onclick="searchName();">이름검색</button>
 										&nbsp;&nbsp; ${pageInfo.pagingStatus}
 								</form>
 						</div>
