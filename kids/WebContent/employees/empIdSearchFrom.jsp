@@ -10,3 +10,8 @@
 	직원 아이디 찾기 폼
 </body>
 </html>
+<html>
+<body>
+<%@ include file="./../common/footer.jsp" %>
+</body>
+</html>

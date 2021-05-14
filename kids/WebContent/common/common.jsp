@@ -238,7 +238,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     직원 관리
                                 	  </a>
-                                   <a class="dropdown-item" href="login.jsp">
+                                   <a class="dropdown-item" href="<%=NoForm%>stfList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     원비 관리
                                  	 </a>

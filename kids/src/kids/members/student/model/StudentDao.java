@@ -6,19 +6,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kids.board.timetable.model.Timetable;
 import kids.common.model.SuperDao2;
+import kids.management.myclass.model.Myclass;
 
 
 
 
 public class StudentDao extends SuperDao2{
+	
+	public int UpdateData( Student bean ){
+		return 0;
+		
+		
+	}
+	
 
 	public int insertData(Student bean) {
 		String sql = "insert into student (sid, name, hp, birth, address1, address2, gender, textarea, image)"
 				+ " values( sid_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)" ;
 		
 		PreparedStatement pstmt = null ;
-		int cnt = -99999 ;
+		int cnt = -99999 ; 
 		try {
 			if( conn == null ){ super.conn = super.getConnection() ; }
 			conn.setAutoCommit( false );
@@ -91,7 +100,7 @@ public class StudentDao extends SuperDao2{
 			sql = " delete from students " ;
 			sql += " where sid = ? " ;
 			pstmt = super.conn.prepareStatement(sql) ;
-			pstmt.setInt(2, sid);			
+			pstmt.setInt(1, sid);			
 			cnt = pstmt.executeUpdate() ;
 			if(pstmt != null) {pstmt.close();}
 			
@@ -262,4 +271,6 @@ public class StudentDao extends SuperDao2{
 	      }
 	      return sid;
 	   }
+
+	
 }

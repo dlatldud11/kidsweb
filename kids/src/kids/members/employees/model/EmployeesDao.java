@@ -405,8 +405,8 @@ public class EmployeesDao extends SuperDao {
 	}
 
 	public int UpdateData(Employees bean) {
-		String sql = " update employees set address = ?, address2 = ?, birth = ?, email = ?, " ;
-		sql += " gender = ?, hp = ?, image = ?, name = ? password = ?, zipcode = ?, class_id = ?, ";
+		String sql = " update employees set address1 = ?, address2 = ?, birth = ?, email = ?, " ;
+		sql += " gender = ?, hp = ?, image = ?, name = ?, password = ?, zipcode = ?, class_id = ?, ";
 		sql += " subject_code = ?, salary = ? where tid = ? ";
 		
 		PreparedStatement pstmt = null ;
@@ -429,10 +429,64 @@ public class EmployeesDao extends SuperDao {
 			pstmt.setInt(11, bean.getClass_id());
 			pstmt.setInt(12, bean.getSubject_code());
 			pstmt.setInt(13, bean.getSalary());
+			pstmt.setString(14, bean.getTid());
 			
 			
 			cnt = pstmt.executeUpdate();
 			conn.commit(); 
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} 		
+		return cnt  ; 
+	}
+
+	public int DeleteData(String tid) {
+		String sql = "";
+		PreparedStatement pstmt = null;
+		int cnt = -99999;
+		
+		try {
+			if(conn == null ) {super.conn = super.getConnection();}
+			conn.setAutoCommit(false);
+			
+			//remark
+			sql += " update employees set remark = ? ";
+			sql += " where tid = ? ";
+			pstmt = super.conn.prepareStatement(sql);
+			
+			Employees bean = this.SelectDataByPk(tid);
+			String imsi = bean.getName() + " ( " + bean.getTid() + " ) " + "선생님이 퇴사히였습니다.";
+			
+			pstmt.setString(1, imsi);
+			pstmt.setString(2, tid);
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			if(pstmt != null) {pstmt.close();}
+			
+			//삭제
+			if(conn == null ) {super.conn = super.getConnection();}
+			conn.setAutoCommit(false);
+			
+			sql += " delete from employees where tid = ? ";
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setString(1, tid);
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			
 		} catch (Exception e) {
 			SQLException err = (SQLException)e ;			
 			cnt = - err.getErrorCode() ;			

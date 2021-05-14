@@ -1,13 +1,12 @@
 package kids.board.emplo_board.model;
 
-public class emplo_board {
+public class Emplo_board {
 	private int empno;
 	private String tid;
 	private String content;
 	private String files;
 	private String regdate;
 	private String remark;
-	
 	public int getEmpno() {
 		return empno;
 	}
@@ -44,14 +43,12 @@ public class emplo_board {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
-	public emplo_board() {
-		// TODO Auto-generated constructor stub
-	}
 	@Override
 	public String toString() {
-		return "emplo_board [empno=" + empno + ", tid=" + tid + ", content=" + content + ", files=" + files
+		return "Emplo_board [empno=" + empno + ", tid=" + tid + ", content=" + content + ", files=" + files
 				+ ", regdate=" + regdate + ", remark=" + remark + "]";
 	}
+	
+	
 	
 }

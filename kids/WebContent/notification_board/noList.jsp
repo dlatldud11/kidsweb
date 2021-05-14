@@ -27,24 +27,29 @@
 	
 %>	
 <script type="text/javascript">
+	function check(){
+		alert("check");
+	}
+	
 	function autoClosingAlert(selector, delay){
 		var alert = $(selector).alert();
 		alert.show();
 		window.setTimeout(function() { alert.hide()}, delay);
 	}
 	function insertFunction(){
-		<%-- alert("<%=NoForm%>noInsert"); --%>
+		alert("ddddd");
 		var contents = $('#contents').val();
-		var command = 'noInsert';
 		$.ajax({
-			type: "POST",
-			url: "<%=NoForm%>noInsert",
+			type: 'POST',
+			url: "<%=NoForm%>noInsert"
 			data: {
 				class_id: encodeURIComponent(class_id),
-				/* command: encodeURIComponent(command), */
+				command: encodeURIComponent(command),
 				pid: encodeURIComponent(pid),
 				contents: encodeURIComponent(contents),
 			},
+			
+		
 			success: function(result){
 				if(result == 1){
 					autoClosingAlert('#successMessage', 2000);
@@ -57,6 +62,7 @@
 		});
 		$('#contents').val('');
 	}
+	
 </script>
 
 <style type="text/css">
@@ -340,20 +346,21 @@ img{ max-width:100%;}
               <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
               <div class="received_msg">
                 <div class="received_withd_msg">
-                  <p>We work directly with our designers and suppliers,
-                    and sell direct to you, which means quality, exclusive
-                    products, at a price anyone can afford.</p>
+                  <p>체크체크
+                  </p>
                   <span class="time_date"> 11:01 AM    |    Today</span></div>
               </div>
             </div>
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
+            <form>
               <input type="text" class="write_msg" id="contents" placeholder="Type a message"/>
-              <button class="msg_send_btn" type="button" onclick="insertFunction();"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              <button class="msg_send_btn" type="button" onclick="check();"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
               
               <button class="msg_send_btn1" type="button" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+              </form>
                              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                   <a class="dropdown-item" href="<%=NoForm%>submit">
