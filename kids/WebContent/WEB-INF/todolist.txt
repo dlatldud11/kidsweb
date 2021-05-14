@@ -17,6 +17,7 @@ empbInsert=kids.board.emplo_board.controller.InsertEmpBoardController
 empbUpdate=kids.board.emplo_board.controller.UpdateEmpBoardController
 empbDelete=kids.board.emplo_board.controller.DeleteEmpBoardController
 empbList=kids.board.emplo_board.controller.ListEmpBoardController
+empbReply=kids.board.emplo_board.controller.ReplyEmpBoardController
 planInsert=kids.board.edu_program.controller.InsertEdu_programController
 planUpdate=kids.board.edu_program.controller.UpdateEdu_programController
 planDelete=kids.board.edu_program.controller.DeleteEdu_programController
