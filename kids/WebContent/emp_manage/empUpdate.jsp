@@ -87,12 +87,12 @@
 			<tr>
 				<td width="25%" align="center">주소</td>
 				<td width="75%" align="left">
-				<input type="text" name="address1" id="address1" value="${bean.address1}(${bean.address2})"></td>
+				<input type="text" name="address1" id="address1" value="${bean.address1}"></td>
 			</tr>
 			<tr>
 				<td width="25%" align="center">주소</td>
 				<td width="75%" align="left">
-				<input type="text" name="address2" id="address2" value="${bean.address1}(${bean.address2})"></td>
+				<input type="text" name="address2" id="address2" value="${bean.address2}"></td>
 			</tr>
 			<tr>
 				<td width="25%" align="center">급여</td>
@@ -103,6 +103,13 @@
 				<td width="25%" align="center">등록 날짜</td>
 				<td width="75%" align="left">
 				<input type="text" name="join_date" id="join_date" value="${bean.join_date}" disabled="disabled"></td>
+			</tr>
+			<tr>
+				<td width="75%" align="left">
+				<input type="hidden" class="form-control" id="fakezipcode" 
+				disabled="disabled" name="fakezipcode">
+				<input type="hidden" name="zipcode" id="zipcode" value="${bean.zipcode}">
+				<span class="text-danger">${errzipcode}</span>
 			</tr>
 		</table>
 		<hr>
