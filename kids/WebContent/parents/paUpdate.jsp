@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String contextPath = request.getContextPath() ;
-	String mappingName = "/Kids" ;
-	
-	String YesForm = contextPath + mappingName ;
-	String NoForm = contextPath + mappingName + "?command=" ;
-%>
+<%@ include file="./../common/common.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>   
@@ -16,23 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>유치원 회원가입</title>
+    <title>유치원 회원정보 수정</title>
 
-   <link href="<%=request.getContextPath() %>/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script type="text/javascript">
-   
-   function stSearch(){
-      alert('학생찾기');
-      var url = '<%=NoForm%>paStSearch';
-      window.open(url, 'stsearch', 'height=200, width=350');
-   }
    
    function checkWrite(){
       document.getElementById("piddiv").innerText="";
@@ -114,49 +94,7 @@
          top: (window.screen.height / 2) - (height / 2)
    });  
  }
-//    function add_input(){
-//       var writeForm = document.writeForm.getElementById("box");
-//       // create element(input)
-//       var input1 = document.createElement('input');
-//       var input2 = document.createElement('input');
-//       // set attribute(input)
-//       input1.setAttribute("type", "number");
-//       input1.setAttribute("name", "childid");
-//       input2.setAttribute("type", "number");
-//       input2.setAttribute("name", "childid2");
-//       
-//       writeForm.appendChild(input1);
-//       writeForm.appendChild(input2);
-//       
-//       writeForm.submit;
-//    }    
 
-   function add_input(){
-      document.getElementById('childadd').innerHTML +="<br><div class='form-row' id='deleteid'><div class='col-'>"
-         +"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch2();'>"
-         +"</div><div class='col-'>"
-         +"<button class='btn btn-secondary' onclick='add_input2();'>추가</button> </div> <div class='col-'>"
-         +"<button class='btn btn-danger' onclick='delete_input();'>삭제</button> </div> </div>";
-   }
-   
-   function add_input2(){
-      document.getElementById('childadd').innerHTML +="<br><div class='form-row' id='deleteid2'><div class='col-'>"
-         +"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch3();'>"
-         +"</div><div class='col-'>"
-         +"<button class='btn btn-danger' onclick='delete_input2();'>삭제</button> </div> </div>";
-   }
-   
-   function delete_input(){
-      document.getElementById('deleteid').outerHTML = "";
-   }
-   
-   function delete_input2(){
-      document.getElementById('deleteid2').outerHTML = "";
-   }
-   
-   
    </script>
    <style type="text/css">
       div#piddiv,div#pwddiv,div#repwddiv{
@@ -170,9 +108,6 @@
 </head>
 <body>
    <br>
-   <div class="container">
-      <!-- 회원가입 절차 표시 -->
-   </div>
    <br>
    <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
@@ -181,11 +116,12 @@
          </div>
          <form action="<%=request.getContextPath()+"/Kids" %>" name="writeForm" method="post">
             <input type="hidden" name="command" value="paInsert">
+            <input type="hidden" name="page" value="update">
                 <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="pid" name="pid">
+                     <input type="text" class="form-control" id="pid" name="pid" value="${requestScope.bean.pid }">
                      <input type="hidden" name="idcheck" value="">
                   </div>
                   <div class="col-">
@@ -212,13 +148,13 @@
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="name" name="name">
+                  <input type="text" class="form-control" id="name" name="name" value="${requestScope.bean.name }">
                </div>
             </div>
             <div class="form-group">
                <label for="birth" class="form-control-label col-sm-0">생년월일</label>
                <div class="col-">
-                  <input type="date" class="form-control" id="birth" name="birth">
+                  <input type="date" class="form-control" id="birth" name="birth" value="${requestScope.bean.birth }">
                </div>
             </div>
             <div class="form-group">
@@ -254,19 +190,17 @@
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
-                  <input type="number" class="form-control" id="hp" name="hp">
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
+                  <input type="number" class="form-control" id="hp" name="hp" value="${requestScope.bean.hp }">
                </div>
             </div>
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
-                  <input type="file" class="form-control-file border" id="image" name="image">
+                  <input type="file" class="form-control-file border" id="image" name="image" value="${requestScope.bean.image }">
                </div>
             </div>
             <div class="form-group">
-               <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
+               <label for="zipcode" class="form-control-label col-sm-0" value="${requestScope.bean.zipcode }">우편번호</label>
                <div class="form-row">
                   <div class="col-">
                      <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
@@ -279,31 +213,17 @@
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address1" name="address1" readonly>
+                  <input type="text" class="form-control" id="address1" name="address1" readonly value=${requestScope.bean.address1 }>
                </div>
             </div>
             <div class="form-group">
                <label for="address2" class="form-control-label col-sm-0">상세주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address2" name="address2">
-               </div>
-            </div>
-            <div class="form-group" id="childadd">
-               <label for="sid" class="form-control-label col-sm-0">자녀등록</label>
-               <div class="form-row">
-                  <div class="col-">
-                     <input type="text" class="form-control" id="sid" name="sid" readonly>
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="학생 찾기" onclick="stSearch();">
-                  </div>
-                  <div class="col-">
-                     <button class="btn btn-secondary" onclick="add_input();">추가</button>
-                  </div>
+                  <input type="text" class="form-control" id="address2" name="address2" value=${requestScope.bean.address2 }>
                </div>
             </div>
             <div class="form-group">
-               <label for="relationship" class="form-control-label col-sm-0">관계</label>
+               <label for="relationship" class="form-control-label col-sm-0">원생과의 관계</label>
                <div class="form-row">
                   <div class="col-1">
                      <input type="radio" class="form-control" id="relationship" name="relationship" value="아버지">
@@ -325,7 +245,7 @@
             </div>
             <br>
             <div class="form-group">
-               <button class="form-control btn btn-primary" onclick="javascript:checkWrite()">회원가입</button>
+               <button class="form-control btn btn-primary" onclick="javascript:checkWrite()">회원정보 수정</button>
             </div>
          </form>
       </div>   

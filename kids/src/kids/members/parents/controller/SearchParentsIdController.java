@@ -29,6 +29,7 @@ public class SearchParentsIdController extends SuperClass {
 			String code = ms.mailSend(email);
 			
 			request.setAttribute("code", code);
+			request.setAttribute("bean", bean);
 			String gotopage ="/parents/paIdSearch.jsp";
 			super.GotoPage(gotopage);
 		}

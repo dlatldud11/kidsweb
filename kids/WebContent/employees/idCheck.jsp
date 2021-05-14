@@ -8,7 +8,7 @@
 	<script type="text/javascript">
 		function meClose(isCheck){
 			opener.myform.isCheck.value = isCheck;
-			self.close();
+			window.close();
 		}
 	</script>
 </head>

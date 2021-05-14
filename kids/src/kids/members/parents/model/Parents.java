@@ -2,23 +2,23 @@ package kids.members.parents.model;
 
 public class Parents {
 	
-	private String pid ;//
+	private String pid ;
 	private int sid ;
-	private String name ;//
-	private String hp ;//
-	private String address1 ;//
-	private String address2 ;//
-	private String gender ;//
+	private String name ;
+	private String hp ;
+	private String address1 ;
+	private String address2 ;
+	private String gender ;
 	private String relationship ;
 	private String submit ;
-	private String birth ;//
-	private String password ;//
-	private String email ;//
-	private String image ;//
+	private String birth ;
+	private String password ;
+	private String email ;
+	private String image ;
 	private int childid ;
 	private int childid2 ;
 	private String remark ;
-	private String zipcode ;//
+	private String zipcode ;
 	private String responsibilities;
 	
 	public String getResponsibilities() {
