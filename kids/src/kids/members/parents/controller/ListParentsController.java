@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kids.common.controller.SuperClass;
-import kids.management.myclass.model.MyClassDao;
 import kids.management.myclass.model.Myclass;
+import kids.management.myclass.model.MyclassDao;
 import kids.members.parents.model.ParentsDao;
 import kids.members.parents.model.ParentsMiniView;
 
@@ -25,7 +25,7 @@ public class ListParentsController extends SuperClass {
 		
 		System.out.println("parentsMiniView list count : " + plists.size()); 
 		
-		MyClassDao cdao = new MyClassDao();
+		MyclassDao cdao = new MyclassDao();
 		List<Myclass> clists = cdao.selectDataList();
 		
 		request.setAttribute("plists", plists);
