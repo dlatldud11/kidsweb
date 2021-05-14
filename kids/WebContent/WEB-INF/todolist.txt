@@ -115,3 +115,6 @@ salUpdate=kids.management.sales_table.controller.UpdateSalesController
 submit=kids.members.common.controller.SubmitController
 submitUpdate=kids.members.common.controller.SubmitUpdateController
 empJoin=kids.members.employees.controller.EmpJoinController
+###테스트중 - 정희###
+pidCheck=kids.members.common.controller.CheckPidController
+paSubmitUpdate=kids.members.parents.controller.paSubmitUpdateController

@@ -23,16 +23,19 @@
 		function Close(){
 			opener.writeForm.idCheck.value = ${requestScope.pid};
 			window.close();
+			alert('opener.writeForm.idCheck.value');
 		}
 	</script>
 </head>
 <body>
 	<div class="container mx-auto bg-light">
 		<br>
+		<br>
+		<br>
 		<p align="center">${requestScope.message}</p>
 		<br>
 		<div align="center">
-			<button class="btn btn-primary" type="button" onclick="Close('')">
+			<button class="btn btn-primary" type="button" onclick="Close();">
 				닫&nbsp;&nbsp;기
 			</button>
 		</div>
