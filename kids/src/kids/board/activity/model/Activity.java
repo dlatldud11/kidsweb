@@ -8,7 +8,7 @@ public class Activity {
 	private String title ;
 	private String content ;
 	private String image ;
-	private Date regdate ;
+	private String regdate ;
 	private String remark ;
 	private String tid ;
 	private int class_id ;
@@ -56,11 +56,21 @@ public class Activity {
 		this.image = image;
 	}
 
-	public Date getRegdate() {
+	
+
+	
+
+	/**
+	 * @return the regdate
+	 */
+	public String getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Date regdate) {
+	/**
+	 * @param regdate the regdate to set
+	 */
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 
