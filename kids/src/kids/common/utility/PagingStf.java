@@ -8,32 +8,18 @@ public class PagingStf extends Paging {
 	
 	public PagingStf(String _pageNumber, int totalCount, String url,
 			String month, String paid, String class_name, int pageSize) {
+		super(_pageNumber, totalCount, url,
+			 null, null); 
 		
-		if (_pageNumber==null || _pageNumber.equals("null") || _pageNumber.equals("") ) {
-			_pageNumber = "1" ;
-		}
-		super.setPageNumber(Integer.parseInt(_pageNumber));
-		super.setTotalCount(totalCount);
-		super.setUrl(url);
-		super.setPageSize(pageSize);
 		this.month = month ;
 		this.paid = paid ;
 		this.class_name = class_name ;
-		
+		System.out.println(month +"/"+ paid+"/"+class_name);
 		// 계산이 필요한 나머지 변수들		
-		super.setTotalPage((int)Math.ceil((double)totalCount / super.getPageSize()));
-		
-		super.setBeginRow((super.getPageNumber() - 1) * super.getPageSize() + 1);
-		super.setEndRow(super.getPageNumber() * super.getPageSize());
-
-		super.setBeginPage((super.getPageNumber() - 1) / super.getPageCount() * super.getPageCount() + 1);
-		super.setEndPage(super.getBeginPage() + super.getPageCount() - 1);
-		
-		if(super.getTotalPage() < super.getEndPage()) {super.setEndPage(super.getTotalPage()); }
 		
 		// pagingHtml 변수는 코딩량이 길어서 별도의 메소드로 처리합니다.
-		super.setPagingHtml(super.getPagingHtml());
-		super.setPagingStatus("총 " + totalCount + "건[" + super.getPageNumber() + "/" + super.getTotalPage() + "]" );
+		super.setPagingHtml(this.getPagingHtml(url));
+		super.setPagingStatus("총 " + super.getTotalCount() + "건[" + super.getPageNumber() + "/" + super.getTotalPage() + "]" );
 		
 		 this.Display();
 	}

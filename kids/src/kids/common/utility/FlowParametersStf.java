@@ -15,9 +15,21 @@ public class FlowParametersStf extends FlowParameters {
 	public FlowParametersStf(String pageNumber, String month, String paid, String class_name, String pageSize) {
 		// TODO Auto-generated constructor stub
 		super.setPageNumber(pageNumber);
-		this.month = month;
-		this.paid = paid;
-		this.class_name = class_name;
+		if(month == null || month.equals("") || month.equals("null")) {
+			this.month = "all";
+		}else {
+			this.month = month;
+		}
+		if(paid == null || paid.equals("") || paid.equals("null")) {
+			this.paid = "all";
+		}else {
+			this.paid = paid;
+		}
+		if(class_name == null || class_name.equals("") || class_name.equals("null")) {
+			this.class_name = "all";
+		}else {
+			this.class_name = class_name;
+		}
 		if(pageSize == null || pageSize.equals("") || pageSize.equals("null")) {
 			this.pageSize = 10;
 		}else {
