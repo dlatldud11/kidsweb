@@ -1,4 +1,4 @@
-package kids.management.subject.model;
+ package kids.management.subject.model;
 
 public class Subject {
 	private int subject_code ;

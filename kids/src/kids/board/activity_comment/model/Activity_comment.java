@@ -6,7 +6,7 @@ public class Activity_comment {
 		private int activity_cmid ;
 		private int actino ;
 		private String content ;
-		private Date regdate ;
+		private String regdate ;
 		private String remark ;
 		private String tid ;
 		private String pid ;
@@ -40,11 +40,19 @@ public class Activity_comment {
 			this.content = content;
 		}
 
-		public Date getRegdate() {
+		
+
+		/**
+		 * @return the regdate
+		 */
+		public String getRegdate() {
 			return regdate;
 		}
 
-		public void setRegdate(Date regdate) {
+		/**
+		 * @param regdate the regdate to set
+		 */
+		public void setRegdate(String regdate) {
 			this.regdate = regdate;
 		}
 

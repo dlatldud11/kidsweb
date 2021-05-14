@@ -1,4 +1,4 @@
-package kids.management.myclass.model;
+ package kids.management.myclass.model;
 
 public class Myclass {
 	private int class_id ;
