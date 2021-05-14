@@ -3,6 +3,7 @@ package kids.board.notification_board.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import kids.common.model.SuperDao;
@@ -12,9 +13,9 @@ public class Notification_boardDao extends SuperDao {
 	
 	public int InsertData(Notification_board bean){
 		PreparedStatement pstmt = null;
-		String sql = " insert into noti_no_board values (dailyno.nextval, ?, ?, ? ,? ";
+		String sql = " insert into noti_no_board values (dailyno_seq.nextval, ?, ?, ? ,? ";
 			sql	+= " , sysdate, '안읽음', ?,null )" ;
-			
+			System.out.println(sql);
 			int cnt = -99999;
 			System.out.println(bean);
 			try {
@@ -69,8 +70,8 @@ public class Notification_boardDao extends SuperDao {
 				pstmt.setInt(5, number);
 				
 				rs = pstmt.executeQuery() ; 
-				
-				if(rs.next()) {
+				list = new ArrayList<Notification_board>();
+				while(rs.next()) {
 					bean = new Notification_board();
 					
 					bean.setChecks(rs.getString("checks"));
@@ -119,8 +120,8 @@ public class Notification_boardDao extends SuperDao {
 				pstmt.setInt(5, dailyno);
 				
 				rs = pstmt.executeQuery() ; 
-				
-				if(rs.next()) {
+				list = new ArrayList<Notification_board>();
+				while(rs.next()) {
 					bean = new Notification_board();
 					
 					bean.setChecks(rs.getString("checks"));
@@ -132,7 +133,7 @@ public class Notification_boardDao extends SuperDao {
 					bean.setRegdate(rs.getString("regdate"));
 					bean.setRemark(rs.getString("remark"));
 					bean.setSend(rs.getInt("send"));
-					
+					// 시간 넣을지 생각해보
 					list.add(bean);
 				}
 			} catch (Exception e) {			

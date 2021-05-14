@@ -20,6 +20,7 @@ public class Paging {
 	private String mode = "" ; // 검색 모드(전체 검색은 all)
 	private String keyword = "" ; // 검색 키워드
 	
+
 	public Paging(String _pageNumber, int totalCount, String url,
 			String mode, String keyword) {
 		
@@ -110,6 +111,70 @@ public class Paging {
 	public int getPageNumber() {return pageNumber;}
 	public int getBeginRow() {return beginRow;}
 	public int getEndRow() {return endRow;}
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+	public int getBeginPage() {
+		return beginPage;
+	}
+	public void setBeginPage(int beginPage) {
+		this.beginPage = beginPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public void setBeginRow(int beginRow) {
+		this.beginRow = beginRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
+	public void setPagingHtml(String pagingHtml) {
+		this.pagingHtml = pagingHtml;
+	}
+	public void setPagingStatus(String pagingStatus) {
+		this.pagingStatus = pagingStatus;
+	}
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
 	
 //	
 //	public int getTotalCount() {

@@ -9,6 +9,9 @@ public class FlowParameters {
 	public String toString() {		
 		return "pageNumber=" + pageNumber + "&mode=" + mode + "&keyword=" + keyword;
 	}
+	public FlowParameters() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public FlowParameters(String pageNumber, String mode, String keyword) {
 		this.pageNumber = pageNumber;
