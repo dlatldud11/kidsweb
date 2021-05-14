@@ -933,9 +933,6 @@
 
 
 <%@ include file="./../common/footer.jsp" %>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/dlatldud11/kidsweb.git
 </body>
 </html>
