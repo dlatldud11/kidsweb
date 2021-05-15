@@ -50,7 +50,7 @@
       document.getElementById("repwddiv").innerText="  비밀번호가 일치하지 않습니다";
       else if(document.writeForm.check.value =="")
       document.getElementById("piddiv").innerText= "  중복체크 하세요";
-      else if(document.writeForm.pid.value != document.writeForm.idcheck.value)
+      else if(document.writeForm.idcheck.value == false)
       document.getElementById("piddiv").innerText= "  중복체크 하세요";
       
       else document.writeForm.submit();
@@ -67,9 +67,117 @@
       else{
          console.log('else 들어옴');
          var url = '<%=NoForm%>pidCheck&pid='+pid;
-         window.open(url,"checkPid","width=450 height=150 left=800 top=200");
+         window.open(url,"checkpid","width=450 height=150 left=800 top=200");
       }
    }
+   
+	function checkForm(){
+		/*alert('호호호');*/
+		var myform = document.myform;
+		/* alert(myform); */
+		var id = myform.id.value;
+		if(!(id.length >=3 && id.length <=10)){
+			alert('아이디는 4글자 이상 10글자 이어야 합니다');
+			myform.id.select();
+			return false;
+		}
+		/* 이름은 2글자 이상 30글자 이하이어야 합니다 */
+		var name = myform.name.value;
+		if(!(name.length >=2 && name.length <=30)){
+			alert('이름은 2글자 이상 30글자 이하이어야 합니다');
+			myform.name.focused;
+			return false;
+		}
+		
+		var password = myform.password.value;
+		if(!(password.length >= 3 && password.length <= 8)){
+			alert('비밀번호는 3글자 이상 8글자 이하이어야 합니다.');
+			myform.password.select();
+			return false;
+		}
+		
+		var reg = /[a-z]{1}[a-z0-9@#$]{2,7}/;
+		var result = reg.test(password);
+		if(result == false){
+			alert('1번째 글자는 반드시 알파벳 소문자가 와야 합니다.');
+			myform.password.select();
+			return false;
+		}
+		//특수 문자(@#$)가 들어 있으면 0 이상의 값을 반환해 줍니다.
+		result = password.indexOf("@")>=0 ||
+		 		password.indexOf("#")>=0 ||
+				password.indexOf("$")>=0;
+				
+		if(result==false){
+			alert('특수문자(@#$) 중에서 반드시 1개가 와야 합니다');
+			myform.password.select();
+			return false;
+		}
+		
+		var salary = myform.salary.value;
+		if(isNaN(salary)){
+			alert('급여는 숫자 형식으로 입력해 주셔야 합니다');
+			myform.salary.select();
+			return false;
+		}
+		salary = Number(salary);
+		if(!(salary >= 100 && salary<=1000)){
+			alert('급여는 최소 100원 이상 1000원 이하로 입력해 주셔야 합니다.');
+			myform.salary.select();
+			return false;
+		}
+		
+		var hiredate = myform.hiredate.value;
+		var reg = /^\d{4}[\/-][01]\d[\/-][0123]\d$/;
+		var result = reg.test(hiredate);
+		if(result==false){
+			alert('입사일자는 yyyy/mm/dd 또는 yyyy-mm-dd 형식으로 입력해주세요');
+			myform.hiredate.select();
+			return false;
+		}
+		
+		/*arrgender은 성별 정보를 담고 있는 배열*/
+		var arrgender = myform.gender;
+//		alert(arrgender.length); //2
+//		alert(arrgender[0].checked);
+		var cnt = 0;//카운터 변수
+		for(var i=0; i<arrgender.length; i++){
+			if(arrgender[i].checked){
+				cnt +=1;
+			}
+		}
+		if(cnt == 0){
+			alert('성별 체크가 누락되었습니다.');
+			return false;
+		}
+
+		var arrhobby = myform.hobby;
+//		alert(arrhobby.length); //4
+		var cnt=0;
+		for(var i=0; i<arrhobby.length; i++){
+			if(arrhobby[i].checked){
+				cnt += 1;
+			}
+		}
+		if(!(cnt >=2 && cnt <=3)){
+			alert('취미는 반드시 2개 이상, 3개 이하로 체크 되어야 합니다.');
+			return false;
+		}
+		
+		var job = myform.job.value;
+		if(job == "-"){
+			alert('직업을 선택해 주셔야 합니다.');
+			return false;
+		}
+
+		return false;
+	}
+   
+   
+   function idcheckFalse(){
+	   document.writeForm.idcheck.value=false;
+   }
+   
 
     function checkPost() {
       var width = 500; //팝업의 너비
@@ -179,14 +287,14 @@
          <div class="card-title">
             <h1 align="center" align="center">회원가입</h1>
          </div>
-         <form action="<%=request.getContextPath()+"/Kids" %>" name="writeForm" method="post">
+         <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
+         	<input type="text" name="idcheck" value="false">
             <input type="hidden" name="command" value="paInsert">
                 <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="pid" name="pid">
-                     <input type="hidden" name="idcheck" value="">
+                     <input type="text" class="form-control" id="pid" name="pid" onkeyup="idcheckFalse();">
                   </div>
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
@@ -298,7 +406,7 @@
                      <input type="button" class="form-control btn btn-primary" value="학생 찾기" onclick="stSearch();">
                   </div>
                   <div class="col-">
-                     <button class="btn btn-secondary" onclick="add_input();">추가</button>
+                     <button class="btn btn-secondary" id ="addbtn" onclick="add_input();">추가</button>
                   </div>
                </div>
             </div>
@@ -325,7 +433,7 @@
             </div>
             <br>
             <div class="form-group">
-               <button class="form-control btn btn-primary" onclick="javascript:checkWrite()">회원가입</button>
+               <button class="form-control btn btn-primary" onclick="javascript:checkWrite();">회원가입</button>
             </div>
          </form>
       </div>   

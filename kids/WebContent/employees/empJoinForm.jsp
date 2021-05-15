@@ -64,7 +64,7 @@
                   <div class="row no-gutters align-items-center	"><!-- 내부 내용 -->
                       <div class="col mr-2" >
                           <div class="text-xs font-weight-bold text-primary text-uppercase">
-                             <h5><a href="<%=NoForm%>paInsert">보호자 가입</a></h5></div>
+                             <h5><a href="/kids/parents/paInsert.jsp">보호자 가입</a></h5></div>
                       </div>
                       <div class="col-auto">
                       	<a href="<%=NoForm%>paInsert">

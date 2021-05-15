@@ -18,7 +18,7 @@ public class InsertParentsController extends SuperClass {
 		super.doPost(request, response);
 		
 		MultipartRequest multi = (MultipartRequest)request.getAttribute("multi");
-		
+		System.out.println("multi : "+multi);
 		Parents bean = new Parents();
 		String pid = multi.getParameter("pid");
 		String name = multi.getParameter("name");
@@ -28,10 +28,11 @@ public class InsertParentsController extends SuperClass {
 		String gender = multi.getParameter("gender");
 		String password = multi.getParameter("password");
 		String birth = multi.getParameter("birth");
-		String email = multi.getParameter("email1")+multi.getParameter("email2");
+		String email = multi.getParameter("email1")+"@"+multi.getParameter("email2");
 		String image = multi.getParameter("image");
 		String zipcode = multi.getParameter("zipcode");
 		int sid = Integer.parseInt(multi.getParameter("sid"));
+		System.out.println("sid : "+sid);
 		String relationship = multi.getParameter("relationship");
 		
 		bean.setPid(pid);
@@ -48,13 +49,23 @@ public class InsertParentsController extends SuperClass {
 		bean.setSid(sid);
 		bean.setRelationship(relationship);
 		bean.setSubmit("미승인");
+		bean.setResponsibilities("보호자");
 		
-		if(Integer.parseInt(multi.getParameter("childid")) >0) {
-			int childid = Integer.parseInt(multi.getParameter("childid"));
+		
+		String imsic = request.getParameter("childid");
+		String imsic2 = request.getParameter("childid2");
+		
+		System.out.println("childid : " + imsic);
+		System.out.println("childid2 : " + imsic2);
+		
+		if(!(imsic == null || imsic.equals("null") || imsic.equals(""))) {
+			System.out.println("imsic if문에 들어옴!");
+			int childid = Integer.parseInt(imsic);
 			bean.setChildid(childid);
 		}
-		if(Integer.parseInt(multi.getParameter("childid2")) >0) {
-			int childid2 = Integer.parseInt(multi.getParameter("childid2"));
+		if(!(imsic2 == null || imsic2.equals("null") || imsic2.equals(""))) {
+			System.out.println("imsic2 if문에 들어옴!");
+			int childid2 = Integer.parseInt(imsic2);
 			bean.setChildid2(childid2);
 		}
 		
@@ -63,12 +74,27 @@ public class InsertParentsController extends SuperClass {
 		System.out.println("cnt : "+cnt);
 		
 		String page = request.getParameter("page");
-		if(page.equals("update")) {
-			request.setAttribute("pid", pid);
-			new DetailParentsController().doGet(request, response);
+		if(!(page == null || page.equals("null") || page.equals(""))) {
+			if(page.equals("update")) {
+				request.setAttribute("pid", pid);
+				request.setAttribute("page", "result");
+				if(cnt == 1) {
+					request.setAttribute("message", "수정이 완료되었습니다");
+					new UpdateParentsController().doGet(request, response);
+				}else {
+					request.setAttribute("message", "수정이 실패하였습니다");
+					new UpdateParentsController().doGet(request, response);
+				}
+			}
 		}
-		
-		String gotopage = "/start.jsp";
-		super.GotoPage(gotopage);
+		String gotopage = "";
+		if(cnt == 1) {
+			gotopage = "/parents/paInsertOK.jsp";
+			super.GotoPage(gotopage);
+		}else {
+			gotopage = "/parents/paInsertFail.jsp";
+			super.GotoPage(gotopage);
+		}
+	
 	}
 }

@@ -17,19 +17,19 @@ public class ParentsDao extends SuperDao {
 		
 		if(bean.getChildid2() > 0) { 
 			sql = "insert into parents "
-					+ " (pid, name, hp, address1, address2, gender, password, birth, email, image, zipcode, sid, relationship, childid2, childid)"
+					+ " (pid, name, hp, address1, address2, gender, password, birth, email, image, zipcode, sid, relationship, submit, responsibilities, childid2, childid)"
 					+ " values"
-					+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+					+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		}else if(bean.getChildid() > 0) {
 			sql = "insert into parents "
-					+ " (pid, name, hp, address1, address2, gender, password, birth, email, image, zipcode, sid, relationship, childid)"
+					+ " (pid, name, hp, address1, address2, gender, password, birth, email, image, zipcode, sid, relationship, submit, responsibilities, childid )"
 					+ " values"
-					+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+					+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		}else {
 			sql = "insert into parents "
-					+ " (pid, name, hp, address1, address2, gender, password, birth, email, image, zipcode, sid, relationship)"
+					+ " (pid, name, hp, address1, address2, gender, password, birth, email, image, zipcode, sid, relationship, submit, responsibilities)"
 					+ " values"
-					+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+					+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		}
 
 		try {
@@ -52,15 +52,17 @@ public class ParentsDao extends SuperDao {
 			pstmt.setString(11, bean.getZipcode());
 			pstmt.setInt(12, bean.getSid());
 			pstmt.setString(13, bean.getRelationship());
+			pstmt.setString(14, bean.getSubmit());
+			pstmt.setString(15, bean.getResponsibilities());
 			
 			if(bean.getChildid2() > 0) {
-				pstmt.setInt(14, bean.getChildid());
-				pstmt.setInt(15, bean.getChildid2());
+				pstmt.setInt(16, bean.getChildid());
+				pstmt.setInt(17, bean.getChildid2());
 			}else if(bean.getChildid() > 0) {
-				pstmt.setInt(14, bean.getChildid());
+				pstmt.setInt(16, bean.getChildid());
 			}
 			
-			pstmt.executeUpdate() ; 
+			cnt = pstmt.executeUpdate() ; 
 			conn.commit();
 		} catch (Exception e) {	
 			SQLException err = (SQLException)e;

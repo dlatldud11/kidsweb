@@ -246,16 +246,17 @@ public class StudentDao extends SuperDao2{
 	      int sid = 0;
 	      PreparedStatement pstmt = null ;
 	      ResultSet rs = null;
-	      String sql = "select sid from student where name = ? and hp = ?";
+	      String sql = "select sid from student where name=? and hp=?";
 	      
 	      try {
 	         if(conn == null) {super.conn = super.getConnection() ; }
 	         pstmt = conn.prepareStatement(sql) ;
 	         pstmt.setString(1, name);
 	         pstmt.setString(2, hp);
-	         
+	         System.out.println("stsearch - pstmt.setString 까지 완료");
 	         rs = pstmt.executeQuery();
 	         if(rs.next()) {
+	        	 System.out.println("stsearch - rs.next 들어옴");
 	            sid = rs.getInt("sid");
 	         }
 	      } catch (Exception e) {   

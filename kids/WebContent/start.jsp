@@ -20,13 +20,14 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/bootstrap2/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
         <!-- Simple line icons-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="<%=request.getContextPath()%>/bootstrap2/css/styles.css" rel="stylesheet" />
+        <link href="<%=request.getContextPath()%>/bootstrap2/css/styles.css" rel="stylesheet" />   
+    
     </head>
     <body>
         <!-- Navigation-->
@@ -39,14 +40,16 @@
         <!-- Masthead-->
         <header class="masthead text-white text-center">
             <div class="overlay"></div>
-            <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto"><h1 class="mb-5">아이하루 어린이집 홈페이지</h1></div>
                     <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                    
                         <form action="<%=YesForm%>" method="post">
                         	<input type="hidden" name="command" value="empLogin">
                             <div class="form-row text-center" style="width:100%">
                                 <div class="col-12 col-md-8 mb-2 mb-md-0" style="width:30%;float:none; margin:0 auto">
+                                	<div></div>
+                                	<br>
                                 	<input class="form-control form-control-lg" type="text" id="id" name="id" placeholder="아이디를 입력하세요." value="${id}"/>
                                 	<br>
                                 	<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." />

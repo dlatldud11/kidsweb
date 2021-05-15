@@ -238,6 +238,10 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     직원 관리
                                 	  </a>
+                                    <a class="dropdown-item" href="<%=NoForm%>paList">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    보호자 관리(테스트중)
+                                	  </a>  
                                    <a class="dropdown-item" href="<%=NoForm%>stfList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     원비 관리

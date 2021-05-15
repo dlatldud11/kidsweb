@@ -43,7 +43,7 @@
             <div class="card-header">
                <h4 align="center" >보호자 목록</h4>
          	</div>
-          	<div class="card-body">
+          	<div class="card-body"  style="width:920px; height:800px; overflow:auto;">
           		<table class="table table-hover">
                		<thead>
                			<tr>
@@ -53,7 +53,7 @@
                					<select name="class_menu" id="class_menu" class="form-control">
 	                                 <option value="all" selected="selected">전체
 	                                 <c:forEach var="bean" items="${requestScope.clists}">
-	                                 	<option value="bean.class_name">
+	                                 	<option value="${bean.class_name}">${bean.class_name}
 	                                 </c:forEach>
 	                            </select>
 	                            <input type="hidden" id="submit_menu" name="submit_menu" value="all">

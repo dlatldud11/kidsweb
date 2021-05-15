@@ -18,12 +18,13 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-	<script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+	
 	<script type="text/javascript">
-		function Close(){
-			opener.writeForm.idCheck.value = ${requestScope.pid};
-			window.close();
-			alert('opener.writeForm.idCheck.value');
+		function meclose() {
+			opener.writeForm.idcheck.value='${requestScope.ischeck}';
+			var win = window.open("","_self");
+			win.close();
+			
 		}
 	</script>
 </head>
@@ -35,7 +36,7 @@
 		<p align="center">${requestScope.message}</p>
 		<br>
 		<div align="center">
-			<button class="btn btn-primary" type="button" onclick="Close();">
+			<button onclick="meclose();">
 				닫&nbsp;&nbsp;기
 			</button>
 		</div>

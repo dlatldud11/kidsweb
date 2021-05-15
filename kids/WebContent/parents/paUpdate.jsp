@@ -18,7 +18,14 @@
       document.getElementById("piddiv").innerText="";
       document.getElementById("pwddiv").innerText="";
       document.getElementById("repwddiv").innerText="";
-      //초기화과정을 거쳐야 제값들어갈떄 값 정상적으로 출력
+      
+  		var reg = (!/^[a-zA-Z0-9]{10,15}${2,7}/;
+		var result = reg.test(document.writeForm.password.value);
+		if(result == false){
+		document.getElementById("pwddiv").innerText=
+			"1번째 글자는 반드시 알파벳 소문자가 와야 합니다.";
+		writeForm.password.select();
+
       
       if(document.writeForm.pid.value=="")
       document.getElementById("piddiv").innerText="  아이디를 입력하세요";
@@ -32,25 +39,44 @@
       document.getElementById("piddiv").innerText= "  중복체크 하세요";
       else if(document.writeForm.pid.value != document.writeForm.idcheck.value)
       document.getElementById("piddiv").innerText= "  중복체크 하세요";
-      
+      else if(document.writeForm.name.length >=2 )
+      document.getElmentById("namediv").innerText= " 이름을 입력하세요";
       else document.writeForm.submit();
-   }
+	}
+		 숫자 영문자 혼합
+		
    
    function checkPid(){
       document.getElementById("piddiv").innerText="";
       var pid = document.writeForm.pid.value;
       
       if(pid==""){
-         console.log('if문들어옴');
-         document.getElementById("piddiv").innerText="  먼저 아이디를 입력하세요";
+         document.getElementById("piddiv").innerText="먼저 아이디를 입력하세요";
       } 
       else{
-         console.log('else 들어옴');
          var url = '<%=NoForm%>pidCheck&pid='+pid;
          window.open(url,"checkPid","width=450 height=150 left=800 top=200");
       }
    }
 
+		
+		/*arrgender은 성별 정보를 담고 있는 배열*/
+//		var arrgender = myform.gender;
+//		alert(arrgender.length); //2
+//		alert(arrgender[0].checked);
+//		var cnt = 0;//카운터 변수
+//		for(var i=0; i<arrgender.length; i++){
+//			if(arrgender[i].checked){
+//				cnt +=1;
+//			}
+//		}
+//		if(cnt == 0){
+//			alert('성별 체크가 누락되었습니다.');
+//			return false;
+//		}
+   
+   
+   
     function checkPost() {
       var width = 500; //팝업의 너비
       var height = 500; //팝업의 높이
@@ -95,6 +121,45 @@
    });  
  }
 
+    function add_input(){
+        document.getElementById('childadd').innerHTML +="<br><div class='form-row' id='deleteid'><div class='col-'>"
+           +"<input type='text' name='childid' class='form-control' readonly value='${requestScope.bean.childid}'></div><div class='col-'>"
+           +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch2();'>"
+           +"</div><div class='col-'>"
+           +"<button class='btn btn-secondary' onclick='add_input2();'>추가</button> </div> <div class='col-'>"
+           +"<button class='btn btn-danger' onclick='delete_input();'>삭제</button> </div> </div>";
+           
+     }
+     
+     function add_input2(){
+        document.getElementById('childadd').innerHTML +="<br><div class='form-row' id='deleteid2'><div class='col-'>"
+           +"<input type='text' name='childid' class='form-control' readonly value='${requestScope.bean.childid2}'></div><div class='col-'>"
+           +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch3();'>"
+           +"</div><div class='col-'>"
+           +"<button class='btn btn-danger' onclick='delete_input2();'>삭제</button> </div> </div>";
+     }
+     
+     function delete_input(){
+        document.getElementById('deleteid').outerHTML = "";
+     }
+     
+     function delete_input2(){
+        document.getElementById('deleteid2').outerHTML = "";
+     }
+    
+    window.onload=function(){
+   		document.myForm.gender["${requestScope.bean.gender }"].checked = true;
+   		document.myForm.relationship["${requestScope.bean.relationship}"].checked = true;
+   	 	document.myForm.email1.value = "${requestScope.email1 }";
+   		document.myForm.email2.value = "${requestScope.email2 }";
+ 
+   		if(${requestScope.childid2 ne null}){
+   			add_input();
+   			add_input2();
+   		}else if(${requestScope.childid ne null}){
+   			add_input();
+   		}
+    }
    </script>
    <style type="text/css">
       div#piddiv,div#pwddiv,div#repwddiv{
@@ -112,21 +177,16 @@
    <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
-            <h1 align="center" align="center">회원가입</h1>
+            <h1 align="center" align="center">회원 정보 수정</h1>
          </div>
-         <form action="<%=request.getContextPath()+"/Kids" %>" name="writeForm" method="post">
+         <form action="<%=YesForm %>" name="myForm" method="post">
             <input type="hidden" name="command" value="paInsert">
             <input type="hidden" name="page" value="update">
                 <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
-               <div class="form-row">
-                  <div class="col-">
-                     <input type="text" class="form-control" id="pid" name="pid" value="${requestScope.bean.pid }">
-                     <input type="hidden" name="idcheck" value="">
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
-                  </div>
+               <div class="form-group">
+                    <input type="text" class="form-control" id="pid" name="pid" value="${requestScope.bean.pid }" readonly>
+                    <input type="hidden" name="idcheck" value="">
                </div>
             </div>
             <div class="form-group" id="piddiv"></div>
@@ -151,12 +211,14 @@
                   <input type="text" class="form-control" id="name" name="name" value="${requestScope.bean.name }">
                </div>
             </div>
+            <div class="form-group" id="namediv"></div>
             <div class="form-group">
                <label for="birth" class="form-control-label col-sm-0">생년월일</label>
                <div class="col-">
                   <input type="date" class="form-control" id="birth" name="birth" value="${requestScope.bean.birth }">
                </div>
             </div>
+            <div class="form-group" id="birthdiv"></div>
             <div class="form-group">
                <label for="gender" class="form-control-label col-sm-0">성별</label>
                   <div class="form-row">
@@ -169,6 +231,7 @@
                         <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
                      </div>
                </div>
+               <div class="form-group" id="genderdiv"></div>
             </div>
             <div class="form-group">
                <label for="email" class="form-control-label col-sm-0">이메일</label>
@@ -186,12 +249,14 @@
                      </select>
                   </div>
                </div>
+               <div class="form-group" id="emaildiv"></div>
             </div>
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
                   <input type="number" class="form-control" id="hp" name="hp" value="${requestScope.bean.hp }">
                </div>
+               <div class="form-group" id="hpdiv"></div>
             </div>
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
@@ -200,10 +265,10 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="zipcode" class="form-control-label col-sm-0" value="${requestScope.bean.zipcode }">우편번호</label>
+               <label for="zipcode" class="form-control-label col-sm-0" >우편번호</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
+                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly value="${requestScope.bean.zipcode }">
                   </div>
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()">
@@ -213,15 +278,30 @@
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address1" name="address1" readonly value=${requestScope.bean.address1 }>
+                  <input type="text" class="form-control" id="address1" name="address1" readonly value="${requestScope.bean.address1 }">
                </div>
             </div>
             <div class="form-group">
                <label for="address2" class="form-control-label col-sm-0">상세주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address2" name="address2" value=${requestScope.bean.address2 }>
+                  <input type="text" class="form-control" id="address2" name="address2" value="${requestScope.bean.address2 }">
                </div>
             </div>
+            <div class="form-group" id="childadd">
+               <label for="sid" class="form-control-label col-sm-0">자녀등록</label>
+               <div class="form-row">
+                  <div class="col-">
+                     <input type="text" class="form-control" id="sid" name="sid" readonly value="${requestScope.bean.sid }">
+                  </div>
+                  <div class="col-">
+                     <input type="button" class="form-control btn btn-primary" value="학생 찾기" onclick="stSearch();">
+                  </div>
+                  <div class="col-">
+                     <button class="btn btn-secondary"onclick="add_input();">추가</button>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group" id="siddiv"></div>
             <div class="form-group">
                <label for="relationship" class="form-control-label col-sm-0">원생과의 관계</label>
                <div class="form-row">
@@ -242,6 +322,7 @@
                   </div>
                   <label for="relationship" class="form-control-label col-sm-0">&nbsp;기타&nbsp;</label>   
                </div>
+               <div class="form-group" id="relationshipdiv"></div>
             </div>
             <br>
             <div class="form-group">
