@@ -119,7 +119,8 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 									<div class="form-group">
 										<select id="paid" name="paid" class="form-control">
 											<option value="all" selected="selected">전체검색
-											<option value="납부">납부
+											<option value="완납">완납
+											<option value="분납">분납
 											<option value="미납부">미납부
 										</select>
 									</div>

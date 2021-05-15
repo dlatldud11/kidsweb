@@ -303,58 +303,53 @@ public class Stu_feeDao extends SuperDao {
 		
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
+		String sql = " select payno, name, class_name, remark, month,state, unpaid, ranking ";
+		sql += " from (select b.payno, a.name, c.class_name, b.remark, b.month,b.state, b.unpaid, ";
+		sql += " rank() over(order by c.class_name asc, b.payno desc, b.unpaid asc) as ranking ";
+		sql += " from stu_fee b join student a ";
+		sql += " on b.sid = a.sid join myclass c ";
+		sql += " on a.class_id = c.class_id ";
 		
-		String sql = " select payno, name, class_name, remark, month, unpaid, ranking " ;
-			sql	+= " from (select b.payno, a.name, c.class_name, b.remark, b.month, b.unpaid, ";
-			sql	+= " rank() over(order by c.class_name asc, b.payno desc, b.unpaid asc) as ranking ";
-			sql	+= " from stu_fee b right outer join student a";
-			sql	+= " on b.sid = a.sid join myclass c";
-			sql	+= " on a.class_id = c.class_id ";
-			
-			if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {
-				sql += " where month like to_char(sysdate,'mm') || '%' ";
+			if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {// 전체 검색
+//				sql += " where month like to_char(sysdate,'mm') || '%' ";
 			}
 			else { sql += " where ";
 				
 			if(month.equals("all") == false) {
 					sql += "month like ('"+ month +"%') ";
 					if(paid.equals("all") == false) {
-						if(paid.equals("미납부")) {
-							sql += " and b.remark = ('신규 등록') or month is null "; // 달지정 미납금 찾기
-						}else {
-							sql += " and b.remark is not ('신규 등록') ";
-						}
+							sql += " and state ='" + paid + "' ";
 						if(class_name.equals("all") == false) {
 							sql += " and class_name = ('"+ class_name +"') ";
-							// month, paid, class_name o
-						}else {
-							// month , paid o
-						}
-					} else {
-						if(class_name.equals("all") == false) {
-							sql += " and class_name = ('"+ class_name +"') ";
-						}else {
+						}//class_name값 있음
+						else {
 							
 						}
-					}
-				}else {
-					if(paid.equals("all") == false) {
-						if(paid.equals("미납부")) {
-							sql += " payno is null ";
-						}else {
-							sql += " payno is not null ";
-						}
-						if(class_name.equals("all") == false) {
-							sql += " and class_name = ('"+ class_name +"') ";
-						}else {
-						}
-					}else {
-						if(class_name.equals("all")== false) {
-							sql += " class_name = ('"+ class_name +"') ";
-						}
-					}
+					}//paid 값 있음
+						else {
+							if(class_name.equals("all") == false) {
+								sql += " and class_name = ('"+ class_name +"') ";
+							}else {
+							}
+						}// paid 값 없음
+					}//month값 있음
+						else {
+						if(paid.equals("all") == false) {
+							sql += " state ='" + paid + "' ";
+							if(class_name.equals("all") == false) {
+								sql += " and class_name = ('"+ class_name +"') ";
+							}else {
+							}
+						}//paid값 있음
+							else {
+							if(class_name.equals("all")== false) {
+								sql += " class_name = ('"+ class_name +"') ";
+							}//class_name 있음
+							else {
+							}//class_name 없음
+					}//month값 없음
 				}
-				}
+			}
 				sql += " ) ";
 				sql += " where ranking between ? and ? ";
 					
@@ -373,11 +368,7 @@ public class Stu_feeDao extends SuperDao {
 				bean.setClass_name(rs.getString("class_name"));
 				bean.setMonth(rs.getString("month"));
 				bean.setName(rs.getString("name"));
-				if(rs.getInt("payno") <1) {
-					bean.setPaid("미납부");
-				}else {
-					bean.setPaid("납부");
-				}
+				bean.setPaid(rs.getString("state"));
 				bean.setRemark(rs.getString("remark"));
 				bean.setUnpaid(rs.getInt("unpaid"));
 				bean.setPayno(rs.getInt("ranking"));
@@ -475,47 +466,53 @@ public class Stu_feeDao extends SuperDao {
 		ResultSet rs = null ;				
 
 		String sql = " select count(*) as cnt " ;
-		sql	+= " from stu_fee b right outer join student a";
+		sql	+= " from stu_fee b join student a";
 		sql	+= " on b.sid = a.sid join myclass c";
 		sql	+= " on a.class_id = c.class_id ";
 		
-		if(month.equals("all") && paid.equals("all") && class_name.equals("all")
-				|| month.equals("null") || month.equals("") || month == null &&
-				paid.equals("null")|| paid.equals("") || paid == null &&
-				class_name.equals("null") || class_name.equals("") || class_name == null) {}
+		if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {// 전체 검색
+//			sql += " where month like to_char(sysdate,'mm') || '%' ";
+		}
 		else { sql += " where ";
 			
 		if(month.equals("all") == false) {
-				sql += "b.month like ('"+ month +"%') ";
+				sql += "month like ('"+ month +"%') ";
 				if(paid.equals("all") == false) {
-					sql += " and b.payno not null ";
+						sql += " and state ='" + paid + "' ";
 					if(class_name.equals("all") == false) {
-						sql += " and c.class_name = (' " + class_name + "') ";
-						// month, paid, class_name o
-					}else {
-						// month , paid o
-					}
-				} else {
-					if(class_name.equals("all") == false) {
-						sql += " and c.class_name = (' " + class_name + "') ";
-					}else {
+						sql += " and class_name = ('"+ class_name +"') ";
+					}//class_name값 있음
+					else {
 						
 					}
-				}
-			}else {
-				if(paid.equals("all") == false) {
-					sql +=" and b.payno not null ";
-					if(class_name.equals("all") == false) {
-						sql += " and c.class_name = (' " + class_name + "') ";
-					}else {
-					}
-				}else {
-					if(class_name.equals("all")== false) {
-						sql += " and c.class_name = (' " + class_name + "') ";
-					}
-				}
+				}//paid 값 있음
+					else {
+						if(class_name.equals("all") == false) {
+							sql += " and class_name = ('"+ class_name +"') ";
+						}else {
+						}
+					}// paid 값 없음
+				}//month값 있음
+					else {
+					if(paid.equals("all") == false) {
+						sql += " state ='" + paid + "' ";
+						if(class_name.equals("all") == false) {
+							sql += " and class_name = ('"+ class_name +"') ";
+						}else {
+						}
+					}//paid값 있음
+						else {
+						if(class_name.equals("all")== false) {
+							sql += " class_name = ('"+ class_name +"') ";
+						}//class_name 있음
+						else {
+						}//class_name 없음
+				}//month값 없음
 			}
-			}
+		}
+			sql += " ) ";
+			sql += " where ranking between ? and ? ";
+				
 		System.out.println(sql);
 		int cnt = 0; 
 		try {
