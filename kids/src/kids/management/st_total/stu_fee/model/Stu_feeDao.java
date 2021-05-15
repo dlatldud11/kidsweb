@@ -311,7 +311,9 @@ public class Stu_feeDao extends SuperDao {
 			sql	+= " on b.sid = a.sid join myclass c";
 			sql	+= " on a.class_id = c.class_id ";
 			
-			if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {}
+			if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {
+				sql += " where month like to_char(sysdate,'mm') || '%' ";
+			}
 			else { sql += " where ";
 				
 			if(month.equals("all") == false) {
