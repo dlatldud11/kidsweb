@@ -38,9 +38,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>	
+<script>
+
 		function search(){
-			alert('검색');
 			var month = $('#month').val() ;
 			var paid = $('#paid').val() ;
 			var class_name = $('#class_name').val() ;
@@ -60,10 +60,12 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 			/* alert('글 작성'); */
 			location.href='<%=NoForm%>boInsert';
 		}
-		
-		$(document).ready(function(){
-			
-		});
+		// 검색한 상태가 유지되는 방법 찾아보기
+		$(document).ready(function() {
+            $('select[id="month"]').find('option[value="month"]').attr("selected",true);
+
+        });
+
 	</script>
 <style type="text/css">
 .badge {
@@ -97,17 +99,17 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 									</div>
 									년 &nbsp; -->
 									<div class="form-group">
-										<select id="month" name="month" class="form-control">
+										<select id="month" name="month" class="form-control" onchange="select();">
 											<option value="all" selected="selected">전체검색
-											<option value="1">1
-											<option value="2">2
-											<option value="3">3
-											<option value="4">4
-											<option value="5">5
-											<option value="6">6
-											<option value="7">7
-											<option value="8">8
-											<option value="9">9
+											<option value="01">1
+											<option value="02">2
+											<option value="03">3
+											<option value="04">4
+											<option value="05">5
+											<option value="06">6
+											<option value="07">7
+											<option value="08">8
+											<option value="09">9
 											<option value="10">10
 											<option value="11">11
 											<option value="12">12

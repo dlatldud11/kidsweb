@@ -315,32 +315,40 @@ public class Stu_feeDao extends SuperDao {
 			else { sql += " where ";
 				
 			if(month.equals("all") == false) {
-					sql += "month like (' " + month + " %') ";
+					sql += "month like ('"+ month +"%') ";
 					if(paid.equals("all") == false) {
-						sql += " and payno not null ";
+						if(paid.equals("미납부")) {
+							sql += " and b.remark = ('신규 등록') or month is null "; // 달지정 미납금 찾기
+						}else {
+							sql += " and b.remark is not ('신규 등록') ";
+						}
 						if(class_name.equals("all") == false) {
-							sql += " and class_name = (' " + class_name + "') ";
+							sql += " and class_name = ('"+ class_name +"') ";
 							// month, paid, class_name o
 						}else {
 							// month , paid o
 						}
 					} else {
 						if(class_name.equals("all") == false) {
-							sql += " and class_name = (' " + class_name + "') ";
+							sql += " and class_name = ('"+ class_name +"') ";
 						}else {
 							
 						}
 					}
 				}else {
 					if(paid.equals("all") == false) {
-						sql +=" and b.payno not null ";
+						if(paid.equals("미납부")) {
+							sql += " payno is null ";
+						}else {
+							sql += " payno is not null ";
+						}
 						if(class_name.equals("all") == false) {
-							sql += " and class_name = (' " + class_name + "') ";
+							sql += " and class_name = ('"+ class_name +"') ";
 						}else {
 						}
 					}else {
 						if(class_name.equals("all")== false) {
-							sql += " and class_name = (' " + class_name + "') ";
+							sql += " class_name = ('"+ class_name +"') ";
 						}
 					}
 				}
@@ -476,7 +484,7 @@ public class Stu_feeDao extends SuperDao {
 		else { sql += " where ";
 			
 		if(month.equals("all") == false) {
-				sql += "b.month like (' " + month + " %') ";
+				sql += "b.month like ('"+ month +"%') ";
 				if(paid.equals("all") == false) {
 					sql += " and b.payno not null ";
 					if(class_name.equals("all") == false) {
