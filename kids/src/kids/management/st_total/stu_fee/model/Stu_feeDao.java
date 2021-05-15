@@ -317,7 +317,7 @@ public class Stu_feeDao extends SuperDao {
 			if(month.equals("all") == false) {
 					sql += "month like (' " + month + " %') ";
 					if(paid.equals("all") == false) {
-						sql += " and paid = (' " + " ') ";
+						sql += " and payno not null ";
 						if(class_name.equals("all") == false) {
 							sql += " and class_name = (' " + class_name + "') ";
 							// month, paid, class_name o
@@ -333,7 +333,7 @@ public class Stu_feeDao extends SuperDao {
 					}
 				}else {
 					if(paid.equals("all") == false) {
-						sql +=" paid = (' " + paid + "') ";
+						sql +=" and b.payno not null ";
 						if(class_name.equals("all") == false) {
 							sql += " and class_name = (' " + class_name + "') ";
 						}else {
@@ -347,7 +347,7 @@ public class Stu_feeDao extends SuperDao {
 				}
 				sql += " ) ";
 				sql += " where ranking between ? and ? ";
-				
+					
 		List<Stu_fee2> lists = new ArrayList<Stu_fee2>() ;
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
@@ -356,6 +356,7 @@ public class Stu_feeDao extends SuperDao {
 			pstmt.setInt(1, beginRow);
 			pstmt.setInt(2, endRow); 
 			
+			System.out.println(sql);	
 			rs = pstmt.executeQuery() ; 
 			while ( rs.next() ) {
 				Stu_fee2 bean = new Stu_fee2() ; 
@@ -463,46 +464,49 @@ public class Stu_feeDao extends SuperDao {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;				
 
-		String sql = " select count(*) " ;
+		String sql = " select count(*) as cnt " ;
 		sql	+= " from stu_fee b right outer join student a";
 		sql	+= " on b.sid = a.sid join myclass c";
 		sql	+= " on a.class_id = c.class_id ";
 		
-		if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {}
+		if(month.equals("all") && paid.equals("all") && class_name.equals("all")
+				|| month.equals("null") || month.equals("") || month == null &&
+				paid.equals("null")|| paid.equals("") || paid == null &&
+				class_name.equals("null") || class_name.equals("") || class_name == null) {}
 		else { sql += " where ";
 			
 		if(month.equals("all") == false) {
-				sql += "month like (' " + month + " %') ";
+				sql += "b.month like (' " + month + " %') ";
 				if(paid.equals("all") == false) {
-					sql += " and paid = (' " + " ') ";
+					sql += " and b.payno not null ";
 					if(class_name.equals("all") == false) {
-						sql += " and class_name = (' " + class_name + "') ";
+						sql += " and c.class_name = (' " + class_name + "') ";
 						// month, paid, class_name o
 					}else {
 						// month , paid o
 					}
 				} else {
 					if(class_name.equals("all") == false) {
-						sql += " and class_name = (' " + class_name + "') ";
+						sql += " and c.class_name = (' " + class_name + "') ";
 					}else {
 						
 					}
 				}
 			}else {
 				if(paid.equals("all") == false) {
-					sql +=" paid = (' " + paid + "') ";
+					sql +=" and b.payno not null ";
 					if(class_name.equals("all") == false) {
-						sql += " and class_name = (' " + class_name + "') ";
+						sql += " and c.class_name = (' " + class_name + "') ";
 					}else {
 					}
 				}else {
 					if(class_name.equals("all")== false) {
-						sql += " and class_name = (' " + class_name + "') ";
+						sql += " and c.class_name = (' " + class_name + "') ";
 					}
 				}
 			}
 			}
-		
+		System.out.println(sql);
 		int cnt = 0; 
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			

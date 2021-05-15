@@ -42,11 +42,11 @@
 		function search(){
 			alert('검색');
 			var month = $('#month').val() ;
-			/* var paid = $('#paid').val() ;
+			var paid = $('#paid').val() ;
 			var class_name = $('#class_name').val() ;
 			var pageSize = $('#pageSize').val();
-			 */
-location.href='<%=NoForm%>stfList '+' &month=' + month + '&paid=' + paid + '&class_name=' + class_name + '&pageSize=' + pageSize;
+			
+location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+class_name+'&pageSize='+pageSize;
 		}
 		function searchName(){
 			var name = $('#name').val() ;

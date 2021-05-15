@@ -20,9 +20,7 @@ public class Paging {
 	private String mode = "" ; // 검색 모드(전체 검색은 all)
 	private String keyword = "" ; // 검색 키워드
 	
-	public Paging() {
-		// TODO Auto-generated constructor stub
-	}
+
 	public Paging(String _pageNumber, int totalCount, String url,
 			String mode, String keyword) {
 		

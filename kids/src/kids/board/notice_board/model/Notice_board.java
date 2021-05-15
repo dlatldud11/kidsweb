@@ -1,7 +1,5 @@
 package kids.board.notice_board.model;
 
-import java.util.Date;
-
 public class Notice_board {
 	
 	private int notino ;
@@ -9,12 +7,20 @@ public class Notice_board {
 	private String title ;
 	private String content ;
 	private String files ; 
-	private Date regdate ;
+	private String regdate ;
 	private int class_id ;
 	private int readhit ;
 	private String remark ;
 	
 	public Notice_board() {}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 
 	public int getNotino() {
 		return notino;
@@ -56,13 +62,6 @@ public class Notice_board {
 		this.files = files;
 	}
 
-	public Date getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
 
 	public int getClass_id() {
 		return class_id;

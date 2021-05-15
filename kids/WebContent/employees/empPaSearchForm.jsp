@@ -10,3 +10,8 @@
 	직원 비밀번호 찾기 폼
 </body>
 </html>
+<html>
+<body>
+<%@ include file="./../common/footer.jsp" %>
+</body>
+</html>

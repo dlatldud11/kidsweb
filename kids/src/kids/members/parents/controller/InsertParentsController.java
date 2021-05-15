@@ -62,6 +62,12 @@ public class InsertParentsController extends SuperClass {
 		int cnt = pdao.insertData(bean);
 		System.out.println("cnt : "+cnt);
 		
+		String page = request.getParameter("page");
+		if(page.equals("update")) {
+			request.setAttribute("pid", pid);
+			new DetailParentsController().doGet(request, response);
+		}
+		
 		String gotopage = "/start.jsp";
 		super.GotoPage(gotopage);
 	}

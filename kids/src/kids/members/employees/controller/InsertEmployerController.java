@@ -79,7 +79,7 @@ public class InsertEmployerController extends SuperClass {
 			bean.setPassword(request.getParameter("password"));
 			bean.setTid(request.getParameter("tid"));
 			bean.setZipcode(request.getParameter("zipcode"));
-			bean.setClass_id(Integer.parseInt(request.getParameter("Class_id")));
+			bean.setClass_id(Integer.parseInt(request.getParameter("class_id")));
 			bean.setSubject_code(Integer.parseInt(request.getParameter("subject_code")));
 			
 			if(request.getParameter("responsibilities") == null || request.getParameter("responsibilities").equals("")) {
