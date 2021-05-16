@@ -14,7 +14,7 @@ public class FlowParametersStf extends FlowParameters {
 
 	public FlowParametersStf(String pageNumber, String month, String paid, String class_name, String pageSize) {
 		// TODO Auto-generated constructor stub
-		super.setPageNumber(pageNumber);
+		super(pageNumber,null,null);
 		if(month == null || month.equals("") || month.equals("null")) {
 			this.month = "all";
 		}else {

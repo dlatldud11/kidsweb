@@ -76,7 +76,7 @@ public class Paging {
 			}
 		}		
 		// part 다음, 끝
-		if (pageNumber >= (totalPage / pageCount * pageCount + 1 )) {
+		if (pageNumber >= ((totalPage / pageCount * pageCount) + 1 )) {
 			System.out.println("맨끝과 다음이 없습니다."); 
 		} else {
 			result += "<li><a href=\"" + url + "&pageNumber=" + (endPage+1) + field_search + "\">" + "다음" + "</a></li>";
