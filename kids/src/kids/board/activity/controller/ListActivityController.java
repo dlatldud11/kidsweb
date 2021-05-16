@@ -16,8 +16,12 @@ public class ListActivityController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		ActivityDao dao = new ActivityDao();
-		List<Activity> lists = dao.SelectDataList(0, 0);
+		
+		
+		 ActivityDao dao = new ActivityDao(); List<Activity> lists =
+		 dao.SelectDataList(0, 0);
+		 
+		 
 		
 		String gotopage = "/activity/acList.jsp" ;
 		super.GotoPage(gotopage);

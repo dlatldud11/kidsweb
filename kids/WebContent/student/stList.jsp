@@ -77,17 +77,15 @@
 							</td>
 						</tr>
 						</tbody>
+						<br>
 					<div class="panel-body">
 						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th>이름</th>
 									<th>성별</th>
-									<th>핸드폰</th>
 									<th>생일</th>
-									<th>집주소</th>
-									<th>특이사항</th>
-									<th>삭제</th>
+									<th>학급</th>
 								</tr>
 							</thead>
 							
@@ -96,9 +94,7 @@
 							<tr>
 								<td>${bean.name}</td>
 								<td>${bean.gender}</td>
-								<td>${bean.hp}</td>
 								<td>${bean.birth}</td>
-								<td>${bean.address}</td>
 								<td>${bean.textarea}</td>
 								<td>
 									<a href="<%=NoForm%>&no=${bean.no}&${requestScope.parameters}">

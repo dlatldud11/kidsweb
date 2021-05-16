@@ -105,8 +105,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
              			  	<a class="collapse-item" href="<%=NoForm%>noList">알림장</a>
-             			  	<a class="collapse-item" href="tables.jsp">
-                    		특별활동 게시판</a>
+             			  	<a class="collapse-item" href="<%=NoForm%>acList">특별활동 게시판</a>
                     		<a class="collapse-item" href="<%=NoForm%>empbList">
                     		직원 게시판</a>
                     </div>
@@ -116,6 +115,11 @@
                 <a class="nav-link" href="tables.jsp">
                     <i class="fas fa-fw fa-table"></i>
                     <span>식단표</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tables.jsp">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>시간표</span></a>
             </li>
              <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEduprogram"
@@ -245,6 +249,10 @@
                                    <a class="dropdown-item" href="login.jsp">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     매출
+                                  	</a>
+                                  	<a class="dropdown-item" href="<%=NoForm%>stList">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    학생 관리
                                   	</a>
                              </div>
 					<!-- 로그인 아이콘 -->		
