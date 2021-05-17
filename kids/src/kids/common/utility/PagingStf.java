@@ -18,7 +18,7 @@ public class PagingStf extends Paging {
 		// 계산이 필요한 나머지 변수들		
 		
 		// pagingHtml 변수는 코딩량이 길어서 별도의 메소드로 처리합니다.
-		super.setPagingHtml(this.getPagingHtml(url));
+		super.setPagingHtml(this.getPagingHtml(super.getUrl()));
 		super.setPagingStatus("총 " + super.getTotalCount() + "건[" + super.getPageNumber() + "/" + super.getTotalPage() + "]" );
 		
 		 this.Display();

@@ -246,7 +246,7 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     원비 관리
                                  	 </a>
-                                   <a class="dropdown-item" href="login.jsp">
+                                   <a class="dropdown-item" href="<%=NoForm%>salList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     매출
                                   	</a>

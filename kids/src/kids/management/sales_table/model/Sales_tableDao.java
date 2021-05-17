@@ -1,4 +1,4 @@
-package kids.management.st_total.stu_fee.model;
+package kids.management.sales_table.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.List;
 import kids.common.model.SuperDao;
 
 
-public class Stu_feeDao extends SuperDao {
+public class Sales_tableDao extends SuperDao {
 
 	public int GetGroupnoCount(int groupno) {
 		PreparedStatement pstmt = null ;
@@ -218,7 +218,7 @@ public class Stu_feeDao extends SuperDao {
 	public Stu_feeDao() {
 	
 	}*/
-	public List<Stu_fee> SelectDataList() {
+	public List<Sales_table2> SelectDataList() {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
@@ -226,14 +226,14 @@ public class Stu_feeDao extends SuperDao {
 		sql += " " ;
 		sql += " " ;
 		
-		List<Stu_fee> lists = new ArrayList<Stu_fee>();
+		List<Sales_table2> lists = new ArrayList<Sales_table2>();
 		try {
 			if( conn == null ){ super.conn = super.getConnection() ; }
 			pstmt = super.conn.prepareStatement(sql) ;			
 			rs = pstmt.executeQuery() ;			
 			
 			while( rs.next() ){
-				Stu_fee bean = new Stu_fee();
+				Sales_table2 bean = new Sales_table2();
 				
 							 				 
 				lists.add( bean ) ;
@@ -299,61 +299,30 @@ public class Stu_feeDao extends SuperDao {
 		return bean  ;
 	}
 	*/
-	public List<Stu_fee2> SelectDataList(int beginRow, int endRow, String month, String paid, String class_name ) {
+	public List<Sales_table2> SelectDataList(int beginRow, int endRow, String mode, String keyword) {
 		
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
-		String sql = " select payno, name, class_name, remark, month,state, unpaid, ranking ";
-		sql += " from (select b.payno, a.name, c.class_name, b.remark, b.month,b.state, b.unpaid, ";
-		sql += " rank() over(order by c.class_name asc, b.payno desc, b.unpaid asc) as ranking ";
-		sql += " from stu_fee b join student a ";
-		sql += " on b.sid = a.sid join myclass c ";
-		sql += " on a.class_id = c.class_id ";
 		
-			if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {// 전체 검색
-//				sql += " where month like to_char(sysdate,'mm') || '%' ";
-			}
-			else { sql += " where ";
-				
-			if(month.equals("all") == false) {
-					sql += "month like ('"+ month +"%') ";
-					if(paid.equals("all") == false) {
-							sql += " and state ='" + paid + "' ";
-						if(class_name.equals("all") == false) {
-							sql += " and class_name = ('"+ class_name +"') ";
-						}//class_name값 있음
-						else {
-							
-						}
-					}//paid 값 있음
-						else {
-							if(class_name.equals("all") == false) {
-								sql += " and class_name = ('"+ class_name +"') ";
-							}else {
-							}
-						}// paid 값 없음
-					}//month값 있음
-						else {
-						if(paid.equals("all") == false) {
-							sql += " state ='" + paid + "' ";
-							if(class_name.equals("all") == false) {
-								sql += " and class_name = ('"+ class_name +"') ";
-							}else {
-							}
-						}//paid값 있음
-							else {
-							if(class_name.equals("all")== false) {
-								sql += " class_name = ('"+ class_name +"') ";
-							}//class_name 있음
-							else {
-							}//class_name 없음
-					}//month값 없음
-				}
-			}
+		String sql = " select inputdate, class_name, name, sales, return, remark, payno, salesno ";
+		sql += " from (select a.inputdate, d.class_name, c.name, a.sales, a.return, ";
+		sql	+= " a.payno, a.salesno, a.remark,rank() over ";
+		sql += " (order by a.inputdate desc, d.class_name asc, c.name asc) as ranking ";
+		sql += " from ";
+		sql += " sales_table a left outer join stu_fee b ";
+		sql += " on a.payno = b.payno ";
+		sql += " left outer join student c ";
+		sql += " on b.sid = c.sid ";
+		sql += " left outer join myclass d ";
+		sql += " on c.class_id = d.class_id ";
+		
+		if(mode.equalsIgnoreCase("all") == false) {
+			sql += " where " + mode + " like '%" + keyword + "%' " ;
+		}
 				sql += " ) ";
 				sql += " where ranking between ? and ? ";
 					
-		List<Stu_fee2> lists = new ArrayList<Stu_fee2>() ;
+		List<Sales_table2> lists = new ArrayList<Sales_table2>() ;
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
 			pstmt = this.conn.prepareStatement(sql) ;	
@@ -364,14 +333,41 @@ public class Stu_feeDao extends SuperDao {
 			System.out.println(sql);	
 			rs = pstmt.executeQuery() ; 
 			while ( rs.next() ) {
-				Stu_fee2 bean = new Stu_fee2() ; 
-				bean.setClass_name(rs.getString("class_name"));
-				bean.setMonth(rs.getString("month"));
-				bean.setName(rs.getString("name"));
-				bean.setPaid(rs.getString("state"));
-				bean.setRemark(rs.getString("remark"));
-				bean.setUnpaid(rs.getInt("unpaid"));
-				bean.setPayno(rs.getInt("ranking"));
+				Sales_table2 bean = new Sales_table2() ;
+				if("".equals(rs.getString("class_name")) || rs.getString("class_name") == null) {
+					bean.setClass_name("-");
+				}else {
+					bean.setClass_name(rs.getString("class_name"));
+				}
+				bean.setInputdate(String.valueOf(rs.getDate("inputdate")));
+				
+				if("".equals(rs.getString("name")) || rs.getString("name") == null) {
+					bean.setName("-");
+				}else {
+					bean.setName(rs.getString("name"));
+				}
+				if(rs.getInt("payno") < 0) {
+					bean.setPayno(0);
+				}else {
+					bean.setPayno(rs.getInt("payno"));
+				}
+				if("".equals(rs.getString("remark")) || rs.getString("remark") == null){
+					bean.setRemark("-");
+				}else {
+					bean.setRemark(rs.getString("remark"));
+				}
+				if(rs.getInt("return") < 0) {
+					bean.setReturns(0);
+				}else {
+					bean.setReturns(rs.getInt("return"));
+				}
+				if(rs.getInt("sales") < 0) {
+					bean.setSales(0);
+				}else {
+					bean.setSales(rs.getInt("sales"));
+				}
+				bean.setSalesno(rs.getInt("salesno"));
+				
 				lists.add(bean);
 			}
 			
@@ -461,57 +457,21 @@ public class Stu_feeDao extends SuperDao {
 	      }
 	      return cnt ; 
 	   }*/
-	public int SelectTotalCount(String month, String paid, String class_name) {
+	public int SelectTotalCount(String mode, String keyword) {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;				
-
-		String sql = " select count(*) as cnt " ;
-		sql	+= " from stu_fee b join student a";
-		sql	+= " on b.sid = a.sid join myclass c";
-		sql	+= " on a.class_id = c.class_id ";
 		
-		if(month.equals("all") && paid.equals("all")&& class_name.equals("all")) {// 전체 검색
-//			sql += " where month like to_char(sysdate,'mm') || '%' ";
+		String sql = " select count(*) as cnt from ";
+		sql += " sales_table a left outer join stu_fee b ";
+		sql += " on a.payno = b.payno ";
+		sql += " left outer join student c ";
+		sql += " on b.sid = c.sid ";
+		sql += " left outer join myclass d ";
+		sql += " on c.class_id = d.class_id ";
+		
+		if(mode.equalsIgnoreCase("all") == false) {
+			sql += " where " + mode + " like '%" + keyword + "%' " ;
 		}
-		else { sql += " where ";
-			
-		if(month.equals("all") == false) {
-				sql += "month like ('"+ month +"%') ";
-				if(paid.equals("all") == false) {
-						sql += " and state ='" + paid + "' ";
-					if(class_name.equals("all") == false) {
-						sql += " and class_name = ('"+ class_name +"') ";
-					}//class_name값 있음
-					else {
-						
-					}
-				}//paid 값 있음
-					else {
-						if(class_name.equals("all") == false) {
-							sql += " and class_name = ('"+ class_name +"') ";
-						}else {
-						}
-					}// paid 값 없음
-				}//month값 있음
-					else {
-					if(paid.equals("all") == false) {
-						sql += " state ='" + paid + "' ";
-						if(class_name.equals("all") == false) {
-							sql += " and class_name = ('"+ class_name +"') ";
-						}else {
-						}
-					}//paid값 있음
-						else {
-						if(class_name.equals("all")== false) {
-							sql += " class_name = ('"+ class_name +"') ";
-						}//class_name 있음
-						else {
-						}//class_name 없음
-				}//month값 없음
-			}
-		}
-			sql += " ) ";
-			sql += " where ranking between ? and ? ";
 				
 		System.out.println(sql);
 		int cnt = 0; 
