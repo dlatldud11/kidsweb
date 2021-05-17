@@ -22,7 +22,7 @@ public class DetailStudentController extends SuperClass {
 
 		request.setAttribute("bean", bean);
 		
-		String gotopage = "/board/boDetailView.jsp" ;
+		String gotopage = "/student/stDetail.jsp" ;
 		super.GotoPage(gotopage);
 	}	
 	@Override

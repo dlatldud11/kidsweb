@@ -19,7 +19,7 @@ public class InsertActivityController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		String gotopage = "/activity/accoinsert.jsp" ;
+		String gotopage = "/activity/acInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	

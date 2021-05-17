@@ -27,6 +27,7 @@ public class EmployeesDao extends SuperDao {
 			rs = pstmt.executeQuery() ; 
 			
 			if(rs.next()) {
+				System.out.println("sss");
 				bean = new Employees() ;
 				
 				bean.setAddress1(rs.getString("address1"));

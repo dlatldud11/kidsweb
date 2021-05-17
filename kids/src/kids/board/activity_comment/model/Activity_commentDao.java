@@ -8,12 +8,123 @@ import java.util.List;
 
 import kids.board.activity.model.Activity;
 import kids.common.model.SuperDao;
+import kids.members.student.model.Student;
 
 public class Activity_commentDao extends SuperDao {
 
 	public int DeleteData(int activity_cmid) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql ;		
+		PreparedStatement pstmt = null ;		
+		Student bean = null ;
+		int cnt = -99999 ;
+		try {
+			bean = this.SelectDataByPk(activity_cmid) ;
+			
+			if( conn == null ){ super.conn = super.getConnection() ; }
+			conn.setAutoCommit( false );
+			
+			sql = " update activity set remark = ?  " ;
+			sql += " where activity_cmid = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			String imsi = bean.getName() +  "(" + activity_cmid + ")가 특별활동 아이디가 삭제 되었습니다." ;
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, activity_cmid);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql = " update employees set remark = ? " ;
+			sql += " where activity_cmid = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, activity_cmid);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql = " update parents set remark = ? " ;
+			sql += " where activity_cmid = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, activity_cmid);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql = " delete from activity_comment " ;
+			sql += " where actino = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			pstmt.setInt(1, activity_cmid);			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			conn.commit(); 
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
+	}	
+
+	private Student SelectDataByPk(int activity_cmid) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;	
+		
+		String sql = " select * from activity_comment " ;
+		sql += " where actino = ? " ;
+		
+		Student bean = null ;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;			
+			
+			pstmt.setInt(1, activity_cmid);
+			
+			rs = pstmt.executeQuery() ; 
+			
+			if ( rs.next() ) {
+				Activity_comment acbean = new Activity_comment();
+				
+				acbean.setActivity_cmid(rs.getInt("activity_cmid"));
+				acbean.setActino(rs.getInt("actino"));
+				acbean.setContent(rs.getString("content"));
+				acbean.setRegdate(String.valueOf(rs.getDate("regdate")));
+				acbean.setRemark(rs.getString("remark"));
+				acbean.setTid(rs.getString("tid"));
+				acbean.setPid(rs.getString("pid"));
+				acbean.setGroupno(rs.getInt("groupno"));
+				acbean.setOrderno(rs.getInt("orderno"));
+				acbean.setDepth(rs.getInt("depth"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null ){ rs.close(); }
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		}
+		
+		return bean ;
 	}
 
 	public int InsertData(Activity_comment bean) {

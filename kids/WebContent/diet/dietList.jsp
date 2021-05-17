@@ -39,7 +39,7 @@
 	    <div class="w3-container w3-center">
 	    	<a style="float:right;" href="dndietInssert.jsp">수정</a>
 	      <p>${bean.bf}</p>
-	    </div>
+	    </div>]
 	  </div>
 	</div>  
 	<div class="col-xl-4">  
