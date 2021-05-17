@@ -66,7 +66,7 @@ myclInsert=kids.management.myclass.controller.InsertMyclassController
 myclUpdate=kids.management.myclass.controller.UpdateMyclassController
 myclDelete=kids.management.myclass.controller.DeleteMyclassController
 myclList=kids.management.myclass.controller.ListMyclassController
-suInsert=kids.management.subject.controller.InsetSubjectController
+suInsert=kids.management.subject.controller.InsertSubjectController
 suUpdate=kids.management.subject.controller.UpdateSubjectController
 suDelete=kids.management.subject.controller.DeleteSubjectController
 suList=kids.management.subject.controller.ListSubjectController
@@ -119,3 +119,4 @@ empJoin=kids.members.employees.controller.EmpJoinController
 ###테스트중 - 정희###
 pidCheck=kids.members.common.controller.CheckPidController
 paSubmitUpdate=kids.members.parents.controller.paSubmitUpdateController
+changePloginfo=kids.members.parents.controller.paChangeLoginfoController

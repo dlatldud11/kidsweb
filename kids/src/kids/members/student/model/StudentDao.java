@@ -10,13 +10,54 @@ import kids.board.timetable.model.Timetable;
 import kids.common.model.SuperDao2;
 import kids.management.myclass.model.Myclass;
 
-
-
-
 public class StudentDao extends SuperDao2{
 	
 	public int UpdateData( Student bean ){
-		return 0;
+		String sql = " update Myclass set sid = ?, class_id = ?, name = ?, hp = ?, " ;
+		sql += " birth = ?, address1 = ?, address2 = ?, gender = ?, regdate = ?,  " ;
+		sql += " textarea = ?, image = ?, remark = ? zipcode = ? where sid = ? " ;
+		
+		PreparedStatement pstmt = null ;
+		int cnt = -99999 ;
+		try {
+			if( conn == null ){ super.conn = super.getConnection() ; }
+			conn.setAutoCommit( false );
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setInt(1, bean.getSid());
+			pstmt.setInt(2, bean.getClass_id());
+			pstmt.setString(3, bean.getName());
+			pstmt.setString(4, bean.getHp());
+			pstmt.setString(5, bean.getBirth());
+			pstmt.setString(6, bean.getAddress1());
+			pstmt.setString(7, bean.getAddress2());
+			pstmt.setString(8, bean.getGender());
+			pstmt.setString(9, bean.getRegdate());
+			pstmt.setString(10, bean.getTextarea());
+			pstmt.setString(11, bean.getImage());
+			pstmt.setString(12, bean.getRemark());
+			pstmt.setString(13, bean.getZipcode());
+			
+			cnt = pstmt.executeUpdate() ; 
+			conn.commit(); 
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
 		
 		
 	}
@@ -33,14 +74,19 @@ public class StudentDao extends SuperDao2{
 			conn.setAutoCommit( false );
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setString(1, bean.getName());
-			pstmt.setString(2, bean.getHp());
-			pstmt.setString(3, bean.getBirth());
-			pstmt.setString(4, bean.getAddress1());
-			pstmt.setString(5, bean.getAddress2());
-			pstmt.setString(6, bean.getGender());
-			pstmt.setString(7, bean.getTextarea());
-			pstmt.setString(8, bean.getImage());
+			pstmt.setInt(1, bean.getSid());
+			pstmt.setInt(2, bean.getClass_id());
+			pstmt.setString(3, bean.getName());
+			pstmt.setString(4, bean.getHp());
+			pstmt.setString(5, bean.getBirth());
+			pstmt.setString(6, bean.getAddress1());
+			pstmt.setString(7, bean.getAddress2());
+			pstmt.setString(8, bean.getGender());
+			pstmt.setString(9, bean.getRegdate());
+			pstmt.setString(10, bean.getTextarea());
+			pstmt.setString(11, bean.getImage());
+			pstmt.setString(12, bean.getRemark());
+			pstmt.setString(13, bean.getZipcode());
 		
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -177,8 +223,21 @@ public class StudentDao extends SuperDao2{
 			pstmt.setInt(2, endRow); 
 			
 			rs = pstmt.executeQuery() ; 
+			
 			while ( rs.next() ) {
 				Student bean = new Student() ; 
+			
+			bean.setAddress1(rs.getString("address1"));
+			bean.setAddress2(rs.getString("address2"));
+			bean.setBirth(rs.getString("birth"));
+			bean.setGender(rs.getString("gender"));
+			bean.setHp(rs.getString("hp"));
+			bean.setImage(rs.getString("image"));
+			bean.setName(rs.getString("name"));
+			bean.setClass_id(rs.getInt("class_id"));
+			bean.setZipcode(rs.getString("zipcode"));
+				
+				
 			 		
 				lists.add( bean ) ; 
 			}
@@ -242,21 +301,32 @@ public class StudentDao extends SuperDao2{
 		} 		
 		return bean  ;
 	}
-	public int selectSidByData(String name, String hp) {
-	      int sid = 0;
+	public Student selectByData(String name, String hp) {
+	      Student bean = null;
 	      PreparedStatement pstmt = null ;
 	      ResultSet rs = null;
-	      String sql = "select sid from student where name = ? and hp = ?";
+	      String sql = "select * from student where name=? and hp=?";
 	      
 	      try {
 	         if(conn == null) {super.conn = super.getConnection() ; }
 	         pstmt = conn.prepareStatement(sql) ;
 	         pstmt.setString(1, name);
 	         pstmt.setString(2, hp);
-	         
+	         System.out.println("stsearch - pstmt.setString 까지 완료");
 	         rs = pstmt.executeQuery();
 	         if(rs.next()) {
-	            sid = rs.getInt("sid");
+	        	 System.out.println("stsearch - rs.next 들어옴");
+	        	 bean = new Student();
+	        	 bean.setName(rs.getString("name"));
+	        	 bean.setHp(rs.getString("hp"));
+	        	 bean.setBirth(rs.getString("birth"));
+	        	 bean.setGender(rs.getString("gender"));
+	        	 bean.setAddress1(rs.getString("address1"));
+	        	 bean.setAddress2(rs.getString("address2"));
+	        	 bean.setRegdate(String.valueOf(rs.getDate("regdate")));
+	        	 bean.setTextarea(rs.getString("textarea"));
+	        	 bean.setImage(rs.getString("image"));
+	        	 bean.setZipcode(rs.getString("zipcode"));
 	         }
 	      } catch (Exception e) {   
 	         e.printStackTrace();
@@ -269,7 +339,7 @@ public class StudentDao extends SuperDao2{
 	            e2.printStackTrace();
 	         }
 	      }
-	      return sid;
+	      return bean;
 	   }
 
 	

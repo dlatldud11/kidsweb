@@ -3886,6 +3886,17 @@ input[type=button].btn-block {
   list-style: none;
 }
 
+/*정희가 수정함. nav-item 추가*/
+.nav-item{
+  background:#ffd700;
+  border:5px solid #d61d4e;
+}
+
+.btn-emp{
+	background:#2699fb;
+}
+
+
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
@@ -6165,7 +6176,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #f8f9fa ;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -10025,20 +10036,18 @@ h3 {
 
 header.masthead {
   position: relative;
-  background-color: #343a40;
-  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
+  background: url("../assets/img/mainkids.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
 header.masthead .overlay {
   position: absolute;
-  background-color: #212529;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.3;
+  opacity: 0.1;
 }
 header.masthead h1 {
   font-size: 2rem;
@@ -10080,20 +10089,22 @@ header.masthead h1 {
 
 .call-to-action {
   position: relative;
-  background-color: #343a40;
-  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
+  background-color: #ffd700;
+  background: url("../assets/img/bkids.png") no-repeat center center;
   background-size: cover;
   padding-top: 7rem;
   padding-bottom: 7rem;
+  background:#ffd700;;
 }
 .call-to-action .overlay {
   position: absolute;
-  background-color: #212529;
+  background-color: #ffd700;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
   opacity: 0.3;
+  background:#ffd700;
 }
 
 footer.footer {

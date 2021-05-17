@@ -6,13 +6,22 @@ public class Sales_table {
 	
 	private int salesno ;
 	private int payno ;
-	private Date inputdate ;
+	private String inputdate ;
 	private int sales ;
 	private int returns ;
 	private String remark ;
 	
 	public Sales_table() {}
 
+	public Sales_table(int salesno, int payno, String inputdate, int sales, int returns, String remark) {
+		this.salesno = salesno;
+		this.payno = payno;
+		this.inputdate = inputdate;
+		this.sales = sales;
+		this.returns = returns;
+		this.remark = remark;
+	}
+	
 	public int getSalesno() {
 		return salesno;
 	}
@@ -29,11 +38,11 @@ public class Sales_table {
 		this.payno = payno;
 	}
 
-	public Date getInputdate() {
+	public String getInputdate() {
 		return inputdate;
 	}
 
-	public void setInputdate(Date inputdate) {
+	public void setInputdate(String inputdate) {
 		this.inputdate = inputdate;
 	}
 

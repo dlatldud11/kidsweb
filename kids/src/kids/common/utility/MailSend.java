@@ -32,7 +32,7 @@ public class MailSend {
         try {
             msg.setSentDate(new Date());
             
-            msg.setFrom(new InternetAddress("bitcamp12345@gmail.com", "허니유치원"));
+            msg.setFrom(new InternetAddress("bitcamp12345@gmail.com", "아이하루 어린이집"));
             //발송자를 지정. 발송자의 메일, 발송자명
             InternetAddress to = new InternetAddress(email);
             //수신자의 메일을 생성
@@ -40,9 +40,9 @@ public class MailSend {
             //수신자를 설정. Message.RecipientType.To:받는사람, Message.RecipientType.CC : 참조
             //Message.RecipientType.BCC:숨은참조
             msg.setSubject("인증코드");//메일 제목            
-            msg.setText("안녕하세요. 허니유치원 입니다.\n "
+            msg.setText("안녕하세요. 아이하루 어린이집 입니다.\n "
             		+ "인증코드는 " + code + "입니다. \n"
-            		+ " 코드를 허니유치원 홈페이지에 입력해주세요. 감사합니다.", "UTF-8");//메일 내용            
+            		+ " 코드를 아이하루 어린이집 홈페이지에 입력해주세요. 감사합니다.", "UTF-8");//메일 내용            
             
             Transport.send(msg); //메일 보내기
             
@@ -63,21 +63,8 @@ public class MailSend {
         String code = "";
 
         for(int i=0; i<6; i++) {
-
-           int random = (int)((Math.random()*(3-1+1))+1);
-           switch(random) {
-           case 1:
-              code += (int)((Math.random()*9)+1);
-              break;
-           case 2:
-              int test1 = (int)((Math.random()*(90-65+1))+65);         
-              code += (char)test1;
-              break;
-           case 3:
-              int test2 = (int)((Math.random()*(122-97+1))+97);
-              code += (char)test2;
-              break;
-           }
+        	int random = (int)((Math.random()*9)+1);
+           	code += random;
         }
         return code;
         

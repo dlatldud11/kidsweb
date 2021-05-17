@@ -187,7 +187,7 @@
 				    <div class="form-group">        
 				      	<div class="col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
 				        	<button type="submit" class="btn btn-primary">
-				        	회원 가입</button>
+				        	원생 등록</button>
 				        	&nbsp;&nbsp;&nbsp;
 				        	<button type="reset" class="btn btn-primary">초기화</button>				        	
 				      	</div>

@@ -15,10 +15,23 @@ import kids.members.parents.model.ParentsMiniView;
 
 public class ListParentsController extends SuperClass {
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doGet(request, response);
 		String class_menu = request.getParameter("class_menu");
 		String submit_menu = request.getParameter("submit_menu");
+		
+		if(class_menu == null || class_menu.equals("null") || class_menu.equals("")) {
+			class_menu = "all";
+			System.out.println("class_menu null처리 들어옴");
+		} 
+		if(submit_menu == null || submit_menu.equals("null") || submit_menu.equals("")) {
+			submit_menu = "all";
+			System.out.println("submit_menu null처리 들어옴");
+		}
+		
+		System.out.println("class_menu : "+class_menu);
+		System.out.println("submit_menu : "+submit_menu);
+		
 		
 		ParentsDao pdao = new ParentsDao();
 		List<ParentsMiniView> plists = pdao.selectDataList(class_menu, submit_menu);
