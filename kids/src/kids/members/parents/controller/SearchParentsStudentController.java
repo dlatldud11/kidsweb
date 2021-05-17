@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kids.common.controller.SuperClass;
+import kids.members.student.model.Student;
 import kids.members.student.model.StudentDao;
 
 public class SearchParentsStudentController extends SuperClass {
@@ -23,9 +24,8 @@ public class SearchParentsStudentController extends SuperClass {
 		System.out.println("확인용 hp : "+hp);
 		
 		StudentDao sdao = new StudentDao(); // 임의로 만들어서 사용. 합칠때 메소드만 복붙하기.
-		int sid = sdao.selectSidByData(name,hp) ;
-		System.out.println("sid : "+sid);
-		request.setAttribute("sid", sid);
+		Student bean = sdao.selectByData(name,hp) ;
+		request.setAttribute("bean", bean);
 		String gotopage = "/parents/paStSearch.jsp";
 		super.GotoPage(gotopage);
 	}

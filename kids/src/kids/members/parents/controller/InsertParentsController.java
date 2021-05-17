@@ -31,8 +31,14 @@ public class InsertParentsController extends SuperClass {
 		String email = multi.getParameter("email1")+"@"+multi.getParameter("email2");
 		String image = multi.getParameter("image");
 		String zipcode = multi.getParameter("zipcode");
-		int sid = Integer.parseInt(multi.getParameter("sid"));
-		System.out.println("sid : "+sid);
+		String imsisid = multi.getParameter("sid");
+		
+		if(!(multi.getParameter("sid") == null || multi.getParameter("sid").equals("null") || multi.getParameter("sid").equals(""))){
+			System.out.println("sid 처리");
+			int sid = Integer.parseInt(multi.getParameter("sid"));
+			bean.setSid(sid);
+			System.out.println("sid : "+sid);
+		}
 		String relationship = multi.getParameter("relationship");
 		
 		bean.setPid(pid);
@@ -46,7 +52,7 @@ public class InsertParentsController extends SuperClass {
 		bean.setEmail(email);
 		bean.setImage(image);
 		bean.setZipcode(zipcode);
-		bean.setSid(sid);
+		
 		bean.setRelationship(relationship);
 		bean.setSubmit("미승인");
 		bean.setResponsibilities("보호자");
@@ -68,6 +74,8 @@ public class InsertParentsController extends SuperClass {
 			int childid2 = Integer.parseInt(imsic2);
 			bean.setChildid2(childid2);
 		}
+		
+		System.out.println("bean : "+bean);
 		
 		ParentsDao pdao = new ParentsDao();
 		int cnt = pdao.insertData(bean);

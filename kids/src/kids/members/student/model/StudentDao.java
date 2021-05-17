@@ -242,11 +242,11 @@ public class StudentDao extends SuperDao2{
 		} 		
 		return bean  ;
 	}
-	public int selectSidByData(String name, String hp) {
-	      int sid = 0;
+	public Student selectByData(String name, String hp) {
+	      Student bean = null;
 	      PreparedStatement pstmt = null ;
 	      ResultSet rs = null;
-	      String sql = "select sid from student where name=? and hp=?";
+	      String sql = "select * from student where name=? and hp=?";
 	      
 	      try {
 	         if(conn == null) {super.conn = super.getConnection() ; }
@@ -257,7 +257,17 @@ public class StudentDao extends SuperDao2{
 	         rs = pstmt.executeQuery();
 	         if(rs.next()) {
 	        	 System.out.println("stsearch - rs.next 들어옴");
-	            sid = rs.getInt("sid");
+	        	 bean = new Student();
+	        	 bean.setName(rs.getString("name"));
+	        	 bean.setHp(rs.getString("hp"));
+	        	 bean.setBirth(rs.getString("birth"));
+	        	 bean.setGender(rs.getString("gender"));
+	        	 bean.setAddress1(rs.getString("address1"));
+	        	 bean.setAddress2(rs.getString("address2"));
+	        	 bean.setRegdate(String.valueOf(rs.getDate("regdate")));
+	        	 bean.setTextarea(rs.getString("textarea"));
+	        	 bean.setImage(rs.getString("image"));
+	        	 bean.setZipcode(rs.getString("zipcode"));
 	         }
 	      } catch (Exception e) {   
 	         e.printStackTrace();
@@ -270,7 +280,7 @@ public class StudentDao extends SuperDao2{
 	            e2.printStackTrace();
 	         }
 	      }
-	      return sid;
+	      return bean;
 	   }
 
 	
