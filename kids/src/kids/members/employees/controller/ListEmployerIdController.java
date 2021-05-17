@@ -50,7 +50,7 @@ public class ListEmployerIdController extends SuperClass {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("parameters", parameters);
 		
-		String gotopage = "/emp_manage/empList.jsp" ;
+		String gotopage = "/employees/empList.jsp" ;
 		super.GotoPage(gotopage);
 		
 	}
