@@ -8,12 +8,109 @@ import java.util.List;
 
 import kids.common.model.SuperDao;
 import kids.management.myclass.model.Myclass;
+import kids.members.student.model.Student;
 
 public class SubjectDao extends SuperDao{
 
 	 public int DeleteData(int subject_code) {
-		// TODO Auto-generated method stub
-		return 0;
+		 String sql ;		
+			PreparedStatement pstmt = null ;		
+			Student bean = null ;
+			int cnt = -99999 ;
+			try {
+				bean = this.SelectDataByPk(subject_code) ;
+				
+				if( conn == null ){ super.conn = super.getConnection() ; }
+				conn.setAutoCommit( false );
+				
+				sql = " update employees set remark = ?  " ;
+				sql += " where subject_code = ? " ;
+				pstmt = super.conn.prepareStatement(sql) ;
+				
+				String imsi = bean.getName() +  "(" + subject_code + ")가 과목코드가 삭제 되었습니다." ;
+				pstmt.setString(1, imsi);			
+				pstmt.setInt(2, subject_code);
+				
+				cnt = pstmt.executeUpdate() ;
+				if(pstmt != null) {pstmt.close();}
+				
+				sql = " update activity set remark = ?  " ;
+				sql += " where subject_code = ? " ;
+				pstmt = super.conn.prepareStatement(sql) ;
+				
+				
+				pstmt.setString(1, imsi);			
+				pstmt.setInt(2, subject_code);
+				
+				cnt = pstmt.executeUpdate() ;
+				if(pstmt != null) {pstmt.close();}
+				
+				sql = " delete from subject " ;
+				sql += " where subject_code = ? " ;
+				pstmt = super.conn.prepareStatement(sql) ;
+				pstmt.setInt(1, subject_code);			
+				cnt = pstmt.executeUpdate() ;
+				if(pstmt != null) {pstmt.close();}
+				
+				conn.commit();			
+			} catch (Exception e) {
+				SQLException err = (SQLException)e ;			
+				cnt = - err.getErrorCode() ;			
+				e.printStackTrace();
+				try {
+					conn.rollback(); 
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			} finally{
+				try {
+					if( pstmt != null ){ pstmt.close(); }
+					super.closeConnection(); 
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			return cnt;
+	}
+
+	private Student SelectDataByPk(int subject_code) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;	
+		
+		String sql = " select * from subject " ;
+		sql += " where no = ? " ;
+		
+		Student bean = null ;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;			
+			
+			pstmt.setInt(1, subject_code);
+			
+			rs = pstmt.executeQuery() ; 
+			
+			if ( rs.next() ) { 
+				Subject sbean = new Subject();
+				
+				sbean.setSubject_code(rs.getInt("subject_code"));
+				sbean.setSubject(rs.getString("subject"));
+				sbean.setTid(rs.getString("tid"));
+				sbean.setRemark(rs.getString("remark"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null ){ rs.close(); }
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		}
+		
+		return bean ;
 	}
 
 	public int InsertData(Subject bean) {

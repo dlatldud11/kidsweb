@@ -34,8 +34,8 @@ public class InsertTimeTableController extends SuperClass {
 		bean.setDay(multi.getParameter("day"));
 		bean.setRemark(multi.getParameter("remark"));
 		
-		if (multi.getParameter("no") != null && multi.getParameter("no").equals("") == false) {
-			bean.setNo(Integer.parseInt(multi.getParameter("no")));	
+		if (multi.getParameter("time_id") != null && multi.getParameter("time_id").equals("") == false) {
+			bean.setTime_id(Integer.parseInt(multi.getParameter("time_id")));	
 		}
 		
 		if (multi.getParameter("subject_code") != null && multi.getParameter("subject_code").equals("") == false) {

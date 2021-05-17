@@ -1,7 +1,7 @@
 package kids.board.timetable.model;
 
 public class Timetable {
-	private int no ;
+	private int time_id ;
 	private int subject_code ;
 	private int class_id ;
 	private String time ;
@@ -10,13 +10,25 @@ public class Timetable {
 	
 	public Timetable() {}
 
-	public int getNo() {
-		return no;
+	
+
+	/**
+	 * @return the time_id
+	 */
+	public int getTime_id() {
+		return time_id;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+
+
+	/**
+	 * @param time_id the time_id to set
+	 */
+	public void setTime_id(int time_id) {
+		this.time_id = time_id;
 	}
+
+
 
 	public int getSubject_code() {
 		return subject_code;
@@ -58,11 +70,14 @@ public class Timetable {
 		this.remark = remark;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Timetable [no=" + no + ", subject_code=" + subject_code + ", class_id=" + class_id + ", time=" + time
-				+ ", day=" + day + ", remark=" + remark + "]";
+		return "Timetable [time_id=" + time_id + ", subject_code=" + subject_code + ", class_id=" + class_id + ", time="
+				+ time + ", day=" + day + ", remark=" + remark + "]";
 	}
+
 	
 	
 }

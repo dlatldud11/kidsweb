@@ -7,56 +7,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
+<div class="w3-container">
   <h2>식단</h2>
 	<span style="float:right;">
-		<a href="bfdietInssert.jsp">아침&nbsp;</a>
-		<a href="lcdietInssert.jsp">점심&nbsp;</a>
-		<a href="dndietInssert.jsp">저녁&nbsp;</a>
-		<a href="dsdietInssert.jsp">간식&nbsp;</a>
+		<a href="<%=NoForm%>dietInsert">식단표 등록&nbsp;</a>
 	</span>
-<div class="row w3-container">
-	<div class="col-xl-4">
-	  <div class="w3-card-4" style="width:50%">
-	    <img src="${bean.bffiles}" alt="Alps" style="width:100%">
+	<c:forEach var="bean" items="${requestScope.lists}">
+	<div class="w3-container">
+	  <div class="w3-card-4" style="width:25%">
+	  <a href="<%=NoForm%>dietDetail&dietno=${bean.dietno}">
+	    <img src="${bean.files}" alt="Alps" style="width:100%">
 	    <div class="w3-container w3-center">
-	 	   <a style="float:right;" href="bfdietUpdate.jsp">수정</a>
-	      <p>${bean.bf}</p>
+	    <p style="float:left;">${bean.category}/${bean.regdate}</p><br>
+	      <p>${bean.content}</p>
 	    </div>
+	     </a>
 	  </div>
 	</div>
-	<div class="col-xl-4">  
-	  <div class="w3-card-4" style="width:50%">
-	    <img src="${bean.lcfiles}" alt="Alps" style="width:100%">
-	    <div class="w3-container w3-center">
-	    	<a style="float:right;" href="lcdietInssert.jsp">수정</a>
-	      <p>${bean.bf}</p>
-	    </div>
-	  </div>
-	</div>
-	<div class="col-xl-4">  
-	  <div class="w3-card-4" style="width:50%">
-	    <img src="${bean.dnfiles}" alt="Alps" style="width:100%">
-	    <div class="w3-container w3-center">
-	    	<a style="float:right;" href="dndietInssert.jsp">수정</a>
-	      <p>${bean.bf}</p>
-	    </div>
-	  </div>
-	</div>  
-	<div class="col-xl-4">  
-	  <div class="w3-card-4" style="width:50%">
-	    <img src="${bean.dsfiles}" alt="Alps" style="width:100%">
-	    <div class="w3-container w3-center">
-	 	   <a style="float:right;" href="dsdietInssert.jsp">수정</a>
-	      <p>${bean.bf}</p>
-	    </div>
-	  </div>
-	</div>
+	</c:forEach>
 </div>
-
-</body>
-</html>
-<html>
-<body>
-<%@ include file="./../common/footer.jsp" %>
 </body>
 </html>

@@ -7,6 +7,7 @@ public class Emplo_board {
 	private String files;
 	private String regdate;
 	private String remark;
+	
 	public int getEmpno() {
 		return empno;
 	}

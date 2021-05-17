@@ -7,13 +7,126 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kids.common.model.SuperDao;
+import kids.members.student.model.Student;
 
 
 public class MyclassDao extends SuperDao{
 
 	public int DeleteData(int class_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql ;		
+		PreparedStatement pstmt = null ;		
+		Student bean = null ;
+		int cnt = -99999 ;
+		try {
+			bean = this.SelectDataByPk(class_id) ;
+			
+			if( conn == null ){ super.conn = super.getConnection() ; }
+			conn.setAutoCommit( false );
+			
+			sql = " update notice_board set remark = ?  " ;
+			sql += " where class_id = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			String imsi = bean.getName() +  "(" + class_id + ")가 클래스가 삭제 되었습니다." ;
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, class_id);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql = " update employees set remark = ?  " ;
+			sql += " where class_id = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, class_id);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql = " update students set remark = ?  " ;
+			sql += " where class_id = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, imsi);			
+			pstmt.setInt(2, class_id);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			
+			sql = " delete from myclass " ;
+			sql += " where class_id = ? " ;
+			pstmt = super.conn.prepareStatement(sql) ;
+			pstmt.setInt(1, class_id);			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			conn.commit();			
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+
+	private Student SelectDataByPk(int class_id) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;	
+		
+		String sql = " select * from myclass " ;
+		sql += " where no = ? " ;
+		
+		Student bean = null ;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;			
+			
+			pstmt.setInt(1, class_id);
+			
+			rs = pstmt.executeQuery() ; 
+			
+			if ( rs.next() ) { 
+				bean = new Student() ;
+				
+				bean.setName(rs.getString("name"));
+				bean.setHp(rs.getString("hp"));
+				bean.setBirth(rs.getString("birth"));
+				bean.setGender(rs.getString("gender"));
+				bean.setAddress1(rs.getString("address1"));
+				bean.setAddress2(rs.getString("address2"));
+				bean.setRegdate(String.valueOf(rs.getDate("regdate")));
+				bean.setTextarea(rs.getString("textarea"));
+				bean.setImage(rs.getString("image"));
+				bean.setZipcode(rs.getString("zipcode"));
+
+			}
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null){ rs.close(); } 
+				if( pstmt != null){ pstmt.close(); } 
+				this.closeConnection() ;
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		} 		
+		return bean  ;
 	}
 
 	public List<Myclass> SelectDataList(int i, int j) {
