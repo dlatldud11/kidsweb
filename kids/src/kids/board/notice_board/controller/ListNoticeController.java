@@ -24,7 +24,7 @@ public class ListNoticeController extends SuperClass {
 				request.getParameter("keyword"));
 		System.out.println("parameters list : " + parameters.toString());
 		
-		String url = request.getContextPath() + "/Kids?command=submit";
+		String url = request.getContextPath() + "/Kids?command=goList";
 		
 		Notice_boardDao dao = new Notice_boardDao();
 		int totalCount = dao.selectNoticeCount(
