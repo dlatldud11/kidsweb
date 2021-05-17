@@ -29,6 +29,10 @@ public class ListParentsController extends SuperClass {
 			System.out.println("submit_menu null처리 들어옴");
 		}
 		
+		System.out.println("class_menu : "+class_menu);
+		System.out.println("submit_menu : "+submit_menu);
+		
+		
 		ParentsDao pdao = new ParentsDao();
 		List<ParentsMiniView> plists = pdao.selectDataList(class_menu, submit_menu);
 		

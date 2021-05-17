@@ -26,42 +26,59 @@
     <!-- Custom styles for this template -->
     <link href="<%=contextPath %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
     <script type="text/javascript">
-    	function codeCheck(inputcode,pid){
-    		var inputcode = document.code.value;
-    		if( signaturecode == inputcode){
-    			location.href = '/parents/updatePassword.jsp?pid='+pid; //비밀번호 변경 창으로 이동
-    		}else{
-    			alert('인증코드가 일치하지 않습니다');
-    		}
-    		
-    	}
+		function codeCheck(pid){
+			
+			var mailcode = '${requestScope.code}';
+			var inputcode = document.getElementById('code').value;
+			var result = document.getElementById('result');
+			if( mailcode == inputcode){
+				window.location.href="./parents/paUpdatePassword.jsp?pid="+pid; //opener 기준으로 상대경로 작성해야 되는듯...
+			}else{
+				result.innerHTML="";
+				result.innerHTML='인증코드가 일치하지 않습니다';
+			}
+		}
+		function preCheck(){
+			result.innerHTML="";
+			result.innerHTML ='메일 전송 완료';
+		}
+		
+		function meClose(){
+			var win = window.open("","_self");
+			win.close();
+		}
     </script>
 </head>
 <body>
 <div class="container">
 		<div class="card card-primary offset-sm-3 col-sm-6">
 			<div class="card-header" align="center">
-				<h4>비밀번호 찾기</h4>
+				<h4>비밀번호 찾기(보호자)</h4>
 			</div>
 			<div class="card-body">
 				<form action="<%=YesForm %>" method="post">
 					<input type="hidden" name="command" value="paPaSearch">
 					<div class="form-group">
-						<input class="form-control" type="text" name="id" id="id" placeholder="id" required> 
+						<input class="form-control" type="text" name="id" id="id" placeholder="아이디" value="${requestScope.pid }${requestScope.bean.pid}" required> 
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="email" name="email" id="email" placeholder="email" required> 
+						<input class="form-control" type="email" name="email" id="email" placeholder="이메일" value="${requestScope.email }${requestScope.bean.email}" required> 
 					</div>
-					<button class="form-control btn btn-primary">인증코드 이메일 전송</button>
+					<button class="form-control btn btn-primary" onclick='preCheck();'>인증코드 이메일 전송</button>
 				</form>
 				<hr>
-					<form action="<%=YesForm %>" method="post">
-						<input type="hidden" name="command" value="paPaSearch">
-						<div class="form-group">
-							<input class="form-control" type="text" name="code" id="code" placeholder="code" required> 
-						</div>
-						<button class="form-control btn btn-primary">인증코드 확인</button>
-				    </form>
+				<div class="form-group">
+					<input class="form-control" type="text" name="code" id="code" placeholder="인증코드 입력" required> 
+				</div>
+				<input type="submit" class="form-control btn btn-primary" value="인증코드 확인" onclick="codeCheck('${requestScope.bean.pid}');">
+				<br>
+				<br>
+				<div class="form-group" id="result" align="center">
+				</div>
+			</div>
+	
+			<div class="card-footer" align="center">
+				<input type="button" class="btn btn-danger" value="닫기" onclick="meClose();">
 			</div>
 		</div>
 	</div>

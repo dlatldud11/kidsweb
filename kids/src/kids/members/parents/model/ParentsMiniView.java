@@ -8,7 +8,30 @@ public class ParentsMiniView {
 	private String name;
 	private String hp;
 	private String submit;
+	private String responsibilities;
+	private int sid;
+	private String password;
 	
+	
+	
+	public String getResponsibilities() {
+		return responsibilities;
+	}
+	public void setResponsibilities(String responsibilities) {
+		this.responsibilities = responsibilities;
+	}
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getSubmit() {
 		return submit;
 	}

@@ -1,7 +1,10 @@
+<%@page import="kids.members.parents.model.ParentsMiniView"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!-- 05.11컨텐트 지움 176 줄-->
 <!-- 로그인 상태 정보 -->
 <c:set var="whologin" value="0" /> 
@@ -62,7 +65,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=contextPath %>/common/main.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -183,7 +186,28 @@
 
                     <!-- Topbar Search -->
                     <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+                       	<div class="input-group-append">
+                        	<!-- 테스트중 - 정희 -->
+                        	<c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
+                        	<h3>${sessionScope.loginfo.stname}(${sessionScope.loginfo.classname}) ${sessionScope.loginfo.relationship } </h3>
+							 <div class="dropdown form-control">
+							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="">
+							    아이 선택
+							  </button>
+							  <div class="dropdown-menu">
+							  	<c:forEach var="item" items="${sessionScope.plists}">
+							    	<a class="dropdown-item" href="<%=NoForm%>changePloginfo&sid=${item.sid}&pid=${item.pid}">${item.stname}</a>
+							    </c:forEach>	
+							  </div>
+							</div>
+							</c:if>
+						</div>
+						
+                        	<!-- 테스트중 - 정희 -->
+                        	
+                        	
+                     <!-- 
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
@@ -193,6 +217,7 @@
                                 </button>
                             </div>
                         </div>
+                      -->  
                     </form>
 
                     <!-- Topbar Navbar -->

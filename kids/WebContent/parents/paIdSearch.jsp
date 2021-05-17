@@ -27,42 +27,63 @@
     <link href="<%=contextPath %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
     
     <script type="text/javascript">
-    	function codeCheck(inputcode,pid){
-    		var inputcode = document.code.value;
-    		if( signaturecode == inputcode){
-    			location.href = 'start.jsp?'; //로그인 창으로 이동 
+    	
+    	function codeCheck(){
+    		var mailcode = '${requestScope.code}';
+    		var inputcode = document.getElementById('code').value;
+    		var result = document.getElementById('result');
+    		result.innerHTML="";
+    		if( mailcode == inputcode){
+    			result.innerHTML='아이디는 <font color="red">${requestScope.bean.pid}</font> 입니다';
     		}else{
-    			alert('인증코드가 일치하지 않습니다');
+    			result.innerHTML='인증코드가 일치하지 않습니다';
     		}
     		
+    	}
+    	
+    	function preCheck(){
+    		result.innerHTML="";
+    		result.innerHTML ='메일 전송 완료';
+    	}
+    	
+    	function meClose(){
+    		var win = window.open("","_self");
+			win.close();
     	}
     </script>
 </head>
 <body>
+	<br>
 	<div class="container">
 		<div class="card card-primary offset-sm-3 col-sm-6">
 			<div class="card-header" align="center">
-				<h4>아이디 찾기</h4>
+				<h4>아이디 찾기(보호자)</h4>
 			</div>
 			<div class="card-body">
-				<form action="<%=YesForm %>" method="post" name="search">
+				<form action="<%=YesForm %>" method="post" name="pidsearch">
 					<input type="hidden" name="command" value="paIdSearch">
 					<div class="form-group">
-						<input class="form-control" type="text" name="name" id="name" placeholder="이름" required> 
+						<input class="form-control" type="text" name="name" id="name" placeholder="이름" value="${requestScope.name }${requestScope.bean.name }" required> 
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="date" name="birth" id="birth" required> 
+						<input class="form-control" type="email" name="email" id="email" placeholder="이메일" required value="${requestScope.email }${requestScope.bean.email }"> 
 					</div>
-					<div class="form-group">
-						<input class="form-control" type="email" name="email" id="email" placeholder="이메일" required> 
-					</div>
-					<input type="submit" class="form-control btn btn-primary" value="인증코드 이메일 전송">
+					<input type="submit" class="form-control btn btn-primary" value="인증코드 이메일 전송" onclick='preCheck();'>
 				</form>
 				<hr>
-					<div class="form-group">
-						<input class="form-control" type="text" name="code" id="code" placeholder="인증코드 입력" required> 
-					</div>
-					<input type="submit" class="form-control btn btn-primary" value="인증코드 확인" onclick="codeCheck('${requestScope.code}','${requestScope.pid }');">
+				<div class="form-group">
+					<input class="form-control" type="text" name="code" id="code" placeholder="인증코드 입력" required> 
+				</div>
+				<input type="submit" class="form-control btn btn-primary" value="인증코드 확인" onclick="codeCheck();">
+				<br>
+				<br>
+				<div class="form-group" id="result" align="center">
+				</div>
+			
+			</div>
+	
+			<div class="card-footer" align="center">
+				<input type="button" class="btn btn-danger" value="닫기" onclick="meClose();">
 			</div>
 		</div>
 	</div>

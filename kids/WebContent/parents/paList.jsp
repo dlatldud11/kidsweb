@@ -99,14 +99,14 @@
                	   
                	  <tbody>
 					<c:forEach var="bean" items="${requestScope.plists}">
-						<tr onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">
-							<td>${bean.classname}</td>
-							<td>${bean.stname}</td>
-							<td>${bean.relationship}</td>
-							<td>${bean.name}</td>
-							<td>${bean.pid}</td>
-							<td>${bean.hp}</td>
-							<td>${bean.submit}</td>
+						<tr>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.classname}</td>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.stname}</td>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.relationship}</td>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.name}</td>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.pid}</td>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.hp}</td>
+							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.submit}</td>
 							<td>
 								<button class= "button button-primary" type="button" onclick="location.href='<%=NoForm%>paSubmitUpdate&pid=${bean.pid}&class_menu=${requestScope.class_menu }&submit_menu=${requestScope.submit_menu}'">가입 승인</button>
 							</td>							

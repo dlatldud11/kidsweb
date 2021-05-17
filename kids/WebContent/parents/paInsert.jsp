@@ -28,12 +28,6 @@
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script type="text/javascript">
    
-   function stSearch(){
-      alert('학생찾기');
-      var url = '<%=NoForm%>paStSearch';
-      window.open(url, 'stsearch', 'height=200, width=350');
-   }
-   
    function checkWrite(){
       document.getElementById("piddiv").innerText="";
       document.getElementById("pwddiv").innerText="";
@@ -52,7 +46,6 @@
       document.getElementById("piddiv").innerText= "  중복체크 하세요";
       else if(document.writeForm.idcheck.value == false)
       document.getElementById("piddiv").innerText= "  중복체크 하세요";
-      
       else document.writeForm.submit();
    }
    
@@ -67,7 +60,7 @@
       else{
          console.log('else 들어옴');
          var url = '<%=NoForm%>pidCheck&pid='+pid;
-         window.open(url,"checkpid","width=450 height=150 left=800 top=200");
+         window.open(url,"checkpid","width=450, height=150, left=800, top=200, menubar=no, location=no, left=400, top=200");
       }
    }
    
@@ -240,20 +233,23 @@
 //    }    
 
    function add_input(){
-      document.getElementById('childadd').innerHTML +="<br><div class='form-row' id='deleteid'><div class='col-'>"
+	   
+	   
+      document.getElementById('childsecond').innerHTML ="<div class='form-row' id='deleteid'><div class='col-'>"
          +"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
          +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch2();'>"
          +"</div><div class='col-'>"
-         +"<button class='btn btn-secondary' onclick='add_input2();'>추가</button> </div> <div class='col-'>"
-         +"<button class='btn btn-danger' onclick='delete_input();'>삭제</button> </div> </div>";
+         +"<input type='button' class='btn btn-secondary' onclick='add_input2();' value='추가'> </div> <div class='col-'>"
+         +"<input type='button' class='btn btn-danger' onclick='delete_input();' id='btnsecond' value='삭제'> </div> </div>";
    }
    
    function add_input2(){
-      document.getElementById('childadd').innerHTML +="<br><div class='form-row' id='deleteid2'><div class='col-'>"
+	  document.getElementById('btnsecond').onclick= null;
+      document.getElementById('childthird').innerHTML ="<div class='form-row' id='deleteid2'><div class='col-'>"
          +"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
          +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch3();'>"
          +"</div><div class='col-'>"
-         +"<button class='btn btn-danger' onclick='delete_input2();'>삭제</button> </div> </div>";
+         +"<input type='button' class='btn btn-danger' onclick='delete_input2();' value='삭제'></div> </div>";
    }
    
    function delete_input(){
@@ -262,8 +258,21 @@
    
    function delete_input2(){
       document.getElementById('deleteid2').outerHTML = "";
+      document.getElementById('btnsecond').onclick= delete_input;
    }
    
+   function stSearch(){
+      var url = '<%=NoForm%>paStSearch&order=f';
+      window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
+	}
+   function stSearch2(){
+	   var url = '<%=NoForm%>paStSearch&order=s';
+	   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
+   }
+   function stSearch3(){
+	   var url = '<%=NoForm%>paStSearch&order=t';
+	   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
+   }
    
    </script>
    <style type="text/css">
@@ -278,8 +287,8 @@
 </head>
 <body>
    <br>
-   <div class="container">
-      <!-- 회원가입 절차 표시 -->
+   <div class="container" align="center">
+      <img alt="로고" src="./../images/아이하루 로고.png" width="75" height="50">
    </div>
    <br>
    <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
@@ -332,15 +341,15 @@
             <div class="form-group">
                <label for="gender" class="form-control-label col-sm-0">성별</label>
                   <div class="form-row">
-                     <div class="col-">
+                     <div class="col-1">
                         <input type="radio" class="form-control" id="gender" name="gender" value="남">
-                        <label for="gender" class="form-control-label col-sm-0">&nbsp;남&nbsp;</label>
                      </div>
-                     <div class="col-">
+                     <label for="gender" class="form-control-label col-sm-0">&nbsp;남&nbsp;</label>
+                     <div class="col-1">
                         <input type="radio" class="form-control" id="gender" name="gender" value="여">
-                        <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
                      </div>
-               </div>
+                     <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
+               	</div>
             </div>
             <div class="form-group">
                <label for="email" class="form-control-label col-sm-0">이메일</label>
@@ -397,7 +406,7 @@
                </div>
             </div>
             <div class="form-group" id="childadd">
-               <label for="sid" class="form-control-label col-sm-0">자녀등록</label>
+               <label for="sid" class="form-control-label col-sm-0">원생등록</label>
                <div class="form-row">
                   <div class="col-">
                      <input type="text" class="form-control" id="sid" name="sid" readonly>
@@ -406,12 +415,19 @@
                      <input type="button" class="form-control btn btn-primary" value="학생 찾기" onclick="stSearch();">
                   </div>
                   <div class="col-">
-                     <button class="btn btn-secondary" id ="addbtn" onclick="add_input();">추가</button>
+                     <input type="button" class="btn btn-secondary" id ="addbtn" onclick="add_input();" value="추가">
                   </div>
                </div>
-            </div>
+             </div>
+             <div id="childsecond" class="form-group">
+             	
+             </div>
+             <div id="childthird" class="form-group">
+             	
+             </div>
+            
             <div class="form-group">
-               <label for="relationship" class="form-control-label col-sm-0">관계</label>
+               <label for="relationship" class="form-control-label col-sm-0">원생과의 관계</label>
                <div class="form-row">
                   <div class="col-1">
                      <input type="radio" class="form-control" id="relationship" name="relationship" value="아버지">
@@ -422,18 +438,18 @@
                   </div>
                   <label for="relationship" class="form-control-label col-sm-0">&nbsp;어머니&nbsp;</label>
                   <div class="col-1">
-                     <input type="radio" class="form-control" id="relationship" name="relationship" value="조부모">
+                     <input type="radio" class="form-control" id="relationship" name="relationship" value="조부모님">
                   </div>
                   <label for="relationship" class="form-control-label col-sm-0">&nbsp;조부모&nbsp;</label>
                   <div class="col-1">
-                     <input type="radio" class="form-control" id="relationship" name="relationship" value="기타">
+                     <input type="radio" class="form-control" id="relationship" name="relationship" value="보호자님">
                   </div>
                   <label for="relationship" class="form-control-label col-sm-0">&nbsp;기타&nbsp;</label>   
                </div>
             </div>
             <br>
             <div class="form-group">
-               <button class="form-control btn btn-primary" onclick="javascript:checkWrite();">회원가입</button>
+               <input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
             </div>
          </form>
       </div>   

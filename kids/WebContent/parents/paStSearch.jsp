@@ -25,47 +25,40 @@
     <!-- Custom styles for thiscontextPath template -->
     <link href="<%=contextPath  %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 	<script type="text/javascript">
-		function searchCheck(){
-			
-			var name = document.paform.name.value;
-			var hp = document.paform.hp.value;
-			
-			if(name.length <1){
-				console.log('name if문 들어옴');
-				alert('이름을 1글자 이상 입력하세요');
-				document.paform.name.focus();
-				return false;
-			}else if(hp.length <3){
-				console.log('hp if문 들어옴');
-				alert('휴대폰을 3글자 이상 입력하세요');
-				document.paform.hp.focus();
-				return false;
-			}else{
-				console.log('else문 들어옴');
-				return true;
-			}
-		}
 		
 		function meclose(){
-			var sid = "${requestScope.sid}";
+			var sid = "${requestScope.bean.sid}";
+			var site = porder;
 			opener.writeForm.sid.value = sid;
 			
 			var win = window.open("","_self");
 			win.close();
 		}
+		
+	   window.onload = function(){
+		   var order = '${requestScope.order}';
+		   var porder = '';=
+		   if(order == 'f'){
+			  
+		   }else if(order == 's'){
+			   
+		   }else if(order == 't'){
+			   
+		   }
+	   }
 	</script>
 </head>
 <body>
 	<header class="border-bottom-secondary">
 		<form name="paform" action="<%=YesForm%>" method="get">
 			&nbsp;<input type="hidden" name="command" value="paStSearch">
-			<input type="text" name="name" id="name" placeholder="이름" value="">
-			<input type="number" name="hp" id="hp" placeholder="등록한 휴대폰 번호" value="">
+			<input type="text" name="name" id="name" placeholder="이름" value="${requestScope.bean.name }" required>
+			<input type="text" name="hp" id="hp" placeholder="휴대폰 번호(***********)" value="${requestScope.bean.hp }" required>
 			<button class="btn btn-primary" type="submit" onclick="return searchCheck();">검색</button>
 		</form>
 	</header> 
 	<body>
-		<p align="center">학생 아이디 : ${requestScope.sid}</p>
+		<p align="center">학생 아이디 : ${requestScope.bean.sid}</p>
 		<div align="center">
 			<button onclick="meclose();">
 				적용
