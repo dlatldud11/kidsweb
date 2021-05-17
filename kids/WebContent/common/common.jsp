@@ -115,7 +115,7 @@
                 </div>
             </li>
               <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="<%=NoForm%>dietList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>식단표</span></a>
             </li>
@@ -263,7 +263,7 @@
                                     가입 승인
                                  	 </a>
                                   <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="<%=NoForm%>empList">
+                                  <a class="dropdown-item" href="<%=NoForm%>empmList">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     직원 관리
                                 	  </a>
@@ -305,11 +305,19 @@
                                     Login
                                   </a>
                                 </c:if>
-                                <c:if test="${whologin != 0}">
-                                <a class="dropdown-item" href="#">
+                                 <c:if test="${whologin != 0}">
+                                <c:if test="${whologin != 0 && whologin == 2 || whologin == 1}">
+                                <a class="dropdown-item" href="<%=NoForm%>empDetail&tid=${sessionScope.loginfo.tid}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
+                                </c:if>
+                                 <c:if test="${whologin != 0 && whologin == 3}">
+                                <a class="dropdown-item" href="<%=NoForm%>paDetial&pid=${sessionScope.loginfo.pid}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                </c:if>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings

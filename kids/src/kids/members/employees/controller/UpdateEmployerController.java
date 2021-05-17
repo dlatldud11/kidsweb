@@ -25,7 +25,7 @@ public class UpdateEmployerController extends SuperClass {
 		
 		request.setAttribute("bean", bean);
 		
-		String gotopage = "/emp_manage/empUpdate.jsp";
+		String gotopage = "/employees/empUpdate.jsp";
 		super.GotoPage(gotopage);
 		
 	}
@@ -67,7 +67,7 @@ public class UpdateEmployerController extends SuperClass {
 			
 			request.setAttribute("bean", bean);
 			
-			String gotopage = "/emp_manage/empUpdate.jsp";
+			String gotopage = "/employees/empUpdate.jsp";
 			super.GotoPage(gotopage);
 		}
 	}

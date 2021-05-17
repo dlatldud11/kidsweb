@@ -12,22 +12,49 @@ import kids.common.controller.SuperClass;
 
 public class InsertDietController extends SuperClass{
 	Diet bean = null;
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doGet(request, response);
+		
+		String gotopage = "/diet/dietInsert.jsp";
+		super.GotoPage(gotopage);
+		
+	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
+		super.doGet(request, response);
 		
-		bean.setBf(request.getParameter("bf"));
-		bean.setBffiles(request.getParameter("bffiles"));
+		bean = new Diet();
 		
+		bean.setCategory(request.getParameter("category"));
+		bean.setContent(request.getParameter("content"));
+		bean.setFiles(request.getParameter("files"));
+		
+		if(this.validate(request) == true) {
 		DietDao dao = new DietDao();
 		int cnt = -99999;
-		cnt = dao.InsertDietData(bean);
+		cnt = dao.InsertDietDate(bean);
 		
-		request.setAttribute("bean", bean);
+		new ListDietController().doGet(request, response);
 		
-		String gotopage = "/diet/dietList.jsp";
-		super.GotoPage(gotopage);
+		}else {
+			System.out.println("수정 실패");
+			
+			request.setAttribute("bean", bean);
+			
+			String gotopage = "/diet/dietInsert.jsp";
+			super.GotoPage(gotopage);
+		}
+	}
+	@Override
+	public boolean validate(HttpServletRequest request) {
+		boolean isCheck = true;
 		
+		if(bean.getCategory() == null || bean.getCategory().equals("-")) {
+			request.setAttribute(super.PREFIX + "category", "시간을 선택해 주세요");
+			isCheck = false;
+		}
+		return isCheck;
 	}
 } 

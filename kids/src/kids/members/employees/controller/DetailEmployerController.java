@@ -21,7 +21,7 @@ public class DetailEmployerController extends SuperClass {
 		System.out.println("bean : " + bean);
 		request.setAttribute("bean", bean);
 		
-		String gotopage = "/emp_manage/empDetail.jsp";
+		String gotopage = "/employees/empDetail.jsp";
 		super.GotoPage(gotopage);
 		
 	}

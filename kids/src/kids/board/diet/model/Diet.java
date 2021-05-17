@@ -1,72 +1,53 @@
 package kids.board.diet.model;
 
 public class Diet {
+	private int dietno;
 	private String regdate;
-	private String bf;
-	private String lc;
-	private String dn;
-	private String bffiles;
-	private String lcfiles;
-	private String dnfiles;
-	private String dsfiles;
+	private String files;
+	private String category;
+	private String content;
+	private String remark;
 	
+	public int getDietno() {
+		return dietno;
+	}
+	public void setDietno(int dietno) {
+		this.dietno = dietno;
+	}
 	public String getRegdate() {
 		return regdate;
 	}
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public String getBf() {
-		return bf;
+	public String getFiles() {
+		return files;
 	}
-	public void setBf(String bf) {
-		this.bf = bf;
+	public void setFiles(String files) {
+		this.files = files;
 	}
-	public String getLc() {
-		return lc;
+	public String getCategory() {
+		return category;
 	}
-	public void setLc(String lc) {
-		this.lc = lc;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public String getDn() {
-		return dn;
+	public String getContent() {
+		return content;
 	}
-	public void setDn(String dn) {
-		this.dn = dn;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getBffiles() {
-		return bffiles;
+	public String getRemark() {
+		return remark;
 	}
-	public void setBffiles(String bffiles) {
-		this.bffiles = bffiles;
-	}
-	public String getLcfiles() {
-		return lcfiles;
-	}
-	public void setLcfiles(String lcfiles) {
-		this.lcfiles = lcfiles;
-	}
-	public String getDnfiles() {
-		return dnfiles;
-	}
-	public void setDnfiles(String dnfiles) {
-		this.dnfiles = dnfiles;
-	}
-	public String getDsfiles() {
-		return dsfiles;
-	}
-	public void setDsfiles(String dsfiles) {
-		this.dsfiles = dsfiles;
-	}
-	
-	public Diet() {
-		// TODO Auto-generated constructor stub
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	@Override
 	public String toString() {
-		return "Diet [regdate=" + regdate + ", bf=" + bf + ", lc=" + lc + ", dn=" + dn + ", bffiles=" + bffiles
-				+ ", lcfiles=" + lcfiles + ", dnfiles=" + dnfiles + ", dsfiles=" + dsfiles + "]";
+		return "Diet [dietno=" + dietno + ", regdate=" + regdate + ", files=" + files + ", category=" + category
+				+ ", content=" + content + ", remark=" + remark + "]";
 	}
-	
 	
 }
