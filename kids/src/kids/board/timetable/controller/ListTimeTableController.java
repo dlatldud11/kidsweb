@@ -20,7 +20,7 @@ public class ListTimeTableController extends SuperClass {
 		TimetableDao dao = new TimetableDao();
 		List<Timetable> lists = dao.SelectDataList(0, 0);
 		
-		String gotopage = "/timetable/timelist.jsp" ;
+		String gotopage = "/timetable/timeList.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	

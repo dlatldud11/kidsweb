@@ -3,7 +3,6 @@
 public class Myclass {
 	private int class_id ;
 	private String class_name ;
-	private String tid ;
 	private String remark ;
 	
 	public Myclass() {}
@@ -24,14 +23,6 @@ public class Myclass {
 		this.class_name = class_name;
 	}
 
-	public String getTid() {
-		return tid;
-	}
-
-	public void setTid(String tid) {
-		this.tid = tid;
-	}
-
 	public String getRemark() {
 		return remark;
 	}
@@ -42,9 +33,9 @@ public class Myclass {
 
 	@Override
 	public String toString() {
-		return "Myclass [class_id=" + class_id + ", class_name=" + class_name + ", tid=" + tid + ", remark=" + remark
-				+ "]";
+		return "Myclass [class_id=" + class_id + ", class_name=" + class_name + ", remark=" + remark + "]";
 	}
+
 	
 	
 }

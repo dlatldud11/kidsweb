@@ -119,7 +119,7 @@ e
                     <span>식단표</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="<%=NoForm%>timeList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>시간표</span></a>
             </li>
@@ -281,7 +281,11 @@ e
                                   	</a>
                                   	<a class="dropdown-item" href="<%=NoForm%>stList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    학생 관리
+                                    학생 목록
+                                  	</a>
+                                  	<a class="dropdown-item" href="<%=NoForm%>myclList">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    학급 관리
                                   	</a>
                              </div>
                              </c:if>

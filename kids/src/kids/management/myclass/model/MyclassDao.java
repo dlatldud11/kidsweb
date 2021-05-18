@@ -149,7 +149,6 @@ public class MyclassDao extends SuperDao{
 				
 				bean.setClass_id(rs.getInt("class_id"));
 				bean.setClass_name(rs.getString("class_name"));
-				bean.setTid(rs.getString("tid"));
 				bean.setRemark(rs.getString("remark"));
 											 				 
 				lists.add( bean ) ;
@@ -170,7 +169,7 @@ public class MyclassDao extends SuperDao{
 	}
 
 	public int insertData(Myclass bean) {
-		String sql = " insert into Myclass(class_id, class_name, tid, remark) " ;
+		String sql = " insert into Myclass(class_id, class_name, remark) " ;
 		sql += " values(?, ?, ?, ?) " ;
 		
 		PreparedStatement pstmt = null ;
@@ -182,8 +181,7 @@ public class MyclassDao extends SuperDao{
 			
 			pstmt.setInt(1, bean.getClass_id());
 			pstmt.setString(2, bean.getClass_name());
-			pstmt.setString(3, bean.getTid());
-			pstmt.setString(4, bean.getRemark());
+			pstmt.setString(3, bean.getRemark());
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -220,8 +218,7 @@ public class MyclassDao extends SuperDao{
 			
 			pstmt.setInt(1, bean.getClass_id());
 			pstmt.setString(2, bean.getClass_name());
-			pstmt.setString(3, bean.getTid());
-			pstmt.setString(4, bean.getRemark());
+			pstmt.setString(3, bean.getRemark());
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
