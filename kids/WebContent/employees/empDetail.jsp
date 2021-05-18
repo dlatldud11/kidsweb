@@ -74,19 +74,12 @@
 							<td width="25%" align="center">등록 날짜</td>
 							<td width="75%" align="left">${bean.join_date}</td>
 						</tr>
-						<tr>
-							<td width="25%" align="center">출결</td>
-							<td width="75%" align="left">
-								${mbean.regdate}(${mbean.attendance})&nbsp;
-								<a href="<%=NoForm%>empmDetail&tid=${bean.tid}">자세히 보기</a>
-							</td>
-						</tr>
 					</table>
 				</div>
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empList'">
+				<button class="btn btn-info" onclick="location.href='<%=contextPath %>/common/main.jsp'">
 					돌아 가기
 				</button>
 				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empUpdate&tid=${bean.tid}'">

@@ -31,7 +31,6 @@ public class InsertSubjectController extends SuperClass {
 		bean = new Subject() ;
 		//bean.setSubject_code ;
 		bean.setSubject(request.getParameter("subject"));
-		bean.setTid(request.getParameter("tid"));
 		bean.setRemark(request.getParameter("remark"));
 	
 		System.out.println("bean information");

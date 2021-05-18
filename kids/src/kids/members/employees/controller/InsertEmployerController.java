@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import kids.common.controller.SuperClass;
 import kids.management.myclass.model.Myclass;
 import kids.management.myclass.model.MyclassDao;
@@ -37,7 +39,7 @@ public class InsertEmployerController extends SuperClass {
 		super.GotoPage(gotopage);
 	}	
 
-	@Override
+/*	@Override
 	public boolean validate(HttpServletRequest request) {
 		boolean isCheck = true;
 		System.out.println(bean);
@@ -76,26 +78,29 @@ public class InsertEmployerController extends SuperClass {
 		}
 		return isCheck;
 	}
-	
+*/	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
 		
+			MultipartRequest multi = (MultipartRequest)request.getAttribute("multi");
+		
 			bean = new Employees();
 			
-			bean.setAddress1(request.getParameter("address1"));
-			bean.setAddress2(request.getParameter("address2"));
-			bean.setBirth(request.getParameter("birth"));
-			bean.setEmail(request.getParameter("email"));
-			bean.setGender(request.getParameter("gender"));
-			bean.setHp(request.getParameter("hp"));
-			bean.setImage(request.getParameter("image"));
-			bean.setName(request.getParameter("name"));
-			bean.setPassword(request.getParameter("password"));
-			bean.setTid(request.getParameter("tid"));
-			bean.setZipcode(request.getParameter("zipcode"));
-			bean.setClass_id(Integer.parseInt(request.getParameter("class_id")));
-			bean.setSubject_code(Integer.parseInt(request.getParameter("subject_code")));
+			bean.setAddress1(multi.getParameter("address1"));
+			bean.setAddress2(multi.getParameter("address2"));
+			bean.setBirth(multi.getParameter("birth"));
+			bean.setEmail(multi.getParameter("email"));
+			bean.setGender(multi.getParameter("gender"));
+			bean.setHp(multi.getParameter("hp"));
+			bean.setImage(multi.getParameter("image"));
+			bean.setName(multi.getParameter("name"));
+			bean.setPassword(multi.getParameter("password"));
+			bean.setTid(multi.getParameter("tid"));
+			bean.setZipcode(multi.getParameter("zipcode"));
+			bean.setSubject_code(Integer.parseInt(multi.getParameter("subject_code")));
+			bean.setClass_id(Integer.parseInt(multi.getParameter("class_id")));
+			
 			
 			if(request.getParameter("responsibilities") == null || request.getParameter("responsibilities").equals("")) {
 				bean.setResponsibilities("직원");
@@ -111,7 +116,7 @@ public class InsertEmployerController extends SuperClass {
 			
 			EmployeesDao dao = new EmployeesDao();
 			
-			if(this.validate(request) == true) {
+	/*		if(this.validate(request) == true) { */
 				System.out.println("가입신청이 완료되었습니다.");
 				int cnt = -99999;
 				cnt = dao.InsertData(bean);
@@ -119,13 +124,13 @@ public class InsertEmployerController extends SuperClass {
 				System.out.println("cnt : " + cnt);
 				String gotopage = "/start.jsp";
 				super.GotoPage(gotopage);
-			} else {
+	/*		} else { 
 				System.out.println("가입신청 실패");
 				
 				request.setAttribute("bean", bean);
 				
 				new InsertEmployerController().doGet(request, response);
-			}
+			} */
 		}
 }
 

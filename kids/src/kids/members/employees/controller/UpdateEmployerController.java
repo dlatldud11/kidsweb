@@ -1,13 +1,20 @@
 package kids.members.employees.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import kids.common.controller.SuperClass;
+import kids.management.myclass.model.Myclass;
+import kids.management.myclass.model.MyclassDao;
+import kids.management.subject.model.Subject;
+import kids.management.subject.model.SubjectDao;
 import kids.members.employees.model.Employees;
 import kids.members.employees.model.EmployeesDao;
 
@@ -16,6 +23,16 @@ public class UpdateEmployerController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
+		
+		SubjectDao sdao = new SubjectDao();
+		List<Subject> slists = sdao.SelectDataList();
+		System.out.println("slists size : " + slists.size());
+		request.setAttribute("slists", slists);
+		
+		MyclassDao cdao = new MyclassDao();
+		List<Myclass> clists = cdao.SelectDataList();
+		System.out.println("clists size : " + clists.size());
+		request.setAttribute("clists", clists);
 		
 		String tid = request.getParameter("tid");
 		EmployeesDao dao = new EmployeesDao();
@@ -33,23 +50,23 @@ public class UpdateEmployerController extends SuperClass {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
 		
+		MultipartRequest multi = (MultipartRequest)request.getAttribute("multi");
+		
 		bean = new Employees();
 		
-		bean.setTid(request.getParameter("tid"));
-		bean.setAddress1(request.getParameter("address1"));
-		bean.setAddress2(request.getParameter("address2"));
-		bean.setBirth(request.getParameter("birth"));
-		bean.setEmail(request.getParameter("email"));
-		bean.setGender(request.getParameter("gender"));
-		bean.setHp(request.getParameter("hp"));
-		bean.setImage(request.getParameter("image"));
-		bean.setName(request.getParameter("name"));
-		bean.setPassword(request.getParameter("password"));
-		bean.setZipcode(request.getParameter("zipcode"));
-		bean.setClass_id(Integer.parseInt(request.getParameter("class_id")));
-		bean.setSubject_code(Integer.parseInt(request.getParameter("subject_code")));
-		bean.setSalary(Integer.parseInt(request.getParameter("salary")));
-		bean.setResponsibilities(request.getParameter("responsibilities"));
+		bean.setAddress1(multi.getParameter("address1"));
+		bean.setAddress2(multi.getParameter("address2"));
+		bean.setBirth(multi.getParameter("birth"));
+		bean.setEmail(multi.getParameter("email"));
+		bean.setGender(multi.getParameter("gender"));
+		bean.setHp(multi.getParameter("hp"));
+		bean.setImage(multi.getParameter("image"));
+		bean.setName(multi.getParameter("name"));
+		bean.setPassword(multi.getParameter("password"));
+		bean.setTid(multi.getParameter("tid"));
+		bean.setZipcode(multi.getParameter("zipcode"));
+		bean.setSubject_code(Integer.parseInt(multi.getParameter("subject_code")));
+		bean.setClass_id(Integer.parseInt(multi.getParameter("class_id")));
 		
 		EmployeesDao dao = new EmployeesDao();
 		
