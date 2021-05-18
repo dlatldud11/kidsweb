@@ -222,7 +222,6 @@
          padding-left:5px;
       }
    </style>
-   
 </head>
 <body>
    <br>
@@ -230,26 +229,23 @@
       <img alt="로고" src="./../images/아이하루 로고.png" width="75" height="50">
    </div>
    <br>
-   <div class="card card-primary offset-sm-3 col-sm-6" id="empInsert">
+   <div class="card card-primary offset-sm-3 col-sm-6" id="empUpdate">
       <div class="card-body">
          <div class="card-title">
             <h1 align="center" align="center">회원가입</h1>
          </div>
-         <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
+          <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
          	<input type="hidden" name="idcheck" value="false">
             <input type="hidden" name="command" value="empInsert">
-                <div class="form-group">
+             <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="tid" name="tid" onkeyup="idcheckFalse();">
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
+                     <input type="text" class="form-control" id="tid" name="tid" readonly="readonly" value="${bean.tid}">
                   </div>
                </div>
             </div>
-            <div class="form-group" id="tiddiv"></div>
+		<div class="form-group" id="tiddiv"></div>
             <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호</label>
                <div class="col-">
@@ -268,7 +264,7 @@
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="name" name="name">
+                  <input type="text" class="form-control" id="name" name="name" value="${bean.name}">
                </div>
             </div>
              <div class="form-group" id="namediv"></div>
@@ -297,7 +293,7 @@
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email1" name="email1"> 
+                     <input type="text" class="form-control" id="email1" name="email1" value="${bean.email}"> 
                   </div>
                   <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">
@@ -314,7 +310,7 @@
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
-                  <input type="number" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
+                  <input type="number" class="form-control" id="hp" name="hp" placeholder="ex)01012341234" value="${bean.hp}">
                </div>
             </div>
              <div class="form-group" id="hpdiv"></div>
@@ -346,7 +342,7 @@
             <div class="form-group">
                <label for="address2" class="form-control-label col-sm-0">상세주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address2" name="address2">
+                  <input type="text" class="form-control" id="address2" name="address2" value="${bean.address2}">
                </div>
             </div>
              <div class="form-group" id="addressdiv"></div>

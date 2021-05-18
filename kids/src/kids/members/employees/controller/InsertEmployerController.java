@@ -1,6 +1,7 @@
 package kids.members.employees.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kids.common.controller.SuperClass;
+import kids.management.myclass.model.Myclass;
+import kids.management.myclass.model.MyclassDao;
+import kids.management.subject.model.Subject;
+import kids.management.subject.model.SubjectDao;
 import kids.members.employees.model.Employees;
 import kids.members.employees.model.EmployeesDao;
 
@@ -17,7 +22,17 @@ public class InsertEmployerController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-			
+		
+		SubjectDao sdao = new SubjectDao();
+		List<Subject> slists = sdao.SelectDataList();
+		System.out.println("slists size : " + slists.size());
+		request.setAttribute("slists", slists);
+		
+		MyclassDao cdao = new MyclassDao();
+		List<Myclass> clists = cdao.SelectDataList();
+		System.out.println("clists size : " + clists.size());
+		request.setAttribute("clists", clists);
+		
 		String gotopage = "/employees/empInsertForm.jsp" ;
 		super.GotoPage(gotopage);
 	}	

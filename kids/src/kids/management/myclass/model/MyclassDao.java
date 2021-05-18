@@ -129,19 +129,16 @@ public class MyclassDao extends SuperDao{
 		return bean  ;
 	}
 
-	public List<Myclass> SelectDataList(int i, int j) {
+	public List<Myclass> SelectDataList() {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " " ;
-		sql += " " ;
-		sql += " " ;
+		String sql = " select * from myclass " ;
 		
 		List<Myclass> lists = new ArrayList<Myclass>();
 		try {
 			if( conn == null ){ super.conn = super.getConnection() ; }
 			pstmt = super.conn.prepareStatement(sql) ;			
-			
 			rs = pstmt.executeQuery() ;			
 			
 			while( rs.next() ){

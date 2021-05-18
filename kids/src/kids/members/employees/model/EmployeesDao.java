@@ -115,7 +115,7 @@ public class EmployeesDao extends SuperDao {
 		return cnt;
 	}
 
-	public Employees SelectDataByPk(String id) {
+	public Employees SelectDataByPk(String tid) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -128,7 +128,7 @@ public class EmployeesDao extends SuperDao {
 			if(this.conn == null) {this.conn = this.getConnection();}
 			pstmt = this.conn.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
+			pstmt.setString(1, tid);
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

@@ -25,7 +25,7 @@
  		+"<input style='float:right;' class='btn btn-default' type='submit' value='수정완료'>" ;
  		
  		mod_check = 'Y';
- 	}
+ 	}	
  </script>
 <head>
     <title>직원게시판</title>
