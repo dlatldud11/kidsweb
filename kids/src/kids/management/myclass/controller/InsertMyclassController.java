@@ -19,7 +19,7 @@ public class InsertMyclassController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		String gotopage = "/member/main.jsp" ;
+		String gotopage = "/myclass/myclList.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	
@@ -38,7 +38,6 @@ public class InsertMyclassController extends SuperClass {
 		
 		//bean.setClass_id(class_id)
 		bean.setClass_name(class_name);
-		bean.setTid(tid);
 		bean.setRemark(remark);
 		
 		if (this.validate(request) == true) {

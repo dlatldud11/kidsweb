@@ -105,7 +105,12 @@
 						</c:forEach> 
 						
 					</div>
-				
+					<div>
+						<button class="btn btn-danger" onclick="location.href='<%=NoForm%>Deletesubject&tid=${bean.subject}'">
+							과목삭제
+						</button>
+					
+					</div>
 					
 					
 					<div align="center">

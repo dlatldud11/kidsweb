@@ -21,7 +21,7 @@ public class ListMyclassController extends SuperClass {
 		MyclassDao dao = new MyclassDao();
 		List<Myclass> lists = dao.SelectDataList(0, 0);
 		
-		String gotopage = "/myclass/myclassList.jsp" ;
+		String gotopage = "/myclass/myclList.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	
