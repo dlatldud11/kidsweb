@@ -261,7 +261,6 @@ public class MyclassDao extends SuperDao{
 				Myclass bean = new Myclass();
 				bean.setClass_id(rs.getInt("class_id"));
 				bean.setClass_name(rs.getString("class_name"));
-				bean.setTid(rs.getString("tid"));
 				bean.setRemark("remark");
 				
 				clists.add(bean);

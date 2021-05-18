@@ -28,150 +28,160 @@
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script type="text/javascript">
    
-   function checkWrite(){
-      document.getElementById("piddiv").innerText="";
-      document.getElementById("pwddiv").innerText="";
-      document.getElementById("repwddiv").innerText="";
-      //초기화과정을 거쳐야 제값들어갈떄 값 정상적으로 출력
-      
-      if(document.writeForm.pid.value=="")
-      document.getElementById("piddiv").innerText="  아이디를 입력하세요";
-      else if(document.writeForm.password.value=="")
-      document.getElemnetById("pwddiv").innerText="  비밀번호를 입력하세요";
-      else if(document.writeForm.repassword.value=="")
-      document.getElementById("repwddiv").innerText="  비밀번호 확인을 입력하세요";
-      else if(document.writeForm.password.value != document.writeform.repassword.value)
-      document.getElementById("repwddiv").innerText="  비밀번호가 일치하지 않습니다";
-      else if(document.writeForm.check.value =="")
-      document.getElementById("piddiv").innerText= "  중복체크 하세요";
-      else if(document.writeForm.idcheck.value == false)
-      document.getElementById("piddiv").innerText= "  중복체크 하세요";
-      else document.writeForm.submit();
-   }
-   
    function checkPid(){
       document.getElementById("piddiv").innerText="";
       var pid = document.writeForm.pid.value;
+      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
+      var idtest = engNum.test(pid);
       
       if(pid==""){
          console.log('if문들어옴');
          document.getElementById("piddiv").innerText="  먼저 아이디를 입력하세요";
-      } 
-      else{
+         document.writeForm.pid.focus(); 
+      }else if(idtest==false){
+   	  	 document.getElementById("piddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
+         document.writeForm.pid.focus(); 
+      }else{
          console.log('else 들어옴');
          var url = '<%=NoForm%>pidCheck&pid='+pid;
          window.open(url,"checkpid","width=450, height=150, left=800, top=200, menubar=no, location=no, left=400, top=200");
       }
    }
    
-	function checkForm(){
-		/*alert('호호호');*/
-		var myform = document.myform;
-		/* alert(myform); */
-		var id = myform.id.value;
-		if(!(id.length >=3 && id.length <=10)){
-			alert('아이디는 4글자 이상 10글자 이어야 합니다');
-			myform.id.select();
-			return false;
-		}
-		/* 이름은 2글자 이상 30글자 이하이어야 합니다 */
-		var name = myform.name.value;
-		if(!(name.length >=2 && name.length <=30)){
-			alert('이름은 2글자 이상 30글자 이하이어야 합니다');
-			myform.name.focused;
-			return false;
-		}
-		
-		var password = myform.password.value;
-		if(!(password.length >= 3 && password.length <= 8)){
-			alert('비밀번호는 3글자 이상 8글자 이하이어야 합니다.');
-			myform.password.select();
-			return false;
-		}
-		
-		var reg = /[a-z]{1}[a-z0-9@#$]{2,7}/;
-		var result = reg.test(password);
-		if(result == false){
-			alert('1번째 글자는 반드시 알파벳 소문자가 와야 합니다.');
-			myform.password.select();
-			return false;
-		}
-		//특수 문자(@#$)가 들어 있으면 0 이상의 값을 반환해 줍니다.
-		result = password.indexOf("@")>=0 ||
-		 		password.indexOf("#")>=0 ||
-				password.indexOf("$")>=0;
-				
-		if(result==false){
-			alert('특수문자(@#$) 중에서 반드시 1개가 와야 합니다');
-			myform.password.select();
-			return false;
-		}
-		
-		var salary = myform.salary.value;
-		if(isNaN(salary)){
-			alert('급여는 숫자 형식으로 입력해 주셔야 합니다');
-			myform.salary.select();
-			return false;
-		}
-		salary = Number(salary);
-		if(!(salary >= 100 && salary<=1000)){
-			alert('급여는 최소 100원 이상 1000원 이하로 입력해 주셔야 합니다.');
-			myform.salary.select();
-			return false;
-		}
-		
-		var hiredate = myform.hiredate.value;
-		var reg = /^\d{4}[\/-][01]\d[\/-][0123]\d$/;
-		var result = reg.test(hiredate);
-		if(result==false){
-			alert('입사일자는 yyyy/mm/dd 또는 yyyy-mm-dd 형식으로 입력해주세요');
-			myform.hiredate.select();
-			return false;
-		}
-		
-		/*arrgender은 성별 정보를 담고 있는 배열*/
-		var arrgender = myform.gender;
-//		alert(arrgender.length); //2
-//		alert(arrgender[0].checked);
-		var cnt = 0;//카운터 변수
-		for(var i=0; i<arrgender.length; i++){
-			if(arrgender[i].checked){
-				cnt +=1;
-			}
-		}
-		if(cnt == 0){
-			alert('성별 체크가 누락되었습니다.');
-			return false;
-		}
-
-		var arrhobby = myform.hobby;
-//		alert(arrhobby.length); //4
-		var cnt=0;
-		for(var i=0; i<arrhobby.length; i++){
-			if(arrhobby[i].checked){
-				cnt += 1;
-			}
-		}
-		if(!(cnt >=2 && cnt <=3)){
-			alert('취미는 반드시 2개 이상, 3개 이하로 체크 되어야 합니다.');
-			return false;
-		}
-		
-		var job = myform.job.value;
-		if(job == "-"){
-			alert('직업을 선택해 주셔야 합니다.');
-			return false;
-		}
-
-		return false;
-	}
-   
-   
    function idcheckFalse(){
 	   document.writeForm.idcheck.value=false;
    }
    
+   function checkWrite(){
+	  var submitcheck = true;
+      document.getElementById("piddiv").innerText="";
+      document.getElementById("pwddiv").innerText="";
+      document.getElementById("repwddiv").innerText="";
+      document.getElementById("namediv").innerText="";
+      document.getElementById("birthdiv").innerText="";
+      document.getElementById("genderdiv").innerText="";
+      document.getElementById("emaildiv").innerText="";
+      document.getElementById("hpdiv").innerText="";
+      document.getElementById("imagediv").innerText="";
+      document.getElementById("zipcodediv").innerText="";
+      document.getElementById("addressdiv").innerText="";
+      document.getElementById("studiv").innerText="";
+      document.getElementById("relationshipdiv").innerText="";
+      
+      var id = document.writeForm.pid.value
+      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
+      var idtest = engNum.test(id);
+      console.log('idtest :'+idtest);
+      
+      var pwd = document.writeForm.password.value
+      var engNum = /(?=.*\d)(?=.*[a-z]).{8,15}/; //영어소문자+숫자 혼합. 8글자이상 15글자 이하
+      var pwdtest = engNum.test(pwd);
+      console.log('pwdtest :'+pwdtest);
+     
+      if(document.writeForm.pid.value==""){
+      	document.getElementById("piddiv").innerText="  아이디를 입력하세요";
+      	document.writeForm.pid.focus();
+      	submitcheck = false;
+      }
+      if(idtest==false){
+    	document.getElementById("piddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
+        document.writeForm.pid.focus(); 
+        submitcheck = false;
+      }
 
+      if(document.writeForm.password.value==""){
+      	document.getElementById("pwddiv").innerText="  비밀번호를 입력하세요";
+      	document.writeForm.password.focus();
+      	submitcheck = false;
+      }
+      if(pwdtest == false){
+       	document.getElementById("pwddiv").innerText=" 비밀번호는 숫자+영어 혼합하고, 8글자 이상 15글자 이하이어야 합니다";
+       	document.writeForm.password.focus();
+       	submitcheck = false;
+      }
+      if(document.writeForm.repassword.value==""){
+      	document.getElementById("repwddiv").innerText="  비밀번호 확인을 입력하세요";
+      	document.writeForm.repassword.focus();
+      	submitcheck = false;
+      }else if(document.writeForm.password.value != document.writeForm.repassword.value){
+      	document.getElementById("repwddiv").innerText="  비밀번호가 일치하지 않습니다";
+      	document.writeForm.password.focus();
+      	submitcheck = false;
+      }
+      if(document.writeForm.idcheck.value ==""){
+      	document.getElementById("piddiv").innerText= "  중복체크 하세요";
+      	submitcheck = false;
+      }
+      if(document.writeForm.idcheck.value == 'false'){
+      	document.getElementById("piddiv").innerText= "  중복체크 하세요";
+      	submitcheck = false;
+      }	
+      if(document.writeForm.name.value==""){
+	   	  document.getElementById("namediv").innerText=" 이름을 입력하세요";
+	   	  document.writeForm.name.focus();
+	   	submitcheck = false;
+      }
+      if(document.writeForm.birth.value == ""){
+    	  document.getElementById("birthdiv").innerText=" 생년월일을 선택하세요";
+    	  submitcheck = false;
+      }
+      
+      var arrgender = document.writeForm.gender;
+      var cnt = 0;
+      for(var i=0; i<arrgender.length; i++){
+    	  if(arrgender[i].checked){
+    		  cnt +=1;
+    	  }
+      }
+      if(cnt == 0){
+    	 document.getElementById("genderdiv").innerText=" 성별을 체크하세요";
+    	 submitcheck = false;
+      }
+      if(document.writeForm.email1.value == "" || document.writeForm.email2.value == "-"){
+    	  document.getElementById("emaildiv").innerText=" 이메일을 입력하세요";
+    	  document.writeForm.email1.focus();
+    	  submitcheck = false;
+      }
+      if(document.writeForm.image.value == ""){
+    	  document.getElementById("imagediv").innerText=" 사진 파일을 선택하세요";
+    	  submitcheck = false;
+      }
+      if(document.writeForm.hp.value == ""){
+    	  document.getElementById("hpdiv").innerText= " 휴대폰 번호를 입력하세요";
+    	  document.writeForm.hp.focus();
+    	  submitcheck = false;
+      }
+      if(document.writeForm.zipcode.value == ""){
+    	  document.getElementById("zipcodediv").innerText=" 우편번호 검색하세요";
+    	  submitcheck = false;
+      }
+      if(document.writeForm.address2.value == ""){
+    	  document.getElementById("addressdiv").innerText=" 상세 주소를 입력하세요";
+    	  document.writeForm.address2.focus();
+    	  submitcheck = false;
+      }
+	  if(document.writeForm.sid.value ==""){
+		 document.getElementById("studiv").innerText=" 원생 등록(원생찾기 버튼 클릭) 해주세요"
+		submitcheck = false;
+	  }
+	  
+	  var arrrel = document.writeForm.relationship;
+	  var cnt2 = 0;
+	  for(var i=0; i<arrrel.length; i++){
+		  if(arrrel[i].checked){
+			  cnt2 +=1;
+		  }
+	  }
+      if(cnt2 ==0){
+    	  document.getElementById("relationshipdiv").innerText=" 원생과의 관계를 체크하세요";
+    	  submitcheck = false;
+      }
+      
+      if(submitcheck == true){
+    	  document.writeForm.submit();
+      }
+   }
+   
     function checkPost() {
       var width = 500; //팝업의 너비
       var height = 500; //팝업의 높이
@@ -232,51 +242,64 @@
 //       writeForm.submit;
 //    }    
 
+
    function add_input(){
-	   
-	   
-      document.getElementById('childsecond').innerHTML ="<div class='form-row' id='deleteid'><div class='col-'>"
-         +"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch2();'>"
+		document.getElementById('second').value='second';
+		document.getElementById('btnfirst').onclick = null;
+		document.getElementById('searchfirst').onclick = null;
+	
+     	 document.getElementById('childsecond').innerHTML ="<div class='form-row' id='deleteid'><div class='col-'>"
+      	+"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
+         +"<input type='button' class='form-control btn btn-primary' id=searchsecond value='원생 찾기' onclick='stSearch2();'>"
          +"</div><div class='col-'>"
-         +"<input type='button' class='btn btn-secondary' onclick='add_input2();' value='추가'> </div> <div class='col-'>"
+         +"<input type='button' class='btn btn-secondary' onclick='add_input2();' id='btnsecondadd' value='추가'> </div> <div class='col-'>"
          +"<input type='button' class='btn btn-danger' onclick='delete_input();' id='btnsecond' value='삭제'> </div> </div>";
    }
    
    function add_input2(){
-	  document.getElementById('btnsecond').onclick= null;
-      document.getElementById('childthird').innerHTML ="<div class='form-row' id='deleteid2'><div class='col-'>"
-         +"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' value='학생 찾기' onclick='stSearch3();'>"
+	  	 document.getElementById('third').value='third';
+	 	 document.getElementById('btnsecond').onclick = null;
+	 	 document.getElementById('btnsecondadd').onclick = null;
+	 	 document.getElementById('searchsecond').onclick = null;
+	 	 
+     	 document.getElementById('childthird').innerHTML ="<div class='form-row' id='deleteid2'><div class='col-'>"
+         +"<input type='text' name='childid2' class='form-control' readonly></div><div class='col-'>"
+         +"<input type='button' class='form-control btn btn-primary' value='원생 찾기' onclick='stSearch3();'>"
          +"</div><div class='col-'>"
          +"<input type='button' class='btn btn-danger' onclick='delete_input2();' value='삭제'></div> </div>";
    }
    
    function delete_input(){
-      document.getElementById('deleteid').outerHTML = "";
+	   	document.getElementById('second').value="";
+      	document.getElementById('deleteid').outerHTML = "";
+      	document.getElementById('btnfirst').onclick = add_input;
+      	document.getElementById('searchfirst').onclick = stSearch;
    }
    
    function delete_input2(){
-      document.getElementById('deleteid2').outerHTML = "";
-      document.getElementById('btnsecond').onclick= delete_input;
+	   	document.getElementById('third').value="";
+      	document.getElementById('deleteid2').outerHTML = "";
+      	document.getElementById('btnsecond').onclick = delete_input;
+      	document.getElementById('btnsecondadd').onclick = add_input2;
+      	document.getElementById('searchsecond').onclick = stSearch2;
    }
    
    function stSearch(){
-      var url = '<%=NoForm%>paStSearch&order=f';
+      var url = '<%=NoForm%>paStSearch';
       window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
 	}
    function stSearch2(){
-	   var url = '<%=NoForm%>paStSearch&order=s';
+	   var url = '<%=NoForm%>paStSearch';
 	   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
    }
    function stSearch3(){
-	   var url = '<%=NoForm%>paStSearch&order=t';
+	   var url = '<%=NoForm%>paStSearch';
 	   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
    }
    
    </script>
    <style type="text/css">
-      div#piddiv,div#pwddiv,div#repwddiv{
+      div#piddiv,div#pwddiv,div#repwddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv,div#studiv,div#relationshipdiv{
          color:red;
          font-size:10pt;
          font-weight:bold;
@@ -297,7 +320,7 @@
             <h1 align="center" align="center">회원가입</h1>
          </div>
          <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
-         	<input type="text" name="idcheck" value="false">
+         	<input type="hidden" name="idcheck" value="false">
             <input type="hidden" name="command" value="paInsert">
                 <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
@@ -332,12 +355,14 @@
                   <input type="text" class="form-control" id="name" name="name">
                </div>
             </div>
+             <div class="form-group" id="namediv"></div>
             <div class="form-group">
                <label for="birth" class="form-control-label col-sm-0">생년월일</label>
-               <div class="col-">
+               <div class="col-6">
                   <input type="date" class="form-control" id="birth" name="birth">
                </div>
             </div>
+             <div class="form-group" id="birthdiv"></div>
             <div class="form-group">
                <label for="gender" class="form-control-label col-sm-0">성별</label>
                   <div class="form-row">
@@ -351,11 +376,12 @@
                      <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
                	</div>
             </div>
+             <div class="form-group" id="genderdiv"></div>
             <div class="form-group">
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email1" name="email"> 
+                     <input type="text" class="form-control" id="email1" name="email1"> 
                   </div>
                   <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">
@@ -368,20 +394,21 @@
                   </div>
                </div>
             </div>
+             <div class="form-group" id="emaildiv"></div>
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
-                  <input type="number" class="form-control" id="hp" name="hp">
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
+                  <input type="number" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
                </div>
             </div>
+             <div class="form-group" id="hpdiv"></div>
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
                   <input type="file" class="form-control-file border" id="image" name="image">
                </div>
             </div>
+             <div class="form-group" id="imagediv"></div>
             <div class="form-group">
                <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
                <div class="form-row">
@@ -393,6 +420,7 @@
                   </div>
                </div>
             </div>
+			 <div class="form-group" id="zipcodediv"></div>
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
@@ -405,26 +433,29 @@
                   <input type="text" class="form-control" id="address2" name="address2">
                </div>
             </div>
+             <div class="form-group" id="addressdiv"></div>
             <div class="form-group" id="childadd">
                <label for="sid" class="form-control-label col-sm-0">원생등록</label>
                <div class="form-row">
                   <div class="col-">
+                  <input type="hidden" name="first" value="first" id="first">
+                  <input type="hidden" name="second" id="second">
+                  <input type="hidden" name="third" id="third">
                      <input type="text" class="form-control" id="sid" name="sid" readonly>
                   </div>
                   <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="학생 찾기" onclick="stSearch();">
+                     <input type="button" class="form-control btn btn-primary" id="searchfirst" value="원생 찾기" onclick="stSearch();">
                   </div>
                   <div class="col-">
-                     <input type="button" class="btn btn-secondary" id ="addbtn" onclick="add_input();" value="추가">
+                     <input type="button" class="btn btn-secondary" id ="btnfirst" onclick="add_input();" value="추가">
                   </div>
                </div>
              </div>
              <div id="childsecond" class="form-group">
-             	
              </div>
              <div id="childthird" class="form-group">
-             	
              </div>
+              <div class="form-group" id="studiv"></div>	
             
             <div class="form-group">
                <label for="relationship" class="form-control-label col-sm-0">원생과의 관계</label>
@@ -447,9 +478,15 @@
                   <label for="relationship" class="form-control-label col-sm-0">&nbsp;기타&nbsp;</label>   
                </div>
             </div>
+             <div class="form-group" id="relationshipdiv"></div>
             <br>
-            <div class="form-group">
-               <input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
+                <div class="form-group form-row">
+            	<div class = "col-6">
+               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
+               </div>
+               <div class = "col-6">
+               		<input type="reset" class="form-control btn btn-secondary" value="초기화">
+               </div>
             </div>
          </form>
       </div>   

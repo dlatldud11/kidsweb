@@ -30,8 +30,15 @@
     	      document.getElementById("pwddiv").innerText="";
     	      document.getElementById("repwddiv").innerText="";
     		
+    	      var pwd = document.papaupdate.password.value;
+    	      var engNum = /(?=.*\d)(?=.*[a-z]).{8,15}/; //영어소문자+숫자 혼합. 8글자이상 15글자 이하
+    	      var pwdtest = engNum.test(pwd);
+    	      
     		 if(document.papaupdate.password.value==""){
     			 document.getElementById("pwddiv").innerText="  비밀번호를 입력하세요";
+    		 }else if(pwdtest == false){
+   		       	document.getElementById("pwddiv").innerText=" 비밀번호는 숫자+영어 혼합하고, 8글자 이상 15글자 이하이어야 합니다";
+   		       	document.papaupdate.password.focus();
     		 }else if(document.papaupdate.repassword.value==""){
     			 document.getElementById("repwddiv").innerText="  비밀번호 확인을 입력하세요";
     		 }else if(document.papaupdate.password.value != document.papaupdate.repassword.value){

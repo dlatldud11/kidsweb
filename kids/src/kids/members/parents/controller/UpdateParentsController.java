@@ -17,22 +17,19 @@ public class UpdateParentsController extends SuperClass {
 		String pid = request.getParameter("pid");
 		ParentsDao pdao = new ParentsDao();
 		Parents bean = pdao.selectDataByPk(pid);
+		
+		System.out.println("bean : "+bean);
 		String[] email = bean.getEmail().split("@");
 		String email1 = email[0];
 		String email2 = email[1];
+		System.out.println("email1 : "+email1);
+		System.out.println("email2 : "+email2);
+		
 		
 		request.setAttribute("bean", bean);
 		request.setAttribute("email1", email1);
 		request.setAttribute("email2", email2);
 		
-		String page = request.getParameter("page");
-		if(page.equals("result")) {
-			String message = request.getParameter("message");
-			request.setAttribute("message", message);
-			
-			String gotopage = "parents/updateOK.jsp";
-			super.GotoPage(gotopage);
-		}
 		
 		String gotopage = "parents/paUpdate.jsp";
 		super.GotoPage(gotopage);
