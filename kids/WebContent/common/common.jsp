@@ -119,7 +119,7 @@ e
                     <span>식단표</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="<%=NoForm%>timeList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>시간표</span></a>
             </li>
@@ -281,7 +281,11 @@ e
                                   	</a>
                                   	<a class="dropdown-item" href="<%=NoForm%>stList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    학생 관리
+                                    학생 목록
+                                  	</a>
+                                  	<a class="dropdown-item" href="<%=NoForm%>myclList">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    학급 관리
                                   	</a>
                              </div>
                              </c:if>
@@ -301,7 +305,7 @@ e
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <c:if test="${whologin == 0}">
-                                  <a class="dropdown-item" href="login.jsp">
+                                  <a class="dropdown-item" href="<%=contextPath %>/start.jsp">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Login
                                   </a>
@@ -314,7 +318,7 @@ e
                                 </a>
                                 </c:if>
                                  <c:if test="${whologin != 0 && whologin == 3}">
-                                <a class="dropdown-item" href="<%=NoForm%>paDetial&pid=${sessionScope.loginfo.pid}">
+                                <a class="dropdown-item" href="<%=NoForm%>paDetail&pid=${sessionScope.loginfo.pid}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

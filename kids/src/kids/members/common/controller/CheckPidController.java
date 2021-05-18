@@ -23,9 +23,11 @@ public class CheckPidController extends SuperClass {
 		if (bean == null) { // 존재 하지 않는 회원
 			request.setAttribute("message", pid + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디입니다.");
 			request.setAttribute("pid", pid);
+			request.setAttribute("isCheck", true);
 		}else {
 			request.setAttribute("message", pid + "은(는) 이미 <font color='red'><b>사용중</b></font>인 아이디입니다.");
 			request.setAttribute("pid", pid);
+			request.setAttribute("isCheck", false);
 		}
 	
 		String gotopage = "/parents/pidCheck.jsp" ;

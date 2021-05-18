@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
 <%
@@ -156,7 +155,7 @@
 				    <div class="form-group">        
 				      	<div class="col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
 				        	<button type="submit" class="btn btn-primary">
-				        	회원 가입</button>
+				        	아이 수정</button>
 				        	&nbsp;&nbsp;&nbsp;
 				        	<button type="reset" class="btn btn-primary">초기화</button>				        	
 				      	</div>

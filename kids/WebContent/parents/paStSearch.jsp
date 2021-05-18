@@ -25,27 +25,25 @@
     <!-- Custom styles for thiscontextPath template -->
     <link href="<%=contextPath  %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 	<script type="text/javascript">
-		
+
 		function meclose(){
 			var sid = "${requestScope.bean.sid}";
-			var site = porder;
-			opener.writeForm.sid.value = sid;
+			var third = opener.writeForm.third.value;
+			var second = opener.writeForm.second.value;
+			var first = opener.writeForm.first.value;
+			
+			if(third == 'third'){
+				opener.writeForm.childid2.value = sid;
+			}else if(second == 'second'){
+			   	opener.writeForm.childid.value = sid;
+			}else if(first == 'first'){
+			   	opener.writeForm.sid.value = sid;
+			}
 			
 			var win = window.open("","_self");
 			win.close();
 		}
 		
-	   window.onload = function(){
-		   var order = '${requestScope.order}';
-		   var porder = '';=
-		   if(order == 'f'){
-			  
-		   }else if(order == 's'){
-			   
-		   }else if(order == 't'){
-			   
-		   }
-	   }
 	</script>
 </head>
 <body>
@@ -58,8 +56,24 @@
 		</form>
 	</header> 
 	<body>
-		<p align="center">학생 아이디 : ${requestScope.bean.sid}</p>
+		<br>
+		
 		<div align="center">
+			<table border="1">
+				<tr style="beackground:pink;">
+					<th>원생 아이디</th>
+					<th>원생 이름</th>
+					<th>원생 휴대폰번호</th>
+				</tr>
+				<tr>
+					<td>${requestScope.bean.sid}</td>
+					<td>${requestScope.bean.name }</td>
+					<td>${requestScope.bean.hp }</td>
+				</tr>
+			</table>
+			<br>
+				
+			<br>
 			<button onclick="meclose();">
 				적용
 			</button>

@@ -122,3 +122,4 @@ empJoin=kids.members.employees.controller.EmpJoinController
 pidCheck=kids.members.common.controller.CheckPidController
 paSubmitUpdate=kids.members.parents.controller.paSubmitUpdateController
 changePloginfo=kids.members.parents.controller.paChangeLoginfoController
+paUpdateTwo=kids.members.parents.controller.UpdateParentsTwoController

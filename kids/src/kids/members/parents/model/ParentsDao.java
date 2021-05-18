@@ -412,7 +412,7 @@ public class ParentsDao extends SuperDao {
 				bean.setAddress2(rs.getString("address2"));
 				bean.setGender(rs.getString("gender"));
 				bean.setSubmit(rs.getString("submit"));
-				bean.setBirth(rs.getString("birth"));
+				bean.setBirth(String.valueOf(rs.getDate("birth")));
 				bean.setEmail(rs.getString("email"));
 				bean.setImage(rs.getString("image"));
 				bean.setRemark("remark");
@@ -525,13 +525,9 @@ public class ParentsDao extends SuperDao {
 	
 		try {
 			if(conn == null) {super.conn = super.getConnection() ; }
-			System.out.println("check1");
 			pstmt = conn.prepareStatement(sql) ;
-			System.out.println("check2");
-			pstmt.setString(1, pid);
-			System.out.println("check3");
-			pstmt.setString(2, password);
-			System.out.println("check4");
+			pstmt.setString(1, password);
+			pstmt.setString(2, pid);
 			
 			cnt = pstmt.executeUpdate() ; 
 		} catch (Exception e) {	
@@ -559,9 +555,10 @@ public class ParentsDao extends SuperDao {
 			pstmt = conn.prepareStatement(sql) ;
 			pstmt.setString(1, pid);
 			pstmt.setString(2, password);
-			
+			System.out.println("checkcheck1");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
+				System.out.println("checkcheck2");
 				ParentsMiniView bean = new ParentsMiniView();
 				bean = new ParentsMiniView();
 				bean.setClassname(rs.getString("classname"));
@@ -574,8 +571,9 @@ public class ParentsDao extends SuperDao {
 				bean.setSubmit(rs.getString("submit"));
 				bean.setPassword(rs.getString("password"));
 				bean.setResponsibilities(rs.getString("responsibilities"));
-				
+				System.out.println("checkcheck3");
 				plists.add(bean);
+				System.out.println("checkcheck4");
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();
@@ -616,6 +614,48 @@ public class ParentsDao extends SuperDao {
 				bean.setSubmit(rs.getString("submit"));
 				bean.setPassword(rs.getString("password"));
 				bean.setResponsibilities(rs.getString("responsibilities"));
+			}
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();} 
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bean;
+	}
+
+	public ParentsMiniView login2(String pid, String password) {
+		ParentsMiniView bean = null;
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
+		String sql = "select * from parentsminiview where pid = ? and password = ?";
+		
+		try {
+			if(conn == null) {super.conn = super.getConnection() ; }
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setString(1, pid);
+			pstmt.setString(2, password);
+			System.out.println("checkcheck1");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				System.out.println("checkcheck2");
+				bean = new ParentsMiniView();
+				bean.setClassname(rs.getString("classname"));
+				bean.setStname(rs.getString("stname"));
+				bean.setPid(rs.getString("pid"));
+				bean.setSid(rs.getInt("sid"));
+				bean.setName(rs.getString("name"));
+				bean.setHp(rs.getString("hp"));
+				bean.setRelationship(rs.getString("relationship"));
+				bean.setSubmit(rs.getString("submit"));
+				bean.setPassword(rs.getString("password"));
+				bean.setResponsibilities(rs.getString("responsibilities"));
+				System.out.println("checkcheck3");
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();

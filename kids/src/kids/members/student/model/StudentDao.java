@@ -317,6 +317,7 @@ public class StudentDao extends SuperDao2{
 	         if(rs.next()) {
 	        	 System.out.println("stsearch - rs.next 들어옴");
 	        	 bean = new Student();
+	        	 bean.setSid(rs.getInt("sid"));
 	        	 bean.setName(rs.getString("name"));
 	        	 bean.setHp(rs.getString("hp"));
 	        	 bean.setBirth(rs.getString("birth"));
