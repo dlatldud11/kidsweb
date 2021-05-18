@@ -6,17 +6,29 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+ <script type="text/javascript">
+ 	var mod_check = 'N';
+ 	
+ 	function openUpdate(empno, content){
+ 		
+ 		if(mod_check == 'Y')
+			{
+				alert('수정 중입니다.');
+				return;
+			}
+ 		 
+ 		document.getElementById('UpdateContent'+empno).innerHTML ="<div class='form-row'>"
+ 		+"<textarea rows='7' cols='70' name='updatecontent'>"+ content +"</textarea></div>"
+ 		+"<input type='hidden' name='empno_mod' value='" + empno +"'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' onclick='location.reload()' value='취소'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='submit' value='수정완료'>" ;
+ 		
+ 		mod_check = 'Y';
+ 	}
+ </script>
 <head>
     <title>직원게시판</title>
-    <script type="text/javascript">
-    	function openUpdate(empno, content){
-    		document.getElementById('UpdateContent'+empno).innerHTML ="<div class='form-row'>"
-    		+"<textarea rows='7' cols='70' name='updatecontent'>"+ content +"</textarea></div>"
-    		+"<input type='hidden' name='empno_mod' value='" + empno +"'>"
-    		+"<input style='float:right;' class='btn btn-default' type='button' onclick='history.back();' value='취소'>"
-    		+"<input style='float:right;' class='btn btn-default' type='submit' value='수정완료'>" ;
-    	}
-    </script>
     <style type="text/css">
         #wrap {
             width: 700px;
@@ -74,7 +86,7 @@
                 <span style="float:right;">
 					<!-- <a href="<%=NoForm%>empbReply&empno=${bean.empno}&tid=${sessionScope.loginfo.tid}">답글</a>&nbsp; -->
                 	<c:if test="${sessionScope.loginfo.tid == bean.tid}">
-	                <a href="#" onclick="openUpdate(${bean.empno},'${bean.content}')">수정</a>&nbsp;
+	                <a href="#" onclick="openUpdate(${bean.empno},'${bean.content}' )">수정</a>&nbsp;
 	                </c:if>
 	                <a href="<%=NoForm%>empbDelete&empno=${bean.empno}">삭제</a><br>
                  </span>
