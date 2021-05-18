@@ -12,6 +12,7 @@ import kids.board.emplo_board.model.Emplo_boardDao;
 import kids.common.controller.SuperClass;
 import kids.common.utility.FlowParameters;
 import kids.common.utility.Paging;
+import kids.members.employees.model.Employees;
 
 public class ListEmpBoardController extends SuperClass {
 	@Override
@@ -27,6 +28,7 @@ public class ListEmpBoardController extends SuperClass {
 		String url = request.getContextPath() + "/Kids?command=submit";
 		
 		Emplo_boardDao dao = new Emplo_boardDao();
+		String tid = request.getParameter("tid");
 		int totalCount = dao.selectEmbCount(
 					parameters.getMode(),
 					parameters.getKeyword());

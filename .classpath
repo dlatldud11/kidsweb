@@ -12,5 +12,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/나태훈/Desktop/workspace/kidsweb/kids/WebContent/WEB-INF/lib/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/나태훈/Desktop/workspace/kidsweb/kids/WebContent/WEB-INF/lib/javax.servlet.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

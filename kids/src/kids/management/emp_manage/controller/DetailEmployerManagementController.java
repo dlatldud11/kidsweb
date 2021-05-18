@@ -1,6 +1,7 @@
 package kids.management.emp_manage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +18,18 @@ public class DetailEmployerManagementController extends SuperClass {
 		super.doGet(request, response);
 		
 		String tid = request.getParameter("tid");
-		Emp_ManageDao dao = new Emp_ManageDao();
-		Emp_Manage bean = dao.DetailData(tid);
+		EmployeesDao dao = new EmployeesDao();
+		Employees bean = dao.DetailData(tid);
 		
 		System.out.println("bean : " + bean);
 		request.setAttribute("bean", bean);
 		
-		String gotopage = "/emp_manage/empDetail.jsp";
+		Emp_ManageDao mdao = new Emp_ManageDao();
+		Emp_Manage mbean = mdao.EmpmDetailData(tid);
+		
+		request.setAttribute("mbean", mbean);
+		
+		String gotopage = "/emp_manage/empmDetail.jsp";
 		super.GotoPage(gotopage);
 		
 	}

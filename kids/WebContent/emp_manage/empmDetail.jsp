@@ -11,7 +11,7 @@
 	<div class="container col-sm-offset-2 col-sm-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4>직원 정보 상세 보기</h4>
+				<h4>내 정보 보기</h4>
 			</div>
 			<div class="row panel-body">
 				<div class="col-sm-4">
@@ -74,6 +74,13 @@
 							<td width="25%" align="center">등록 날짜</td>
 							<td width="75%" align="left">${bean.join_date}</td>
 						</tr>
+						<tr>
+							<td width="25%" align="center">출결</td>
+							<td width="75%" align="left">
+								${mbean.regdate}(${mbean.attendance})&nbsp;
+								<a href="<%=NoForm%>empmAtt&tid=${bean.tid}">자세히 보기</a>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -82,7 +89,7 @@
 				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empList'">
 					돌아 가기
 				</button>
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empUpdate&tid=${bean.tid}'">
+				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empmUpdate&tid=${bean.tid}'">
 					직원 정보 수정
 				</button>
 				<button class="btn btn-danger" onclick="location.href='<%=NoForm%>empDelete&tid=${bean.tid}'">

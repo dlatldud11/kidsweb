@@ -34,8 +34,9 @@
 				    <div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">글 내용</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="content" 
-				        		name="content">
+				      	<textarea rows="5" cols="60" class="form-control" name="content" id="content"></textarea>
+				        	<!-- <input type="text" class="form-control" id="content" 
+				        		name="content"> -->
 				      	</div>
 				    </div>
 					<div class="form-group">

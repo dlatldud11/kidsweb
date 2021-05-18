@@ -9,11 +9,12 @@
 <head>
     <title>직원게시판</title>
     <script type="text/javascript">
-    	function openUpdate(empno){
+    	function openUpdate(empno, content){
     		document.getElementById('UpdateContent'+empno).innerHTML ="<br><div class='form-row'>"
-    		+"<textarea rows='7' cols='80' name='updatecontent'></textarea></div>"
+    		+"<textarea rows='7' cols='70' name='updatecontent'>"+ content +"</textarea></div>"
+    		+"<input type='hidden' name='empno_mod' value='" + empno +"'>"
     		+"<input style='float:right;' class='btn btn-default' type='button' onclick='history.back();' value='취소'>"
-    		+"<input style='float:right;' class='btn btn-default' type='submit' value='수정완료'>"
+    		+"<input style='float:right;' class='btn btn-default' type='submit' value='수정완료'>" ;
     	}
     </script>
     <style type="text/css">
@@ -67,12 +68,13 @@
             	<c:forEach var="bean" items="${requestScope.lists}">
                 <hr size="1" width="700">
                 <input type="hidden" name="empno" value="${bean.empno}">
+                 <input type="hidden" name="content" value="${bean.content}">
                 <label>이름&nbsp;:&nbsp;${bean.tid}</label>
                 <c:if test="${sessionScope.loginfo.tid == bean.tid || sessionScope.loginfo.tid == 'admin'}">
                 <span style="float:right;">
 					<!-- <a href="<%=NoForm%>empbReply&empno=${bean.empno}&tid=${sessionScope.loginfo.tid}">답글</a>&nbsp; -->
                 	<c:if test="${sessionScope.loginfo.tid == bean.tid}">
-	                <a href="#" onclick="openUpdate(${bean.empno});">수정</a>&nbsp;
+	                <a href="#" onclick="openUpdate(${bean.empno},'${bean.content}')">수정</a>&nbsp;
 	                </c:if>
 	                <a href="<%=NoForm%>empbDelete&empno=${bean.empno}">삭제</a><br>
                  </span>

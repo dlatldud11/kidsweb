@@ -6,12 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<script type="text/javascript">
+	window.onload=function(){
+		alert("비밀번호 변경이 완료되었습니다.");
+		var win = window.open("","_self");
+		win.close();
+	}
+</script>
 <body>
-	직원 비밀번호 찾기 폼
-</body>
-</html>
-<html>
-<body>
-<%@ include file="./../common/footer.jsp" %>
+
 </body>
 </html>

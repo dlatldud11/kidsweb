@@ -24,7 +24,12 @@
 				<td width="75%" align="left">
 				<input type="text" name="faketid" id="faketid" value="${bean.tid}" disabled="disabled">
 				<input type="hidden" name="tid" id="tid" value="${bean.tid}">
-				<input type="hidden" name="password" id="password" value="${bean.password}">
+				</td>
+			</tr>
+			<tr>
+				<td width="25%" align="center">비밀번호</td>
+				<td width="75%" align="left">
+				<input type="password" name="password" id="password" value="${bean.password}">
 				</td>
 			</tr>
 			<tr>
