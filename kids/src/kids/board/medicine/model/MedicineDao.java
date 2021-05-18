@@ -141,8 +141,8 @@ public class MedicineDao extends SuperDao {
 		}
 		return cnt ;
 	}
-	*/
-	public int UpdateData( Stu_fee bean ){
+	
+	public int UpdateData( Medicine2 bean ){
 		String sql = " update Stu_fees set content=?, password=?, subject=?, writer=?, readhit=? " ;
 		sql += " where no = ? " ;
 		
@@ -181,7 +181,7 @@ public class MedicineDao extends SuperDao {
 		}
 		return cnt ;
 	}
-	
+	*/
 	public int CheckData( int meno ){
 		String sql = " update medicine set checks = '읽음' " ;
 		sql += " where meno = ? " ;
