@@ -21,7 +21,7 @@
 	
 	<script type="text/javascript">
 		function meclose() {
-			opener.writeForm.idcheck.value='${requestScope.ischeck}';
+			opener.writeForm.idcheck.value='${requestScope.isCheck}';
 			var win = window.open("","_self");
 			win.close();
 			

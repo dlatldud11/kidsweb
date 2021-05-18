@@ -18,8 +18,8 @@
 					<table>
 						<tr>
 							<td>
-								<img src="<%=request.getContextPath()%>/images/${bean.image }.jpg" class="img-rounded" 
-									alt="${bean.name}" width="200" height="200">		
+								<!-- 상대경로로 바꾸세요. 브라우저에서는 보안상 사용자 PC의 경로에 바로 접근할 수 없습니다. (크롬브라우저에서 작동X -> 수정)-->
+								<img src="./upload/${bean.image }" class="img-rounded" alt="${requestScope.bean.name}" width="200" height="200">
 							</td>
 						</tr>
 					</table>

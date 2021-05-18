@@ -25,18 +25,21 @@
     <!-- Custom styles for thiscontextPath template -->
     <link href="<%=contextPath  %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 	<script type="text/javascript">
-		
+
 		function meclose(){
 			var sid = "${requestScope.bean.sid}";
-			var order = '${requestScope.order}';
-			if(order == 'f'){
-				opener.writeForm.sid.value = sid;
-			}else if(order == 's'){
+			var third = opener.writeForm.third.value;
+			var second = opener.writeForm.second.value;
+			var first = opener.writeForm.first.value;
+			
+			if(third == 'third'){
+				opener.writeForm.childid2.value = sid;
+			}else if(second == 'second'){
 			   	opener.writeForm.childid.value = sid;
-			}else if(order == 't'){
-			   	opener.writeForm.childid2.value = sid;
+			}else if(first == 'first'){
+			   	opener.writeForm.sid.value = sid;
 			}
-
+			
 			var win = window.open("","_self");
 			win.close();
 		}
@@ -69,6 +72,7 @@
 				</tr>
 			</table>
 			<br>
+				
 			<br>
 			<button onclick="meclose();">
 				적용

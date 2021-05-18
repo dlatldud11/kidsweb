@@ -18,6 +18,11 @@ public class paSubmitUpdateController extends SuperClass{
 		String pid = request.getParameter("pid");
 		String page = request.getParameter("page");
 		
+		System.out.println("class_menu : "+class_menu);
+		System.out.println("submit_menu : "+submit_menu);
+		System.out.println("pid : "+pid);
+		System.out.println("page : "+page);
+		
 		ParentsDao pdao = new ParentsDao();
 		boolean check = pdao.updateSubmit(pid);
 		System.out.println("updateSubmit check :"+check);

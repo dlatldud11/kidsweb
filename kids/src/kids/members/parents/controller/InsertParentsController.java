@@ -29,9 +29,10 @@ public class InsertParentsController extends SuperClass {
 		String password = multi.getParameter("password");
 		String birth = multi.getParameter("birth");
 		String email = multi.getParameter("email1")+"@"+multi.getParameter("email2");
-		String image = multi.getParameter("image");
+		String image = multi.getFilesystemName("image");
 		String zipcode = multi.getParameter("zipcode");
-		String imsisid = multi.getParameter("sid");
+		
+		System.out.println("image : "+ image);
 		
 		if(!(multi.getParameter("sid") == null || multi.getParameter("sid").equals("null") || multi.getParameter("sid").equals(""))){
 			System.out.println("sid 처리");
@@ -58,8 +59,9 @@ public class InsertParentsController extends SuperClass {
 		bean.setResponsibilities("보호자");
 		
 		
-		String imsic = request.getParameter("childid");
-		String imsic2 = request.getParameter("childid2");
+		
+		String imsic = multi.getParameter("childid");
+		String imsic2 = multi.getParameter("childid2");
 		
 		System.out.println("childid : " + imsic);
 		System.out.println("childid2 : " + imsic2);
@@ -81,20 +83,6 @@ public class InsertParentsController extends SuperClass {
 		int cnt = pdao.insertData(bean);
 		System.out.println("cnt : "+cnt);
 		
-		String page = request.getParameter("page");
-		if(!(page == null || page.equals("null") || page.equals(""))) {
-			if(page.equals("update")) {
-				request.setAttribute("pid", pid);
-				request.setAttribute("page", "result");
-				if(cnt == 1) {
-					request.setAttribute("message", "수정이 완료되었습니다");
-					new UpdateParentsController().doGet(request, response);
-				}else {
-					request.setAttribute("message", "수정이 실패하였습니다");
-					new UpdateParentsController().doGet(request, response);
-				}
-			}
-		}
 		String gotopage = "";
 		if(cnt == 1) {
 			gotopage = "/parents/paInsertOK.jsp";

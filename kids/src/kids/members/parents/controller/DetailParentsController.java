@@ -19,6 +19,8 @@ public class DetailParentsController extends SuperClass {
 		ParentsDao pdao = new ParentsDao();
 		ParentsView bean = pdao.selectDetailData(pid);
 		
+		System.out.println("bean");
+		
 		request.setAttribute("bean", bean);
 		
 		String gotopage = "parents/paDetail.jsp";

@@ -301,7 +301,7 @@ e
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <c:if test="${whologin == 0}">
-                                  <a class="dropdown-item" href="login.jsp">
+                                  <a class="dropdown-item" href="<%=contextPath %>/start.jsp">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Login
                                   </a>
@@ -314,7 +314,7 @@ e
                                 </a>
                                 </c:if>
                                  <c:if test="${whologin != 0 && whologin == 3}">
-                                <a class="dropdown-item" href="<%=NoForm%>paDetial&pid=${sessionScope.loginfo.pid}">
+                                <a class="dropdown-item" href="<%=NoForm%>paDetail&pid=${sessionScope.loginfo.pid}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
