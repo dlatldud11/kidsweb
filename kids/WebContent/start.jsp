@@ -132,10 +132,10 @@
 				                                	<button class="btn btn-block btn-lg btn-primary" type="submit">로그인</button>
 				                                </form>	
 				                                
-			                                	<a style="color:#2699fb; " href="<%=NoForm%>empJoin">회원가입</a>
+			                                	<a style="color:#2699fb; " href="<%=NoForm%>empInsert">회원가입</a>
 			                                	&nbsp;
-				                                <a class="text-white" href="<%=NoForm%>empIdSearch">아이디/</a>
-				                                <a class="text-white" href="<%=NoForm%>empPaSearch">비밀번호 찾기</a>
+				                                <a class="text-white" onclick="window.open('./employees/empIdSearch.jsp','empidsearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">아이디/</a>
+				                                <a class="text-white" onclick="window.open('./employees/empPaSearch.jsp','emppasearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">비밀번호 찾기</a>
 										    </div>
 										    
 										</div><!-- tab Pane 끝 -->

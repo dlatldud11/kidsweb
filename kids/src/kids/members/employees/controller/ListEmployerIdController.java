@@ -15,8 +15,8 @@ import kids.members.employees.model.EmployeesDao;
 
 public class ListEmployerIdController extends SuperClass {
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doPost(request, response);
 		
 		FlowParameters parameters = new FlowParameters(
 				request.getParameter("pageNumber"),
@@ -24,7 +24,7 @@ public class ListEmployerIdController extends SuperClass {
 				request.getParameter("keyword"));
 		System.out.println("parameters list : " + parameters.toString());
 		
-		String url = request.getContextPath() + "/Kids?command=submit";
+		String url = request.getContextPath() + "/Kids?command=empList";
 		
 		EmployeesDao edao = new EmployeesDao();
 		int totalCount = edao.selectEmpCount(
@@ -50,8 +50,15 @@ public class ListEmployerIdController extends SuperClass {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("parameters", parameters);
 		
-		String gotopage = "/employees/empList.jsp" ;
+		String gotopage = "/emp_manage/empList.jsp" ;
 		super.GotoPage(gotopage);
+		
+	}
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doGet(request, response);
+		
+		new ListEmployerIdController().doPost(request, response);
 		
 	}
 }
