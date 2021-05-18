@@ -10,7 +10,8 @@
 		function period(){
 			var datefr = $('#datefr').val();
 			var dateto = $('#dateto').val();
-			location.href='<%=NoForm%>empmAtt'+'&datefr='+datefr+'&dateto='+dateto;
+			var tid = $('#tid').val();
+			location.href='<%=NoForm%>empmAtt'+'&datefr='+datefr+'&dateto='+dateto+'&tid='+tid;
 		}
 	</script>
 <c:set var="i" value="0" />
@@ -55,6 +56,7 @@
 					<div class="form-group">
 						<input type="date" id="datefr" value="2021-05-01" />
 						<input type="date" id="dateto" value="2021-05-31" />
+						<input type="hidden" id="tid" value="${ebean.tid}" />
 						<button class="btn btn-info" type="button" onclick="period();">찾기</button>
 					</div>
 				</tr>
