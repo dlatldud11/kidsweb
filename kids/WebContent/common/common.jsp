@@ -149,7 +149,7 @@
                 <div id="collapseManagement" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="tables.jsp">
+                        <a class="collapse-item" href="<%=NoForm%>meList">
                     		투약의뢰서</a>
                     	<a class="collapse-item" href="tables.jsp">
                     		귀가동의서</a>

@@ -7,7 +7,7 @@ public class Medicine {
 	private int meno ;
 	private String pid ;
 	private String tid ;
-	private Date regdate ;
+	private String regdate ;
 	private String category ;
 	private String amount ;
 	private int reps ;
@@ -43,11 +43,11 @@ public class Medicine {
 		this.tid = tid;
 	}
 
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 

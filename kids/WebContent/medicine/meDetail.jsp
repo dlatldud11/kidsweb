@@ -7,11 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	function alertchecks(){
+		alert("이미 확인하였습니다.");
+	}
+</script>
 <body>
 	<div class="container col-sm-offset-2 col-sm-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4>직원 정보 상세 보기</h4>
+				<h4>${bean.name} 투약의뢰서</h4>
 			</div>
 			<div class="row panel-body">
 				<div class="col-sm-4">
@@ -27,67 +32,60 @@
 				<div class="col-sm-8">
 					<table class="table table-bordered">
 						<tr>
-							<td width="25%" align="center">이름</td>
-							<td width="75%" align="left">${bean.name}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">아이디</td>
-							<td width="75%" align="left">${bean.tid}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">담당 학급</td>
-							<td width="75%" align="left">${bean.class_id}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">담당 과목</td>
-							<td width="75%" align="left">${bean.subject_code}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">성별</td>
-							<td width="75%" align="left">${bean.gender}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">생년월일</td>
-							<td width="75%" align="left">${bean.birth}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">핸드폰 번호</td>
-							<td width="75%" align="left">${bean.hp}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">이메일</td>
-							<td width="75%" align="left">${bean.email}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">직급</td>
-							<td width="75%" align="left">${bean.responsibilities}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">주소</td>
-							<td width="75%" align="left">${bean.address1}(${bean.address2})</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">급여</td>
-							<td width="75%" align="left">${bean.salary}</td>
-						</tr>
-						<tr>
 							<td width="25%" align="center">등록 날짜</td>
-							<td width="75%" align="left">${bean.join_date}</td>
+							<td width="75%" align="left">${bean.regdate}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">약종류</td>
+							<td width="75%" align="left">${bean.category}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">투약량</td>
+							<td width="75%" align="left">${bean.amount}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">투약 횟수</td>
+							<td width="75%" align="left">${bean.reps}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">투약 시간</td>
+							<td width="75%" align="left">${bean.hour}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">보관방법</td>
+							<td width="75%" align="left">${bean.storagemethod}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">비고</td>
+							<td width="75%" align="left">${bean.textarea}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">확인 여부</td>
+							<td width="75%" align="left">${bean.checks}</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empList'">
+				<button class="btn btn-info" onclick="location.href='<%=NoForm%>meList'">
 					돌아 가기
 				</button>
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empUpdate&tid=${bean.tid}'">
-					직원 정보 수정
-				</button>
-				<button class="btn btn-danger" onclick="location.href='<%=NoForm%>empDelete&tid=${bean.tid}'">
+				<c:choose>
+					<c:when test="${bean.checks != '안읽음' }">
+						<button class="btn btn-info" onclick="alertchecks();">
+						확인
+						</button>
+					</c:when>
+					<c:when test="${bean.checks == '안읽음' }">
+						<button class="btn btn-info" onclick="location.href='<%=NoForm%>meCheck&meno=${bean.meno}'">
+						확인
+						</button>
+					</c:when>
+				</c:choose>
+				<%-- <button class="btn btn-danger" onclick="location.href='<%=NoForm%>empDelete&tid=${bean.tid}'">
 					직원 정보 삭제
-				</button>
+				</button> --%>
 			</div>
 		</div>
 	</div>
