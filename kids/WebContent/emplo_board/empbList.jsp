@@ -10,7 +10,7 @@
     <title>직원게시판</title>
     <script type="text/javascript">
     	function openUpdate(empno, content){
-    		document.getElementById('UpdateContent'+empno).innerHTML ="<br><div class='form-row'>"
+    		document.getElementById('UpdateContent'+empno).innerHTML ="<div class='form-row'>"
     		+"<textarea rows='7' cols='70' name='updatecontent'>"+ content +"</textarea></div>"
     		+"<input type='hidden' name='empno_mod' value='" + empno +"'>"
     		+"<input style='float:right;' class='btn btn-default' type='button' onclick='history.back();' value='취소'>"
@@ -90,10 +90,5 @@
      </div>
       <!-- 글 목록 부분 끝 -->
 </div>
-</body>
-</html>
-<html>
-<body>
-<%@ include file="./../common/footer.jsp" %>
 </body>
 </html>

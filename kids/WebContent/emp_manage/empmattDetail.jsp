@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<script type="text/javascript">
+		function period(){
+			var datefr = $('#datefr').val();
+			var dateto = $('#dateto').val();
+			location.href='<%=NoForm%>empmAtt'+'&datefr='+datefr+'&dateto='+dateto;
+		}
+	</script>
 <c:set var="i" value="0" />
 <c:set var="j" value="0" />
 </head>
@@ -44,10 +51,12 @@
 				</tbody>	
 			</table>
 			<table class="table table-hover">
-			
 				<tr>
-					<input type="date" id="datefr" value="2021-05-01" />
-					<input type="date" id="dateto" value="2021-05-31" />
+					<div class="form-group">
+						<input type="date" id="datefr" value="2021-05-01" />
+						<input type="date" id="dateto" value="2021-05-31" />
+						<button class="btn btn-info" type="button" onclick="period();">찾기</button>
+					</div>
 				</tr>
 				<tr>
 					<td>월</td>

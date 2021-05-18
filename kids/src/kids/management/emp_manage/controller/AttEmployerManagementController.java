@@ -15,25 +15,16 @@ import kids.members.employees.model.Employees;
 import kids.members.employees.model.EmployeesDao;
 
 public class AttEmployerManagementController extends SuperClass {
+	private String tid;
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
+		this.tid = request.getParameter("tid");
 		
-		Date date = new Date();
-		
-		String datefr;
-		String dateto;
-		if(request.getParameter("datefr") == null)
-			datefr = "2021-05-01";
-		else
-			datefr = request.getParameter("datefr");
-
-		if(request.getParameter("dateto") == null)
-			dateto = "2021-05-31";
-		else
-			dateto = request.getParameter("dateto");
+		String datefr = request.getParameter("datefr");
+		String dateto = request.getParameter("dateto");
 
 		System.out.println(datefr + "/" +dateto);
-		String tid = request.getParameter("tid");
 		EmployeesDao edao = new EmployeesDao();
 		Employees ebean = edao.DetailData(tid);
 		
