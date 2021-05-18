@@ -26,7 +26,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="<%=request.getContextPath()%>/bootstrap2/css/styles.css" rel="stylesheet" />
+        <link href="<%=request.getContextPath()%>/bootstrap2/css/styles.css?after" rel="stylesheet" />
        
         <!-- w3school 예제에서 가져옴 -->
        	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
