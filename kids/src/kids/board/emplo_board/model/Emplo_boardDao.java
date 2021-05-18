@@ -23,7 +23,8 @@ public class Emplo_boardDao extends SuperDao {
 		int cnt = 0 ; //없는 경우의 기본 값
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
-			pstmt = this.conn.prepareStatement(sql) ;			 
+			pstmt = this.conn.prepareStatement(sql) ;		
+			
 			rs = pstmt.executeQuery() ; 
 			
 			if ( rs.next() ) { 
@@ -52,7 +53,7 @@ public class Emplo_boardDao extends SuperDao {
 		sql += " select empno, tid, content, files, regdate, remark, rank() over(order by empno desc) ";
 		sql += " as ranking from emplo_board ";
 		if(mode.equalsIgnoreCase("all") == false) {
-			sql += " where " + mode + "like '%" + keyword + "%' " ;
+			sql += " where " + mode + "like '%" + keyword + "%'" ;
 		}
 		sql += " ) where ranking between ? and ? ";
 		

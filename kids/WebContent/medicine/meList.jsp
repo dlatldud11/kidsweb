@@ -29,7 +29,14 @@
          <div class="panel panel-primary">
             <div class="panel-heading">
                <h4>투약의뢰서 목록</h4>
-               <h2>ㅇㅇ반</h2>
+               <c:forEach var="bean" items="${requestScope.cn_lists}">
+               		<c:if test="${whologin == 3 || whologin == 2}">
+               			<c:if test="${loginfo.class_id == bean.class_id }">
+               				<h2>${bean.class_name}반</h2>
+               			</c:if>
+               		</c:if>
+               </c:forEach>
+               
                <div class="search">
                   <tr>
                      <td align="center" colspan="11">
@@ -37,9 +44,9 @@
                            <div class="form-group">
                               <select id="mode" name="mode" class="form-control">
                                  <option value="all" selected="selected">-- 선택하세요.
-                                 <option value="name">등록날짜
-                                 <option value="tid">이름
-                                  <option value="email">확인여부
+                                 <option value="a.regdate">등록날짜
+                                 <option value="b.name">이름
+                                  <option value="a.checks">확인여부
                               </select>
                            </div>                           
                            <div class="form-group">
@@ -67,13 +74,11 @@
 					</thead>
 			  	 <tbody>
 						<c:forEach var="bean" items="${requestScope.lists}">
-							<tr onclick="location.href='<%=NoForm%>meDetail&tid=${bean.tid}&${requestScope.parameters}'">
-								<td>${bean.tid}</td>
+							<tr onclick="location.href='<%=NoForm%>meDetail&meno=${bean.meno}'">
+								<td>${bean.meno}</td>
+								<td>${bean.regdate}</td>
 								<td>${bean.name}</td>
-								<td>${bean.gender}</td>
-								<td>${bean.hp}</td>
-								<td>${bean.email}</td>
-								<td>${bean.class_id}</td>
+								<td>${bean.checks}</td>
 							</tr>	
 						</c:forEach>
 				</tbody>		

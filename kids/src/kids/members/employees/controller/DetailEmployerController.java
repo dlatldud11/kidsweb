@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kids.common.controller.SuperClass;
+import kids.management.emp_manage.model.Emp_Manage;
+import kids.management.emp_manage.model.Emp_ManageDao;
 import kids.members.employees.model.Employees;
 import kids.members.employees.model.EmployeesDao;
 
@@ -20,6 +22,11 @@ public class DetailEmployerController extends SuperClass {
 		
 		System.out.println("bean : " + bean);
 		request.setAttribute("bean", bean);
+		
+		Emp_ManageDao mdao = new Emp_ManageDao();
+		Emp_Manage mbean = mdao.EmpmDetailData(tid);
+		
+		request.setAttribute("mbean", mbean);
 		
 		String gotopage = "/employees/empDetail.jsp";
 		super.GotoPage(gotopage);

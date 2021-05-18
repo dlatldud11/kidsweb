@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kids.common.model.SuperDao;
+import kids.management.emp_manage.model.Emp_Manage;
+import kids.members.parents.model.Parents;
 
 public class EmployeesDao extends SuperDao {
 
@@ -168,13 +170,14 @@ public class EmployeesDao extends SuperDao {
 		
 		String sql = " select count(*) as cnt from employees " ;
 		if(mode.equalsIgnoreCase("all") == false) {
-			sql += " where " + mode + "like '%" + keyword + "%' " ;
+			sql += " where " + mode + " like '%" + keyword + "%' " ;
 		}
 		
 		int cnt = 0 ; //없는 경우의 기본 값
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
-			pstmt = this.conn.prepareStatement(sql) ;			 
+			pstmt = this.conn.prepareStatement(sql) ;		
+			
 			rs = pstmt.executeQuery() ; 
 			
 			if ( rs.next() ) { 
@@ -295,7 +298,7 @@ public class EmployeesDao extends SuperDao {
 		sql += " address2, gender, responsibilities, password, subject_code, email, zipcode, remark, rank() over(order by name asc) ";
 		sql += " as ranking from employees where responsibilities = ? ";
 		if(mode.equalsIgnoreCase("all") == false) {
-			sql += " and " + mode + "like '%" + keyword + "%' " ;
+			sql += " and " + mode + " like '%" + keyword + "%' " ;
 		}
 		sql += " ) where ranking between ? and ? ";
 		
@@ -507,4 +510,140 @@ public class EmployeesDao extends SuperDao {
 		} 		
 		return cnt  ; 
 	}
+
+	public List<Employees> getEmployeesList() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " select * from employees where responsibilities = ? or responsibilities = ? ";
+		
+		List<Employees> lists = new ArrayList<Employees>();
+		
+		try {
+			if(this.conn == null) {this.conn = this.getConnection();}
+			pstmt = this.conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "직원");
+			pstmt.setString(2, "특활");
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Employees bean = new Employees();
+				
+				String str = rs.getString("birth");
+				
+				bean.setAddress1(rs.getString("address1"));
+				bean.setAddress2(rs.getString("address2"));
+				bean.setBirth(str.substring(0, 10));
+				bean.setEmail(rs.getString("email"));
+				bean.setGender(rs.getString("gender"));
+				bean.setHp(rs.getString("hp"));
+				bean.setImage(rs.getString("image"));
+				bean.setName(rs.getString("name"));
+				bean.setPassword(rs.getString("password"));
+				bean.setTid(rs.getString("tid"));
+				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setClass_id(rs.getInt("class_id"));
+				bean.setSalary(rs.getInt("salary"));
+				bean.setJoin_date(rs.getString("join_date"));
+				bean.setSubject_code(rs.getInt("subject_code"));
+				bean.setRemark(rs.getString("remark"));
+				bean.setZipcode(rs.getString("zipcode"));
+				
+				lists.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) { rs.close(); }
+				if(pstmt != null) {pstmt.close();}
+				this.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return lists;
+	}
+
+	public Employees Employees(String name, String email) {
+		Employees bean = null;
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
+		String sql = "select * from employees where name = ? and email = ?";
+		
+		try {
+			if(conn == null) {super.conn = super.getConnection() ; }
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean = new Employees();
+				
+				bean.setTid(rs.getString("tid"));
+				bean.setName(rs.getString("name"));
+				bean.setHp(rs.getString("hp"));
+				bean.setAddress1(rs.getString("address1"));
+				bean.setAddress2(rs.getString("address2"));
+				bean.setGender(rs.getString("gender"));
+				bean.setSubmit(rs.getString("submit"));
+				bean.setBirth(String.valueOf(rs.getDate("birth")));
+				bean.setPassword(rs.getString("password"));
+				bean.setEmail(rs.getString("email"));
+				bean.setImage(rs.getString("image"));
+				bean.setRemark(rs.getString("remark"));
+				bean.setZipcode(rs.getString("zipcode"));
+				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setClass_id(rs.getInt("class_id"));
+				bean.setJoin_date(rs.getString("zipcode"));
+				bean.setSalary(rs.getInt("salary"));
+				bean.setSubject_code(rs.getInt("subject_code"));
+				
+			}
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();} 
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bean;
+	}
+
+	public int updatePassword(String tid, String password) {
+		int cnt = -99999;
+		PreparedStatement pstmt = null ;
+		String sql = "update employees set password = ? where tid = ?";
+	
+		try {
+			if(conn == null) {super.conn = super.getConnection() ; }
+			System.out.println("check1");
+			pstmt = conn.prepareStatement(sql) ;
+			System.out.println("check2");
+			pstmt.setString(1, tid);
+			System.out.println("check3");
+			pstmt.setString(2, password);
+			System.out.println("check4");
+			
+			cnt = pstmt.executeUpdate() ; 
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) {pstmt.close();} 
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+
 }

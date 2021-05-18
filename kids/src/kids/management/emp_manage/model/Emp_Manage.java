@@ -2,11 +2,18 @@ package kids.management.emp_manage.model;
 
 public class Emp_Manage {
 	private int emp_mno;
+	private int regday;
 	private String tid;
 	private String attendance;
 	private String regdate;
 	private String remark;
 	
+	public int getRegday() {
+		return regday;
+	}
+	public void setRegday(int regday) {
+		this.regday = regday;
+	}
 	public int getEmp_mno() {
 		return emp_mno;
 	}
@@ -42,8 +49,8 @@ public class Emp_Manage {
 	}
 	@Override
 	public String toString() {
-		return "Emp_Manage [emp_mno=" + emp_mno + ", tid=" + tid + ", attendance=" + attendance + ", regdate=" + regdate
-				+ ", remark=" + remark + "]";
+		return "Emp_Manage [emp_mno=" + emp_mno + ", regday=" + regday + ", tid=" + tid + ", attendance=" + attendance
+				+ ", regdate=" + regdate + ", remark=" + remark + "]";
 	}
 	
 }

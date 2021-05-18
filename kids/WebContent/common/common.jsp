@@ -71,7 +71,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">아이하루 어린이집 </div>
             </a>
-
+e
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -91,7 +91,6 @@
             <div class="sidebar-heading">
                 <!--Addons-->
             </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
      		    <li class="nav-item">
                 <a class="nav-link" href="<%=NoForm%>goList">
@@ -149,7 +148,7 @@
                 <div id="collapseManagement" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="tables.jsp">
+                        <a class="collapse-item" href="<%=NoForm%>meList">
                     		투약의뢰서</a>
                     	<a class="collapse-item" href="tables.jsp">
                     		귀가동의서</a>
@@ -251,6 +250,7 @@
                             </div>
                         </li>
                     <!-- 원장님전용 관리 -->
+                    <c:if test="${whologin == 1}">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -263,7 +263,7 @@
                                     가입 승인
                                  	 </a>
                                   <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="<%=NoForm%>empmList">
+                                  <a class="dropdown-item" href="<%=NoForm%>empList">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     직원 관리
                                 	  </a>
@@ -284,6 +284,7 @@
                                     학생 관리
                                   	</a>
                              </div>
+                             </c:if>
 					<!-- 로그인 아이콘 -->		
 					 <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"

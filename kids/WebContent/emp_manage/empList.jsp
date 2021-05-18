@@ -30,17 +30,18 @@
             <div class="panel-heading">
                <h4>직원 목록</h4>
                <div class="search">
+                <table class="table table-hover">
+                <thead>
                   <tr>
-                     <td align="center" colspan="11">
-                        <form action="" class="form-inline" role="form" name="myform" method="get"> 
+                  	 <td align="center" colspan="11">
+                        <form action="" class="form-inline" role="form" name="myform" method="post"> 
                            <div class="form-group">
-                              <select id="mode" name="mode" class="form-control">
-                                 <option value="all" selected="selected">-- 선택하세요.
-                                 <option value="name">이름
-                                 <option value="tid">아이디
-                                  <option value="email">이메일
-                              </select>
-                           </div>                           
+                             <select class="form-control" id="mode" name="mode">
+				        		<option value="-">--- 선택하세요.</option>
+			        			<option value="tid">아이디</option>
+			        			<option value="name">이름</option>
+				        		</select>	
+                           </div>                   
                            <div class="form-group">
                               <input type="text" class="form-control" name="keyword" id="keyword"> 
                            </div>                           
@@ -53,10 +54,8 @@
                         </form>
                      </td>
                   </tr>   
-               </div>
-            <br>
-               <table class="table table-hover">
-					<thead>
+	             </thead> 
+					 <tbody>
 						<tr>
 							<th>아이디</th>
 							<th>이름</th>
@@ -65,10 +64,10 @@
 							<th>이메일</th>
 							<th>학급</th>
 						</tr>
-					</thead>
-			  	 <tbody>
+					</tbody>
+			  		<tfoot>
 						<c:forEach var="bean" items="${requestScope.lists}">
-							<tr onclick="location.href='<%=NoForm%>empDetail&tid=${bean.tid}&${requestScope.parameters}'">
+							<tr onclick="location.href='<%=NoForm%>empmDetail&tid=${bean.tid}&${requestScope.parameters}'">
 								<td>${bean.tid}</td>
 								<td>${bean.name}</td>
 								<td>${bean.gender}</td>
@@ -77,12 +76,12 @@
 								<td>${bean.class_id}</td>
 							</tr>	
 						</c:forEach>
-				</tbody>		
-		 	</table>
-        </div> 
-      </div>
-    </div>
-
+					</tfoot>	
+			 	</table>
+       		 </div> 
+    	  </div>
+    	</div>
+	 </div>
 </div>
 </body>
 </html>
