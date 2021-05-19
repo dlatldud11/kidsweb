@@ -1,7 +1,5 @@
 package kids.board.activity.model;
 
-import java.util.Date;
-
 public class Activity {
 	private int actino ;
 	private int subject_code ;

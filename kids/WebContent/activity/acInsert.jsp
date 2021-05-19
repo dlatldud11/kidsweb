@@ -28,7 +28,7 @@
 					<input type="hidden" name="command" value="acInsert">
 					<input type="hidden" name="idCheck" value="false">
 					<div class="form-group">
-				      	<label class="control-label col-sm-3" for="writer">작성자</label>
+				      	<label class="control-label col-sm-3" for="tid">작성자</label>
 				      	<div class="col-sm-9">
 				        	<input type="text" class="form-control" disabled="disabled" 
 				        		id="fakewriter" name="fakewriter"
@@ -41,9 +41,9 @@
                             <div class="col-sm-9">
 								<select class="form-control" id="class_id" name="class_id">
 					        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
-								    <option value="1">해바라기</option>
-								    <option value="2">민들레</option>
+								    <c:forEach var="" items="">
 								    <option value="3">장미</option>
+								    </c:forEach>
 							  	</select>
 								<span class="text-danger">${errclass_id}</span>
 							</div>
@@ -60,15 +60,15 @@
                	    <div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">글 내용</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="subject" 
+				        	<input type="text" class="form-control" id="content" 
 				        		name="content" value="${bean.content}">
 				      	</div>
 				    </div>
 					<div class="form-group">
-				      	<label class="control-label col-sm-9" for="tiles">첨부 자료</label>
+				      	<label class="control-label col-sm-9" for="image">첨부 자료</label>
 				      	<div class="col-sm-9">
-				        	<input type="file" class="form-control" id="files" 
-				        		name="files" value="${bean.files}">
+				        	<input type="file" class="form-control" id="image" 
+				        		name="image" value="${bean.files}">
 				      	</div>
 				    </div>
 				    <div class="form-group">        

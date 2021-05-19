@@ -12,14 +12,9 @@ import kids.common.model.SuperDao;
 
 public class ActivityDao extends SuperDao {
 
-   public int DeleteData(int actino) {
-      // TODO Auto-generated method stub
-      return 0;
-   }
-
-   public int insertData(Activity bean) {
-      String sql = " insert into activity(actino, subject_code, title, content, image, regdate, remark, tid, class_id, readhit)" 
-    		    +  " values(actino_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?) " ;
+   public int InsertData(Activity bean) {
+      String sql = " insert into activity(actino, subject_code, title, content, image, regdate, remark, tid, class_id, readhit) " 
+    		    +  " values(actino_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?, ?, ?) " ;
       
       PreparedStatement pstmt = null ;
       int cnt = -99999 ;
@@ -28,12 +23,10 @@ public class ActivityDao extends SuperDao {
          conn.setAutoCommit( false );
          pstmt = super.conn.prepareStatement(sql) ;
          
-
          pstmt.setInt(1, bean.getSubject_code());
          pstmt.setString(2, bean.getTitle());
          pstmt.setString(3, bean.getContent());
          pstmt.setString(4, bean.getImage());
-         pstmt.setString(5, bean.getRegdate());
          pstmt.setString(6, bean.getRemark());
          pstmt.setString(7, bean.getTid());
          pstmt.setInt(8, bean.getClass_id());
@@ -190,4 +183,5 @@ public class ActivityDao extends SuperDao {
          return bean  ;
    
    }
+
 }

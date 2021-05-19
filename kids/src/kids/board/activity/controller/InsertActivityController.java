@@ -20,6 +20,11 @@ public class InsertActivityController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
+		
+		
+		
+//		request.setAttribute("lists", lists);
+		
 		String gotopage = "/activity/acInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}
@@ -31,20 +36,21 @@ public class InsertActivityController extends SuperClass {
 			//MultipartRequest multi = (MultipartRequest)request.getAttribute("multi") ;
 			
 			bean = new Activity() ;
-			bean.setTitle("title") ;
+			String title = request.getParameter("title");
+			bean.setTitle(title);
+			
+			bean.setTitle(request.getParameter("title")) ;
 			bean.setContent("content");
 			bean.setImage("image");
-			bean.setRegdate("date");
-			bean.setRemark("remark");
 			bean.setTid("tid");
+			bean.setImage("image");
 			
-			Activity dao = new Activity() ;
-			
+			System.out.println(bean);
+			ActivityDao dao = new ActivityDao() ;
 			int cnt = -99999;
-//			 cnt = dao.insertData(bean);
-//	        if(cnt == 1) {
-	        	System.out.println("activity입력 완료");
-//	        }
+			cnt = dao.InsertData(bean);
+
+			System.out.println("activity입력 완료");
 	        new ListActivityController().doGet(request, response);
 		}
 	}
