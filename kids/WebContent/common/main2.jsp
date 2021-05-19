@@ -4,12 +4,12 @@
 <html lang="en">
 <head>
 	<script type="text/javascript">
-		function alert1() {
+	<%-- 	function alert1() {
 			 window.open("<%=NoForm%>empmOn&tid=${sessionScope.loginfo.tid}&attendance=출석", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=700, height=700, left=0, top=0" );		
 		}
 		function alert2() {
 			 window.open("<%=NoForm%>empmOff&tid=${sessionScope.loginfo.tid}&attendance=퇴근", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=700, height=700, left=0, top=0" );		
-		}
+		} --%>
 	</script>
 		       <!-- 로그인 상태 정보 -->
 <c:set var="whologin" value="0" /> 
@@ -109,12 +109,12 @@
                      </div>
                      <div class="col-xl-6 col-md-6 mb-3">
                          <div class="card border-left-primary shadow h-100 py-2">
-                             <div class="card-body" onclick="location.href='<%=NoForm%>meList';">
+                             <div class="card-body" onclick="location.href='<%=NoForm%>meInsert';">
                                  <div class="row no-gutters align-items-center">
                                      <div class="col mr-2">
                                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             </div>
-                                         <div class="h5 mb-0 font-weight-bold text-primary">투약의뢰서 <br>확인하기</div>
+                                         <div class="h5 mb-0 font-weight-bold text-primary">투약의뢰서 <br>작성하기</div>
                                      </div>
                                      <div class="col-auto">
                                          <i class="far fa-plus-square fa-2x text-gray-300"></i>

@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kids.board.medicine.controller.ListMedicineController;
 import kids.board.notice_board.model.Notice_board;
 import kids.board.notice_board.model.Notice_boardDao;
 import kids.common.controller.SuperClass;
@@ -39,7 +40,7 @@ public class InsertNoticeController extends SuperClass {
 			int cnt = -99999;
 			cnt = dao.InsertData(bean);
 			
-			new ListNoticeController().doGet(request, response);			
+			new ListMedicineController().doGet(request, response);			
 			
 		}else {
 			System.out.println("글쓰기 실패");
