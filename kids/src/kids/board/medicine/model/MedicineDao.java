@@ -103,11 +103,17 @@ public class MedicineDao extends SuperDao {
 		}
 		return cnt ;
 	}	
-	
-	public int InsertData( Stu_fee bean ){
-		String sql = " insert into Stu_fees(no, subject, writer, password, content, groupno ) " ;
-		sql += " values(myStu_fee.nextval, ?, ?, ?, ?, myStu_fee.currval) " ;
-
+	*/
+	public int InsertData( Medicine2 bean ){
+		String sql = " insert into medicine(meno, pid, tid, regdate, category, amount, reps, hour, storagemethod, ";
+		sql += " textarea, checks, remark, sid) ";
+		sql += " values(meno_seq.nextval, ?, ";
+		sql += " (select tid from ";
+		sql += " employees a join student b ";
+		sql += " on a.class_id = b.class_id ";
+		sql += " where sid = ?), ";
+		sql += " to_char(sysdate,'yyyy/mm/dd'),?,?,?,?,?,?,'안읽음',?,?) ";
+		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
 		try {
@@ -115,11 +121,17 @@ public class MedicineDao extends SuperDao {
 			conn.setAutoCommit( false );
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setString(1, bean.getSubject());
-			pstmt.setString(2, bean.getWriter());
-			pstmt.setString(3, bean.getPassword());
-			pstmt.setString(4, bean.getContent());
-		
+			pstmt.setString(1, bean.getPid());
+			pstmt.setInt(2, bean.getSid());
+			pstmt.setString(3, bean.getCategory());
+			pstmt.setString(4, bean.getAmount());
+			pstmt.setInt(5, bean.getReps());
+			pstmt.setString(6, bean.getHour());
+			pstmt.setString(7, bean.getStoragemethod());
+			pstmt.setString(8, bean.getTextarea());
+			pstmt.setString(9, bean.getRemark());
+			pstmt.setInt(10, bean.getSid());
+			System.out.println(pstmt);
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
 		} catch (Exception e) {
@@ -141,7 +153,7 @@ public class MedicineDao extends SuperDao {
 		}
 		return cnt ;
 	}
-	
+	/*
 	public int UpdateData( Medicine2 bean ){
 		String sql = " update Stu_fees set content=?, password=?, subject=?, writer=?, readhit=? " ;
 		sql += " where no = ? " ;
@@ -324,7 +336,7 @@ public class MedicineDao extends SuperDao {
 				bean.setStoragemethod(rs.getString("storagemethod"));
 				bean.setTextarea(rs.getString("textarea"));
 				bean.setTid(rs.getString("tid"));
-				bean.setSid(rs.getString("sid"));
+				bean.setSid(rs.getInt("sid"));
 				
 			}
 			
@@ -386,7 +398,7 @@ public class MedicineDao extends SuperDao {
 				//bean.setStoragemethod(rs.getString("storagemethod"));
 				//bean.setTextarea(rs.getString("textarea"));
 				bean.setTid(rs.getString("tid"));
-				bean.setSid(rs.getString("sid"));
+				bean.setSid(Integer.parseInt(rs.getString("sid")));
 				bean.setClass_id(rs.getInt("class_id"));
 				
 				lists.add(bean);

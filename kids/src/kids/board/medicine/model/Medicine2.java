@@ -3,7 +3,7 @@ package kids.board.medicine.model;
 public class Medicine2 extends Medicine {
 	private String name;
 	private String class_name;
-	private String sid;
+	private int sid;
 	private int class_id;
 	
 	public Medicine2() {
@@ -34,11 +34,11 @@ public class Medicine2 extends Medicine {
 		this.class_name = class_name;
 	}
 
-	public String getSid() {
+	public int getSid() {
 		return sid;
 	}
 
-	public void setSid(String sid) {
+	public void setSid(int sid) {
 		this.sid = sid;
 	}
 	

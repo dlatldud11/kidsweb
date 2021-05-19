@@ -18,6 +18,9 @@ public class ListMedicineController extends SuperClass {
 public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	// TODO Auto-generated method stub
 	super.doGet(request, response);
+	
+	System.out.println("리스트메디슨 컨트롤러");
+	
 	FlowParameters parameters = new FlowParameters(
 			request.getParameter("pageNumber"),
 			request.getParameter("mode"),

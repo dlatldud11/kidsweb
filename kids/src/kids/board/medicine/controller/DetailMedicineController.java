@@ -31,7 +31,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
        dao.UpdateReadhit(no); // 조회수 1 증가시키기 
        bean.setReadhit(bean.getReadhit()+1);
     }*/
-    
+    System.out.println("디테일 메디슨 컨트롤러");
     request.setAttribute("bean", bean);
     
     String gotopage = "/medicine/meDetail.jsp" ;
