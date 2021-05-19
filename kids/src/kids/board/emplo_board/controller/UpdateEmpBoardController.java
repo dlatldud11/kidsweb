@@ -37,7 +37,7 @@ public class UpdateEmpBoardController extends SuperClass {
 
 		System.out.println(request.getParameter("empno"));
 //		bean.setEmpno(Integer.parseInt(request.getParameter("empno")));
-		bean.setEmpno(Integer.parseInt(request.getParameter("empno")+request.getParameter("empno_mod")));
+		bean.setEmpno(Integer.parseInt(request.getParameter("empno_mod")));
 		bean.setContent(request.getParameter("updatecontent"));
 		
 		System.out.println(bean.getEmpno());

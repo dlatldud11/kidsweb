@@ -21,8 +21,6 @@ public class UpdateActivityController extends SuperClass {
 		ActivityDao dao = new ActivityDao() ;
 		String data = dao.toString() ;
 		
-		int actino = Integer.parseInt(request.getParameter("actino")) ;
-		
 		List<Activity> lists = new ArrayList<Activity>() ;
 		
 		request.setAttribute("bean", bean);

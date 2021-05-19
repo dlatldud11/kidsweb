@@ -25,14 +25,14 @@
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal" action="<%=YesForm%>" method="post">
-					<input type="hidden" name="command" value="goInsert">
+					<input type="hidden" name="command" value="acInsert">
 					<input type="hidden" name="isCheck" value="fals">
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="writer">작성자</label>
 				      	<div class="col-sm-9">
 				        	<input type="text" class="form-control" disabled="disabled" 
 				        		id="fakewriter" name="fakewriter"
-				        		value="${sessionScope.loginfo.name}${sessionScope.loginfo.tid}" >				        		
+				        		value="${sessionScope.loginfo.name}(${sessionScope.loginfo.tid})" >				        		
 				        	<input type="hidden" name="tid" value="${sessionScope.loginfo.tid}">
 				      	</div>
 				    </div>
@@ -73,7 +73,7 @@
 				    </div>
 				    <div class="form-group">        
 				      	<div class="col-sm-offset-2 col-sm-8">
-				        	<button type="submit" class="btn btn-default">게시물 작성</button>
+				        	<button type="submit" class="btn btn-primary">게시물 등록</button>
 				        	&nbsp;&nbsp;&nbsp;
 				        	<button type="reset" class="btn btn-default">초기화</button>
 				      	</div>

@@ -18,15 +18,15 @@
 			/* alert('검색');  */	
 			var mode = $('#mode').val() ;
 			var keyword = $('#keyword').val() ;
-			location.href='<%=NoForm%>boList' + '&mode=' + mode + '&keyword=' + keyword ;
+			location.href='<%=NoForm%>stList' + '&mode=' + mode + '&keyword=' + keyword ;
 		}
 		function searchAll(){
 			/* alert('전체 검색'); */
-			location.href='<%=NoForm%>boList';
+			location.href='<%=NoForm%>stList';
 		}
 		function writeForm(){
 			/* alert('글 작성'); */
-			location.href='<%=NoForm%>boInsert';
+			location.href='<%=NoForm%>stInsert';
 		}
 		
 		$(document).ready(function(){
@@ -105,12 +105,7 @@
 						</c:forEach> 
 						
 					</div>
-					<div>
-						<button class="btn btn-danger" onclick="location.href='<%=NoForm%>Deletesubject&tid=${bean.subject}'">
-							과목삭제
-						</button>
 					
-					</div>
 					
 					
 					<div align="center">
