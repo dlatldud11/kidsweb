@@ -15,7 +15,7 @@ public class DietDao extends SuperDao {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " select * from diet order by category asc ";
+		String sql = " select * from diet order by to_char(regdate,'yyyy/mm/dd') desc, category asc ";
 		
 		List<Diet> lists = new ArrayList<Diet>();
 		

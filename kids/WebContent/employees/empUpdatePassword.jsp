@@ -29,6 +29,10 @@
     	function checkForm(){
     	      document.getElementById("pwddiv").innerText="";
     	      document.getElementById("repwddiv").innerText="";
+    	      
+    	      var pwd = document.papaupdate.password.value;
+    	      var engNum = /(?=.*\d)(?=.*[a-z]).{8,15}/; //영어소문자+숫자 혼합. 8글자이상 15글자 이하
+    	      var pwdtest = engNum.test(pwd);
     		
     		 if(document.papaupdate.password.value==""){
     			 document.getElementById("pwddiv").innerText="  비밀번호를 입력하세요";
@@ -52,8 +56,8 @@
 		</div>
 		<div class="card-body">
 			<form action="<%=YesForm %>" method="post" name="papaupdate">
-				<input type="hidden" name="command" value="updatePassword">
-				<input type="hidden" name="pid" value="<%=request.getParameter("pid")%>">
+				<input type="hidden" name="command" value="empUpPassword">
+				<input type="hidden" name="tid" value="<%=request.getParameter("tid")%>">
 				<div class="form-group">
 					<input class="form-control" type="password" name="password" id="password" placeholder="비밀번호"> 
 				</div>

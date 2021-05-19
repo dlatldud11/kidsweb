@@ -48,7 +48,8 @@ public class MailSend {
             
         } catch(AddressException ae) {            
             System.out.println("AddressException : " + ae.getMessage());           
-        } catch(MessagingException me) {    // 메일 계정인증 관련 예외처리        
+        } catch(MessagingException me) {    // 메일 계정인증 관련 예외처리 
+        	me.printStackTrace();
             System.out.println("MessagingException : " + me.getMessage());
         } catch(UnsupportedEncodingException e) { // 지원되지 않는 인코딩을 사용할 경우 예외처리
             System.out.println("UnsupportedEncodingException : " + e.getMessage());			

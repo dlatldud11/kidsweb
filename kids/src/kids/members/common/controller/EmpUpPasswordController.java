@@ -13,7 +13,7 @@ public class EmpUpPasswordController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
-		// 보호자 비밀번호 변경
+		// 직원 비밀번호 변경
 		String tid = request.getParameter("tid");
 		String password = request.getParameter("password");
 		
@@ -28,9 +28,8 @@ public class EmpUpPasswordController extends SuperClass {
 		if(cnt==1) {
 			String gotopage = "/employees/empUpdatePwdOK.jsp";
 			super.GotoPage(gotopage);
-		}
-		
+		}else {
 		System.out.println("업데이트 실패함 ");
-		
+		}
 	}
 }

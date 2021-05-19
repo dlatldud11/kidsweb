@@ -63,6 +63,7 @@
 							<th>핸드폰 번호</th>
 							<th>이메일</th>
 							<th>학급</th>
+							<th>직급</th>
 						</tr>
 					</tbody>
 			  		<tfoot>
@@ -74,6 +75,7 @@
 								<td>${bean.hp}</td>
 								<td>${bean.email}</td>
 								<td>${bean.class_id}</td>
+								<td>${bean.responsibilities}</td>
 							</tr>	
 						</c:forEach>
 					</tfoot>	

@@ -21,6 +21,9 @@
 	<c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
 		<c:set var="whologin" value="3" />
 	</c:if>
+	<c:if test="${sessionScope.loginfo.responsibilities == '특별'}">
+		<c:set var="whologin" value="4" />
+	</c:if>
 </c:if>
 
 <%
@@ -311,7 +314,7 @@ e
                                   </a>
                                 </c:if>
                                  <c:if test="${whologin != 0}">
-                                <c:if test="${whologin != 0 && whologin == 2 || whologin == 1}">
+                                <c:if test="${whologin != 0 && whologin == 2 || whologin == 1 || whologin == 4}">
                                 <a class="dropdown-item" href="<%=NoForm%>empDetail&tid=${sessionScope.loginfo.tid}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile

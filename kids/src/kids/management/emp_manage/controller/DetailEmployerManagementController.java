@@ -18,6 +18,10 @@ public class DetailEmployerManagementController extends SuperClass {
 		super.doGet(request, response);
 		
 		String tid = request.getParameter("tid");
+		if(tid == null) {
+			tid = (String) request.getAttribute("tid");
+		}
+		
 		EmployeesDao dao = new EmployeesDao();
 		Employees bean = dao.DetailData(tid);
 		

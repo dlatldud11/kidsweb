@@ -11,7 +11,7 @@
 	<div class="container col-sm-offset-2 col-sm-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4>내 정보 보기</h4>
+				<h4>직원 정보 보기</h4>
 			</div>
 			<div class="row panel-body">
 				<div class="col-sm-4">
