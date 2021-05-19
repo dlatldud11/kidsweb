@@ -115,7 +115,7 @@ public class EmployeesDao extends SuperDao {
 		return cnt;
 	}
 
-	public Employees SelectDataByPk(String id) {
+	public Employees SelectDataByPk(String tid) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -128,7 +128,7 @@ public class EmployeesDao extends SuperDao {
 			if(this.conn == null) {this.conn = this.getConnection();}
 			pstmt = this.conn.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
+			pstmt.setString(1, tid);
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -224,7 +224,7 @@ public class EmployeesDao extends SuperDao {
 			
 			rs = pstmt.executeQuery() ; 
 			
-			if ( rs.next() ) { 
+			while ( rs.next() ) { 
 				Employees bean = new Employees();
 
 				bean.setBirth(rs.getString("birth"));
@@ -643,6 +643,103 @@ public class EmployeesDao extends SuperDao {
 				e2.printStackTrace();
 			}
 		}
+		return cnt;
+	}
+
+	public Employees searchPassword(String tid, String email) {
+		Employees bean = null;
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
+		String sql = "select * from employees where tid = ? and email = ?";
+		
+		try {
+			if(conn == null) {super.conn = super.getConnection() ; }
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setString(1, tid);
+			pstmt.setString(2, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean = new Employees();
+				
+				String str = rs.getString("birth");
+				
+				bean.setAddress1(rs.getString("address1"));
+				bean.setAddress2(rs.getString("address2"));
+				bean.setBirth(str.substring(0, 10));
+				bean.setEmail(rs.getString("email"));
+				bean.setGender(rs.getString("gender"));
+				bean.setHp(rs.getString("hp"));
+				bean.setImage(rs.getString("image"));
+				bean.setName(rs.getString("name"));
+				bean.setPassword(rs.getString("password"));
+				bean.setTid(rs.getString("tid"));
+				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setClass_id(rs.getInt("class_id"));
+				bean.setSalary(rs.getInt("salary"));
+				bean.setJoin_date(rs.getString("join_date"));
+				bean.setSubject_code(rs.getInt("subject_code"));
+				bean.setRemark(rs.getString("remark"));
+				bean.setZipcode(rs.getString("zipcode"));
+			}
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();} 
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bean;
+	}
+
+	public int EmpmUpdateData(Employees bean) {
+		PreparedStatement pstmt = null;
+		
+		String sql = " update employees set class_id = ?, salary = ?, image = ?, hp = ?, address1 = ?, address2 = ?, "
+				+ " responsibilities = ?, subject_code = ?, remark = ?, zipcode = ? where tid = ? " ;
+		
+		int cnt = -99999;
+		System.out.println(bean);
+		try {
+			if( conn == null ) { super.conn = super.getConnection();}
+			conn.setAutoCommit(false);
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bean.getClass_id());
+			pstmt.setInt(2, bean.getSalary());
+			pstmt.setString(3, bean.getImage());
+			pstmt.setString(4, bean.getHp());
+			pstmt.setString(5, bean.getAddress1());
+			pstmt.setString(6, bean.getAddress2());
+			pstmt.setString(7, bean.getResponsibilities());
+			pstmt.setInt(8, bean.getSubject_code());
+			pstmt.setString(9, bean.getRemark());
+			pstmt.setString(10, bean.getZipcode());
+			pstmt.setString(11, bean.getTid());
+			
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
 		return cnt;
 	}
 

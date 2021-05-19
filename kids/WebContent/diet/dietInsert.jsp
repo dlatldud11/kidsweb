@@ -23,10 +23,10 @@
 				      	<div class="col-sm-9">
 				      		<select class="form-controll" name="category" id="category">
 				      			<option value="-">-- 선택하세요.</option>
-				      			<option value="아침">아침</option>
-				      			<option value="점심">점심</option>
-				      			<option value="저녁">저녁</option>
-				      			<option value="간식">간식</option>
+				      			<option value="1아침">아침</option>
+				      			<option value="2점심">점심</option>
+				      			<option value="3저녁">저녁</option>
+				      			<option value="4간식">간식</option>
 				      		</select>
 				      	<span class="text-danger">${errtcategory}</span>
 				      	</div>

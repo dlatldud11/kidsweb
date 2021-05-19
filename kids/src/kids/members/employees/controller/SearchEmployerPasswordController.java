@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kids.common.controller.SuperClass;
 import kids.common.utility.MailSend;
+import kids.members.employees.model.Employees;
+import kids.members.employees.model.EmployeesDao;
 import kids.members.parents.model.Parents;
 import kids.members.parents.model.ParentsDao;
 import kids.members.student.model.Student;
@@ -22,8 +24,8 @@ public class SearchEmployerPasswordController extends SuperClass {
 		System.out.println("tid : "+tid);
 		System.out.println("email :"+email);
 		
-		ParentsDao pdao = new ParentsDao();
-		Parents bean = pdao.searchPassword(tid, email);
+		EmployeesDao pdao = new EmployeesDao();
+		Employees bean = pdao.searchPassword(tid, email);
 		
 		if(bean == null) { //일치하는 정보가 없다
 			System.out.println("일치하는 정보가 없다");

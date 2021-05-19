@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String contextPath = request.getContextPath() ;
 	String mappingName = "/Kids" ;
@@ -7,219 +10,400 @@
 	String YesForm = contextPath + mappingName ;
 	String NoForm = contextPath + mappingName + "?command=" ;
 %>
-<%
-	int twelve = 12;
-%>
 <!DOCTYPE html>
 <html>
-<head>
-
-  <meta charset="utf-8">
+<head>   
+   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>유치원 회원가입</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="<%=request.getContextPath()%>/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+   <link href="<%=request.getContextPath() %>/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="<%=request.getContextPath()%>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-	
-	 <script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script type="text/javascript">
+   
+   function checktid(){
+      document.getElementById("tiddiv").innerText="";
+      var tid = document.writeForm.tid.value;
+      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
+      var tidtest = engNum.test(tid);
+      
+      if(tid==""){
+         console.log('if문들어옴');
+         document.getElementById("tiddiv").innerText="  먼저 아이디를 입력하세요";
+         document.writeForm.tid.focus(); 
+      }else if(tidtest==false){
+   	  	 document.getElementById("tiddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
+         document.writeForm.tid.focus(); 
+      }else{
+         console.log('else 들어옴');
+         var url = '<%=NoForm%>idCheck&tid='+tid;
+         window.open(url,"checktid","width=450, height=150, left=800, top=200, menubar=no, location=no, left=400, top=200");
+      }
+   }
+   
+   function idcheckFalse(){
+	   document.writeForm.idcheck.value=false;
+   }
+   
+   function checkWrite(){
+	  var submitcheck = true;
+      document.getElementById("tiddiv").innerText="";
+      document.getElementById("namediv").innerText="";
+      document.getElementById("imagediv").innerText="";
+      document.getElementById("birthdiv").innerText="";
+      document.getElementById("hpdiv").innerText="";
+      document.getElementById("addressdiv").innerText="";
+      document.getElementById("passworddiv").innerText="";
+      document.getElementById("repassworddiv").innerText="";
+      document.getElementById("genderdiv").innerText="";
+      document.getElementById("emaildiv").innerText="";
+      document.getElementById("zipcodediv").innerText="";
+      
+      var tid = document.writeForm.tid.value;
+      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
+      var tidtest = engNum.test(tid);
+      console.log('tidtest :'+tidtest);
+      
+      var password = document.writeForm.password.value;
+      var engNum = /(?=.*\d)(?=.*[a-z]).{8,15}/; //영어소문자+숫자 혼합. 8글자이상 15글자 이하
+      var passwordtest = engNum.test(password);
+      console.log('passwordtest :'+passwordtest);
+     
+      if(document.writeForm.tid.value==""){
+    	  console.log('1');
+      	document.getElementById("tiddiv").innerText="  아이디를 입력하세요";
+      	document.writeForm.tid.focus();
+      	submitcheck = false;
+      }
+      if(tidtest==false){
+    	  console.log('2');
+    	document.getElementById("tiddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
+        document.writeForm.tid.focus(); 
+        submitcheck = false;
+      }
 
-    <!-- Core plugin JavaScript-->
-    <script src="<%=request.getContextPath()%>/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+      if(document.writeForm.password.value==""){
+    	  console.log('3');
+      	document.getElementById("passworddiv").innerText="  비밀번호를 입력하세요";
+      	document.writeForm.password.focus();
+      	submitcheck = false;
+      }
+      if(passwordtest == false){
+    	  console.log('4');
+       	document.getElementById("passworddiv").innerText=" 비밀번호는 숫자+영어 혼합하고, 8글자 이상 15글자 이하이어야 합니다";
+       	document.writeForm.password.focus();
+       	submitcheck = false;
+      }
+      if(document.writeForm.repassword.value==""){
+    	  console.log('5');
+      	document.getElementById("repassworddiv").innerText="  비밀번호 확인을 입력하세요";
+      	document.writeForm.repassword.focus();
+      	submitcheck = false;
+      }else if(document.writeForm.password.value != document.writeForm.repassword.value){
+    	  console.log('6');
+      	document.getElementById("repassworddiv").innerText="  비밀번호가 일치하지 않습니다";
+      	document.writeForm.password.focus();
+      	submitcheck = false;
+      }
+      if(document.writeForm.idcheck.value ==""){
+    	  console.log('7');
+      	document.getElementById("tiddiv").innerText= "  중복체크 하세요";
+      	submitcheck = false;
+      }
+      if(document.writeForm.idcheck.value == 'false'){
+    	  console.log('8');
+      	document.getElementById("tiddiv").innerText= "  중복체크 하세요";
+      	submitcheck = false;
+      }	
+      if(document.writeForm.name.value==""){
+    	  console.log('9');
+	   	  document.getElementById("namediv").innerText=" 이름을 입력하세요";
+	   	  document.writeForm.name.focus();
+	   	submitcheck = false;
+      }
+      if(document.writeForm.birth.value == ""){
+    	  console.log('10');
+    	  document.getElementById("birthdiv").innerText=" 생년월일을 선택하세요";
+    	  submitcheck = false;
+      }
+      
+      var arrgender = document.writeForm.gender;
+      var cnt = 0;
+      for(var i=0; i<arrgender.length; i++){
+    	  if(arrgender[i].checked){
+    		  cnt +=1;
+    	  }
+      }
+      if(cnt == 0){
+    	  console.log('11');
+    	 document.getElementById("genderdiv").innerText=" 성별을 체크하세요";
+    	 submitcheck = false;
+      }
+      if(document.writeForm.email1.value == "" || document.writeForm.email2.value == "-"){
+    	  console.log('12');
+    	  document.getElementById("emaildiv").innerText=" 이메일을 입력하세요";
+    	  document.writeForm.email1.focus();
+    	  submitcheck = false;
+      }
+      if(document.writeForm.image.value == ""){
+    	  console.log('13');
+    	  document.getElementById("imagediv").innerText=" 사진 파일을 선택하세요";
+    	  submitcheck = false;
+      }
+      if(document.writeForm.hp.value == ""){
+    	  console.log('14');
+    	  document.getElementById("hpdiv").innerText= " 휴대폰 번호를 입력하세요";
+    	  document.writeForm.hp.focus();
+    	  submitcheck = false;
+      }
+      if(document.writeForm.zipcode.value == ""){
+    	  console.log('15');
+    	  document.getElementById("zipcodediv").innerText=" 우편번호 검색하세요";
+    	  submitcheck = false;
+      }
+      if(document.writeForm.address2.value == ""){
+    	  console.log('16');
+    	  document.getElementById("addressdiv").innerText=" 상세 주소를 입력하세요";
+    	  document.writeForm.address2.focus();
+    	  submitcheck = false;
+      }
+      if(submitcheck == true){
+    	  console.log('17');
+    	  document.writeForm.submit();
+      }
+   }
+   
+    function checkPost() {
+      var width = 500; //팝업의 너비
+      var height = 500; //팝업의 높이
+         
+       new daum.Postcode({
+         width : width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
+           height : height,
+      
+           oncomplete: function(data) {
+              var addr = ''; // 주소 변수
+              var extraAddr = ''; // 참고항목 변수
 
-    <!-- Custom scripts for all pages-->
-    <script src="<%=request.getContextPath()%>/bootstrap/js/sb-admin-2.min.js"></script>
-	
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<script type="text/javascript">
-	function Checkid(){
-		var tid = document.myform.tid.value;
-		if(tid.length < 4){
-		alert('아이디는 최소 4자리 이상이어야 합니다.');
-		document.myform.tid.focus();
-		return false;
-		}
-		var url = '<%=NoForm%>idCheck&id=' + tid;
-		window.open(url, 'mywin', 'height=150,width=300');
-	}
-	function isCheckFalse(){
-		document.myform.isCheck.value = false ;
-	}
-	$(document).ready(function(){
-		$('[data-toggle="tooltip"]').tooltip();	
-	});
-	</script>
+              //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+              if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                   addr = data.roadAddress;
+               } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                   addr = data.jibunAddress;
+               }
+
+               // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+               if(data.userSelectedType === 'R'){
+                   // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                   // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                   if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                       extraAddr += data.bname;
+                   }
+                   // 건물명이 있고, 공동주택일 경우 추가한다.
+                   if(data.buildingName !== '' && data.apartment === 'Y'){
+                       extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                   }
+           
+               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+               document.getElementById('zipcode').value = data.zonecode;
+               document.getElementById("address1").value = addr;
+               // 커서를 상세주소 필드로 이동한다.
+               document.getElementById("address2").focus();
+              }
+         }
+       }).open({
+         left: (window.screen.width / 2) - (width / 2),
+         top: (window.screen.height / 2) - (height / 2)
+   });  
+ }
+
+   </script>
+   <style type="text/css">
+      div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv{
+         color:red;
+         font-size:10pt;
+         font-weight:bold;
+         padding-left:5px;
+      }
+   </style>
+   
 </head>
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">회원 가입</h1>
-                            </div>
-                            <form class="user" name="myform" action="<%=YesForm%>" method="post">
-                            <input type="hidden" name="command" value="empInsert">
-                            <input type="hidden" name="isCheck" value="false">
-                                <div class="form-group row">
-                                    <div class="col-sm-9">
-										<input type="text" class="form-control align-self-auto" id="tid" placeholder="아이디를 입력해 주세요"
-										name="tid" data-toggle="tooltip" title="아이디는 4글자 이상 10글자 이하로 입력해 주세요."
-										onkeyup="isCheckFalse();" value="${bean.tid}">
-										<span class="text-danger">${errtid}</span>
-									</div>
-									<div class="col-sm-3">
-										<input type="button" value="중복 체크" class="btn btn-info align-self-center" onclick="Checkid();">
-									</div>
-                                </div>
-                                <div class="form-group">
-                                	<div class="row">
-	                                 	<div class="col-sm-<%=twelve%>">
-											<input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요."
-											name="password" data-toggle="tooltip" title="비밀번호는 4글자 이상 12글자 이하로 입력해 주세요.">
-											<span class="text-danger">${errpassword}</span>
-	                                	</div>
-                                	</div>
-                                </div>
-                                <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<input type="text" class="form-control" id="name" placeholder="이름을 입력해 주세요."
-											name="name" data-toggle="tooltip" title="이름은 2글자 이상 10글자 이하로 입력해 주세요." value="${bean.name}">
-											<span class="text-danger">${errname}</span>
-										</div>
-									</div>
-                                </div>
-                                 <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<input type="date" class="form-control" id="birth" placeholder="생일을 입력해 주세요."
-											name="birth" data-toggle="tooltip" title="생일은 yyyy/mm/dd형식으로 입력해 주세요." value="${bean.birth}">
-											<span class="text-danger">${errbirth}</span>
-										</div>
-									</div>
-                                </div>
-                                 <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<input type="text" class="form-control" id="hp" placeholder="연락처를 입력해 주세요."
-											name="hp" data-toggle="tooltip" title="'-'없이 숫자만 10~11자리 입력해 주세요." value="${bean.hp}">
-											<span class="text-danger">${errhp}</span>
-										</div>
-									</div>
-                                </div>
-                                 <div class="form-group">
-										<div>
-											<label class="radio-inline align-self-center">
-												<input type="radio" name="gender" id="gender" value="남">남자
-											</label>
-											&nbsp;&nbsp;&nbsp;
-											<label class="radio-inline align-self-center">
-												<input type="radio" name="gender" id="gender" value="여">여자
-											</label>
-											<span class="text-danger">${errgender}</span>
-										</div>
-	                                </div>
-                                <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<input type="text" class="form-control" id="email" placeholder="이메일을 입력해 주세요."
-											name="email" value="${bean.email}">
-											<span class="text-danger">${erremail}</span>
-										</div>
-									</div>
-                                </div>
-                                 <div class="form-group row">
-                               		 <div class="col-sm-8">
-										<input type="text" class="form-control" id="fakezipcode" 
-										disabled="disabled" name="fakezipcode">
-										<input type="text" name="zipcode" id="zipcode">
-										<span class="text-danger">${errzipcode}</span>
-									</div>
-									<div class="col-sm-4">
-										<input type="button" value="우편 번호 찾기" class="btn btn-info" onclick="zipfind();">
-									</div>
-                                </div>
-                                 <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<input type="text" class="form-control" id="fakeaddress1" name="fakeaddress1" disabled="disabled">
-											<input type="text" name="address1" id="address1"> 
-											<span class="text-danger">${erraddress1}</span>
-										</div>
-									</div>
-                                </div>
-                                 <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<input type="text" class="form-control" id="address2" name="address2" placeholder="세부주소를 입력해 주세요.">
-											<span class="text-danger">${erraddress2}</span>
-										</div>
-									</div>
-                                </div>
-                                <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<select class="form-control" id="class_id" name="class_id">
-								        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
-											    <option value="1">해바라기</option>
-											    <option value="2">민들레</option>
-											    <option value="3">장미</option>
-										  	</select>
-											<span class="text-danger">${errclass_id}</span>
-										</div>
-									</div>
-                                </div>
-                                <div class="form-group">
-                                	<div class="row">
-	                                    <div class="col-sm-<%=twelve%>">
-											<select class="form-control" id="subject_code" name="subject_code">
-								        		<option value="0" selected="selected">--- 과목명을 선택해 주세요.</option>
-											    <option value="1">체육</option>
-											    <option value="2">미술</option>
-											    <option value="3">코딩</option>
-										  	</select>
-											<span class="text-danger">${errsubject_code}</span>
-										</div>
-									</div>
-                                </div>
-                                <div class="form-group">
-                                	<div class="row" style="float:right;">
-	                                    <div class="col-sm-<%=twelve%>">
-											<button type="submit" class="btn btn-info">가입</button>
-											&nbsp;&nbsp;&nbsp;
-											<button type="reset" class="btn btn-info">다시 쓰기</button>
-										</div>
-									</div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-<html>
 <body>
-<%@ include file="./../common/footer.jsp" %>
+   <br>
+   <div class="container" align="center">
+      <img alt="로고" src="./../images/아이하루 로고.png" width="75" height="50">
+   </div>
+   <br>
+   <div class="card card-primary offset-sm-3 col-sm-6" id="empInsert">
+      <div class="card-body">
+         <div class="card-title">
+            <h1 align="center" align="center">회원가입</h1>
+         </div>
+         <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
+         	<input type="hidden" name="idcheck" value="false">
+            <input type="hidden" name="command" value="empInsert">
+                <div class="form-group">
+               <label for="tid" class="form-control-label col-sm-0">아이디</label>
+               <div class="form-row">
+                  <div class="col-">
+                     <input type="text" class="form-control" id="tid" name="tid" onkeyup="idcheckFalse();">
+                  </div>
+                  <div class="col-">
+                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checktid();">
+                  </div>
+               </div>
+            </div>
+            <div class="form-group" id="tiddiv"></div>
+            <div class="form-group">
+               <label for="password" class="form-control-label col-sm-0">비밀번호</label>
+               <div class="col-">
+                  <input type="password" class="form-control" id="password" name="password">
+               </div>
+            <div class="form-group" id="passworddiv"></div>
+            </div>
+            <div class="form-group">
+               <label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
+               <div class="col-">
+                  <input type="password" class="form-control" id="repassword" name="repassword">
+               </div>
+            </div>
+            <div class="form-group" id="repassworddiv"></div>
+            
+            <div class="form-group">
+               <label for="name" class="form-control-label col-sm-0">이름</label>
+               <div class="col-">
+                  <input type="text" class="form-control" id="name" name="name">
+               </div>
+            </div>
+             <div class="form-group" id="namediv"></div>
+            <div class="form-group">
+               <label for="birth" class="form-control-label col-sm-0">생년월일</label>
+               <div class="col-6">
+                  <input type="date" class="form-control" id="birth" name="birth">
+               </div>
+            </div>
+             <div class="form-group" id="birthdiv"></div>
+            <div class="form-group">
+               <label for="gender" class="form-control-label col-sm-0">성별</label>
+                  <div class="form-row">
+                     <div class="col-1">
+                        <input type="radio" class="form-control" name="gender" value="남">
+                     </div>
+                     <label for="gender" class="form-control-label col-sm-0">&nbsp;남&nbsp;</label>
+                     <div class="col-1">
+                        <input type="radio" class="form-control" name="gender" value="여">
+                     </div>
+                     <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
+               	</div>
+            </div>
+             <div class="form-group" id="genderdiv"></div>
+            <div class="form-group">
+               <label for="email" class="form-control-label col-sm-0">이메일</label>
+               <div class="form-row">
+                  <div class="col-5">
+                     <input type="text" class="form-control" id="email1" name="email1"> 
+                  </div>
+                  <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
+                  <div class="col-5">
+                     <select class="form-control" name="email2" id="email2">
+                        <option value="-">---선택하세요
+                        <option value="naver.com">naver.com
+                        <option value="gmail.com">gmail.com
+                        <option value="daum.net">daum.net         
+                     </select>
+                  </div>
+               </div>
+            </div>
+             <div class="form-group" id="emaildiv"></div>
+            <div class="form-group">
+               <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
+               <div class="col-">
+                  <input type="number" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
+               </div>
+            </div>
+             <div class="form-group" id="hpdiv"></div>
+            <div class="form-group">
+               <label for="image" class="form-control-label col-sm-0">사진</label>
+               <div class="col-">
+                  <input type="file" class="form-control-file border" id="image" name="image">
+               </div>
+            </div>
+             <div class="form-group" id="imagediv"></div>
+            <div class="form-group">
+               <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
+               <div class="form-row">
+                  <div class="col-">
+                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
+                  </div>
+                  <div class="col-">
+                     <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()">
+                  </div>
+               </div>
+            </div>
+			 <div class="form-group" id="zipcodediv"></div>
+            <div class="form-group">
+               <label for="address1" class="form-control-label col-sm-0">주소</label>
+               <div class="col-">
+                  <input type="text" class="form-control" id="address1" name="address1" readonly>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="address2" class="form-control-label col-sm-0">상세주소</label>
+               <div class="col-">
+                  <input type="text" class="form-control" id="address2" name="address2">
+               </div>
+            </div>
+             <div class="form-group" id="addressdiv"></div>
+            <div class="form-group" id="class_id">
+             <label for="class_id" class="form-control-label col-sm-0">학급 선택</label>
+               <div class="form-row">                
+               <label for="class_id" class="form-control-label col-sm-0"></label>
+                  <div class="col-8">
+                     <select class="form-control" name="class_id" id="class_id">
+                        <option value="0">---선택하세요
+                        <c:forEach var="clists" items="${requestScope.clists}">
+                        <option value="${clists.class_id}">${clists.class_name}</option>
+                        </c:forEach>
+                     </select>
+                  </div>
+               </div>
+            </div> 
+           <div class="form-group" id="subject_code">
+             <label for="subject_code" class="form-control-label col-sm-0">과목 선택</label>
+               <div class="form-row">
+                  <label for="subject_code" class="form-control-label col-sm-0"></label>
+                  <div class="col-8">
+                     <select class="form-control" name="subject_code" id="subject_code">
+                        <option value="0">---선택하세요
+                       <c:forEach var="slists" items="${requestScope.slists}">
+                        <option value="${slists.subject_code}">${slists.subject}</option>
+                        </c:forEach>
+                     </select>
+                  </div>
+               </div>
+            </div> 
+                <div class="form-group form-row">
+            	<div class = "col-6">
+               		<input type="button" class="form-control btn btn-primary" onclick="checkWrite();" value="회원가입">
+               </div>
+               <div class = "col-6">
+               		<input type="reset" class="form-control btn btn-secondary" value="초기화">
+               </div>
+            </div>
+         </form>
+      </div>   
+   </div>
+   <br>
+   <br>
 </body>
 </html>

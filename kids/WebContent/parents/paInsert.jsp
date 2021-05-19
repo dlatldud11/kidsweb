@@ -68,12 +68,12 @@
       document.getElementById("studiv").innerText="";
       document.getElementById("relationshipdiv").innerText="";
       
-      var id = document.writeForm.pid.value
+      var id = document.writeForm.pid.value;
       var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
       var idtest = engNum.test(id);
       console.log('idtest :'+idtest);
       
-      var pwd = document.writeForm.password.value
+      var pwd = document.writeForm.password.value;
       var engNum = /(?=.*\d)(?=.*[a-z]).{8,15}/; //영어소문자+숫자 혼합. 8글자이상 15글자 이하
       var pwdtest = engNum.test(pwd);
       console.log('pwdtest :'+pwdtest);

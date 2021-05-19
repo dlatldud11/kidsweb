@@ -126,7 +126,6 @@ public class SubjectDao extends SuperDao{
 			pstmt.setInt(1, bean.getSubject_code());
 			pstmt.setString(2, bean.getSubject());
 		
-		
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
 		} catch (Exception e) {
@@ -150,31 +149,28 @@ public class SubjectDao extends SuperDao{
 	}
 
 
-	public List<Subject> SelectDataList(int i, int subject_code) {
+	public List<Subject> SelectDataList() {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
 		String sql = " select * from subject " ;
-		sql += " where mid = ? " ;
 		
 		List<Subject> lists = new ArrayList<Subject>() ;
+		
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }
 			pstmt = conn.prepareStatement(sql) ;
-			
-			pstmt.setInt(1, subject_code);
 			
 			rs = pstmt.executeQuery() ;
 			
 			while (rs.next()) {
 				Subject bean = new Subject();
-				bean.setSubject_code(subject_code);
+				
+				bean.setRemark(rs.getString("remark"));
+				bean.setSubject(rs.getString("subject"));
+				bean.setSubject_code(rs.getInt("subject_code"));
+			
 				lists.add(bean);
-			
-			
-			
-			
-			
 			
 			}
 		} catch (Exception e) {
@@ -188,9 +184,6 @@ public class SubjectDao extends SuperDao{
 				e2.printStackTrace(); 
 			}
 		}
-			
-			
-		
 		return lists;
 	}
 	
@@ -207,7 +200,6 @@ public class SubjectDao extends SuperDao{
 			
 			pstmt.setInt(1, bean.getSubject_code());
 			pstmt.setString(2, bean.getSubject());
-			pstmt.setString(3, bean.getRemark());
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 

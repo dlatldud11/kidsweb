@@ -31,5 +31,4 @@ public class Subject {
 		return "Subject [subject_code=" + subject_code + ", subject=" + subject + ", remark=" + remark + "]";
 	}
 	
-	
 }

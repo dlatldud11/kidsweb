@@ -15,13 +15,13 @@ public class CheckIdController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		String id = request.getParameter("id") ;
+		String tid = request.getParameter("tid") ;
 		EmployeesDao dao = new EmployeesDao();
 		
-		Employees bean = dao.SelectDataByPk(id) ;
+		Employees bean = dao.SelectDataByPk(tid) ;
 		
 		if (bean == null) { // 존재 하지 않는 회원
-			request.setAttribute("message", id + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디입니다.");
+			request.setAttribute("message", tid + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디입니다.");
 			request.setAttribute("isCheck", true);
 			 
 		}else {
@@ -30,7 +30,7 @@ public class CheckIdController extends SuperClass {
 				request.setAttribute("isCheck", false);
 				
 			} else { //일반 사용자
-				request.setAttribute("message", id + "은(는) 이미 <font color='red'><b>사용중</b></font>인 아이디입니다.");
+				request.setAttribute("message", tid + "은(는) 이미 <font color='red'><b>사용중</b></font>인 아이디입니다.");
 				request.setAttribute("isCheck", false);
 			}
 		}

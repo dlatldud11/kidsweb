@@ -1,6 +1,9 @@
 package kids.management.emp_manage.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -15,25 +18,31 @@ import kids.members.employees.model.Employees;
 import kids.members.employees.model.EmployeesDao;
 
 public class AttEmployerManagementController extends SuperClass {
+	private String tid;
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		Date date = new Date();
+		this.tid = request.getParameter("tid");
 		
-		String datefr;
-		String dateto;
+		Date today = new Date();
+		SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
+		String fromDateTime = OffsetDateTime.now(ZoneId.systemDefault()).minusMonths(1).toString();
+		String date = fromDateTime.substring(0, 10);
+		String datefr = request.getParameter("datefr");
+		String dateto = request.getParameter("dateto");
+
 		if(request.getParameter("datefr") == null)
-			datefr = "2021-05-01";
+			datefr = date;
 		else
 			datefr = request.getParameter("datefr");
 
 		if(request.getParameter("dateto") == null)
-			dateto = "2021-05-31";
+			dateto = day.format(today);
 		else
 			dateto = request.getParameter("dateto");
-
+			
 		System.out.println(datefr + "/" +dateto);
-		String tid = request.getParameter("tid");
 		EmployeesDao edao = new EmployeesDao();
 		Employees ebean = edao.DetailData(tid);
 		

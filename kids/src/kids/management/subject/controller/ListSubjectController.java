@@ -17,7 +17,7 @@ public class ListSubjectController extends SuperClass {
 		super.doGet(request, response);
 		
 		SubjectDao dao = new SubjectDao();
-		List<Subject> lists = dao.SelectDataList(0, 0) ;
+		List<Subject> lists = dao.SelectDataList() ;
 		
 		String gotopage = "/subject/ListSubject.jsp" ;
 		super.GotoPage(gotopage);
