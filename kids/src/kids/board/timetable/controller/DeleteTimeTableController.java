@@ -15,11 +15,12 @@ public class DeleteTimeTableController extends SuperClass {
 		public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			super.doGet(request, response);
 			
-			int no = Integer.parseInt(request.getParameter("no")) ;
+			int time_id = Integer.parseInt(request.getParameter("time_id")) ;
 			
 			TimetableDao dao = new TimetableDao();
+			
 			int cnt = -99999 ;
-			cnt = dao.DeleteData(no) ;
+			cnt = dao.DeleteData(time_id) ;
 			
 			new ListTimeTableController().doGet(request, response);
 		}

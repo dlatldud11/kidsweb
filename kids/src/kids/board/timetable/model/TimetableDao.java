@@ -100,6 +100,7 @@ public class TimetableDao extends SuperDao{
 				tbean.setTime(rs.getString("time"));
 				tbean.setDay(rs.getString("day"));
 				tbean.setRemark(rs.getString("remark"));
+				tbean.setTid(rs.getString("tid"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,8 +118,8 @@ public class TimetableDao extends SuperDao{
 	}
 
 	public int InsertData(Timetable bean) {
-		String sql = " insert into timetable (";
-		sql += " values() " ;
+		String sql = " insert into timetable (time_id, subject_code, class_id, time, day, remark, tid)";
+		sql += " values(?, ?, ?, ?, ?, ?, ?) " ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
@@ -133,6 +134,7 @@ public class TimetableDao extends SuperDao{
 			pstmt.setString(4, bean.getTime());
 			pstmt.setString(5, bean.getDay());
 			pstmt.setString(6, bean.getRemark());
+			pstmt.setString(7, bean.getTid());
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -160,9 +162,8 @@ public class TimetableDao extends SuperDao{
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " " ;
-		sql += " " ;
-		sql += " " ;
+		String sql = "select * from timetable" ;
+		
 		
 		List<Timetable> lists = new ArrayList<Timetable>();
 		try {
@@ -180,6 +181,7 @@ public class TimetableDao extends SuperDao{
 				bean.setTime(rs.getString("time"));
 				bean.setDay(rs.getString("day"));
 				bean.setRemark(rs.getString("remark"));
+				bean.setTid(rs.getString("tid"));
 				
 				lists.add( bean ) ;
 			}
@@ -199,8 +201,8 @@ public class TimetableDao extends SuperDao{
 	}
 	
 	public int UpdateData( Timetable bean ){
-		String sql = " " ; 
-		sql += " " ;
+		String sql = " update Timetable set time_id = ?, subject_code = ?, class_id, " ; 
+		sql += " time = ?, day = ?, remark = ?, tid =? " ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
@@ -215,6 +217,7 @@ public class TimetableDao extends SuperDao{
 			pstmt.setString(4, bean.getTime());
 			pstmt.setString(5, bean.getDay());
 			pstmt.setString(6, bean.getRemark());
+			pstmt.setString(7, bean.getTid());
 		
 		
 			cnt = pstmt.executeUpdate() ; 

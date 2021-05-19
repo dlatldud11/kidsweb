@@ -13,7 +13,7 @@ import kids.members.student.model.Student;
 public class MyclassDao extends SuperDao{
 
 	public int DeleteData(int class_id) {
-		String sql ;		
+		String sql = " delete from myclass where class_id = ? ";	
 		PreparedStatement pstmt = null ;		
 		Student bean = null ;
 		int cnt = -99999 ;
@@ -97,7 +97,7 @@ public class MyclassDao extends SuperDao{
 			
 			pstmt.setInt(1, class_id);
 			
-			rs = pstmt.executeQuery() ; 
+//			rs = pstmt.executeQuery() ; 
 			
 			if ( rs.next() ) { 
 				bean = new Student() ;
@@ -167,7 +167,7 @@ public class MyclassDao extends SuperDao{
 
 	public int insertData(Myclass bean) {
 		String sql = " insert into Myclass(class_id, class_name, remark) " ;
-		sql += " values(?, ?, ?, ?) " ;
+		sql += " values(myclass_id_seq.nextval, ?, ?) " ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
@@ -176,9 +176,8 @@ public class MyclassDao extends SuperDao{
 			conn.setAutoCommit( false );
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setInt(1, bean.getClass_id());
-			pstmt.setString(2, bean.getClass_name());
-			pstmt.setString(3, bean.getRemark());
+			pstmt.setString(1, bean.getClass_name());
+			pstmt.setString(2, bean.getRemark());
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -203,8 +202,8 @@ public class MyclassDao extends SuperDao{
 	}
 
 	public int UpdateData( Myclass bean ){
-		String sql = " update Myclass set c" ;
-		sql += " " ;
+		String sql = " update Myclass set class_id = ?, class_name = ?, remark = ?" ;
+		
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;

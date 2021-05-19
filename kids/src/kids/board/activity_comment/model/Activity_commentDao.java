@@ -128,7 +128,7 @@ public class Activity_commentDao extends SuperDao {
 	}
 
 	public int InsertData(Activity_comment bean) {
-		String sql = "insert into activity(activity_cmid, actino, actino, regdate, remark, tid, pid, groupno, orderno, depth)"
+		String sql = "insert into activity_comment(activity_cmid, actino, actino, regdate, remark, tid, pid, groupno, orderno, depth)"
 		           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
 		 
 		 PreparedStatement pstmt = null ;
@@ -175,9 +175,7 @@ public class Activity_commentDao extends SuperDao {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " " ;
-		sql += " " ;
-		sql += " " ;
+		String sql = " select * from Activity_comment " ;
 		
 		List<Activity_comment> lists = new ArrayList<Activity_comment>();
 		try {
@@ -217,8 +215,8 @@ public class Activity_commentDao extends SuperDao {
 		return lists ;
 	}
 	public int UpdateData (Activity_comment bean) {
-		String sql = " " ; 
-		sql += " " ;
+		String sql = " Update Activity_comment set activity_cmid = ?, actino = ?, content = ?, regdate = ?," ; 
+		sql += " remark = ?, tid = ?, pid = ?, groupno = ?, orderno = ?, depth = ? " ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;

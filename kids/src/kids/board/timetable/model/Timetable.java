@@ -7,6 +7,7 @@ public class Timetable {
 	private String time ;
 	private String day ;
 	private String remark ;
+	private String tid ;
 	
 	public Timetable() {}
 
@@ -70,14 +71,36 @@ public class Timetable {
 		this.remark = remark;
 	}
 
+	
+
+
+	/**
+	 * @return the tid
+	 */
+	public String getTid() {
+		return tid;
+	}
+
+
+
+	/**
+	 * @param tid the tid to set
+	 */
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
+
 
 
 	@Override
 	public String toString() {
 		return "Timetable [time_id=" + time_id + ", subject_code=" + subject_code + ", class_id=" + class_id + ", time="
-				+ time + ", day=" + day + ", remark=" + remark + "]";
+				+ time + ", day=" + day + ", remark=" + remark + ", tid=" + tid + "]";
 	}
 
+
+
+	
 	
 	
 }

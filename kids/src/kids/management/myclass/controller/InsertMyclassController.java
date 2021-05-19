@@ -19,7 +19,7 @@ public class InsertMyclassController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		String gotopage = "/myclass/myclList.jsp" ;
+		String gotopage = "/myclass/myclInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	
@@ -28,35 +28,41 @@ public class InsertMyclassController extends SuperClass {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
 		
-		MultipartRequest multi = (MultipartRequest)request.getAttribute("multi") ;
+		//MultipartRequest multi = (MultipartRequest)request.getAttribute("multi") ;
 		
 		bean = new Myclass();
 		// int class_id ;
-		String class_name = multi.getParameter("class_name") ;
-		String tid = multi.getParameter("tid") ;
-		String remark = multi.getContentType("remark") ;
-		
+		String class_name = (String)request.getParameter("class_name") ;
+		String remark = (String)request.getParameter("remark") ;
+		System.out.println(class_name + remark);
 		//bean.setClass_id(class_id)
 		bean.setClass_name(class_name);
 		bean.setRemark(remark);
 		
-		if (this.validate(request) == true) {
-	         System.out.println("teacher insert validation check success");
-	         MyclassDao dao = new MyclassDao();
-	         
-	         int cnt = -99999;
-	 		 cnt = dao.insertData(bean);
-	         
-	         new ListMyclassController().doGet(request, response);
-	         
-	      } else {
-	         System.out.println("teacher insert validation check failure");
-	         request.setAttribute("bean", bean);
-	         super.doPost(request, response);
-	         
-	         String gotopage = "/myclass/myclassInsert.jsp" ;
-	 		super.GotoPage(gotopage);
-	 		}
+		MyclassDao dao = new MyclassDao();
+        
+        int cnt = -99999;
+		 cnt = dao.insertData(bean);
+        if(cnt == 1) {
+        	System.out.println("myclass입력 완료");
+        }
+        new ListMyclassController().doGet(request, response);
+        
+//		if (this.validate(request) == true) {
+//	         System.out.println("teacher insert validation check success");
+//	         
+//	 		 cnt = dao.insertData(bean);
+//	         
+//	         new ListMyclassController().doGet(request, response);
+//	         
+//	      } else {
+//	         System.out.println("teacher insert validation check failure");
+//	         request.setAttribute("bean", bean);
+//	         super.doPost(request, response);
+//	         
+//	         String gotopage = "/myclass/myclassInsert.jsp" ;
+//	 		super.GotoPage(gotopage);
+//	 		}
       }
 }
 

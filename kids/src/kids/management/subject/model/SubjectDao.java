@@ -23,15 +23,15 @@ public class SubjectDao extends SuperDao{
 				if( conn == null ){ super.conn = super.getConnection() ; }
 				conn.setAutoCommit( false );
 				
-				sql = " update employees set remark = ?  " ;
-				sql += " where subject_code = ? " ;
-				pstmt = super.conn.prepareStatement(sql) ;
-				
+//				sql = " update employees set remark = ?  " ;
+//				sql += " where subject_code = ? " ;
+//				pstmt = super.conn.prepareStatement(sql) ;
+//				
 				String imsi = bean.getName() +  "(" + subject_code + ")가 과목코드가 삭제 되었습니다." ;
-				pstmt.setString(1, imsi);			
-				pstmt.setInt(2, subject_code);
-				
-				cnt = pstmt.executeUpdate() ;
+//				pstmt.setString(1, imsi);			
+//				pstmt.setInt(2, subject_code);
+//				
+//				cnt = pstmt.executeUpdate() ;
 				if(pstmt != null) {pstmt.close();}
 				
 				sql = " update activity set remark = ?  " ;
@@ -78,7 +78,7 @@ public class SubjectDao extends SuperDao{
 		ResultSet rs = null ;	
 		
 		String sql = " select * from subject " ;
-		sql += " where no = ? " ;
+		sql += " where subject_code = ? " ;
 		
 		Student bean = null ;
 		try {
@@ -188,8 +188,7 @@ public class SubjectDao extends SuperDao{
 	}
 	
 	public int UpdateData( Subject bean ){
-		String sql = " " ; 
-		sql += " " ;
+		String sql = " Update Subject set subject_code = ?, subject = ?, remark = ? " ; 
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;

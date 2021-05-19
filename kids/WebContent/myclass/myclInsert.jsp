@@ -19,6 +19,9 @@
 <body>
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<div class="container col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
+		<form action="<%=YesForm %>" method="post" >
+        <input type="hidden" name="idcheck" value="false">
+        <input type="hidden" name="command" value="myclInsert">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>과목 이름 등록</h4>
@@ -27,29 +30,29 @@
 				    <div class="form-group">
 						<label class="control-label col-sm-3" for="title">과목명</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="title" 
-				        	name="title" value="${bean.class_name}">
-				        	<span class="err">${errtitle}</span>
+				        	<input type="text" class="form-control" id="class_name" 
+				        	name="class_name">
+				        	<span class="err">${errclass_name}</span>
 				      	</div>
 				    </div>	
                	    <div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">비고</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="subject" 
-				        		name="content" value="${bean.remark}">
+				        	<input type="text" class="form-control" id="remark" 
+				        		name="remark">
 				      	</div>
 				    </div>
 					<div class="form-group">        
 				      	<div class="col-sm-offset-2 col-sm-8">
-				        	<button type="submit" class="btn btn-primary">게시물 작성</button>
+				        	<button type="submit" class="btn btn-primary">과목 등록</button>
 				        	&nbsp;&nbsp;&nbsp;
 				        	<button type="reset" class="btn btn-danger">초기화</button>
 				      	</div>
 				    </div>
-				</form>
 			</div>
-		</div>
+		  </form>
 		</div>
 	</div>
+	
 </body>
 </html>

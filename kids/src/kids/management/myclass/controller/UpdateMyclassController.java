@@ -17,17 +17,14 @@ public class UpdateMyclassController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		Myclass bean = null ;
+		int myclass_id = Integer.parseInt(request.getParameter("myclass_id")) ;
+		
 		MyclassDao dao = new MyclassDao();
-		String data = dao.toString() ;
-		
-		int myclass = Integer.parseInt(request.getParameter("myclass")) ;
-		
-		List<Myclass> lists = new ArrayList<Myclass>() ;
-		
+		int bean = dao.DeleteData(myclass_id) ;
+				
 		request.setAttribute("bean", bean);
 		
-		String gotopage = "/member/main.jsp" ;
+		String gotopage = "/myclass/myclUpdate.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	
@@ -35,5 +32,12 @@ public class UpdateMyclassController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
+		Myclass bean = new Myclass() ;
+		
+		bean.setClass_id(Integer.parseInt(request.getParameter("class_id")));
+		bean.setClass_name(request.getParameter("classs_name"));
+		bean.setRemark(request.getParameter("remark"));
+		
+		
 	}
 }

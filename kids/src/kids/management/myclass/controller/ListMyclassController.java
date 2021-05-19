@@ -20,7 +20,7 @@ public class ListMyclassController extends SuperClass {
 		
 		MyclassDao dao = new MyclassDao();
 		List<Myclass> lists = dao.SelectDataList();
-		
+		request.setAttribute("lists", lists);
 		String gotopage = "/myclass/myclList.jsp" ;
 		super.GotoPage(gotopage);
 	}

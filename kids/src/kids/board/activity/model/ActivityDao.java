@@ -18,8 +18,8 @@ public class ActivityDao extends SuperDao {
    }
 
    public int InsertData(Activity bean) {
-      String sql = " " ;
-      sql += " " ;
+      String sql = " insert into activity(actino, subject_code, title, content, image, regdate, remark, tid, class_id, readhit)" 
+    		    +  " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
       
       PreparedStatement pstmt = null ;
       int cnt = -99999 ;
@@ -65,9 +65,8 @@ public class ActivityDao extends SuperDao {
       PreparedStatement pstmt = null ;
       ResultSet rs = null ;
       
-      String sql = " " ;
-      sql += " " ;
-      sql += " " ;
+      String sql = " select * from Activity " ;
+    
       
       List<Activity> lists = new ArrayList<Activity>();
       try {
@@ -106,8 +105,8 @@ public class ActivityDao extends SuperDao {
    }
 
    public int UpdateData (Activity bean) {
-      String sql = " " ;
-      sql += " " ;
+      String sql = " Update Activity set actino = ?, subject_code = ?, title = ?, content = ?," ;
+      sql += " image = ?, regdate = ?, remark = ?, tid = ?, class_id = ?, readhit = ?" ;
       
       PreparedStatement pstmt = null ;
       int cnt = -99999 ;
@@ -121,7 +120,7 @@ public class ActivityDao extends SuperDao {
          pstmt.setString(3, bean.getTitle());
          pstmt.setString(4, bean.getContent());
          pstmt.setString(5, bean.getImage());
-//         pstmt.setDate(6, (Date) bean.getRegdate());
+         pstmt.setString(6, bean.getRegdate());
          pstmt.setString(7, bean.getRemark());
          pstmt.setString(8, bean.getTid());
          pstmt.setInt(9, bean.getClass_id());
@@ -153,9 +152,8 @@ public class ActivityDao extends SuperDao {
          PreparedStatement pstmt = null ;
          ResultSet rs = null ;
          
-         String sql = " " ;
-         sql += " " ;
-         sql += " " ;
+         String sql = " select * from activity " ;
+         sql += " where actino = ? " ;
          
          Activity bean = null ;
          try {

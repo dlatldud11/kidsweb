@@ -50,8 +50,8 @@ public class InsertStudentController extends SuperClass {
 		bean.setImage(image);
 		
 		
-	   if (this.validate(request) == true) {
-	         System.out.println("student insert validation check success");
+//	   if (this.validate(request) == true) {
+//	         System.out.println("student insert validation check success");
 	         StudentDao sdao = new StudentDao();
 	         
 	         int cnt = -99999;
@@ -59,14 +59,14 @@ public class InsertStudentController extends SuperClass {
 	         
 	         new ListStudentController().doGet(request, response);
 	         
-	      } else {
-	         System.out.println("student insert validation check failure");
-	         request.setAttribute("bean", bean);
-	         super.doPost(request, response);
-	         
-	         String gotopage = "/student/stlInsert.jsp" ;
-	 		super.GotoPage(gotopage);
-	 		}
+//	      } else {
+//	         System.out.println("student insert validation check failure");
+//	         request.setAttribute("bean", bean);
+//	         super.doPost(request, response);
+//	         
+//	         String gotopage = "/student/stlInsert.jsp" ;
+//	 		super.GotoPage(gotopage);
+//	 		}
 	      }
 	   
 	   @Override

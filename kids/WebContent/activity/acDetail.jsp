@@ -166,10 +166,10 @@
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>acUpdate&notino=${bean.notino}'">
+				<button class="btn btn-info" onclick="location.href='<%=NoForm%>acUpdate&actino=${bean.actino}'">
 					글 수정
 				</button>
-				<button class="btn btn-danger" onclick="location.href='<%=NoForm%>acDelete&notino=${bean.notino}'">
+				<button class="btn btn-danger" onclick="location.href='<%=NoForm%>acDelete&actino=${bean.actino}'">
 					글 삭제
 				</button>
 				<button class="btn btn-primary" onclick="gotolist();">돌아 가기</button>

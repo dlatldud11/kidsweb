@@ -65,25 +65,23 @@
                <table class="table table-hover">
 					<thead>
 						<tr>
-							<th>글번호</th>
+							<th>학급 번호</th>
 							<th>학급</th>
 							<th>비고</th>
-							<th>등록일</th>
 						</tr>
 					</thead>
 			  	 <tbody>
 						<c:forEach var="bean" items="${requestScope.lists}">
-							<tr onclick="location.href='<%=NoForm%>acDetail&notino=${bean.notino}&${requestScope.parameters}'">
-								<td>${bean.notino}</td>
+							<tr onclick="location.href='<%=NoForm%>myclUpdate&myclass_id=${bean.class_id}';">
 								<td>${bean.class_id}</td>
+								<td>${bean.class_name}</td>
 								<td>${bean.remark}</td>
-								<td>${bean.regdate}</td>
 							</tr>	
 					</c:forEach>
 				</tbody>
 			</table>
 						   &nbsp;&nbsp;
-                           <button class="btn btn-primary" type="button" onclick="write();">학급 추가하기</button>
+                           <button class="btn btn-primary" type="button" onclick="location.href='<%=NoForm%>myclInsert';">학급 추가하기</button>
                           
         </div> 
       </div>
