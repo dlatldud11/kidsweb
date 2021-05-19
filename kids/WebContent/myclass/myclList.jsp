@@ -81,16 +81,10 @@
 							</tr>	
 					</c:forEach>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td>
-							<button class="btn btn-info" onclick="location.href='<%=NoForm%>acInsert&tid=${sessionScope.loginfo.tid}'">
-								글쓰기
-							</button>
-						</td>
-					</tr>
-				</tfoot>		
-		 	</table>
+			</table>
+						   &nbsp;&nbsp;
+                           <button class="btn btn-primary" type="button" onclick="write();">학급 추가하기</button>
+                          
         </div> 
       </div>
     </div>

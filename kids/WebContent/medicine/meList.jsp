@@ -81,7 +81,18 @@
 								<td>${bean.checks}</td>
 							</tr>	
 						</c:forEach>
-				</tbody>		
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>
+						<!-- <c:if test="${whologin == 3 }"> 구현 완성하고 풀기 --> 
+							<button class="btn btn-info" onclick="location.href='<%=NoForm%>meInsert&pid=${sessionScope.loginfo.pid}&sid=${sessionScope.loginfo.sid}'">
+								글쓰기
+							</button>
+						<!-- </c:if> -->
+						</td>
+					</tr>
+				</tfoot>			
 		 	</table>
         </div> 
       </div>

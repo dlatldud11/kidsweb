@@ -355,7 +355,7 @@ e
     <!-- Page level plugins -->
     <script src="<%=request.getContextPath()%>/bootstrap/vendor/chart.js/Chart.min.js"></script>
 
-    <!— Page level custom scripts —>
+     <!-- Page level custom scripts -->
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-area-demo.js"></script>
     <script src="<%=request.getContextPath()%>/bootstrap/js/demo/chart-pie-demo.js"></script>
 

@@ -52,7 +52,7 @@ public class LoginParentsController extends SuperClass {
 			super.session.setAttribute("plists", plists);
 			super.session.setAttribute("loginfo", bean);
 			
-			gotopage = "/common/main.jsp" ;
+			gotopage = "/common/main2.jsp" ;
 			super.GotoPage(gotopage);
 		}
 		

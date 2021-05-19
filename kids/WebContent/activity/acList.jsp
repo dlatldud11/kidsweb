@@ -86,16 +86,10 @@
 							</tr>	
 					</c:forEach>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td>
-							<button class="btn btn-info" onclick="location.href='<%=NoForm%>acInsert&tid=${sessionScope.loginfo.tid}'">
-								글쓰기
-							</button>
-						</td>
-					</tr>
-				</tfoot>		
+				
 		 	</table>
+				<button class="btn btn-primary" onclick="location.href='<%=NoForm%>acInsert&tid=${sessionScope.loginfo.tid}'">글쓰기</button>
+		       &nbsp;&nbsp;
         </div> 
       </div>
     </div>
