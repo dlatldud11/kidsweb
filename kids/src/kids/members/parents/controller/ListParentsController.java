@@ -49,5 +49,10 @@ public class ListParentsController extends SuperClass {
 		String gotopage = "/parents/paList.jsp" ;
 		super.GotoPage(gotopage);
 	}
+	
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
+	}
 
 }

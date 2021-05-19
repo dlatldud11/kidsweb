@@ -27,7 +27,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="<%=request.getContextPath()%>/bootstrap2/css/styles.css" rel="stylesheet" />
-        
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   		<script>
@@ -37,6 +37,9 @@ $(document).ready(function(){
   });
 });
 </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
 <body>
 
@@ -181,9 +184,230 @@ $(document).ready(function(){
   
 </div>
 
+<div class="container mt-3">
+  <h2>Filterable Table</h2>
+  <p>Type something in the input field to search the table for first names, last names or emails:</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@mail.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@greatstuff.com</td>
+      </tr>
+      <tr>
+        <td>Anja</td>
+        <td>Ravendale</td>
+        <td>a_r@test.com</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 
+                        <form>
+                        	<table class="table table-dark" border="1" cellpadding="5" cellspacing="10" >
+                        		<tr>
+                        			<td width="30%" align="center" style="vertical-align:middle;">희망 학급</td>
+                        			<td width="70%" style="vertical-align:middle;">	
+                        				
+			                        	<div class="form-row" align="center">
+										  <!-- Nav pills -->
+										  <ul class="nav nav-pills" role="tablist">
+										    <li class="nav-item">
+										      <a class="nav-link active" data-toggle="pill" href="#class1">햇님반</a>
+										    </li>
+										    <li class="nav-item">
+										      <a class="nav-link" data-toggle="pill" href="#class2">달님반</a>
+										    </li>
+										    <li class="nav-item">
+										      <a class="nav-link" data-toggle="pill" href="#class3">별빛반</a>
+										    </li>
+										  </ul>
+										
+										  <!-- Tab panes -->
+										  <div class="tab-content">
+										    <div id="class1" class="container tab-pane active">
+										    	<input type="hidden" name="myclass" value="">
+										    </div>
+										    <div id="class2" class="container tab-pane fade">
+										   		 <input type="hidden" name="myclass" value="">
+										    </div>
+										    <div id="class3" class="container tab-pane fade">
+										    	<input type="hidden" name="myclass" value="">
+										    </div>
+										  </div>
+			                        	</div>
+			                        </td>
+                        		</tr>
+                        		
+		                        <tr>
+                        			<td width="30%" style="vertical-align:middle;">원생이름</td>
+                        			<td width="40%">
+                        				<input type="text" name="stname" class="form-control">
+                        			</td>
+                        		</tr>
+                        		 <tr>
+                        			<td width="30%" style="vertical-align:middle;">보호자명</td>
+                        			<td width="40%">
+                        				<input type="text" name="pname" class="form-control">
+                        			</td>
+                        		</tr>
+                        		 <tr>
+                        			<td width="30%" style="vertical-align:middle;">휴대폰번호</td>
+                        			<td width="40%">
+                        				<div class="form-row">
+                        					<div class="col-3">
+	                        					<input type="text" name="hp1" class="form-control">
+	                        				</div>
+	                        				<div class="col-1">
+	                        					<label for="hp1" class="form-control-label">-</label>
+	                        				</div>
+	                        				<div class="col-3">
+	                        					<input type="text" name="hp2" class="form-control">
+	                        				</div>
+	                        				<div class="col-1">
+	                        					<label for="hp2" class="form-control-label">-</label>
+	                        				</div>
+	                        				<div class="col-3">
+	                        					<input type="text" name="hp3" class="form-control">
+	                        				</div>
+                        				</div>
+                        			</td>
+                        		</tr>
+                        		 <tr>
+                        			<td width="30%" style="vertical-align:middle;">상담예약일자</td>
+                        			<td width="40%">
+                       					<input type="date"class="form-control">
+                        			</td>
+                        		</tr>
+                        		 <tr>
+                        			<td width="30%" style="vertical-align:middle;">문의 내용</td>
+                        			<td width="40%">
+                        				<textarea style="resize: none;" class="form-control" name="textarea" cols="100%" rows="10" id="textarea"></textarea>
+                        			</td>
+                        		</tr>
+                        		<tr>
+                        			<td colspan="2">
+                        				<input type="submit" class="form-control" value="문의 등록">
+                        			</td>
+                        		</tr>
+                        	</table>
+                        </form>
+                        
+<ul class="pagination"><li class="active page-link page-item "><a><font color='red'><b>1</b></font></a></li><li class="page-link page-item "><a href="/kids/Kids?command=reList&pageNumber=2&year=2021&month=05&order=desc&keyword=all">2</a></li></ul>
 
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+.page-link:hover {
+  z-index: 2;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.page-link:focus {
+  z-index: 3;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.pagination-lg .page-link {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.pagination-lg .page-item:first-child .page-link {
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+.pagination-lg .page-item:last-child .page-link {
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.pagination-sm .page-item:first-child .page-link {
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+}
+.pagination-sm .page-item:last-child .page-link {
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+}
 
 
 </body>

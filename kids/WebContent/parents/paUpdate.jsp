@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>유치원 회원정보 수정</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
    <script type="text/javascript">
    
    function checkWrite(){
@@ -82,10 +82,7 @@
 	    	  document.writeForm.email1.focus();
 	    	  submitcheck=false;
 	      }
-	      if(document.writeForm.image.value == ""){
-	    	  document.getElementById("imagediv").innerText=" 사진 파일을 선택하세요";
-	    	  submitcheck=false;
-	      }
+	      
 	      if(document.writeForm.hp.value == ""){
 	    	  document.getElementById("hpdiv").innerText= " 휴대폰 번호를 입력하세요";
 	    	  document.writeForm.hp.focus();
@@ -174,7 +171,7 @@
 		
 	     	 document.getElementById('childsecond').innerHTML ="<div class='form-row' id='deleteid'><div class='col-'>"
 	      	+"<input type='text' name='childid' class='form-control' value='${requestScope.bean.childid}' readonly></div><div class='col-'>"
-	         +"<input type='button' class='form-control btn btn-primary' id=searchsecond value='원생 찾기' onclick='stSearch2();'>"
+	         +"<input type='button' class='form-control btn btn-primary' id=searchsecond value='원생 찾기' onclick='stSearch();'>"
 	         +"</div><div class='col-'>"
 	         +"<input type='button' class='btn btn-secondary' onclick='add_input2();' id='btnsecondadd' value='추가'> </div> <div class='col-'>"
 	         +"<input type='button' class='btn btn-danger' onclick='delete_input();' id='btnsecond' value='삭제'> </div> </div>";
@@ -188,7 +185,7 @@
 		 	 
 	     	 document.getElementById('childthird').innerHTML ="<div class='form-row' id='deleteid2'><div class='col-'>"
 	         +"<input type='text' name='childid2' class='form-control' value='${requestScope.bean.childid2}' readonly></div><div class='col-'>"
-	         +"<input type='button' class='form-control btn btn-primary' value='원생 찾기' onclick='stSearch3();'>"
+	         +"<input type='button' class='form-control btn btn-primary' value='원생 찾기' onclick='stSearch();'>"
 	         +"</div><div class='col-'>"
 	         +"<input type='button' class='btn btn-danger' onclick='delete_input2();' value='삭제'></div> </div>";
 	   }
@@ -205,66 +202,78 @@
 	      	document.getElementById('deleteid2').outerHTML = "";
 	      	document.getElementById('btnsecond').onclick = delete_input;
 	      	document.getElementById('btnsecondadd').onclick = add_input2;
-	      	document.getElementById('searchsecond').onclick = stSearch2;
+	      	document.getElementById('searchsecond').onclick = stSearch;
 	   }
 	   
 	   function stSearch(){
 	      var url = '<%=NoForm%>paStSearch';
 	      window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
 		}
-	   function stSearch2(){
-		   var url = '<%=NoForm%>paStSearch';
-		   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
+	   
+	   window.onload=function(){
+		   document.writeForm.gender['${requestScope.genderCheck}'].checked = true;
+		   document.wrteForm.relationship['${requestScope.relCheck}'].checked = true;
+		  
+		   //select box가 문제로구나........
+		   //var value ="${requestScope.email2}"; 
+		   //$(#email2).val('value').attr("selected", "selected");
+		   //s.options[s.selectedIndex].value;
+		   
+		  //$("#email2").val("${requestScope.email2}").prop("selected", true);
+		  //document.writeForm.email2.value = '${requestScope.email2}';
+		  // $("#email2 option:eq(2)").prop("selected", true);
+
+		//   var s = document.writeForm.getElementById('email2');
+		//	s.options[s.selectedIndex].value = '${requestScope.email2}';
+		  // $("#email2 option:eq(2)").attr("selected", "selected");
+
 	   }
-	   function stSearch3(){
-		   var url = '<%=NoForm%>paStSearch';
-		   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
-	   }
-    
-    window.onload=function(){
-    	alert('gender '+${requestScope.bean.gender == '여'});
-    	alert('gender 남 :'+${requestScope.bean.gender == '남'} );
+  
+//골칫거리	   
+//    window.onload=function(){
+//	   	alert('gender '+${requestScope.bean.gender == '여'});
+//    	alert('gender 남 :'+${requestScope.bean.gender == '남'} );
     	
-    	document.writeForm.relationship[3].checked = true;
+//    	document.writeForm.relationship[3].checked = true;
     	
-	 	if("${requestScope.bean.gender == '남'}"){
- 			document.writeForm.gender[0].checked = true;
-  		}else if("${requestScope.bean.gender == '여'}"){
-  		document.writeForm.gender[1].checked = true;
-  		} // 도대체 왜 선태되는거지??????? if가 false일때도....
+//	 	if("${requestScope.bean.gender == '남'}"){
+// 			document.writeForm.gender[0].checked = true;
+//  		}else if("${requestScope.bean.gender == '여'}"){
+// 			document.writeForm.gender[1].checked = true;
+//  		} // 도대체 왜 선태되는거지??????? if가 false일때도....
     	
-    	alert('relationship '+${requestScope.bean.relationship == '아버지'});
-//   	if("${requestScope.bean.relationship == '아버지'}"){
- //   		document.writeForm.relationship[0].checked = true;
- //   	}else if("${requestScope.bean.relationship == '어머니'}"){
-//    		document.writeForm.relationship[1].checked = true;
-//    	}else if("${requestScope.bean.relationship == '조부모님'}"){
-//    		document.writeForm.relationship[2].checked = true;
- //   	}else if("${requestScope.bean.relationship == '보호자님'}"){
- //   		document.writeForm.relationship[3].checked = true;
- //   	}
- //
- 
- // 	 document.modifyForm.gender["${memberDTO.gender }"].checked = true;
-//	 document.modifyForm.email2.value = "${memberDTO.email2 }";
-//	 document.modifyForm.tel1.value = "${memberDTO.tel1 }";
+//    	alert('relationship '+${requestScope.bean.relationship == '아버지'});
+
 
 //참고 
 
  		// 조건문이 안먹음...지금보니...
  		// 업데이트 할때 파일 유효성 검사에서 제거하자. 새로 업로드 추가했을 때만 되도록.
-   		if('${not empty requestScope.childid2}'){
-   			add_input();
-   			add_input2();
-   		}else if('${not empty requestScope.childid}'){
-   			add_input();
-   		}
-    }
+// 		var state1 = '${not empty requestScope.childid2}';
+// 		var state2 = '${not empty requestScope.childid}';
+ //		alert('state1 : '+state1);
+// 		alert('state2 : '+state2);
+//   		if(state1){ //false인데 왜 실행되는거야ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+//   			add_input();
+//   			alert('실행1');
+//   			add_input2();
+//   			alert('실행2');
+//   		}else if(state2){
+//   			add_input();
+//   			alert('실행3');
+//   		}
+//    }
     
    </script>
    <style type="text/css">
-      div#pwddiv,div#repwddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv,div#studiv,div#relationshipdiv{
+      div#pwddiv,div#repwddiv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv,div#studiv,div#relationshipdiv{
          color:red;
+         font-size:10pt;
+         font-weight:bold;
+         padding-left:5px;
+      }
+      div#imagediv{
+        color:green;
          font-size:10pt;
          font-weight:bold;
          padding-left:5px;
@@ -280,8 +289,8 @@
          <div class="card-title">
             <h1 align="center" align="center">회원 정보 수정</h1>
          </div>
-         <form action="<%=YesForm %>" name="writeForm" method="post">
-            <input type="hidden" name="command" value="paInsert">
+         <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="command" value="paUpdateTwo">
             <input type="hidden" name="page" value="update">
                 <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
@@ -340,7 +349,7 @@
                   </div>
                   <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">
-                     <select class="form-control" name="email2" id="email2">
+                     <select class="form-control" name="email2" id="email2" >
                         <option value="-">---선택하세요
                         <option value="naver.com">naver.com
                         <option value="gmail.com">gmail.com
@@ -357,13 +366,15 @@
                </div>
             </div>
             <div class="form-group" id="hpdiv"></div>
+            <input type="hidden" name="image" value="${requestScope.bean.image }">
+            
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
-                  <input type="file" class="form-control-file border" id="image" name="image" value="${requestScope.bean.image }">
+                  <input type="file" class="form-control-file border" id="fakeimage" name="fakeimage">
                </div>
             </div>
-            <div class="form-group" id="imagediv"></div>
+            <div class="form-group" id="imagediv">현재 사진 파일 : ${requestScope.bean.image}</div>
             <div class="form-group">
                <label for="zipcode" class="form-control-label col-sm-0" >우편번호</label>
                <div class="form-row">

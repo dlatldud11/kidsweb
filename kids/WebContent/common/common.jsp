@@ -152,7 +152,7 @@ e
                     		투약의뢰서</a>
                     	<a class="collapse-item" href="tables.jsp">
                     		귀가동의서</a>
-                    	<a class="collapse-item" href="tables.jsp">
+                    	<a class="collapse-item" href="<%=NoForm%>resList">
                     		상담예약확인</a>	
                     </div>
                 </div>

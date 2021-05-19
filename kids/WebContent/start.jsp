@@ -274,18 +274,26 @@
         <section class="call-to-action text-white text-center">
             <div class="overlay"></div>
             <div class="container">
+            
                 <div class="row">
-                    <div class="col-xl-9 mx-auto"><h2 class="mb-4">Ready to get started? Sign up now!</h2></div>
+                    <div class="col-xl-9 mx-auto"><h2 class="mb-4">상담문의</h2></div>
                     <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                        <form>
-                            <div class="form-row">
-                                <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control form-control-lg" type="email" placeholder="Enter your email..." /></div>
-                                <div class="col-12 col-md-3"><button class="btn btn-block btn-lg btn-primary" type="submit">Sign up!</button></div>
-                            </div>
-                        </form>
+                        	
+                        	<form action="<%=YesForm %>" method="post">
+                        		<input type="hidden" name="command" value="resInsert">
+	                        	<input class="form-control form-control-lg" name="name"type="text" placeholder="원아 이름을 입력하세요" />
+	                        	<br>
+	                        	<input class="form-control form-control-lg" type="text" name="hp" placeholder="휴대폰 번호를 입력하세요" />
+	                        	<br>
+	                        	<input class="form-control form-control-lg" type="date" name="resdate" placeholder="희망 상담일자를 입력하세요" />
+	                        	<br>
+	                        	<input class="form-control btn btn-primary" type="submit" value="상담예약" />
+                        	</form>
+                        	
                     </div>
                 </div>
             </div>
+          
         </section>
         <!-- Footer-->
         <footer class="footer bg-light">

@@ -15,30 +15,31 @@
 		  });
 		});
 		
-		function submit(){
-			document.myform.submit();
-		}
-		
 		function callFunction(name) {
 			alert(name);
 			document.myform.submit_menu.value=name;
-			submit();
+			document.myform.submit();
 		}
 		
-		/* 필드 검색 상태 보존 */
-		$('#class_menu option').each(function(){
-			if($(this).val() == '${class_menu}'){
-				$(this).attr('selected', 'selected') ;
-			}			
-		});
+		function csubmit(){
+			document.myform.submit();
+		}
 		
-		$('#submit_menu').val('${submit_menu}');
-
+		window.onload = function(){
+			/* 필드 검색 상태 보존 */
+			$('#class_menu option').each(function(){
+				if($(this).val() == '${class_menu}'){
+					$(this).attr('selected', 'selected') ;
+				}			
+			});
+			
+			$('#submit_menu').val('${submit_menu}');
+		} 
 	</script>
 </head>
 <body>
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-   <div class="container col-sm-offset-4 col-sm-8">
+   <div class="container col-sm-offset-2 col-sm-8">
          <div class="card card-primary">
             <div class="card-header">
                <h4 align="center" >보호자 목록</h4>
@@ -50,18 +51,17 @@
                				<td align="center" style="padding-top: 20px;">학급 선택</td>
                				<td colspan="2">
                					<form name="myform" method="post" action="<%=YesForm%>">
-               					<select name="class_menu" id="class_menu" class="form-control">
-	                                 <option value="all" selected="selected">전체
+               					<select name="class_menu" id="class_menu"  onchange="csubmit();" class="form-control">
+	                                 <option value="all">전체
 	                                 <c:forEach var="bean" items="${requestScope.clists}">
 	                                 	<option value="${bean.class_name}">${bean.class_name}
 	                                 </c:forEach>
 	                            </select>
-	                            <input type="hidden" id="submit_menu" name="submit_menu" value="all">
+	                            <input type="hidden" id="submit_menu" name="submit_menu">
 	                            <input type="hidden" name="command" value="paList">
 	                            </form>
                				</td>
                				<td colspan="1">
-               						<button class="btn btn-primary" type="button" onclick="submit();">적용</button>
                				</td>
                				<td colspan="4">
 					  		</td>
@@ -73,7 +73,7 @@
 							<td colspan="4">
 								<ul class="nav nav-tabs justify-content-end">
 								    <li class="nav-item">
-								      <a class="nav-link" href="javascript:callFunction('전체');" >전체</a>
+								      <a class="nav-link" href="javascript:callFunction('all');" >전체</a>
 								    </li>
 								    <li class="nav-item">
 								      <a class="nav-link" href="javascript:callFunction('승인');">승인</a>
@@ -84,7 +84,6 @@
 							  	</ul>
 							</td>
 						</tr>
-                  	 
                  		<tr>
 							<th>학급명</th>
 							<th>학생명</th>
@@ -96,8 +95,7 @@
 							<th>승인 처리</th>
 						</tr>
                	  </thead>
-               	   
-               	  <tbody>
+               	  <tbody id="myTable">
 					<c:forEach var="bean" items="${requestScope.plists}">
 						<tr>
 							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.classname}</td>
@@ -108,8 +106,8 @@
 							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.hp}</td>
 							<td onclick="location.href='<%=NoForm%>paDetail&pid=${bean.pid}'">${bean.submit}</td>
 							<td>
-								<button class= "button button-primary" type="button" onclick="location.href='<%=NoForm%>paSubmitUpdate&pid=${bean.pid}&class_menu=${requestScope.class_menu }&submit_menu=${requestScope.submit_menu}'">가입 승인</button>
-							</td>							
+								<button class= "btn btn-primary" type="button" onclick="location.href='<%=NoForm%>paSubmitUpdate&pid=${bean.pid}&class_menu=${requestScope.class_menu }&submit_menu=${requestScope.submit_menu}'">가입 승인</button>
+							</td>	
 						</tr>							
 					</c:forEach>		
 					</tbody>

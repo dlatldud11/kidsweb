@@ -250,7 +250,7 @@
 	
      	 document.getElementById('childsecond').innerHTML ="<div class='form-row' id='deleteid'><div class='col-'>"
       	+"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' id=searchsecond value='원생 찾기' onclick='stSearch2();'>"
+         +"<input type='button' class='form-control btn btn-primary' id=searchsecond value='원생 찾기' onclick='stSearch();'>"
          +"</div><div class='col-'>"
          +"<input type='button' class='btn btn-secondary' onclick='add_input2();' id='btnsecondadd' value='추가'> </div> <div class='col-'>"
          +"<input type='button' class='btn btn-danger' onclick='delete_input();' id='btnsecond' value='삭제'> </div> </div>";
@@ -264,7 +264,7 @@
 	 	 
      	 document.getElementById('childthird').innerHTML ="<div class='form-row' id='deleteid2'><div class='col-'>"
          +"<input type='text' name='childid2' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' value='원생 찾기' onclick='stSearch3();'>"
+         +"<input type='button' class='form-control btn btn-primary' value='원생 찾기' onclick='stSearch();'>"
          +"</div><div class='col-'>"
          +"<input type='button' class='btn btn-danger' onclick='delete_input2();' value='삭제'></div> </div>";
    }
@@ -281,21 +281,13 @@
       	document.getElementById('deleteid2').outerHTML = "";
       	document.getElementById('btnsecond').onclick = delete_input;
       	document.getElementById('btnsecondadd').onclick = add_input2;
-      	document.getElementById('searchsecond').onclick = stSearch2;
+      	document.getElementById('searchsecond').onclick = stSearch;
    }
    
    function stSearch(){
       var url = '<%=NoForm%>paStSearch';
       window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
 	}
-   function stSearch2(){
-	   var url = '<%=NoForm%>paStSearch';
-	   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
-   }
-   function stSearch3(){
-	   var url = '<%=NoForm%>paStSearch';
-	   window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
-   }
    
    </script>
    <style type="text/css">

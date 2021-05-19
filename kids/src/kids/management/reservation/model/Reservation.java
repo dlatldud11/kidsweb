@@ -7,8 +7,8 @@ public class Reservation {
 	private String tid ;
 	private String textarea ;
 	private String status ; 
-	private Date res_date ;
-	private Date reg_date ;
+	private String res_date ;
+	private String reg_date ;
 	private String name ;
 	private String hp ;
 	private String remark ;
@@ -47,19 +47,20 @@ public class Reservation {
 		this.status = status;
 	}
 
-	public Date getRes_date() {
+
+	public String getRes_date() {
 		return res_date;
 	}
 
-	public void setRes_date(Date res_date) {
+	public void setRes_date(String res_date) {
 		this.res_date = res_date;
 	}
 
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 
