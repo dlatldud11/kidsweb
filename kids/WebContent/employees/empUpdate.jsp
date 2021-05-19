@@ -302,7 +302,7 @@
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email1" name="email1" value="${bean.email}"> 
+                     <input type="text" class="form-control" id="email1" name="email1"> 
                   </div>
                   <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">

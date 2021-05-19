@@ -25,129 +25,19 @@
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script type="text/javascript">
    
-   function checktid(){
-      document.getElementById("tiddiv").innerText="";
-      var tid = document.writeForm.tid.value;
-      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
-      var tidtest = engNum.test(tid);
-      
-      if(tid==""){
-         console.log('if문들어옴');
-         document.getElementById("tiddiv").innerText="  먼저 아이디를 입력하세요";
-         document.writeForm.tid.focus(); 
-      }else if(tidtest==false){
-   	  	 document.getElementById("tiddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
-         document.writeForm.tid.focus(); 
-      }else{
-         console.log('else 들어옴');
-         var url = '<%=NoForm%>idCheck&tid='+tid;
-         window.open(url,"checktid","width=450, height=150, left=800, top=200, menubar=no, location=no, left=400, top=200");
-      }
-   }
-   
-   function idcheckFalse(){
-	   document.writeForm.idcheck.value=false;
-   }
-   
    function checkWrite(){
 	  var submitcheck = true;
-      document.getElementById("tiddiv").innerText="";
       document.getElementById("namediv").innerText="";
       document.getElementById("imagediv").innerText="";
-      document.getElementById("birthdiv").innerText="";
       document.getElementById("hpdiv").innerText="";
       document.getElementById("addressdiv").innerText="";
-      document.getElementById("passworddiv").innerText="";
-      document.getElementById("repassworddiv").innerText="";
-      document.getElementById("genderdiv").innerText="";
-      document.getElementById("emaildiv").innerText="";
       document.getElementById("zipcodediv").innerText="";
       
-      var tid = document.writeForm.tid.value;
-      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
-      var tidtest = engNum.test(tid);
-      console.log('tidtest :'+tidtest);
-      
-      var password = document.writeForm.password.value;
-      var engNum = /(?=.*\d)(?=.*[a-z]).{8,15}/; //영어소문자+숫자 혼합. 8글자이상 15글자 이하
-      var passwordtest = engNum.test(password);
-      console.log('passwordtest :'+passwordtest);
-     
-      if(document.writeForm.tid.value==""){
-    	  console.log('1');
-      	document.getElementById("tiddiv").innerText="  아이디를 입력하세요";
-      	document.writeForm.tid.focus();
-      	submitcheck = false;
-      }
-      if(tidtest==false){
-    	  console.log('2');
-    	document.getElementById("tiddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
-        document.writeForm.tid.focus(); 
-        submitcheck = false;
-      }
-
-      if(document.writeForm.password.value==""){
-    	  console.log('3');
-      	document.getElementById("passworddiv").innerText="  비밀번호를 입력하세요";
-      	document.writeForm.password.focus();
-      	submitcheck = false;
-      }
-      if(passwordtest == false){
-    	  console.log('4');
-       	document.getElementById("passworddiv").innerText=" 비밀번호는 숫자+영어 혼합하고, 8글자 이상 15글자 이하이어야 합니다";
-       	document.writeForm.password.focus();
-       	submitcheck = false;
-      }
-      if(document.writeForm.repassword.value==""){
-    	  console.log('5');
-      	document.getElementById("repassworddiv").innerText="  비밀번호 확인을 입력하세요";
-      	document.writeForm.repassword.focus();
-      	submitcheck = false;
-      }else if(document.writeForm.password.value != document.writeForm.repassword.value){
-    	  console.log('6');
-      	document.getElementById("repassworddiv").innerText="  비밀번호가 일치하지 않습니다";
-      	document.writeForm.password.focus();
-      	submitcheck = false;
-      }
-      if(document.writeForm.idcheck.value ==""){
-    	  console.log('7');
-      	document.getElementById("tiddiv").innerText= "  중복체크 하세요";
-      	submitcheck = false;
-      }
-      if(document.writeForm.idcheck.value == 'false'){
-    	  console.log('8');
-      	document.getElementById("tiddiv").innerText= "  중복체크 하세요";
-      	submitcheck = false;
-      }	
       if(document.writeForm.name.value==""){
     	  console.log('9');
 	   	  document.getElementById("namediv").innerText=" 이름을 입력하세요";
 	   	  document.writeForm.name.focus();
 	   	submitcheck = false;
-      }
-      if(document.writeForm.birth.value == ""){
-    	  console.log('10');
-    	  document.getElementById("birthdiv").innerText=" 생년월일을 선택하세요";
-    	  submitcheck = false;
-      }
-      
-      var arrgender = document.writeForm.gender;
-      var cnt = 0;
-      for(var i=0; i<arrgender.length; i++){
-    	  if(arrgender[i].checked){
-    		  cnt +=1;
-    	  }
-      }
-      if(cnt == 0){
-    	  console.log('11');
-    	 document.getElementById("genderdiv").innerText=" 성별을 체크하세요";
-    	 submitcheck = false;
-      }
-      if(document.writeForm.email1.value == "" || document.writeForm.email2.value == "-"){
-    	  console.log('12');
-    	  document.getElementById("emaildiv").innerText=" 이메일을 입력하세요";
-    	  document.writeForm.email1.focus();
-    	  submitcheck = false;
       }
       if(document.writeForm.image.value == ""){
     	  console.log('13');
@@ -238,14 +128,14 @@
       <img alt="로고" src="./../images/아이하루 로고.png" width="75" height="50">
    </div>
    <br>
-   <div class="card card-primary offset-sm-3 col-sm-6" id="empUpdate">
+   <div class="card card-primary offset-sm-3 col-sm-6" id="empmUpdate">
       <div class="card-body">
          <div class="card-title">
             <h1 align="center" align="center">직원 정보 수정</h1>
          </div>
           <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
          	<input type="hidden" name="idcheck" value="false">
-            <input type="hidden" name="command" value="empInsert">
+            <input type="hidden" name="command" value="empmUpdate">
              <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
@@ -256,66 +146,12 @@
             </div>
 		<div class="form-group" id="tiddiv"></div>
             <div class="form-group">
-               <label for="password" class="form-control-label col-sm-0">비밀번호</label>
-               <div class="col-">
-                  <input type="password" class="form-control" id="password" name="password">
-               </div>
-            <div class="form-group" id="passworddiv"></div>
-            </div>
-            <div class="form-group">
-               <label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
-               <div class="col-">
-                  <input type="password" class="form-control" id="repassword" name="repassword" readonly="readonly">
-               </div>
-            </div>
-            <div class="form-group" id="repassworddiv"></div>
-            
-            <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
                <div class="col-">
                   <input type="text" class="form-control" id="name" name="name" value="${bean.name}" readonly="readonly">
                </div>
             </div>
              <div class="form-group" id="namediv"></div>
-            <div class="form-group">
-               <label for="birth" class="form-control-label col-sm-0">생년월일</label>
-               <div class="col-6">
-                  <input type="date" class="form-control" id="birth" name="birth">
-               </div>
-            </div>
-             <div class="form-group" id="birthdiv"></div>
-            <div class="form-group">
-               <label for="gender" class="form-control-label col-sm-0">성별</label>
-                  <div class="form-row">
-                     <div class="col-1">
-                        <input type="radio" class="form-control" id="gender" name="gender" value="남">
-                     </div>
-                     <label for="gender" class="form-control-label col-sm-0">&nbsp;남&nbsp;</label>
-                     <div class="col-1">
-                        <input type="radio" class="form-control" id="gender" name="gender" value="여">
-                     </div>
-                     <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
-               	</div>
-            </div>
-             <div class="form-group" id="genderdiv"></div>
-            <div class="form-group">
-               <label for="email" class="form-control-label col-sm-0">이메일</label>
-               <div class="form-row">
-                  <div class="col-5">
-                     <input type="text" class="form-control" id="email1" name="email1" value="${bean.email}" readonly="readonly"> 
-                  </div>
-                  <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
-                  <div class="col-5">
-                     <select class="form-control" name="email2" id="email2">
-                        <option value="-">---선택하세요
-                        <option value="naver.com">naver.com
-                        <option value="gmail.com">gmail.com
-                        <option value="daum.net">daum.net         
-                     </select>
-                  </div>
-               </div>
-            </div>
-             <div class="form-group" id="emaildiv"></div>
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
@@ -334,7 +170,7 @@
                <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
+                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly value="${bean.zipcode}">
                   </div>
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()">
@@ -345,7 +181,7 @@
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address1" name="address1" readonly>
+                  <input type="text" class="form-control" id="address1" name="address1" readonly value="${bean.address1}">
                </div>
             </div>
             <div class="form-group">
@@ -355,6 +191,25 @@
                </div>
             </div>
              <div class="form-group" id="addressdiv"></div>
+             <div class="form-group">
+               <label for="salary" class="form-control-label col-sm-0">급여</label>
+               <div class="col-">
+                  <input type="number" class="form-control" id="salary" name="salary" placeholder="숫자만 입력하세요" value="${bean.salary}">
+               </div>
+            </div>
+            <div class="form-group" id="responsibilities">
+             <label for="responsibilities" class="form-control-label col-sm-0">직책 선택</label>
+               <div class="form-row">                
+               <label for="responsibilities" class="form-control-label col-sm-0"></label>
+                  <div class="col-8">
+                     <select class="form-control" name="responsibilities" id="responsibilities">
+                        <option value="미정">---선택하세요
+                        <option value="직원">직원</option>
+                        <option value="특별">특별</option>
+                     </select>
+                  </div>
+               </div>
+            </div> 
             <div class="form-group" id="class_id">
              <label for="class_id" class="form-control-label col-sm-0">학급 선택</label>
                <div class="form-row">                
@@ -369,8 +224,7 @@
                   </div>
                </div>
             </div> 
-            <div class="form-group" id="class_iddiv"></div>	
-                        <div class="form-group" id="subject_code">
+            <div class="form-group" id="subject_code">
              <label for="subject_code" class="form-control-label col-sm-0">과목 선택</label>
                <div class="form-row">
                   <label for="subject_code" class="form-control-label col-sm-0"></label>
@@ -384,7 +238,6 @@
                   </div>
                </div>
             </div> 
-            <div class="form-group" id="subject_codediv"></div>	
                 <div class="form-group form-row">
                 <div class = "col-4">
             	<button class="btn btn-info" onclick="location.href='<%=NoForm%>empList'">
@@ -392,7 +245,7 @@
 				</button>
 				</div>
             	<div class = "col-4">
-               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
+               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="수정 완료">
                </div>
                <div class = "col-4">
                		<input type="reset" class="form-control btn btn-secondary" value="초기화">

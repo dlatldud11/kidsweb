@@ -90,7 +90,7 @@ public class InsertEmployerController extends SuperClass {
 			bean.setAddress1(multi.getParameter("address1"));
 			bean.setAddress2(multi.getParameter("address2"));
 			bean.setBirth(multi.getParameter("birth"));
-			bean.setEmail(multi.getParameter("email"));
+			bean.setEmail(multi.getParameter("email1")+"@"+multi.getParameter("email2"));
 			bean.setGender(multi.getParameter("gender"));
 			bean.setHp(multi.getParameter("hp"));
 			bean.setImage(multi.getParameter("image"));

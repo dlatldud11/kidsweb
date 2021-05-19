@@ -57,7 +57,7 @@ public class UpdateEmployerController extends SuperClass {
 		bean.setAddress1(multi.getParameter("address1"));
 		bean.setAddress2(multi.getParameter("address2"));
 		bean.setBirth(multi.getParameter("birth"));
-		bean.setEmail(multi.getParameter("email"));
+		bean.setEmail(multi.getParameter("email1")+"@"+multi.getParameter("email2"));
 		bean.setGender(multi.getParameter("gender"));
 		bean.setHp(multi.getParameter("hp"));
 		bean.setImage(multi.getParameter("image"));
@@ -70,7 +70,6 @@ public class UpdateEmployerController extends SuperClass {
 		
 		EmployeesDao dao = new EmployeesDao();
 		
-		if(this.validate(request) == true) {
 			System.out.println("직원정보 수정이 완료되었습니다.");
 			int cnt = -99999;
 			cnt = dao.UpdateData(bean);
@@ -79,45 +78,6 @@ public class UpdateEmployerController extends SuperClass {
 			
 			new DetailEmployerController().doGet(request, response);
 			
-		} else {
-			System.out.println("수정 실패");
-			
-			request.setAttribute("bean", bean);
-			
-			String gotopage = "/employees/empUpdate.jsp";
-			super.GotoPage(gotopage);
-		}
 	}
 		
-	@Override
-	public boolean validate(HttpServletRequest request) {
-		boolean isCheck = true;
-		System.out.println(bean);
-		
-		if(bean.getBirth() == null || bean.getBirth().equals("")) {
-			System.out.println(isCheck);
-			request.setAttribute(super.PREFIX + "birth", "생일은 반드시 입력되어야 합니다.");
-			isCheck = false;
-		}
-		String inputdate = "\\d{4}[-/]\\d{2}[-/]\\d{2}";
-		
-		boolean result = Pattern.matches(inputdate, bean.getBirth());
-		if(result == false) {
-			System.out.println(isCheck);
-			request.setAttribute(super.PREFIX + "birth", "생일은 'yyyy/mm/dd'형식으로 입력해 주세요.");
-			isCheck = false;
-		}
-		if(bean.getPassword().length() < 4 || bean.getPassword().length() > 12) {
-			System.out.println(isCheck);
-			request.setAttribute(super.PREFIX + "password", "비밀번호는 4자리 이상 12자리 이하여야 합니다.");
-			isCheck = false;
-		}
-		if(bean.getName().length() < 2 || bean.getName().length() > 10) {
-			System.out.println(isCheck);
-			request.setAttribute(super.PREFIX + "name", "이름 2자리 이상 10자리 이하여야 합니다.");
-			isCheck = false;
-		}
-		System.out.println(isCheck);
-		return isCheck;
-	}
 }

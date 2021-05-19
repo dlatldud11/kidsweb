@@ -82,7 +82,7 @@
 				<button class="btn btn-info" onclick="location.href='<%=contextPath %>/common/main.jsp'">
 					돌아 가기
 				</button>
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empUpdate&tid=${bean.tid}'">
+				<button class="btn btn-info" onclick="location.href='<%=NoForm%>empmUpdate&tid=${bean.tid}'">
 					내 정보 수정
 				</button>
 			</div>

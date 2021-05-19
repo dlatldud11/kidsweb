@@ -224,7 +224,7 @@ public class EmployeesDao extends SuperDao {
 			
 			rs = pstmt.executeQuery() ; 
 			
-			if ( rs.next() ) { 
+			while ( rs.next() ) { 
 				Employees bean = new Employees();
 
 				bean.setBirth(rs.getString("birth"));
@@ -694,6 +694,53 @@ public class EmployeesDao extends SuperDao {
 			}
 		}
 		return bean;
+	}
+
+	public int EmpmUpdateData(Employees bean) {
+		PreparedStatement pstmt = null;
+		
+		String sql = " update employees set class_id = ?, salary = ?, image = ?, hp = ?, address1 = ?, address2 = ?, "
+				+ " responsibilities = ?, subject_code = ?, remark = ?, zipcode = ? where tid = ? " ;
+		
+		int cnt = -99999;
+		System.out.println(bean);
+		try {
+			if( conn == null ) { super.conn = super.getConnection();}
+			conn.setAutoCommit(false);
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bean.getClass_id());
+			pstmt.setInt(2, bean.getSalary());
+			pstmt.setString(3, bean.getImage());
+			pstmt.setString(4, bean.getHp());
+			pstmt.setString(5, bean.getAddress1());
+			pstmt.setString(6, bean.getAddress2());
+			pstmt.setString(7, bean.getResponsibilities());
+			pstmt.setInt(8, bean.getSubject_code());
+			pstmt.setString(9, bean.getRemark());
+			pstmt.setString(10, bean.getZipcode());
+			pstmt.setString(11, bean.getTid());
+			
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return cnt;
 	}
 
 }
