@@ -282,9 +282,11 @@ public class ParentsDao extends SuperDao {
 			// class_menu 값이 'all' 일 때
 			
 			if(submit_menu.equalsIgnoreCase("all")) {
+				System.out.println("check1");
 				// sql 문 뒤에 아무것도 안붙는다.
 			}else {
 				// submit 조건만 추가
+				System.out.println("check2");
 				sql += " where submit = ?";
 			}
 			
@@ -293,10 +295,12 @@ public class ParentsDao extends SuperDao {
 			
 			if(submit_menu.equalsIgnoreCase("all")) {
 				//submit 조건이 안붙는다
+				System.out.println("check3");
 				sql += " where classname = ?";
 				
 			}else {
 				// classname 조건과 submit 조건이 둘 다 붙는다.
+				System.out.println("check4");
 				sql += " where classname = ? and submit = ?";
 			}
 		}
@@ -305,7 +309,7 @@ public class ParentsDao extends SuperDao {
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
 			pstmt = this.conn.prepareStatement(sql) ;
-			
+			System.out.println("sql : "+sql);
 			if(class_menu.equalsIgnoreCase("all")) {
 				// class_menu 값이 'all' 일 때
 				
@@ -669,5 +673,77 @@ public class ParentsDao extends SuperDao {
 			}
 		}
 		return bean;
-	}	
+	}
+
+	public int updateData(Parents bean) {
+		int cnt = -99999;
+		PreparedStatement pstmt = null ;
+		String sql = "";
+		if(bean.getChildid2() > 0) { 
+			sql = "update parents set name = ?, hp =?, address1 =?, address2 =?, gender = ?, password = ?, "
+					+ " birth = ?, email =?, image = ?, zipcode = ?, sid = ?, relationship = ?, submit = ?, "
+					+ " responsibilities = ?, childid = ? , childid2 = ? where pid = ?";
+		}else if(bean.getChildid() > 0) {
+			sql ="update parents set name = ?, hp =?, address1 =?, address2 =?, gender = ?, password = ?, "
+					+ " birth = ?, email =?, image = ?, zipcode = ?, sid = ?, relationship = ?, submit = ?, "
+					+ " responsibilities = ?, childid = ? where pid = ?";
+		}else {
+			sql = "update parents set name = ?, hp =?, address1 =?, address2 =?, gender = ?, password = ?, "
+					+ " birth = ?, email =?, image = ?, zipcode = ?, sid = ?, relationship = ?, submit = ?, "
+					+ " responsibilities = ? where pid = ?";
+		}
+
+		try {
+			System.out.println("sql문 : "+sql);
+			
+			if(conn == null) {super.conn = super.getConnection() ; }
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, bean.getPid());
+			
+			pstmt.setString(1, bean.getName());
+			pstmt.setString(2, bean.getHp());
+			pstmt.setString(3, bean.getAddress1());
+			pstmt.setString(4, bean.getAddress2());
+			pstmt.setString(5, bean.getGender());
+			pstmt.setString(6, bean.getPassword());
+			pstmt.setString(7, bean.getBirth());
+			pstmt.setString(8, bean.getEmail());
+			pstmt.setString(9, bean.getImage());
+			pstmt.setString(10, bean.getZipcode());
+			pstmt.setInt(11, bean.getSid());
+			pstmt.setString(12, bean.getRelationship());
+			pstmt.setString(13, bean.getSubmit());
+			pstmt.setString(14, bean.getResponsibilities());
+			
+			if(bean.getChildid2() > 0) {
+				pstmt.setInt(15, bean.getChildid());
+				pstmt.setInt(16, bean.getChildid2());
+				pstmt.setString(17, bean.getPid());
+			}else if(bean.getChildid() > 0) {
+				pstmt.setInt(15, bean.getChildid());
+				pstmt.setString(16, bean.getPid());
+			}else {
+				pstmt.setString(15, bean.getPid());
+			}
+			
+			cnt = pstmt.executeUpdate() ; 
+			conn.commit();
+		} catch (Exception e) {	
+			SQLException err = (SQLException)e;
+			cnt = -err.getErrorCode();
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.rollback();
+				if(pstmt != null) {pstmt.close();} 
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+		
 }

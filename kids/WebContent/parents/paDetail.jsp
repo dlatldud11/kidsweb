@@ -91,11 +91,6 @@
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<c:if test="${sessionScope.loginfo.responsibilities == '원장' || sessionScope.loginfo.responsibilities == '직원' }">
-					<button class="btn btn-primary" onclick="location.href='location.href='<%=NoForm%>paSubmitUpdate&pid=${bean.pid}&page=detail'">
-						가입 승인
-					</button>
-				</c:if>
 				<button class="btn btn-info" onclick="location.href='<%=NoForm%>paUpdate&pid=${requestScope.bean.pid }'">
 					정보 수정
 				</button>

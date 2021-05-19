@@ -9,8 +9,8 @@
 
 <script type="text/javascript">
 	window.onload=function(){
-		 alert("${requestScope.message}");
-	 	location.href="<%=NoForm%>paUpdate&pid="+${requestScope.bean.pid};
+		alert("${requestScope.message}");
+	 	location.href="<%=NoForm%>paDetail&pid=${requestScope.pid}";
 	}
 </script>
 	 
