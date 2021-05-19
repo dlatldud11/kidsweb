@@ -39,6 +39,22 @@
 <html>
 <head>
 <script>
+$(document).ready(function () {
+	 
+    //이메일 domain선택 selectBox
+    $('#state').change(function(){
+  $("#state option:selected").each(function () {
+  //직접입력일 경우
+  if($(this).val()== '분납'){
+              $("#remark").val('');                             //textBox값 초기화
+              $("#remark").attr("disabled",false);    //textBox 활성화
+  }
+  else{
+            $("#remark").attr("disabled",true); //textBox 비활성화
+  }
+  });
+    });
+});
 
 		function search(){
 			var month = $('#month').val() ;
@@ -89,7 +105,7 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							<td align="center" colspan="11">
 								<form action="<%=YesForm%>" class="form-inline" role="form" name="myform"
 									method="get">
-									<input type="hidden" id="command" name="name" value="stfInsert">
+									<input type="hidden" id="command" name="command" value="stfInsert">
 									<!-- <div class="form-group"> -->
 										<!-- <select id="mode" name="mode" class="form-control">
 											<option value="all" selected="selected">-- 선택하세요.
@@ -146,6 +162,8 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							</td>
 						</tr>
 					<div class="panel-body">
+						<form action="<%=YesForm%>" class="form-inline"  method="get">
+						<input type="hidden" id="command" name="command" value="stfUpdate">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -161,6 +179,7 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							<tbody>
 							 	<c:forEach var="bean" items="${requestScope.lists}">		
 							<tr>
+								<td><input type="checkbox" name="payno" id="payno" value="${bean.payno}"></td>
 								<td>${bean.month}</td>
 								<td>${bean.name}</td>
 								<td>${bean.class_name}</td>
@@ -170,7 +189,21 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							</tr>
 								</c:forEach> 
 							</tbody>
+							<tfoot>
+							<tr>
+								<td colspan="7">
+								<select id="state" name="state" class="form-control">
+											<option value="완납" selected="selected">완납
+											<option value="분납">분납
+								</select>
+								<input type="text" name="remark" id="remark" disabled>
+								<button class="btn btn-primary" type="submit">납부 내역 추가</button>
+								<span class="text-danger">${errremark}</span>
+								</td>
+							</tr>
+							</tfoot>
 							</table>
+							</form>
 								<form action="" class="form-inline" role="form" name="myform" method="get">
 									<div class="form-group">
 										<input type="text" class="form-control" name="keyword"
@@ -183,9 +216,6 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 								</form>
 						</div>
 					</div>
-				
-					
-					
 					<div align="center">
 						<footer>${pageInfo.pagingHtml}</footer>
 					</div>
