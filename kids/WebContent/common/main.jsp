@@ -54,13 +54,13 @@
                   		<div class="my-2"></div>
                    			<div class="btn btn-warning btn-icon-split " onclick="alert2();">
 		                      	<span class="icon text-white-50">
-		                      		<i class="fas fa-exclamation-triangle"></i>
+		                      		<i class="fas fa-flag"></i>
 		                      	</span>
                        			<span class="text">퇴근</span>
                   			</div>
                         	</div>
                   		  </div>
-                       	<div class="col-xl-5">
+                       	<div class="col-xl-6">
                   		     <div class="h5 mb-0 font-weight-bold text-gray-800 ">현재시간<br>01:01</div>
                         </div>
                       </div>
@@ -95,14 +95,11 @@
                                              </div>
 		                                         <a href="<%=NoForm%>stmOn" class="btn btn-success btn-icon-split btn-lg">
 		                                     		<span class="icon text-white-50">
-		                                         <i class="fas fa-trash"></i>
+		                                         <i class="fas fa-calendar"></i>
                                     			 	</span>
                                    			  	<span class="text">원생출석</span>
-                                 				</a>
-                                   			  </div>
-                              			   <div class="col-auto">
-                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                     </div>
+                               				</a>
+                          			  </div>
                                  </div>
                              </div>
                          </div>
@@ -132,13 +129,18 @@
                                              </div>
                                          <a href="<%=NoForm%>stInsert" class="btn btn-danger btn-icon-split btn-lg">
                                      		<span class="icon text-white-50">
-                                         <i class="fas fa-trash"></i>
+                                         <i class="fas fa-plus"></i>
                                     		 	</span>
                                      	<span class="text">원생등록</span>
                                  		</a>
-                                     </div>
-                                     <div class="col-auto">
-                                         <i class="far fa-smile fa-2x text-gray-300"></i>
+                                 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 		<a href="<%=NoForm%>stInsert" class="btn btn-danger btn-icon-split btn-lg">
+                                     		<span class="icon text-white-50">
+                                         <i class="fas fa-plus"></i>
+                                    		 	</span>
+                                     	<span class="text">원생등록</span>
+                                 		</a>
                                      </div>
                                  </div>
                              </div>
@@ -153,15 +155,25 @@
                            <div class="col mr-2">
                              <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                                   Today Issue</div>
-                               <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                  <hr>
+                               <div class=" row h5 mb-0 font-weight-bold text-gray-800"></div>
+                               		<c:if test="${sessionScope.mbean.tid == sessionScope.loginfo.tid}">
+                               		<a href="#">${sessionScope.mbean.name}님 의 투약의뢰서</a><br>
+                               		</c:if>
+                               		<c:if test="${sessionScope.hbean.tid == sessionScope.loginfo.tid}">
+                               		<a href="#">${sessionScope.hbean.name}님 의 귀가동의서</a><br>
+                               		</c:if>
+                               		<c:forEach var="rbean" items="${sessionScope.rbean}">
+                               		<c:if test="${rbean.res_date == sessionScope.today && rbean.status == '상담대기'}">
+                               		<a href="#">${rbean.name}</a><br>
+                               		</c:if>
+                               		</c:forEach>
                              </div>
-                               <div class="col-auto">
-                                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                               </div>
                            </div>
                         </div>
                       </div>
                   </div>     
+  			  </div>
   			  </div>
  
     <!-- Bootstrap core JavaScript-->

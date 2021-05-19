@@ -14,6 +14,8 @@ public class Re_home {
 	private String emp ;
 	private String checks ;
 	private String remark ;
+	private int sid;
+	private String name;
 	
 	public Re_home() {}
 
@@ -97,13 +99,27 @@ public class Re_home {
 		this.remark = remark;
 	}
 
+	public int getSid() {
+		return sid;
+	}
+
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "Re_home [hono=" + hono + ", pid=" + pid + ", tid=" + tid + ", regdate=" + regdate + ", method=" + method
 				+ ", relationship=" + relationship + ", hp=" + hp + ", emp=" + emp + ", checks=" + checks + ", remark="
-				+ remark + "]";
+				+ remark + ", sid=" + sid + ", name=" + name + "]";
 	}
-	
-	
 
 }

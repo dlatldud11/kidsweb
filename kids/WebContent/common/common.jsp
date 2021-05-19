@@ -21,6 +21,9 @@
 	<c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
 		<c:set var="whologin" value="3" />
 	</c:if>
+	<c:if test="${sessionScope.loginfo.responsibilities == '특별'}">
+		<c:set var="whologin" value="4" />
+	</c:if>
 </c:if>
 
 <%
@@ -63,13 +66,13 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+      
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=contextPath %>/common/main.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">아이하루 어린이집 </div>
+                <div class="sidebar-brand-text mx-3">아이하루<br>&nbsp;&nbsp;&nbsp;&nbsp;어린이집 </div>
             </a>
 e
             <!-- Divider -->
@@ -313,7 +316,7 @@ e
                                   </a>
                                 </c:if>
                                  <c:if test="${whologin != 0}">
-                                <c:if test="${whologin != 0 && whologin == 2 || whologin == 1}">
+                                <c:if test="${whologin != 0 && whologin == 2 || whologin == 1 || whologin == 4}">
                                 <a class="dropdown-item" href="<%=NoForm%>empDetail&tid=${sessionScope.loginfo.tid}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile

@@ -47,9 +47,9 @@
                             <div class="col-sm-12">
 								<select class="form-control" id="class_id" name="class_id">
 					        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
-								    <option value="1">해바라기</option>
-								    <option value="2">민들레</option>
-								    <option value="3">장미</option>
+								    <c:forEach var="mlists" items="${requestScope.mlists}">
+								    <option value="${mlists.class_id}">${mlists.class_name}</option>
+								    </c:forEach>
 							  	</select>
 								<span class="text-danger">${errclass_id}</span>
 							</div>

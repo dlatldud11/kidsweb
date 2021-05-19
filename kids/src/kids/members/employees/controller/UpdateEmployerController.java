@@ -65,8 +65,16 @@ public class UpdateEmployerController extends SuperClass {
 		bean.setPassword(multi.getParameter("password"));
 		bean.setTid(multi.getParameter("tid"));
 		bean.setZipcode(multi.getParameter("zipcode"));
+		if(request.getParameter("subject_code") == null || request.getParameter("subject_code").equals("")) {
+			bean.setSubject_code(0);
+		}else {
 		bean.setSubject_code(Integer.parseInt(multi.getParameter("subject_code")));
+		}
+		if(request.getParameter("class_id") == null || request.getParameter("class_id").equals("")) {
+			bean.setClass_id(0);
+		}else {
 		bean.setClass_id(Integer.parseInt(multi.getParameter("class_id")));
+		}
 		
 		EmployeesDao dao = new EmployeesDao();
 		
@@ -75,6 +83,7 @@ public class UpdateEmployerController extends SuperClass {
 			cnt = dao.UpdateData(bean);
 			
 			System.out.println("cnt : " + cnt);
+			request.setAttribute("tid", bean.getTid());
 			
 			new DetailEmployerController().doGet(request, response);
 			

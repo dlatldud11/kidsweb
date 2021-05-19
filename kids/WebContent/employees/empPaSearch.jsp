@@ -26,7 +26,7 @@
     <!-- Custom styles for this template -->
     <link href="<%=contextPath %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
     <script type="text/javascript">
-		function codeCheck(pid){
+		function codeCheck(tid){
 			
 			var mailcode = '${requestScope.code}';
 			var inputcode = document.getElementById('code').value;

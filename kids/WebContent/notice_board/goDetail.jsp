@@ -13,46 +13,25 @@
 			<div class="panel-heading">
 				<h4>공지 사항</h4>
 			</div>
-			<div class="row panel-body">
-				<div class="col-sm-4">
-					<table>
-						<tr>
-							<td>
-								<img src="${bean.files}" class="img-rounded" 
-									alt="${bean.class_id}" width="200" height="200">		
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div class="col-sm-8">
-					<table class="table table-bordered">
-						<tr>
-							<td width="25%" align="center">글 번호</td>
-							<td width="75%" align="left">${bean.notino}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">제목</td>
-							<td width="75%" align="left">${bean.title}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">아이디</td>
-							<td width="75%" align="left">${bean.tid}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">글 내용</td>
-							<td width="75%" align="left">${bean.content}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">조회수</td>
-							<td width="75%" align="left">${bean.readhit}</td>
-						</tr>
-						<tr>
-							<td width="25%" align="center">등록일자</td>
-							<td width="75%" align="left">${bean.regdate}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+					<div class="col-sm-12">
+						<table class="table table-bordered">
+							<tr>
+								<td width="10%" align="center">제목</td>
+								<td width="90%" align="left">
+									${bean.title}<p style="float:right;">글 번호 : ${bean.notino} &nbsp;&nbsp; 작성자 : ${bean.tid} &nbsp;&nbsp; 조회수 : ${bean.readhit}</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="25%" align="center" colspan="2"><p style="float:left;">글 내용</p>
+								<textarea class="form-control" readonly="readonly"style="float:left;width:100%;height:600px">${bean.content}</textarea></td>
+								
+							</tr>
+							<tr>
+								<td width="25%" align="center">등록일자</td>
+								<td width="75%" align="left">${bean.regdate}</td>
+							</tr>
+						</table>
+					</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
 				<button class="btn btn-info" onclick="location.href='<%=NoForm%>goUpdate&notino=${bean.notino}'">

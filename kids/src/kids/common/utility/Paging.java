@@ -64,23 +64,23 @@ public class Paging {
 		if (pageNumber <= pageCount) {
 			System.out.println("맨처음과 이전이 없습니다."); 
 		} else {
-			result += "<li><a href=\"" + url + "&pageNumber=" + 1 + field_search + "\">" + "맨처음" + "</a></li>";			
-			result += "<li><a href=\"" + url + "&pageNumber=" + (beginPage-1) + field_search + "\">" + "이전" + "</a></li>";
+			result += "<li class=\"page-link\"><a href=\"" + url + "&pageNumber=" + 1 + field_search + "\">" + "맨처음" + "</a></li>";			
+			result += "<li class=\"page-link\"><a href=\"" + url + "&pageNumber=" + (beginPage-1) + field_search + "\">" + "이전" + "</a></li>";
 		}		
 		// part 중간(beginPage부터 endPage까지)
 		for (int i = beginPage; i <= endPage; i++) {
 			if (i == pageNumber) { // 현재 페이지이면				
-				result += "<li class=\"active\"><a><font color='red'><b>" + i + "</b></font></a></li>";
+				result += "<li class=\"active page-link\"><a><font color='red'><b>" + i + "</b></font></a></li>";
 			} else {
-				result += "<li><a href=\"" + url + "&pageNumber=" + i + field_search + "\">" + i + "</a></li>";
+				result += "<li class=\"page-link\"><a href=\"" + url + "&pageNumber=" + i + field_search + "\">" + i + "</a></li>";
 			}
 		}		
 		// part 다음, 끝
 		if (pageNumber >= ((totalPage / pageCount * pageCount) + 1 )) {
 			System.out.println("맨끝과 다음이 없습니다."); 
 		} else {
-			result += "<li><a href=\"" + url + "&pageNumber=" + (endPage+1) + field_search + "\">" + "다음" + "</a></li>";
-			result += "<li><a href=\"" + url + "&pageNumber=" + totalPage + field_search + "\">" + "맨끝" + "</a></li>";
+			result += "<li class=\"page-link\"><a href=\"" + url + "&pageNumber=" + (endPage+1) + field_search + "\">" + "다음" + "</a></li>";
+			result += "<li class=\"page-link\"><a href=\"" + url + "&pageNumber=" + totalPage + field_search + "\">" + "맨끝" + "</a></li>";
 		}
 		result += "</ul>" ;
 		return result ;

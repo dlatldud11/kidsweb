@@ -25,7 +25,7 @@ public class ListEmpBoardController extends SuperClass {
 				request.getParameter("keyword"));
 		System.out.println("parameters list : " + parameters.toString());
 		
-		String url = request.getContextPath() + "/Kids?command=submit";
+		String url = request.getContextPath() + "/Kids?command=empbList";
 		
 		Emplo_boardDao dao = new Emplo_boardDao();
 		String tid = request.getParameter("tid");

@@ -12,6 +12,8 @@ import kids.board.notice_board.model.Notice_boardDao;
 import kids.common.controller.SuperClass;
 import kids.common.utility.FlowParameters;
 import kids.common.utility.Paging;
+import kids.management.myclass.model.Myclass;
+import kids.management.myclass.model.MyclassDao;
 
 public class ListNoticeController extends SuperClass {
 	@Override

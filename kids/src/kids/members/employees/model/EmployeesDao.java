@@ -296,7 +296,7 @@ public class EmployeesDao extends SuperDao {
 		sql += " address2, gender, responsibilities, password, subject_code, email, zipcode, remark from ( ";
 		sql += " select tid, class_id, name, join_date, salary, image, birth, hp, address1, ";
 		sql += " address2, gender, responsibilities, password, subject_code, email, zipcode, remark, rank() over(order by name asc) ";
-		sql += " as ranking from employees where responsibilities = ? ";
+		sql += " as ranking from employees where responsibilities not in ? ";
 		if(mode.equalsIgnoreCase("all") == false) {
 			sql += " and " + mode + " like '%" + keyword + "%' " ;
 		}
@@ -308,7 +308,7 @@ public class EmployeesDao extends SuperDao {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
 			pstmt = this.conn.prepareStatement(sql) ;	
 			
-			pstmt.setString(1, "직원");
+			pstmt.setString(1, "원장");
 			pstmt.setInt(2, beginRow);
 			pstmt.setInt(3, endRow);
 			
@@ -411,7 +411,7 @@ public class EmployeesDao extends SuperDao {
 	public int UpdateData(Employees bean) {
 		String sql = " update employees set address1 = ?, address2 = ?, birth = ?, email = ?, " ;
 		sql += " gender = ?, hp = ?, image = ?, name = ?, password = ?, zipcode = ?, class_id = ?, ";
-		sql += " subject_code = ?, salary = ? where tid = ? ";
+		sql += " subject_code = ? where tid = ? ";
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
@@ -432,8 +432,7 @@ public class EmployeesDao extends SuperDao {
 			pstmt.setString(10, bean.getZipcode());
 			pstmt.setInt(11, bean.getClass_id());
 			pstmt.setInt(12, bean.getSubject_code());
-			pstmt.setInt(13, bean.getSalary());
-			pstmt.setString(14, bean.getTid());
+			pstmt.setString(13, bean.getTid());
 			
 			
 			cnt = pstmt.executeUpdate();
@@ -624,13 +623,9 @@ public class EmployeesDao extends SuperDao {
 	
 		try {
 			if(conn == null) {super.conn = super.getConnection() ; }
-			System.out.println("check1");
 			pstmt = conn.prepareStatement(sql) ;
-			System.out.println("check2");
-			pstmt.setString(1, tid);
-			System.out.println("check3");
-			pstmt.setString(2, password);
-			System.out.println("check4");
+			pstmt.setString(1, password);
+			pstmt.setString(2, tid);
 			
 			cnt = pstmt.executeUpdate() ; 
 		} catch (Exception e) {	

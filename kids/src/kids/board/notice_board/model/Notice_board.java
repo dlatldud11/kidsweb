@@ -11,7 +11,16 @@ public class Notice_board {
 	private int class_id ;
 	private int readhit ;
 	private String remark ;
+	private String class_name;
 	
+	public String getClass_name() {
+		return class_name;
+	}
+
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
+
 	public Notice_board() {}
 
 	public String getRegdate() {

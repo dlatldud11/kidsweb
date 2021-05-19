@@ -25,30 +25,6 @@
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script type="text/javascript">
    
-   function checktid(){
-      document.getElementById("tiddiv").innerText="";
-      var tid = document.writeForm.tid.value;
-      var engNum = /(?=.*\d)(?=.*[a-z]).{4,15}/; //영어소문자+숫자 혼합. 4글자이상 15글자 이하
-      var tidtest = engNum.test(tid);
-      
-      if(tid==""){
-         console.log('if문들어옴');
-         document.getElementById("tiddiv").innerText="  먼저 아이디를 입력하세요";
-         document.writeForm.tid.focus(); 
-      }else if(tidtest==false){
-   	  	 document.getElementById("tiddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
-         document.writeForm.tid.focus(); 
-      }else{
-         console.log('else 들어옴');
-         var url = '<%=NoForm%>idCheck&tid='+tid;
-         window.open(url,"checktid","width=450, height=150, left=800, top=200, menubar=no, location=no, left=400, top=200");
-      }
-   }
-   
-   function idcheckFalse(){
-	   document.writeForm.idcheck.value=false;
-   }
-   
    function checkWrite(){
 	  var submitcheck = true;
       document.getElementById("tiddiv").innerText="";
@@ -73,19 +49,6 @@
       var passwordtest = engNum.test(password);
       console.log('passwordtest :'+passwordtest);
      
-      if(document.writeForm.tid.value==""){
-    	  console.log('1');
-      	document.getElementById("tiddiv").innerText="  아이디를 입력하세요";
-      	document.writeForm.tid.focus();
-      	submitcheck = false;
-      }
-      if(tidtest==false){
-    	  console.log('2');
-    	document.getElementById("tiddiv").innerText="  아이디는 숫자+영어 혼합하고, 4글자 이상 15글자 이하이어야 합니다.";
-        document.writeForm.tid.focus(); 
-        submitcheck = false;
-      }
-
       if(document.writeForm.password.value==""){
     	  console.log('3');
       	document.getElementById("passworddiv").innerText="  비밀번호를 입력하세요";
@@ -109,16 +72,6 @@
       	document.writeForm.password.focus();
       	submitcheck = false;
       }
-      if(document.writeForm.idcheck.value ==""){
-    	  console.log('7');
-      	document.getElementById("tiddiv").innerText= "  중복체크 하세요";
-      	submitcheck = false;
-      }
-      if(document.writeForm.idcheck.value == 'false'){
-    	  console.log('8');
-      	document.getElementById("tiddiv").innerText= "  중복체크 하세요";
-      	submitcheck = false;
-      }	
       if(document.writeForm.name.value==""){
     	  console.log('9');
 	   	  document.getElementById("namediv").innerText=" 이름을 입력하세요";
@@ -245,7 +198,7 @@
          </div>
           <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
          	<input type="hidden" name="idcheck" value="false">
-            <input type="hidden" name="command" value="empInsert">
+            <input type="hidden" name="command" value="empUpdate">
              <div class="form-group">
                <label for="pid" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
@@ -334,7 +287,7 @@
                <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
+                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly value="${bean.zipcode}">
                   </div>
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()">
@@ -345,7 +298,7 @@
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address1" name="address1" readonly>
+                  <input type="text" class="form-control" id="address1" name="address1" readonly value="${bean.address1}">
                </div>
             </div>
             <div class="form-group">
@@ -355,6 +308,7 @@
                </div>
             </div>
              <div class="form-group" id="addressdiv"></div>
+             <c:if test="${whologin == 2}">
             <div class="form-group" id="class_id">
              <label for="class_id" class="form-control-label col-sm-0">학급 선택</label>
                <div class="form-row">                
@@ -369,8 +323,9 @@
                   </div>
                </div>
             </div> 
-            <div class="form-group" id="class_iddiv"></div>	
-                        <div class="form-group" id="subject_code">
+            </c:if>
+            <c:if test="${whologin == 4}">
+            <div class="form-group" id="subject_code">
              <label for="subject_code" class="form-control-label col-sm-0">과목 선택</label>
                <div class="form-row">
                   <label for="subject_code" class="form-control-label col-sm-0"></label>
@@ -384,10 +339,10 @@
                   </div>
                </div>
             </div> 
-            <div class="form-group" id="subject_codediv"></div>	
+            </c:if>
                 <div class="form-group form-row">
             	<div class = "col-6">
-               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
+               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="수정 완료">
                </div>
                <div class = "col-6">
                		<input type="reset" class="form-control btn btn-secondary" value="초기화">
