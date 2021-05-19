@@ -54,13 +54,13 @@
                   		<div class="my-2"></div>
                    			<div class="btn btn-warning btn-icon-split " onclick="alert2();">
 		                      	<span class="icon text-white-50">
-		                      		<i class="fas fa-exclamation-triangle"></i>
+		                      		<i class="fas fa-flag"></i>
 		                      	</span>
                        			<span class="text">퇴근</span>
                   			</div>
                         	</div>
                   		  </div>
-                       	<div class="col-xl-5">
+                       	<div class="col-xl-6">
                   		     <div class="h5 mb-0 font-weight-bold text-gray-800 ">현재시간<br>01:01</div>
                         </div>
                       </div>
@@ -95,14 +95,11 @@
                                              </div>
 		                                         <a href="<%=NoForm%>stmOn" class="btn btn-success btn-icon-split btn-lg">
 		                                     		<span class="icon text-white-50">
-		                                         <i class="fas fa-trash"></i>
+		                                         <i class="fas fa-calendar"></i>
                                     			 	</span>
                                    			  	<span class="text">원생출석</span>
-                                 				</a>
-                                   			  </div>
-                              			   <div class="col-auto">
-                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                     </div>
+                               				</a>
+                          			  </div>
                                  </div>
                              </div>
                          </div>
@@ -132,13 +129,18 @@
                                              </div>
                                          <a href="<%=NoForm%>stInsert" class="btn btn-danger btn-icon-split btn-lg">
                                      		<span class="icon text-white-50">
-                                         <i class="fas fa-trash"></i>
+                                         <i class="fas fa-plus"></i>
                                     		 	</span>
                                      	<span class="text">원생등록</span>
                                  		</a>
-                                     </div>
-                                     <div class="col-auto">
-                                         <i class="far fa-smile fa-2x text-gray-300"></i>
+                                 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 		<a href="<%=NoForm%>stInsert" class="btn btn-danger btn-icon-split btn-lg">
+                                     		<span class="icon text-white-50">
+                                         <i class="fas fa-plus"></i>
+                                    		 	</span>
+                                     	<span class="text">원생등록</span>
+                                 		</a>
                                      </div>
                                  </div>
                              </div>

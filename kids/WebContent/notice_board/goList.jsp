@@ -26,14 +26,16 @@
 </head>
 <body>
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-   <div class="container col-sm-offset-4 col-sm-8">
+   <div class="container col-sm-offset-2 col-sm-10">
          <div class="panel panel-primary">
              <div class="panel-heading">
                <h4>공지 사항</h4>
                <div class="search">
                   <tr>
-                     <td align="center" colspan="11">
+                     <td>
                         <form action="" class="form-inline" role="form" name="myform" method="get"> 
+                          <div>${pageInfo.pagingStatus}</div>
+                          &nbsp;&nbsp;
                            <div class="form-group">
                               <select id="mode" name="mode" class="form-control">
                                  <option value="all" selected="selected">-- 선택하세요.
@@ -44,20 +46,19 @@
                            </div>                           
                            <div class="form-group">
                               <input type="text" class="form-control" name="keyword" id="keyword"> 
-                           </div>                           
+                           </div>  
                            &nbsp;&nbsp;
                            <button class="btn btn-primary" type="button" onclick="search();">검색</button>
                            &nbsp;&nbsp;
                            <button class="btn btn-primary" type="button" onclick="searchAll();">전체 검색</button>
                            &nbsp;&nbsp;
-                           ${pageInfo.pagingStatus}                        
                         </form>
                      </td>
                   </tr>
                </div>
             <br>
                <table class="table table-hover">
-					<thead>
+					<thead align="center">
 						<tr>
 							<th>글번호</th>
 							<th>글제목</th>
@@ -67,7 +68,7 @@
 							<th>등록일</th>
 						</tr>
 					</thead>
-			  	 <tbody>
+			  	 <tbody align="center">
 						<c:forEach var="bean" items="${requestScope.lists}">
 							<tr onclick="location.href='<%=NoForm%>goDetail&notino=${bean.notino}&${requestScope.parameters}'">
 								<td>${bean.notino}</td>
@@ -84,6 +85,7 @@
 		 	<button class="btn btn-info" style="float:right;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
 					글쓰기
 			</button>
+			
         </div> 
       </div>
       <div style="width: 30%; float:none; margin:0 auto" >

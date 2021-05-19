@@ -35,6 +35,8 @@
                   <tr>
                   	 <td align="center" colspan="11">
                         <form action="" class="form-inline" role="form" name="myform" method="post"> 
+                           <div>${pageInfo.pagingStatus}</div>
+                          &nbsp;&nbsp;
                            <div class="form-group">
                              <select class="form-control" id="mode" name="mode">
 				        		<option value="-">--- 선택하세요.</option>
@@ -50,7 +52,6 @@
                            &nbsp;&nbsp;
                            <button class="btn btn-primary" type="button" onclick="searchAll();">전체 검색</button>
                            &nbsp;&nbsp;
-                           ${pageInfo.pagingStatus}                        
                         </form>
                      </td>
                   </tr>   
@@ -83,12 +84,10 @@
        		 </div> 
     	  </div>
     	</div>
+    	 <div style="width: 30%; float:none; margin:0 auto" >
+		<p style="width: 100%">${pageInfo.pagingHtml}</p>
+	  </div>
 	 </div>
 </div>
-</body>
-</html>
-<html>
-<body>
-<%@ include file="./../common/footer.jsp" %>
 </body>
 </html>
