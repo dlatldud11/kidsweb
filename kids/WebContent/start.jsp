@@ -31,31 +31,42 @@
         <!-- w3school 예제에서 가져옴 -->
        	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  		<style type="text/css">
+  			#navtest{
+  				display:flex;
+  				justify-content:space-between;
+  			}
+  			#navtest li{
+  				padding: 3px 6px;
+  			} 
+  			#navtest li:hover{
+  				background-color:#d49466;
+  				border-radius: 4px;
+  			}
+  			.nav-item{
+  				display:flex;
+  				list-style:none;
+  				padding-left: 0;
+  			}
+  		</style>
     </head>
   
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
   
  		<!-- Navigation-->
-		<nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background:white; position:flex; justify-content:space-between;">  
-			<div>
-				<img alt="로고" src="./images/아이하루 로고.png" width="75" height="50">
+		<nav class="navbar navbar-expand-sm navbar-dark fixed-top clear-fix d-flex justify-content-between" style="background:white; position:flex; justify-content:space-between;">  
+			<div class="form-inline">
+				<img alt="로고" src="./images/logo.png" width="50" height="50">
+				&nbsp;
+				<h6>아이하루 어린이집</h6>
 			</div>
-			<div>
-			  <ul class="navbar-nav" id="navtest">
+			<div class="float-right">
+			  <ul class="navbar-nav d-flex justify-content-between" id="navtest">
 			    <li class="nav-item">
 			      <a class="nav-link" href="#section2">Section 2</a>
 			    </li>
 			    <li class="nav-item">
 			      <a class="nav-link" href="#section3">Section 3</a>
-			    </li>
-			    <li class="nav-item dropdown">
-			      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-			        Section 4
-			      </a>
-			      <div class="dropdown-menu">
-			        <a class="dropdown-item" href="#section41">Link 1</a>
-			        <a class="dropdown-item" href="#section42">Link 2</a>
-			      </div>
 			    </li>
 			  </ul>
 		  </div>
@@ -67,25 +78,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto"> <!-- 1차 범위 좁힘 -->
-                    	<h1 class="mb-5">아이하루 어린이집</h1>
+                   		<img alt="로고" src="./images/logo.png" width="100" height="100">
+						 <h1 class="mb-5">아이하루 어린이집</h1>
                     </div>
                     	
                     	
                     <div class="col-md-10 col-lg-8 col-xl-7 mx-auto"> <!-- 하위 요소들 가운데 정렬. 2차 범위 좁힘 -->
                             <div class="row text-center" style="width:100%">
-                                <div class="col-12 col-md-8 mb-2 mb-md-0" style="width:30%;float:none; margin:0 auto">
+                                <div class="col-12 col-md-8 mb-2 mb-md-0 mx-auto" align="center" style="width:100%;float:none; margin:0 auto">
 									
 									<!-- 탭 만들기 보호자/직원용 -->
 									<div class="container">
-									  <h2>환영합니다</h2>
-									  <br>
 									  <!-- Nav pills -->
 									  <ul class="nav nav-fill" role="tablist">
-									    <li class="nav-item rounded-lg" style="background:white; height:50px; padding:0.5rem; border: 1px solid white;">
-									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:black; font-weight:bolder; ">보호자</a>
+									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
+									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:white; font-weight:bolder; ">보호자</a>
 									    </li>
-									    <li class="nav-item rounded-lg " style="background:white; height:50px; padding:0.5rem; border: 1px solid white;">
-									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:black;">직원</a>
+									    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									    <li>
+									    </li>
+									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
+									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:white;">직원</a>
 									    </li>
 									  </ul>
 									
@@ -98,44 +111,42 @@
 										    		<div>
 												     	<h3>보호자 로그인</h3>
 												    </div>
-												     <p>즐거운 하루 보내요^-^</p>
 			       	
 			       									<input type="hidden" name="command" value="paLogin">
 				                                	<input class="form-control form-control-lg" type="text" id="pid" name="pid" placeholder="아이디를 입력하세요."/>
 				                                	<br>
 				                                	<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." />
 				                                	<br>
-				                                	<button class="btn btn-block btn-lg btn-default" type="submit">로그인</button>
+				                                	<button class="btn btn-block btn-lg btn-default" style="background:#ffd700;"type="submit">로그인</button>
 				                                </form>	
-				                                <span class="form-control-static err">${pErrmsg}</span>
-			                                	<a style="color:#d61d4e; "href="/kids/parents/paInsert.jsp">회원가입</a>
+			                                	<a style="color:#ffd700; "href="/kids/parents/paInsert.jsp">회원가입</a>
 			                                	&nbsp;
-				                                <a class="text-white" onclick="window.open('./parents/paIdSearch.jsp','paidsearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">아이디/</a>
-				                                <a class="text-white" onclick="window.open('./parents/paPaSearch.jsp','papasearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">비밀번호 찾기</a>
+				                                <a style="color:#ffd700;" class="text-white" onclick="window.open('./parents/paIdSearch.jsp','paidsearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">아이디/</a>
+				                                <a style="color:#ffd700;" class="text-white" onclick="window.open('./parents/paPaSearch.jsp','papasearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">비밀번호 찾기</a>
+				                                <br><span class="form-control-static err" style="color:#d61d4e;">${pErrmsg}</span>
 										    </div>
 										    
 										    <!-- 직원 -->
 										  
 										    <div id="menuemp" class="container tab-pane fade"><br>
 										    	<form action="<%=YesForm%>" method="post">
-												    <div style="color:white; background:#2699fb; padding:0; margin:0;">
+												    <div>
 												    	<h3>직원 로그인</h3>
 												    </div>
-												    <p>오늘도 아자아자 화이팅!</p>
 												     
 												     <input type="hidden" name="command" value="empLogin">  	
 				                                	<input class="form-control form-control-lg" type="text" id="id" name="id" placeholder="아이디를 입력하세요." value="${id}"/>
 				                                	<br>
 				                                	<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." />
-				                                	<span class="form-control-static err">${errmsg}</span>
 				                                	<br>
-				                                	<button class="btn btn-block btn-lg btn-primary" type="submit">로그인</button>
+				                                	<button  style="background:#ffd700;" class="btn btn-block btn-lg btn-default" type="submit">로그인</button>
 				                                </form>	
 				                                
-			                                	<a style="color:#2699fb; " href="<%=NoForm%>empInsert">회원가입</a>
+			                                	<a style="color:#ffd700;" href="<%=NoForm%>empInsert">회원가입</a>
 			                                	&nbsp;
 				                                <a class="text-white" onclick="window.open('./employees/empIdSearch.jsp','empidsearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">아이디/</a>
 				                                <a class="text-white" onclick="window.open('./employees/empPaSearch.jsp','emppasearch','height=400, width=400, menubar=no, location=no, left=400, top=200');">비밀번호 찾기</a>
+				                                <br><span class="form-control-static err" >${errmsg}</span>
 										    </div>
 										    
 										</div><!-- tab Pane 끝 -->
