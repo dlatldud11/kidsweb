@@ -6,13 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
 
 import kids.common.controller.SuperClass;
 import kids.management.myclass.model.Myclass;
 import kids.management.myclass.model.MyclassDao;
-import kids.members.student.controller.ListStudentController;
-import kids.members.student.model.StudentDao;
+
 
 public class InsertMyclassController extends SuperClass {
 	private Myclass bean = null ;

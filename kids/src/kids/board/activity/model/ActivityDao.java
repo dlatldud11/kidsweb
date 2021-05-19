@@ -17,9 +17,9 @@ public class ActivityDao extends SuperDao {
       return 0;
    }
 
-   public int InsertData(Activity bean) {
+   public int insertData(Activity bean) {
       String sql = " insert into activity(actino, subject_code, title, content, image, regdate, remark, tid, class_id, readhit)" 
-    		    +  " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
+    		    +  " values(actino_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?) " ;
       
       PreparedStatement pstmt = null ;
       int cnt = -99999 ;
@@ -28,16 +28,16 @@ public class ActivityDao extends SuperDao {
          conn.setAutoCommit( false );
          pstmt = super.conn.prepareStatement(sql) ;
          
-         pstmt.setInt(1, bean.getActino());
-         pstmt.setInt(2, bean.getSubject_code());
-         pstmt.setString(3, bean.getTitle());
-         pstmt.setString(4, bean.getContent());
-         pstmt.setString(5, bean.getImage());
-         pstmt.setString(6, bean.getRegdate());
-         pstmt.setString(7, bean.getRemark());
-         pstmt.setString(8, bean.getTid());
-         pstmt.setInt(9, bean.getClass_id());
-         pstmt.setInt(10, bean.getReadhit());
+
+         pstmt.setInt(1, bean.getSubject_code());
+         pstmt.setString(2, bean.getTitle());
+         pstmt.setString(3, bean.getContent());
+         pstmt.setString(4, bean.getImage());
+         pstmt.setString(5, bean.getRegdate());
+         pstmt.setString(6, bean.getRemark());
+         pstmt.setString(7, bean.getTid());
+         pstmt.setInt(8, bean.getClass_id());
+         pstmt.setInt(9, bean.getReadhit());
          
          cnt = pstmt.executeUpdate() ; 
          conn.commit(); 

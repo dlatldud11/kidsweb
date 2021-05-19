@@ -24,7 +24,7 @@
         <input type="hidden" name="command" value="myclInsert">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4>과목 이름 등록</h4>
+				<h4>학급 등록</h4>
 			</div>
 			
 				    <div class="form-group">

@@ -23,6 +23,7 @@
 		<form action="<%=YesForm %>" method="post" >
         <input type="hidden" name="idcheck" value="false">
         <input type="hidden" name="command" value="myclUpdate">
+        <input type="hidden" name="class_id" value="${myclass_id}">
 			<div class="panel-heading">
 				<h4>반 이름 수정</h4>
 			</div>
@@ -38,15 +39,15 @@
                	    <div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">비고</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="subject" 
-				        		name="content" value="${bean.remark}">
+				        	<input type="text" class="form-control" id="remark" 
+				        		name="remark">
 				      	</div>
 				    </div>
 					<div class="form-group">        
 				      	<div class="col-sm-offset-2 col-sm-8">
 				        	<button type="submit" class="btn btn-primary">게시물 수정</button>
 				        	&nbsp;&nbsp;&nbsp;
-				        	<button type="reset" class="btn btn-danger">삭제</button>
+				        	<button type="button" onclick="window.location.href='<%=NoForm%>myclDelete&myclass_id=${myclass_id}'" class="btn btn-danger">삭제</button>
 				      	</div>
 				    </div>
 				</form>
