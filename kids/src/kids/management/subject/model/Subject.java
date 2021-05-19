@@ -3,7 +3,6 @@
 public class Subject {
 	private int subject_code ;
 	private String subject ;
-	private String tid ;
 	private String remark ;
 	
 	public Subject() {}
@@ -20,22 +19,16 @@ public class Subject {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public String getTid() {
-		return tid;
-	}
-	public void setTid(String tid) {
-		this.tid = tid;
-	}
 	public String getRemark() {
 		return remark;
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
 	@Override
 	public String toString() {
-		return "Subject [subject_code=" + subject_code + ", subject=" + subject + ", tid=" + tid + ", remark=" + remark
-				+ "]";
+		return "Subject [subject_code=" + subject_code + ", subject=" + subject + ", remark=" + remark + "]";
 	}
 	
 	

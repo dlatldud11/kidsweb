@@ -94,7 +94,6 @@ public class SubjectDao extends SuperDao{
 				
 				sbean.setSubject_code(rs.getInt("subject_code"));
 				sbean.setSubject(rs.getString("subject"));
-				sbean.setTid(rs.getString("tid"));
 				sbean.setRemark(rs.getString("remark"));
 				
 			}
@@ -114,8 +113,8 @@ public class SubjectDao extends SuperDao{
 	}
 
 	public int InsertData(Subject bean) {
-		String sql = "insert into subject(subject_code, subject, tid)"
-				+ " values(?, ?, ?)" ;
+		String sql = "insert into subject(subject_code, subject)"
+				+ " values(?, ?)" ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ; 
@@ -126,7 +125,7 @@ public class SubjectDao extends SuperDao{
 			
 			pstmt.setInt(1, bean.getSubject_code());
 			pstmt.setString(2, bean.getSubject());
-			pstmt.setString(3, bean.getTid());
+		
 		
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -208,8 +207,7 @@ public class SubjectDao extends SuperDao{
 			
 			pstmt.setInt(1, bean.getSubject_code());
 			pstmt.setString(2, bean.getSubject());
-			pstmt.setString(3, bean.getTid());
-			pstmt.setString(4, bean.getRemark());
+			pstmt.setString(3, bean.getRemark());
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
