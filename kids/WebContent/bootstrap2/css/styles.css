@@ -66,7 +66,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color:#ffd700;;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10036,7 +10036,7 @@ h3 {
 
 header.masthead {
   position: relative;
-  background: url("../assets/img/mainkids.jpg") no-repeat center center;
+  background: url("") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -10090,11 +10090,11 @@ header.masthead h1 {
 .call-to-action {
   position: relative;
   background-color: #ffd700;
-  background: url("../assets/img/bkids.png") no-repeat center center;
+  background: url("") no-repeat center center;
   background-size: cover;
   padding-top: 7rem;
   padding-bottom: 7rem;
-  background:#ffd700;;
+  background:#ffd700;
 }
 .call-to-action .overlay {
   position: absolute;

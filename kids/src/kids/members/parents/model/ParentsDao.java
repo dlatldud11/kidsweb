@@ -578,6 +578,7 @@ public class ParentsDao extends SuperDao {
 				System.out.println("checkcheck3");
 				plists.add(bean);
 				System.out.println("checkcheck4");
+				bean.setTid("parents");
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();
@@ -660,6 +661,7 @@ public class ParentsDao extends SuperDao {
 				bean.setPassword(rs.getString("password"));
 				bean.setResponsibilities(rs.getString("responsibilities"));
 				System.out.println("checkcheck3");
+				bean.setTid("parents");
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();

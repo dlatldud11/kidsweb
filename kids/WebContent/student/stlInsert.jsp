@@ -13,22 +13,7 @@
 <head>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
-		function isCheckFalse(){
-			document.myform.isCheck.value = false ;
-		}
-		
-		function checkForm(){
-			var isCheck = document.myform.isCheck.value  ;
-			if(isCheck == 'false'){
-				alert('아이디 중복 체크를 해주세요.') ;
-				return false ; 
-			}
-		}
-	
-		$(document).ready(function(){
-			$('[data-toggle="tooltip"]').tooltip();	
-		});
-		
+
 		 function checkPost() {
 				var width = 500; //팝업의 너비
 				var height = 500; //팝업의 높이

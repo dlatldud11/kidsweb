@@ -154,6 +154,8 @@ e
                     		귀가동의서</a>
                     	<a class="collapse-item" href="<%=NoForm%>resList">
                     		상담예약확인</a>	
+                    	<a class="collapse-item" href="<%=NoForm%>resAfterList">
+                    		입소대기확인</a>	
                     </div>
                 </div>
             </li>

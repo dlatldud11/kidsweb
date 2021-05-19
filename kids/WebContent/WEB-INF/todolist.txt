@@ -123,3 +123,4 @@ pidCheck=kids.members.common.controller.CheckPidController
 paSubmitUpdate=kids.members.parents.controller.paSubmitUpdateController
 changePloginfo=kids.members.parents.controller.paChangeLoginfoController
 paUpdateTwo=kids.members.parents.controller.UpdateParentsTwoController
+resAfterList=kids.management.reservation.controller.ListReservationAfterController

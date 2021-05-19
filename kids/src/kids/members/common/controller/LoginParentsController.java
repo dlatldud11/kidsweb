@@ -49,6 +49,7 @@ public class LoginParentsController extends SuperClass {
 		}else {
 			System.out.println("로그인에 성공하셨습니다.");
 			
+			
 			super.session.setAttribute("plists", plists);
 			super.session.setAttribute("loginfo", bean);
 			

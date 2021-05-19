@@ -68,8 +68,8 @@ public class PagingRes{
 		if (pageNumber <= pageCount) {
 			System.out.println("맨처음과 이전이 없습니다."); 
 		} else {
-			result += "<li><a href=\"" + url + "&pageNumber=" + 1 + field_search + "\">" + "맨처음" + "</a></li>";			
-			result += "<li><a href=\"" + url + "&pageNumber=" + (beginPage-1) + field_search + "\">" + "이전" + "</a></li>";
+			result += "<li class=\"active page-link\"><a href=\"" + url + "&pageNumber=" + 1 + field_search + "\">" + "맨처음" + "</a></li>";			
+			result += "<li class=\"active page-link\"><a href=\"" + url + "&pageNumber=" + (beginPage-1) + field_search + "\">" + "이전" + "</a></li>";
 		}		
 		// part 중간(beginPage부터 endPage까지)
 		for (int i = beginPage; i <= endPage; i++) {
