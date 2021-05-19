@@ -12,8 +12,9 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>공지 사항</h4>
-			</div>
+				</div>
 					<div class="col-sm-12">
+						
 						<table class="table table-bordered">
 							<tr>
 								<td width="10%" align="center">제목</td>
@@ -22,9 +23,11 @@
 								</td>
 							</tr>
 							<tr>
-								<td width="25%" align="center" colspan="2"><p style="float:left;">글 내용</p>
+								<td width="25%" align="center" colspan="2">
+								<c:if test="${bean.files != null}">
+								<img src="${bean.files}" class="img-rounded" width="100%" height="500">
+								</c:if>
 								<textarea class="form-control" readonly="readonly"style="float:left;width:100%;height:600px">${bean.content}</textarea></td>
-								
 							</tr>
 							<tr>
 								<td width="25%" align="center">등록일자</td>

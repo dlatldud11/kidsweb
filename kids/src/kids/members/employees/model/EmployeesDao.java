@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kids.common.model.SuperDao;
-import kids.management.emp_manage.model.Emp_Manage;
-import kids.members.parents.model.Parents;
 
 public class EmployeesDao extends SuperDao {
 

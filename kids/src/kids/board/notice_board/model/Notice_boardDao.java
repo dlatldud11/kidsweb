@@ -260,4 +260,39 @@ PreparedStatement pstmt = null;
 		return cnt;
 	}
 
+	public int UpdateReadhit(int notino) {
+		PreparedStatement pstmt = null ;
+		
+		String sql = " update notice_board set readhit = readhit + 1 " ;
+		sql += " where notino = ? " ;
+		
+		int cnt = -99999 ; 
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }
+			conn.setAutoCommit( false ); 
+			pstmt = this.conn.prepareStatement( sql ) ;
+			
+			pstmt.setInt(1, notino);
+			
+			cnt = pstmt.executeUpdate() ;
+			conn.commit(); 
+		} catch (Exception e) {
+			e.printStackTrace();
+			cnt = -99999 ;
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				this.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		}
+		return cnt ; 
+	}
+
 }

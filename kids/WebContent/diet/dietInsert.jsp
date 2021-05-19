@@ -15,7 +15,7 @@
 				<h4>식단 등록</h4>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" action="<%=YesForm%>" method="post">
+				<form class="form-horizontal" action="<%=YesForm%>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="dietInsert">
 					<input type="hidden" name="isCheck" value="false">
 					<div class="form-group">
@@ -40,10 +40,10 @@
 				      	</div>
 				    </div>
 					<div class="form-group">
-				      	<label class="control-label col-sm-3" for="files">첨부 자료</label>
+				      	<label class="control-label col-sm-3" for="files" >첨부 자료</label>
 				      	<div class="col-sm-9">
 				        	<input type="file" class="form-control" id="files" 
-				        		name="files">
+				        		name="files" multiple>
 				      	</div>
 				    </div>
 				    <div class="form-group">        

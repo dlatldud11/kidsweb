@@ -15,7 +15,7 @@
 				<h4>게시물 등록</h4>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" action="<%=YesForm%>" method="post">
+				<form class="form-horizontal" action="<%=YesForm%>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="goInsert">
 					<input type="hidden" name="isCheck" value="fals">
 					<div class="form-group">
@@ -38,27 +38,25 @@
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">글 내용</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="subject" 
-				        		name="content" value="${bean.content}">
+				        	<textarea rows="13" cols="400" class="form-control" id="content" 
+				        	name="content"></textarea>
 				      	</div>
 				    </div>
 				    <div class="form-group">
-                      	<div class="row">
-                            <div class="col-sm-12">
-								<select class="form-control" id="class_id" name="class_id">
-					        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
-								    <c:forEach var="mlists" items="${requestScope.mlists}">
-								    <option value="${mlists.class_id}">${mlists.class_name}</option>
-								    </c:forEach>
+                        <div class="col-sm-9">
+							<select class="form-control" id="class_id" name="class_id">
+				        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
+							    <c:forEach var="mlists" items="${requestScope.mlists}">
+							    <option value="${mlists.class_id}">${mlists.class_name}</option>
+							    </c:forEach>
 							  	</select>
-								<span class="text-danger">${errclass_id}</span>
-							</div>
+							<span class="text-danger">${errclass_id}</span>
 						</div>
                	    </div>
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="tiles">첨부 자료</label>
-				      	<div class="col-sm-9">
-				        	<input type="file" class="form-control" id="files" 
+				      	<div class="col-sm-3">
+				        	<input type="file" class="form" id="files" 
 				        		name="files" value="${bean.files}">
 				      	</div>
 				    </div>

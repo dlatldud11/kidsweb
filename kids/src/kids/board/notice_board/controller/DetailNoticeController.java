@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import kids.board.notice_board.model.Notice_board;
 import kids.board.notice_board.model.Notice_boardDao;
 import kids.common.controller.SuperClass;
+import kids.members.employees.model.Employees;
+import kids.members.parents.model.Parents;
 
 public class DetailNoticeController extends SuperClass {
 	@Override
@@ -18,6 +20,13 @@ public class DetailNoticeController extends SuperClass {
 		int notino = Integer.parseInt(request.getParameter("notino"));
 		Notice_boardDao dao = new Notice_boardDao();
 		Notice_board bean = dao.DetailGoData(notino);
+		
+//		Employees loginfo = (Employees)super.session.getAttribute("loginfo");
+//		
+//		if(loginfo.getTid().equals(bean.getTid()) == false) {
+//			dao.UpdateReadhit(notino);
+//			bean.setReadhit(bean.getReadhit() + 1);
+//		}
 		
 		request.setAttribute("bean", bean);
 		

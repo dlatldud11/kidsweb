@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import kids.board.notice_board.model.Notice_board;
 import kids.board.notice_board.model.Notice_boardDao;
 import kids.common.controller.SuperClass;
@@ -32,14 +34,17 @@ public class InsertNoticeController extends SuperClass {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doPost(request, response);
+		
+		MultipartRequest multi = (MultipartRequest)request.getAttribute("multi");
+		
 		bean = new Notice_board();
 		
-		bean.setClass_id(Integer.parseInt(request.getParameter("class_id")));
-		bean.setContent(request.getParameter("content"));
-		bean.setFiles(request.getParameter("files"));
-		bean.setRegdate(request.getParameter("regdate"));
-		bean.setTid(request.getParameter("tid"));
-		bean.setTitle(request.getParameter("title"));
+		bean.setClass_id(Integer.parseInt(multi.getParameter("class_id")));
+		bean.setContent(multi.getParameter("content"));
+		bean.setFiles(multi.getParameter("files"));
+		bean.setRegdate(multi.getParameter("regdate"));
+		bean.setTid(multi.getParameter("tid"));
+		bean.setTitle(multi.getParameter("title"));
 		
 		if(this.validate(request) == true) {
 			System.out.println("글쓰기 성공");

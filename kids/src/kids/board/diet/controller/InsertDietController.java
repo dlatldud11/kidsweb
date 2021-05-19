@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import kids.board.diet.model.Diet;
 import kids.board.diet.model.DietDao;
 import kids.common.controller.SuperClass;
@@ -25,11 +27,13 @@ public class InsertDietController extends SuperClass{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
+		MultipartRequest multi = (MultipartRequest)request.getAttribute("multi");
+		
 		bean = new Diet();
 		
-		bean.setCategory(request.getParameter("category"));
-		bean.setContent(request.getParameter("content"));
-		bean.setFiles(request.getParameter("files"));
+		bean.setCategory(multi.getParameter("category"));
+		bean.setContent(multi.getParameter("content"));
+		bean.setFiles(multi.getParameter("files"));
 		
 		if(this.validate(request) == true) {
 		DietDao dao = new DietDao();
