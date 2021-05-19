@@ -151,16 +151,17 @@ public class ReservationDao extends SuperDao {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = "select ranking, rid, tid, textarea, status, res_date, reg_date, name, hp";
-			   sql += " from (select rid, tid, textarea, status, res_date, reg_date, name, hp,";
-			   sql += " rank() over(order by res_date "+order+") as ranking from reservation";
-			   sql += " where to_char(res_date,'yyyy') = ? and";
-			   sql += " to_char(res_date,'MM') = ?  and status = '상담완료' ";
+		String sql = "select rid, tid, textarea, status, res_date, reg_date, name, hp, remark, tname, ranking";
+				sql += " from (select r.rid, r.tid, r.textarea, r.status, r.res_date, r.reg_date, r.name, r.hp, r.remark, e.name as tname, r.ranking";
+				sql += " from (select rid, tid, textarea, status, res_date, reg_date, name, hp, remark,";
+				sql += " rank() over(order by res_date "+order+") as ranking from reservation";
+				sql += " where to_char(res_date,'yyyy') = ? and";
+				sql += " to_char(res_date,'MM') = ? and status = '상담완료'";
 				if(!keyword.equalsIgnoreCase("all")) {
 					sql +=" and (name like '%'||?||'%' or hp like '%'||?||'%')";
 				}
-			   sql += " ) where ranking between ? and ?";
-		   
+				sql += " ) r inner join employees e on r.tid = e.tid) where ranking between ? and ? ";
+		
 	   try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
 			System.out.println("sql : "+sql);
@@ -189,6 +190,7 @@ public class ReservationDao extends SuperDao {
 				bean.setStatus(rs.getString("status"));
 				bean.setTextarea(rs.getString("textarea"));
 				bean.setTid(rs.getString("tid"));
+				bean.setTname(rs.getString("tname"));
 				
 				rlists.add(bean);
 			}

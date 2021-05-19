@@ -102,7 +102,7 @@
 				      
 					      <div class="card-header">
 					        <a class="collapsed card-link" data-toggle="collapse" data-target="#b${bean.rid }">
-					          상담일자 : ${bean.res_date}/ 이름 : ${bean.name }
+					          상담일자 : ${bean.res_date}/ 아이이름: ${bean.name }
 					        </a>
 					      </div>
 					      
@@ -116,7 +116,7 @@
 					        		</tr>
 					        		<tr>
 					        			<td width="20%">상담 선생님</td>
-					        			<td width="20%">${bean.tid}</td>
+					        			<td width="20%">${bean.tname}(${bean.tid})</td>
 					        			<td width="60%"></td>
 					        		</tr>
 					        		<tr>
@@ -129,9 +129,9 @@
 					        		</tr>
 					        		<tr align="center">
 					        			<td colspan="3">
-					        				<input class="btn btn-primary" type="button" value="원생등록">
-					        			
-					        				<input class="btn btn-primary" type="button" value="원생등록 취소">
+					        				<input class="btn btn-primary" type="button" value="원생등록" onclick="location.href='<%=NoForm%>stInsert&rid=${bean.rid }'">
+					        				<input class="btn btn-primary" type="button" value="내용수정" onclick="location.href='<%=NoForm%>resUpdate&rid=${bean.rid}'">
+					        				<input class="btn btn-primary" type="button" value="등록 취소" onclick="location.href='<%=NoForm%>resDelete&rid=${bean.rid}&page=after&${requestScope.parameters}'">
 					        			</td>
 					        		</tr>
 					        	</table>

@@ -77,15 +77,15 @@
 									
 									<!-- 탭 만들기 보호자/직원용 -->
 									<div class="container">
-									  <h2 style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;"><font color="#ffd700">환</font><font color="d61d4e">영</font><font color="2699fb">합</font><font color="32ad22">니</font><font color="9400ff">다</font></h2>
+									  <h2>환영합니다</h2>
 									  <br>
 									  <!-- Nav pills -->
 									  <ul class="nav nav-fill" role="tablist">
-									    <li class="nav-item rounded-lg" style="background:#d61d4e; height:50px; padding:0.5rem; border: 5px solid #d61d4e;">
-									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:white; font-weight:bolder;">보호자</a>
+									    <li class="nav-item rounded-lg" style="background:white; height:50px; padding:0.5rem; border: 1px solid white;">
+									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:black; font-weight:bolder; ">보호자</a>
 									    </li>
-									    <li class="nav-item rounded-lg " style="background:#2699fb; height:50px; padding:0.5rem; border: 5px solid #2699fb;">
-									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:white; font-weight:bolder;">직원</a>
+									    <li class="nav-item rounded-lg " style="background:white; height:50px; padding:0.5rem; border: 1px solid white;">
+									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:black;">직원</a>
 									    </li>
 									  </ul>
 									
@@ -95,7 +95,7 @@
 										    
 										    <div id="home" class="container tab-pane active"><br>
 										    	<form action="<%=YesForm%>" method="post">
-										    		<div style="color:white; background:#d61d4e; padding:0; margin:0;" >
+										    		<div>
 												     	<h3>보호자 로그인</h3>
 												    </div>
 												     <p>즐거운 하루 보내요^-^</p>
@@ -105,7 +105,7 @@
 				                                	<br>
 				                                	<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="비밀번호를 입력하세요." />
 				                                	<br>
-				                                	<button class="btn btn-block btn-lg btn-danger" type="submit">로그인</button>
+				                                	<button class="btn btn-block btn-lg btn-default" type="submit">로그인</button>
 				                                </form>	
 				                                <span class="form-control-static err">${pErrmsg}</span>
 			                                	<a style="color:#d61d4e; "href="/kids/parents/paInsert.jsp">회원가입</a>

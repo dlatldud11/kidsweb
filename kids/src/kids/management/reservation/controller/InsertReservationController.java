@@ -35,6 +35,14 @@ public class InsertReservationController extends SuperClass {
 		
 		System.out.println("check : "+check); //false일경우 데이터 입력 실패
 		
+		String page = request.getParameter("page");
+		if(page == null || page.equals("null") || page.equals("")) {
+			page="lalala";
+		}
+		if(page.equals("list")) {
+			new ListResevationController().doGet(request, response);
+		}
+		
 		request.setAttribute("message",message);
 		String gotopage = "/start.jsp";
 		super.GotoPage(gotopage);
