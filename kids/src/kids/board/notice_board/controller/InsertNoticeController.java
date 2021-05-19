@@ -1,15 +1,17 @@
 package kids.board.notice_board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kids.board.medicine.controller.ListMedicineController;
 import kids.board.notice_board.model.Notice_board;
 import kids.board.notice_board.model.Notice_boardDao;
 import kids.common.controller.SuperClass;
+import kids.management.myclass.model.Myclass;
+import kids.management.myclass.model.MyclassDao;
 
 public class InsertNoticeController extends SuperClass {
 	Notice_board bean = null;
@@ -17,7 +19,12 @@ public class InsertNoticeController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-			
+		
+		MyclassDao mdao = new MyclassDao();
+		List<Myclass> mlists = mdao.SelectDataList();
+		
+		request.setAttribute("mlists", mlists);
+		
 		String gotopage = "/notice_board/goInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}	
@@ -40,7 +47,7 @@ public class InsertNoticeController extends SuperClass {
 			int cnt = -99999;
 			cnt = dao.InsertData(bean);
 			
-			new ListMedicineController().doGet(request, response);			
+			new ListNoticeController().doGet(request, response);			
 			
 		}else {
 			System.out.println("글쓰기 실패");

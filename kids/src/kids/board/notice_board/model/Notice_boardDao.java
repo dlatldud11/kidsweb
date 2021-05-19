@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kids.common.model.SuperDao;
+import kids.management.myclass.model.Myclass;
 import kids.members.employees.model.Employees;
 
 public class Notice_boardDao extends SuperDao {
@@ -48,9 +49,10 @@ public class Notice_boardDao extends SuperDao {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = " select ranking, notino, tid, content, files, title, class_id, regdate, readhit, remark from ( " ;
-		sql += " select notino, tid, content, files, title, class_id, regdate, readhit, remark, rank() over(order by notino desc) ";
-		sql += " as ranking from notice_board ";
+		String sql = " select ranking, notino, tid, content, files, title, class_id, regdate, readhit, remark, class_name as class_name from ( "
+				+ " select b.*, c.class_name, rank() over(order by notino desc) "
+				+ " as ranking from notice_board b inner join myclass c "
+				+ " on b.class_id = c.class_id ";
 		if(mode.equalsIgnoreCase("all") == false) {
 			sql += " where " + mode + " like '%" + keyword + "%' " ;
 		}
@@ -79,6 +81,7 @@ public class Notice_boardDao extends SuperDao {
 				bean.setNotino(rs.getInt("notino"));
 				bean.setReadhit(rs.getInt("readhit"));
 				bean.setTitle(rs.getString("title"));
+				bean.setClass_name(rs.getString("class_name"));
 				
 				lists.add(bean);
 			}
@@ -256,5 +259,5 @@ PreparedStatement pstmt = null;
 		
 		return cnt;
 	}
-	
+
 }

@@ -15,6 +15,7 @@
 		function searchAll(){
 			locatoin.gref='<%=NoForm%>goList';
 		}
+		
 	</script>
    <style type="text/css">
       .badge{background:orange; color:red;}
@@ -72,26 +73,23 @@
 								<td>${bean.notino}</td>
 								<td>${bean.title}</td>
 								<td>${bean.tid}</td>
-								<td>${bean.class_id}</td>
+								<td>${bean.class_name}</td>
 								<td>${bean.readhit}</td>
 								<td>${bean.regdate}</td>
-							</tr>	
+							</tr>
 					</c:forEach>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td>
-							<button class="btn btn-info" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
-								글쓰기
-							</button>
-						</td>
-					</tr>
-				</tfoot>		
 		 	</table>
+		 	<hr>
+		 	<button class="btn btn-info" style="float:right;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
+					글쓰기
+			</button>
         </div> 
       </div>
-    </div>
-
+      <div style="width: 30%; float:none; margin:0 auto" >
+		<p style="width: 100%">${pageInfo.pagingHtml}</p>
+	  </div>
+	</div>
 </div>
 </body>
 </html>
