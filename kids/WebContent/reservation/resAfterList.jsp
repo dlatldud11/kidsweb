@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script type="text/javascript">
@@ -36,23 +37,28 @@
 		function myformSubmit(){
 			document.myform.submit();
 		}
+		
 	</script>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div class="container fluid">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary">상담 예약 목록</h5>
+            <h5 class="m-0 font-weight-bold text-primary">입소 대기 확인</h5>
         </div>
 		<div class="card-body">
-		  <form name="myform" action="<%=YesForm %>" method="post">
-		  	<input type="hidden" name="command" value="resList">
-			<div class="form-inline" id="box">
+			<form action="<%=YesForm %>" method="post" name="myform">
+			  	<input type="hidden" name="command" value="resAfterList">
 				<div class="form-inline">
 					<select name="year" id="year" class="form-control" onchange="myformSubmit();">
 						<%
 						    Calendar cal = Calendar.getInstance();
-						  
+						 
 						    int year = cal.get(Calendar.YEAR);
 						    int month = cal.get(Calendar.MONTH) + 1;
 						    
@@ -65,7 +71,6 @@
 						    }
 						%>
 					</select>
-		
 					<label for="year">년</label>  
 					<select name="month" id="month" class="form-control" onchange="myformSubmit();">
 						<%
@@ -83,51 +88,67 @@
 						<option value="desc">최신일자 순
 						<option value="asc">과거일자 순
 					</select>
-					</div>
-					<div class="form-inline">
-						${pageInfo.pagingStatus}
+					&nbsp;
+					 ${pageInfo.pagingStatus}
 						<input type="text" class="form-control" name="keyword" id="keyword" placeholder="이름/휴대폰">
 						<input type="submit" class="form-control" value="검색">
-					</div>
 				</div>
 			</form>
-			
 			<br>
-				 <table class="table table-hover">
-				    <thead>
-				      <tr align="center">
-				      	<th>예약일자<th>
-				        <th>이름</th>
-				        <th>휴대폰</th>
-				        <th>등록일자</th>
-				        <th>상담</th>
-				        <th>취소</th>
-				      </tr>
-				    </thead>
-				    <tbody align="center">
-				    	<c:forEach var="bean" items="${requestScope.lists }">
-					      <tr>
-					      	<td>${bean.res_date }</td>
-					      	<td></td>
-					      	<td>${bean.name }</td>
-					      	<td>${bean.hp }</td>
-					      	<td>${bean.reg_date}</td>
-					      	<td>
-					      		<button class="form-control" onclick="location.href='<%=NoForm%>resUpdate&rid=${bean.rid}'">상담</button>
-					      	</td>
-					      	<td>
-					      		<button class="form-control" onclick="location.href='<%=NoForm%>resDelete&rid=${bean.rid}&${requestScope.parameters}'">취소</button>
-					      	</td>
-					      </tr>
-					    </c:forEach>
-				    </tbody>
-				  </table>
-			  <div style="width: 30%; float:none; margin:0 auto" >
-			      <p style="width: 100%">${pageInfo.pagingHtml}</p>
-			  </div>
-		</div><!-- 카드 바디 -->
-	</div><!-- 그림자 div -->
-</div><!-- container div -->	
- 
+		
+				  <div id="accordion">
+				  	<c:forEach var="bean" items="${requestScope.lists }">
+				    	<div class="card">
+				      
+					      <div class="card-header">
+					        <a class="collapsed card-link" data-toggle="collapse" data-target="#b${bean.rid }">
+					          상담일자 : ${bean.res_date}/ 이름 : ${bean.name }
+					        </a>
+					      </div>
+					      
+					      <div id="b${bean.rid }" class="collapse" data-parent="#accordion">
+					        <div class="card-body">
+					        	<table class="table">
+					        		<tr>
+					        			<td width="20%">휴대폰 번호</td>
+					        			<td width="20%">${bean.hp }</td>
+					        			<td width="60%"></td>
+					        		</tr>
+					        		<tr>
+					        			<td width="20%">상담 선생님</td>
+					        			<td width="20%">${bean.tid}</td>
+					        			<td width="60%"></td>
+					        		</tr>
+					        		<tr>
+					        			<td colspan="3">상담 내용</td>
+					        		</tr>
+					        		<tr>
+					        			<td colspan="3">
+					        				${bean.textarea}
+					        			</td>
+					        		</tr>
+					        		<tr align="center">
+					        			<td colspan="3">
+					        				<input class="btn btn-primary" type="button" value="원생등록">
+					        			
+					        				<input class="btn btn-primary" type="button" value="원생등록 취소">
+					        			</td>
+					        		</tr>
+					        	</table>
+					         </div>
+					       </div>
+					       
+				    	</div>
+				   </c:forEach>
+				</div>	<!-- 리스트 데이터 끝 -->
+			</div><!-- 전체 card body 끝 -->
+			<br>
+			<br>	
+		<div style="width: 30%; float:none; margin:0 auto" >
+      		<p style="width: 100%">${pageInfo.pagingHtml}</p>
+  		</div>
+  </div><!-- 카드 그림자 끝 -->
+</div><!-- 카드 컨테이너 끝 -->
+
 </body>
 </html>

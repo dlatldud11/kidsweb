@@ -743,4 +743,58 @@ public class EmployeesDao extends SuperDao {
 		return cnt;
 	}
 
+	public List<Employees> getEmployeesListAll() {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = " select * from employees";
+		
+		List<Employees> lists = new ArrayList<Employees>();
+		
+		try {
+			if(this.conn == null) {this.conn = this.getConnection();}
+			pstmt = this.conn.prepareStatement(sql);
+		
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Employees bean = new Employees();
+				
+				String str = rs.getString("birth");
+				
+				bean.setAddress1(rs.getString("address1"));
+				bean.setAddress2(rs.getString("address2"));
+				bean.setBirth(str.substring(0, 10));
+				bean.setEmail(rs.getString("email"));
+				bean.setGender(rs.getString("gender"));
+				bean.setHp(rs.getString("hp"));
+				bean.setImage(rs.getString("image"));
+				bean.setName(rs.getString("name"));
+				bean.setPassword(rs.getString("password"));
+				bean.setTid(rs.getString("tid"));
+				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setClass_id(rs.getInt("class_id"));
+				bean.setSalary(rs.getInt("salary"));
+				bean.setJoin_date(rs.getString("join_date"));
+				bean.setSubject_code(rs.getInt("subject_code"));
+				bean.setRemark(rs.getString("remark"));
+				bean.setZipcode(rs.getString("zipcode"));
+				
+				lists.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) { rs.close(); }
+				if(pstmt != null) {pstmt.close();}
+				this.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return lists;
+	}
+
+	
 }
