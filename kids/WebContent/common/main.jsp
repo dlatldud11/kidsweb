@@ -155,15 +155,25 @@
                            <div class="col mr-2">
                              <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                                   Today Issue</div>
-                               <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                  <hr>
+                               <div class=" row h5 mb-0 font-weight-bold text-gray-800"></div>
+                               		<c:if test="${sessionScope.mbean.tid == sessionScope.loginfo.tid}">
+                               		<a href="#">${sessionScope.mbean.name}님 의 투약의뢰서</a><br>
+                               		</c:if>
+                               		<c:if test="${sessionScope.hbean.tid == sessionScope.loginfo.tid}">
+                               		<a href="#">${sessionScope.hbean.name}님 의 귀가동의서</a><br>
+                               		</c:if>
+                               		<c:forEach var="rbean" items="${sessionScope.rbean}">
+                               		<c:if test="${rbean.res_date == sessionScope.today && rbean.status == '상담대기'}">
+                               		<a href="#">${rbean.name}</a><br>
+                               		</c:if>
+                               		</c:forEach>
                              </div>
-                               <div class="col-auto">
-                                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                               </div>
                            </div>
                         </div>
                       </div>
                   </div>     
+  			  </div>
   			  </div>
  
     <!-- Bootstrap core JavaScript-->
