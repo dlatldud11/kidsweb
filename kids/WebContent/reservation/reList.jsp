@@ -42,7 +42,8 @@
 <div class="container fluid">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary">상담 예약 목록</h5>
+           	<h5 class="m-0 font-weight-bold text-primary">상담 예약 목록</h5>
+            <input type="button" onclick="location.href='./reservation/resInsert.jsp'" value="상담예약" class="btn btn-primary" style="float:right;">
         </div>
 		<div class="card-body">
 		  <form name="myform" action="<%=YesForm %>" method="post">
@@ -100,8 +101,8 @@
 				        <th>이름</th>
 				        <th>휴대폰</th>
 				        <th>등록일자</th>
-				        <th>상담</th>
-				        <th>취소</th>
+				        <th>  </th>
+				        <th>  </th>
 				      </tr>
 				    </thead>
 				    <tbody align="center">
@@ -113,10 +114,10 @@
 					      	<td>${bean.hp }</td>
 					      	<td>${bean.reg_date}</td>
 					      	<td>
-					      		<button class="form-control" onclick="location.href='<%=NoForm%>resUpdate&rid=${bean.rid}'">상담</button>
+					      		<button class="form-control" onclick="location.href='<%=NoForm%>resUpdate&rid=${bean.rid}'">일지작성</button>
 					      	</td>
 					      	<td>
-					      		<button class="form-control" onclick="location.href='<%=NoForm%>resDelete&rid=${bean.rid}&${requestScope.parameters}'">취소</button>
+					      		<button class="form-control" onclick="location.href='<%=NoForm%>resDelete&rid=${bean.rid}&${requestScope.parameters}'">예약취소</button>
 					      	</td>
 					      </tr>
 					    </c:forEach>

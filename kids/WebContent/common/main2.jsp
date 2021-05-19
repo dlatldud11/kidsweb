@@ -113,11 +113,11 @@
                              <div class="card-body">
                                  <div class="row no-gutters align-items-center">
                                      <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <div class="h5 mb-0 font-weight-bold text-primary">
                                         <c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
                         				${sessionScope.loginfo.stname}(${sessionScope.loginfo.classname}) ${sessionScope.loginfo.relationship }
 							 			<div class="dropdown">
-                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" style="">
+                                        <button type="button" class="btn btn-warning dropdown-toggle mb-0" data-toggle="dropdown" style="">
 							    		아이 선택
 							  			</button>
 							  			<div class="dropdown-menu">
@@ -146,26 +146,49 @@
                            <div class="container">
                            <ul class="nav nav-fill" role="tablist">
 						  <li class="nav-item rounded-lg">
-						  <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#nobean" >
+						  <a class="navbar-toggler btn btn-light btn-icon-split btn-sm active mx-auto" data-toggle="pill" href="#nobean" >
 						  <span class="text-md font-weight-bold text-primary">공지사항</span></a></li>
 						  
 					   	  <li class="nav-item rounded-lg ">
 					   	  <a class="navbar-toggler btn btn-light btn-icon-split btn-sm" data-toggle="pill" href="#notice" >
-						  <span class="text-md font-weight-bold text-primary">&nbsp;알림장</span></a></li>
+						  <span class="text-md font-weight-bold text-primary">알림장</span></a></li>
 						  
-					      <!-- <li><a href="#" class="btn btn-light btn-icon-split btn-sm">
-						  <span class="text-md font-weight-bold text-primary">&nbsp;특별활동</span></a></li> -->
+					      <li>
+					      <a class="navbar-toggler btn btn-light btn-icon-split btn-sm" data-toggle="pill" href="#noactive">
+						  <span class="text-md font-weight-bold text-primary">특별활동</span></a></li>
 						  </ul>
 						  <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                                   Today Issue</div>
-						  <div class="h5 mb-0 font-weight-bold text-gray-800">
+						  <div class="h6  font-weight-bold text-gray-800">
 						  <div class="tab-content"><!-- tab -->
-                               
+				
                                <div id="nobean" class="container tab-pane active">
-								공지사항
+								<c:forEach var="bean" items="${sessionScope.nobean}">
+								<div onclick="location.href='<%=NoForm%>goDetail&notino=${bean.notino}'" style="cursor:pointer;">
+									<fmt:parseDate value="${bean.regdate}" pattern ="yyyy-MM-dd" var="date"> </fmt:parseDate>
+									<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"></fmt:formatDate>
+									${bean.class_name}<br>
+									${bean.title}<br>
+									${bean.content}<br>
+								</div>
+								</c:forEach>
                                </div>
                                <div id="notice" class="container tab-pane fade">
-                               테스트
+                               <c:forEach var="bean" items="${sessionScope.notice}">
+									<fmt:parseDate value="${bean.regdate}" pattern ="yyyy-MM-dd" var="date"> </fmt:parseDate>
+									<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"></fmt:formatDate>
+									${bean.class_name}<br>
+									${bean.title}<br>
+									${bean.content}<br>
+								</c:forEach>
+                               </div>
+                               <div id="noactive" class="container tab-pane fade">
+                               <c:forEach var="bean" items="${requestScope.noactive}">
+									<fmt:parseDate value="${bean.regdate}" pattern ="yyyy-MM-dd" var="date"> </fmt:parseDate>
+									<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"></fmt:formatDate>
+									${bean.title}
+									${bean.content}
+							   </c:forEach>
                                </div>
                                </div><!-- tab-->
                                </div><!--container 끝  -->
@@ -178,6 +201,7 @@
                         </div>
                       </div>
                   </div>     
+  			  </div>
   			  </div>
  
     <!-- Bootstrap core JavaScript-->

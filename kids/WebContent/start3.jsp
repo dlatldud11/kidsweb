@@ -31,56 +31,8 @@
 	<a href="<%=imsi%>world">월드</a>
 	안녕하세요 0514 aa
 	0517 시영 내용 추가 시영내용추가 
-	<!--  <div class="col mr-2">
-                           <div class="container">
-                           <ul class="nav nav-pills">
-						  <li class="active"><a href="#nobean" class="btn btn-light btn-icon-split btn-sm">
-						  <span class="text-md font-weight-bold text-primary">공지사항</span></a></li>
-						  
-					   	  <li><a href="#home" class="btn btn-light btn-icon-split btn-sm">
-						  <span class="text-md font-weight-bold text-primary">&nbsp;알림장</span></a></li>
-						  
-					      <li><a href="#" class="btn btn-light btn-icon-split btn-sm">
-						  <span class="text-md font-weight-bold text-primary">&nbsp;특별활동</span></a></li>
-						  </ul>
-						  <div class="tab-content">
-                             <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
-                                  Today Issue</div>
-                               <div class="h5 mb-0 font-weight-bold text-gray-800">
-                               <div id="nobean" class="container tab-pane active">
-                               공지사항
-                               </div>
-                               
-                               <div id="home" class="container tab-pane active">
-                               테스트
-                               </div>
-                               </div>tab
-                               </div>container 끝  -->
-                               <div class="container">
-									  <!-- Nav pills -->
-									  <ul class="nav nav-fill" role="tablist">
-									    <li class="nav-item rounded-lg">
-									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home">보호자</a>
-									    </li>
-									    <li class="nav-item rounded-lg ">
-									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp">직원</a>
-									    </li>
-									  </ul>
-										 <!-- Tab panes -->
-										 <div class="tab-content">
-										    <!-- 홈 : 보호자 -->
-										    <div id="home" class="container tab-pane active"><br>
-										    		<div  >
-										    		dkdkdk
-												    </div>
-										    </div>
-										    <!-- 직원 -->
-										    <div id="menuemp" class="container tab-pane fade"><br>
-										    		<div >
-										    		ddd
-												    </div>
-										    </div>
-										</div><!-- tab Pane 끝 -->
-	                                </div><!-- 탭 만들기 container 끝 -->
+	<div onclick="location.href">
+	테스트 테스트
+	</div>
 </body>
 </html>
