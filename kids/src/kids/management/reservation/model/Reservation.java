@@ -1,7 +1,5 @@
 package kids.management.reservation.model;
 
-import java.util.Date;
-
 public class Reservation {
 	private int rid ;
 	private String tid ;
@@ -12,7 +10,16 @@ public class Reservation {
 	private String name ;
 	private String hp ;
 	private String remark ;
+	private String tname;
 	
+	public String getTname() {
+		return tname;
+	}
+
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
+
 	public Reservation() {}
 
 	public int getRid() {

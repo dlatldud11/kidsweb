@@ -18,6 +18,16 @@
 				return false;
 			}
 		}
+		
+		window.onload = function(){
+			/* 필드 검색 상태 보존 */
+			$('#tid option').each(function(){
+				if($(this).val() == '${bean.tid}'){
+					$(this).attr('selected', 'selected') ;
+				}			
+			});
+		} 
+		
 	</script>
 </head>
 <body>
@@ -55,7 +65,7 @@
 		   		<tr>
 		   			<td width="10%" style="vertical-align:middle;" align="center">상담 진행자</td>
 		   			<td width="40%">
-		   				<select name="tid" class="form-control" required="required">
+		   				<select name="tid" id="tid" class="form-control" required="required">
 		   					<option value="-">-선택하세요
 			   				<c:forEach var="item" items="${requestScope.elists}">
 			  					<option value="${item.tid}">${item.name}&nbsp;(${item.responsibilities })
@@ -66,7 +76,7 @@
 		   		 <tr>
 		   			<td width="10%" style="vertical-align:middle;" align="center">상담 내용</td>
 		   			<td width="40%">
-		   				<textarea style="resize: none;" class="form-control" name="textarea" cols="100%" rows="10" id="textarea"></textarea>
+		   				<textarea style="resize: none;" class="form-control" name="textarea" cols="100%" rows="10" id="textarea" >${bean.textarea }</textarea>
 		   			</td>
 		   		</tr>
 		   		<tr>

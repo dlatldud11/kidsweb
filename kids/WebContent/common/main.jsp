@@ -135,11 +135,11 @@
                                  		</a>
                                  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 		<a href="<%=NoForm%>stInsert" class="btn btn-danger btn-icon-split btn-lg">
+                                 		<a href="<%=NoForm%>resList" class="btn btn-danger btn-icon-split btn-lg">
                                      		<span class="icon text-white-50">
                                          <i class="fas fa-plus"></i>
                                     		 	</span>
-                                     	<span class="text">원생등록</span>
+                                     	<span class="text">예약목록</span>
                                  		</a>
                                      </div>
                                  </div>

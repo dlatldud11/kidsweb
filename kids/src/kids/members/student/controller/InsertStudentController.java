@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 
 import kids.common.controller.SuperClass;
+import kids.management.reservation.model.Reservation;
+import kids.management.reservation.model.ReservationDao;
 import kids.members.student.model.Student;
 import kids.members.student.model.StudentDao;
 
@@ -17,6 +19,15 @@ public class InsertStudentController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
+		String imsirid = request.getParameter("rid");
+		if(imsirid == null || imsirid.equals("null") || imsirid.equals("")) {
+			imsirid="0";
+		}
+		int rid = Integer.parseInt(imsirid);
+		ReservationDao rdao = new ReservationDao();
+		Reservation bean = rdao.selectDataByPk(rid);
+		request.setAttribute("rbaen", bean);
+		
 		String gotopage = "/student/stlInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}
@@ -36,7 +47,7 @@ public class InsertStudentController extends SuperClass {
 		String zipcode = multi.getParameter("zipcode");
 		String address1 = multi.getParameter("address1");
 		String address2 = multi.getParameter("address2");
-		String image = multi.getParameter("image");
+		String image = multi.getFilesystemName("image");
 		String content = multi.getParameter("content");
 	
 //		bean.setClass_id(class_id);
