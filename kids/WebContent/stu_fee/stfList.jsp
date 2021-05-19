@@ -149,6 +149,7 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 						<table class="table table-hover">
 							<thead>
 								<tr>
+									<th>선택</th>
 									<th>날짜</th>
 									<th>이름</th>
 									<th>반</th>
