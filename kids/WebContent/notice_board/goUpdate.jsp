@@ -45,26 +45,24 @@
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">글 내용</label>
 				      	<div class="col-sm-9">
-				        	<input type="text" class="form-control" id="subject" 
-				        		name="content" value="${bean.content}">
+				        	<textarea rows="13" cols="400" class="form-control" id="content" 
+				        	name="content" >${bean.content}</textarea>
 				      	</div>
 				    </div>
 				    <div class="form-group">
-                      	<div class="row">
-                            <div class="col-sm-12">
-								<select class="form-control" id="class_id" name="class_id">
-					        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
-								    <option value="1">해바라기</option>
-								    <option value="2">민들레</option>
-								    <option value="3">장미</option>
-							  	</select>
-							</div>
+	                   <div class="col-sm-9">
+							<select class="form-control" id="class_id" name="class_id">
+				        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
+							    <option value="1">해바라기</option>
+							    <option value="2">민들레</option>
+							    <option value="3">장미</option>
+						  	</select>
 						</div>
-               	    </div>
+					</div>
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="tiles">첨부 자료</label>
 				      	<div class="col-sm-9">
-				        	<input type="file" class="form-control" id="files" 
+				        	<input type="file" class="form" id="files" 
 				        		name="files" value="${bean.files}">
 				      	</div>
 				    </div>
