@@ -57,7 +57,7 @@
 				      	<label class="control-label col-sm-3" for="tiles">첨부 자료</label>
 				      	<div class="col-sm-3">
 				        	<input type="file" class="form" id="files" 
-				        		name="files" value="${bean.files}">
+				        		name="files" value="${bean.files}" multiple>
 				      	</div>
 				    </div>
 				    <div class="form-group">        
