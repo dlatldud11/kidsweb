@@ -197,19 +197,6 @@ e
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
                        	<div class="input-group-append">
                         	<!-- 테스트중 - 정희 -->
-                        	<c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
-                        	<h3>${sessionScope.loginfo.stname}(${sessionScope.loginfo.classname}) ${sessionScope.loginfo.relationship } </h3>
-							 <div class="dropdown form-control">
-							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="">
-							    아이 선택
-							  </button>
-							  <div class="dropdown-menu">
-							  	<c:forEach var="item" items="${sessionScope.plists}">
-							    	<a class="dropdown-item" href="<%=NoForm%>changePloginfo&sid=${item.sid}&pid=${item.pid}">${item.stname}</a>
-							    </c:forEach>	
-							  </div>
-							</div>
-							</c:if>
 						</div>
 						
                         	<!-- 테스트중 - 정희 -->

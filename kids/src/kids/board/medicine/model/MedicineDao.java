@@ -229,10 +229,9 @@ public class MedicineDao extends SuperDao {
 		return cnt ;
 	}
 	
-	/*
-	public int DeleteData( int no ){
-		String sql = " delete from Stu_fees " ;
-		sql += " where no = ?" ;
+	public int DeleteData( int meno ){
+		String sql = " delete from medicine " ;
+		sql += " where meno = ? " ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
@@ -241,7 +240,7 @@ public class MedicineDao extends SuperDao {
 			conn.setAutoCommit( false );
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, meno);
 			
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -265,9 +264,7 @@ public class MedicineDao extends SuperDao {
 		return cnt ;
 	}	
 	
-	public Stu_feeDao() {
-	
-	}*/
+
 	public List<Medicine2> SelectDataList() {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;

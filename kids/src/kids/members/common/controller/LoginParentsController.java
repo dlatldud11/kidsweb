@@ -7,6 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kids.board.activity.model.Activity;
+import kids.board.activity.model.ActivityDao;
+import kids.board.notice_board.model.Notice_board;
+import kids.board.notice_board.model.Notice_boardDao;
 import kids.common.controller.SuperClass;
 import kids.members.parents.model.ParentsDao;
 import kids.members.parents.model.ParentsMiniView;
@@ -52,6 +56,13 @@ public class LoginParentsController extends SuperClass {
 			
 			super.session.setAttribute("plists", plists);
 			super.session.setAttribute("loginfo", bean);
+			Notice_boardDao nodao = new Notice_boardDao();
+			List <Notice_board> nobean = nodao.SelectList(1, 10, "all", "all");
+			ActivityDao acdao = new ActivityDao();
+			List <Activity> acbean = acdao.SelectDataList(0, 0);
+			
+			super.session.setAttribute("nobean", nobean);
+			super.session.setAttribute("acbean", acbean);
 			
 			gotopage = "/common/main2.jsp" ;
 			super.GotoPage(gotopage);
