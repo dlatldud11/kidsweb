@@ -26,7 +26,47 @@
 
     <!-- Custom styles for this page -->
     <link href="./../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<style>
+	.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -37,67 +77,74 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">시간표</h1>
-                   
-
-
+                    <h1 class="h3 mb-2 text-gray-800">오늘 하루는 어떻게 보낼까요~</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <div class="dropdown">
+							  <h6 class="m-0 font-weight-bold text-primary">어느 반?</h6>
+							  <div class="dropdown-content">
+							  <p>1</p>
+							  <p>2</p>
+							  <p>3</p>
+							  </div>
+							</div>
                         </div>
+                     <form action="">  
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="2">
                                     <thead>
                                         <tr>
                                             <th>몇시에요</th>
                                             <th>무엇을 할까요</th>
-                                            <th>어떤 선생님이에요</th>
+                                            <th>어느 선생님이에요</th>
                                         </tr>
                                         <tr>
                                             <th>09:00 ~ 10:00</th>
-                                            <th>             </th>
-                                            <th>             </th>
+                                            <th><input type="text" id="username" name="username"></th>
+                                            <th><input type="text" id="username" name="username">선생님</th>
                                         </tr>
                                         <tr>
                                             <td>10:00 ~ 12:00</td>
-                                            <td>             </td>
-                                            <td>             </td>
+                                            <td><input type="text" id="username" name="username"></td>
+                                            <td><input type="text" id="username" name="username">선생님</td>
                                         </tr>
                                         <tr>
                                             <th>13:00 ~ 14:00</th>
-                                            <th>             </th>
-                                            <th>             </th>
+                                            <th><input type="text" id="username" name="username"></th>
+                                            <th><input type="text" id="username" name="username">선생님</th>
                                         </tr>
                                         <tr>
                                             <th>14:00 ~ 15:00</th>
-                                            <th>             </th>
-                                            <th>             </th>
+                                            <th><input type="text" id="username" name="username"></th>
+                                            <th><input type="text" id="username" name="username">선생님</th>
                                         </tr>
                                         <tr>
                                             <td>15:00 ~ 17:00</td>
-                                            <td>             </td>
-                                            <td>             </td>
+                                            <td><input type="text" id="username" name="username"></td>
+                                            <td><input type="text" id="username" name="username">선생님</td>
                                         </tr>
                                         <tr>
                                             <td>17:00 ~ 18:00</td>
-                                            <td>             </td>
-                                            <td>             </td>
+                                            <td><input type="text" id="username" name="username"></td>
+                                            <td><input type="text" id="username" name="username">선생님</td>
                                         </tr>
                                      </thead>
                                      <tfoot>
                                         <tr>
                                             <th>18:00 ~ 21:00</th>
-                                            <th>             </th>
-                                            <th>             </th>
+                                            <th><input type="text" id="username" name="username"></th>
+                                            <th><input type="text" id="username" name="username">선생님</th>
                                         </tr>
                                     </tfoot>
                                     </tbody>
                                 </table>
+                               <button type="submit" class="btn btn-primary">입력</button>
                             </div>
                         </div>
+                      </form> 
                     </div>
 
 
@@ -108,15 +155,7 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+     
 
         </div>
         <!-- End of Content Wrapper -->

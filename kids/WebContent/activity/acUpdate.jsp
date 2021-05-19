@@ -39,7 +39,7 @@
 				      	<div class="col-sm-9">
 				        	<input type="text" class="form-control" disabled="disabled" 
 				        		id="fakewriter" name="fakewriter"
-				        		value="${sessionScope.loginfo.name}${sessionScope.loginfo.tid}" >				        		
+				        		value="${sessionScope.loginfo.name}(${sessionScope.loginfo.tid})" >				        		
 				        	<input type="hidden" name="tid" value="${sessionScope.loginfo.tid}">
 				      	</div>
 				    </div>

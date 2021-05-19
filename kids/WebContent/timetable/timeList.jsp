@@ -77,13 +77,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">시간표</h1>
+                    <h1 class="h3 mb-2 text-gray-800">오늘은 하루를 어떻게 보낼까요~</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="dropdown">
-							  <h6 class="m-0 font-weight-bold text-primary">학급</h6>
+							  <h6 class="m-0 font-weight-bold text-primary">어느 반</h6>
 							  <div class="dropdown-content">
 							  <p>1</p>
 							  <p>2</p>
@@ -152,15 +152,7 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+     
 
         </div>
         <!-- End of Content Wrapper -->
