@@ -30,13 +30,15 @@
             <div class="panel-heading">
                <h4>투약의뢰서 목록</h4>
                <c:forEach var="bean" items="${requestScope.cn_lists}">
-               		<c:if test="${whologin == 3 || whologin == 2}">
+               		<c:if test="${whologin == 2}">
                			<c:if test="${loginfo.class_id == bean.class_id }">
                				<h2>${bean.class_name}반</h2>
                			</c:if>
                		</c:if>
                </c:forEach>
-               
+               <c:if test="${whologin == 3}">
+               <h2>${class_name}반</h2>
+               </c:if>
                <div class="search">
                   <tr>
                      <td align="center" colspan="11">

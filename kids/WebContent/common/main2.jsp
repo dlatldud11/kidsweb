@@ -3,13 +3,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  	<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>아이하루 어린이집</title>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+       
+        <!-- w3school 예제에서 가져옴 -->
+       	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	<%-- 	function alert1() {
-			 window.open("<%=NoForm%>empmOn&tid=${sessionScope.loginfo.tid}&attendance=출석", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=700, height=700, left=0, top=0" );		
-		}
-		function alert2() {
-			 window.open("<%=NoForm%>empmOff&tid=${sessionScope.loginfo.tid}&attendance=퇴근", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=700, height=700, left=0, top=0" );		
-		} --%>
+	
 	</script>
 		       <!-- 로그인 상태 정보 -->
 <c:set var="whologin" value="0" /> 
@@ -42,27 +49,12 @@
           <div class="card-body">
               <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >
-                          <!--선생님  --></div>
-                     	 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                     		 <div class="btn btn-primary btn-icon-split " onclick="alert1();">
-                  				<span class="icon text-white-50">
-		                 			 <i class="fas fa-flag"></i>
-		               			</span>
-              					<span class="text" >출근</span>
-              				</div>
-                  		<div class="my-2"></div>
-                   			<div class="btn btn-warning btn-icon-split " onclick="alert2();">
-		                      	<span class="icon text-white-50">
-		                      		<i class="fas fa-exclamation-triangle"></i>
-		                      	</span>
-                       			<span class="text">퇴근</span>
-                  			</div>
-                        	</div>
-                  		  </div>
-                       	<div class="col-xl-5">
-                  		     <div class="h5 mb-0 font-weight-bold text-gray-800 ">현재시간<br>01:01</div>
-                        </div>
+                  	<div class="h5 mb-0 font-weight-bold text-primary ">내아이<br>상세보기
+                  	</div>
+                  </div>
+                  	<div class="col-auto">
+                    	<i class="far fa-smile fa-2x text-gray-300"></i> <!-- fa-2x --> 
+                    </div>	     
                       </div>
                		</div>
                   </div>
@@ -74,8 +66,8 @@
                               <div class="col mr-2" >
                                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                  </div>
-	                                <div class="h5 mb-0 font-weight-bold text-primary">
-	                              		  귀가동의서 <br>확인하기</div>
+	                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+	                              		  현재시간 <br>01:01</div>
                                    	 </div>
                                      <div class="col-auto">
                                          <i class="fas fa-home fa-2x text-gray-300"></i>
@@ -88,19 +80,12 @@
                    <div class="row">
                      <div class="col-xl-6 col-md-6 mb-3">
                          <div class="card border-left-primary shadow h-100 py-2">
-                             <div class="card-body">
+                             <div class="card-body onclick="location.href='<%=NoForm%>hoInsert';">
                                  <div class="row no-gutters align-items-center">
                                      <div class="col mr-2">
-                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                             </div>
-		                                         <a href="<%=NoForm%>stmOn" class="btn btn-success btn-icon-split btn-lg">
-		                                     		<span class="icon text-white-50">
-		                                         <i class="fas fa-trash"></i>
-                                    			 	</span>
-                                   			  	<span class="text">원생출석</span>
-                                 				</a>
-                                   			  </div>
-                              			   <div class="col-auto">
+                                     	<div class="h5 mb-0 font-weight-bold text-primary">귀가동의서 <br>작성하기</div>
+                                   	 </div>
+                              			 <div class="col-auto">
                                          <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                      </div>
                                  </div>
@@ -128,14 +113,21 @@
                              <div class="card-body">
                                  <div class="row no-gutters align-items-center">
                                      <div class="col mr-2">
-                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                             </div>
-                                         <a href="<%=NoForm%>stInsert" class="btn btn-danger btn-icon-split btn-lg">
-                                     		<span class="icon text-white-50">
-                                         <i class="fas fa-trash"></i>
-                                    		 	</span>
-                                     	<span class="text">원생등록</span>
-                                 		</a>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        <c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
+                        				${sessionScope.loginfo.stname}(${sessionScope.loginfo.classname}) ${sessionScope.loginfo.relationship }
+							 			<div class="dropdown">
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" style="">
+							    		아이 선택
+							  			</button>
+							  			<div class="dropdown-menu">
+							  			<c:forEach var="item" items="${sessionScope.plists}">
+							    		<a class="dropdown-item" href="<%=NoForm%>changePloginfo&sid=${item.sid}&pid=${item.pid}">${item.stname}</a>
+							    		</c:forEach>	
+							 			</div>
+                                        </div>
+										</div>
+										</c:if>
                                      </div>
                                      <div class="col-auto">
                                          <i class="far fa-smile fa-2x text-gray-300"></i>
@@ -147,13 +139,37 @@
                    </div>
                 </div>
                   <div class="col-xl-4 col-md-6 mb-3">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                       <div class="card-body">
+				  <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
                          <div class="row no-gutters align-items-center">
                            <div class="col mr-2">
-                             <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
+                           <div class="container">
+                           <ul class="nav nav-fill" role="tablist">
+						  <li class="nav-item rounded-lg">
+						  <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#nobean" >
+						  <span class="text-md font-weight-bold text-primary">공지사항</span></a></li>
+						  
+					   	  <li class="nav-item rounded-lg ">
+					   	  <a class="navbar-toggler btn btn-light btn-icon-split btn-sm" data-toggle="pill" href="#notice" >
+						  <span class="text-md font-weight-bold text-primary">&nbsp;알림장</span></a></li>
+						  
+					      <!-- <li><a href="#" class="btn btn-light btn-icon-split btn-sm">
+						  <span class="text-md font-weight-bold text-primary">&nbsp;특별활동</span></a></li> -->
+						  </ul>
+						  <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                                   Today Issue</div>
-                               <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+						  <div class="h5 mb-0 font-weight-bold text-gray-800">
+						  <div class="tab-content"><!-- tab -->
+                               
+                               <div id="nobean" class="container tab-pane active">
+								공지사항
+                               </div>
+                               <div id="notice" class="container tab-pane fade">
+                               테스트
+                               </div>
+                               </div><!-- tab-->
+                               </div><!--container 끝  -->
+                               </div>
                              </div>
                                <div class="col-auto">
                                   <i class="fas fa-calendar fa-2x text-gray-300"></i>
