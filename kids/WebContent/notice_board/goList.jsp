@@ -28,34 +28,31 @@
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <div class="container col-sm-offset-2 col-sm-10">
          <div class="panel panel-primary">
-             <div class="panel-heading">
+             <div class="card-header py-3" style="background-color:white;">
                <h4>공지 사항</h4>
-               <div class="search">
-                  <tr>
-                     <td>
-                        <form action="" class="form-inline" role="form" name="myform" method="get"> 
-                          <div>${pageInfo.pagingStatus}</div>
-                          &nbsp;&nbsp;
-                           <div class="form-group">
-                              <select id="mode" name="mode" class="form-control">
-                                 <option value="all" selected="selected">-- 선택하세요.
-                                 <option value="title">글제목
-                                 <option value="tid">아이디
-                                  <option value="class_id">학급
-                              </select>
-                           </div>                           
-                           <div class="form-group">
-                              <input type="text" class="form-control" name="keyword" id="keyword"> 
-                           </div>  
-                           &nbsp;&nbsp;
-                           <button class="btn btn-primary" type="button" onclick="search();">검색</button>
-                           &nbsp;&nbsp;
-                           <button class="btn btn-primary" type="button" onclick="searchAll();">전체 검색</button>
-                           &nbsp;&nbsp;
-                        </form>
-                     </td>
-                  </tr>
-               </div>
+               <div class="card-body">
+                  <form action="" class="form-inline" role="form" name="myform" method="get"> 
+                    <div>${pageInfo.pagingStatus}</div>
+                    &nbsp;&nbsp;
+                     <div class="form-group">
+                        <select id="mode" name="mode" class="form-control">
+                           <option value="all" selected="selected">-- 선택하세요.
+                           <option value="title">글제목
+                           <option value="tid">아이디
+                            <option value="class_id">학급
+                        </select>
+                     </div>                           
+                     <div class="form-group">
+                        <input type="text" class="form-control" name="keyword" id="keyword"> 
+                     </div>  
+                     &nbsp;&nbsp;
+                     <button class="btn btn-primary" type="button" onclick="search();">검색</button>
+                     &nbsp;&nbsp;
+                     <button class="btn btn-primary" type="button" onclick="searchAll();">전체 검색</button>
+                     &nbsp;&nbsp;
+                     <button class="btn btn-primary" style="float:right;margin-top:2px;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
+					 글쓰기</button>
+                  </form>
             <br>
                <table class="table table-hover">
 					<thead align="center">
@@ -81,13 +78,9 @@
 					</c:forEach>
 				</tbody>
 		 	</table>
-		 	<hr>
-		 	<button class="btn btn-info" style="float:right;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
-					글쓰기
-			</button>
-			
         </div> 
       </div>
+      </div> 
       <div style="width: 30%; float:none; margin:0 auto" >
 		<p style="width: 100%">${pageInfo.pagingHtml}</p>
 	  </div>

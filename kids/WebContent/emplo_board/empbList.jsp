@@ -46,7 +46,7 @@
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <div class="container col-sm-offset-4 col-sm-8">
          <div class="panel panel-primary">
-             <div class="panel-heading">
+             <div class="card-header py-3" style="background-color:white;">
              	<br>
                <h4>직원 게시판</h4>
                <br>
@@ -61,7 +61,7 @@
 			                </tr>
 			                <tr>
 			                    <td colspan="2">
-			                        <textarea rows="5" cols="150" name="content"></textarea>
+			                        <textarea rows="5" cols="140" name="content"></textarea>
 			                    </td>
 			                </tr>
 			            </table>
@@ -73,12 +73,12 @@
 			 
 			    <br><br>
 			    <!-- 글 목록 부분 시작 -->
-			    <div id="emploBoardList">
+			    <div class="card-body" id="emploBoardList">
 			    	<form name="myform" method="post" action="<%=YesForm%>">
 			    	<input type="hidden" name="command" value="empbUpdate">
 			            <div id="comment">
 			            	<c:forEach var="bean" items="${requestScope.lists}">
-			                <hr size="1" width="1100">
+			                <hr size="1" width="1000">
 			                <input type="hidden" name="empno" value="${bean.empno}">
 			                 <input type="hidden" name="content" value="${bean.content}">
 			                <label>아이디&nbsp;:&nbsp;${bean.tid}</label>
@@ -92,11 +92,11 @@
 			                 </span>
 			                 </c:if>
 			                 <div id="UpdateContent${bean.empno}" >
-			                 	 <textarea class="form-control-alert-warning" rows="3" cols="120" readonly="readonly">${bean.content}</textarea>
+			                 	 <textarea class="form-alert-warning" rows="3" cols="120" readonly="readonly">${bean.content}</textarea>
 			                 </div>
 			                 <br>
 			                 </c:forEach>
-			                 <hr size="1" width="1100">
+			                 <hr size="1" width="1000">
 			            </div>
 			        </form>	
 			     </div>

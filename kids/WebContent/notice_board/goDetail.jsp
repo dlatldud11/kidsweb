@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container col-sm-offset-2 col-sm-8">
+	<div class="container-fluid col-sm-offset-2 col-sm-8">
 		<div class="panel panel-primary">
-			<div class="panel-heading">
+			<div class="card-header py-3">
 				<h4>공지 사항</h4>
 				</div>
-					<div class="col-sm-12">
-						
+					<div class="card-body">
+						<div class="table-responsive">
 						<table class="table table-bordered">
 							<tr>
 								<td width="10%" align="center">제목</td>
@@ -35,6 +35,7 @@
 							</tr>
 						</table>
 					</div>
+				</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
 				<button class="btn btn-info" onclick="location.href='<%=NoForm%>goUpdate&notino=${bean.notino}'">
