@@ -30,7 +30,7 @@
          <div class="panel panel-primary">
              <div class="card-header py-3" style="background-color:white;">
                <h4>공지 사항</h4>
-               <div class="card-body" style="background-color:white;">
+               <div class="card-body">
                   <form action="" class="form-inline" role="form" name="myform" method="get"> 
                     <div>${pageInfo.pagingStatus}</div>
                     &nbsp;&nbsp;
@@ -50,6 +50,8 @@
                      &nbsp;&nbsp;
                      <button class="btn btn-primary" type="button" onclick="searchAll();">전체 검색</button>
                      &nbsp;&nbsp;
+                     <button class="btn btn-primary" style="float:right;margin-top:2px;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
+					 글쓰기</button>
                   </form>
             <br>
                <table class="table table-hover">
@@ -76,9 +78,6 @@
 					</c:forEach>
 				</tbody>
 		 	</table>
-		 	<button class="btn btn-primary" style="float:right;margin-top:2px;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">
-					글쓰기
-			</button>
         </div> 
       </div>
       </div> 
