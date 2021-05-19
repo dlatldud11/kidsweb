@@ -126,8 +126,8 @@
 							    		</c:forEach>	
 							 			</div>
                                         </div>
+                                        </c:if>
 										</div>
-										</c:if>
                                      </div>
                                      <div class="col-auto">
                                          <i class="far fa-smile fa-2x text-gray-300"></i>
