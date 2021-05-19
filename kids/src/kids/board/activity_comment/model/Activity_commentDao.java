@@ -129,7 +129,7 @@ public class Activity_commentDao extends SuperDao {
 
 	public int InsertData(Activity_comment bean) {
 		String sql = "insert into activity_comment(activity_cmid, actino, actino, regdate, remark, tid, pid, groupno, orderno, depth)"
-		           + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
+		           + " values (activity_cmid_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
 		 
 		 PreparedStatement pstmt = null ;
 			int cnt = -99999 ; 
@@ -138,16 +138,15 @@ public class Activity_commentDao extends SuperDao {
 				conn.setAutoCommit( false );
 				pstmt = super.conn.prepareStatement(sql) ;
 				
-				pstmt.setInt(1, bean.getActivity_cmid());
-				pstmt.setInt(2, bean.getActino());
-				pstmt.setString(3, bean.getContent());
-				pstmt.setString(4, bean.getRegdate());
-				pstmt.setString(5, bean.getRemark());
-				pstmt.setString(6, bean.getTid());
-				pstmt.setString(7, bean.getPid());
-				pstmt.setInt(8, bean.getGroupno());
-				pstmt.setInt(9, bean.getOrderno());
-				pstmt.setInt(10, bean.getDepth());
+				pstmt.setInt(1, bean.getActino());
+				pstmt.setString(2, bean.getContent());
+				pstmt.setString(3, bean.getRegdate());
+				pstmt.setString(4, bean.getRemark());
+				pstmt.setString(5, bean.getTid());
+				pstmt.setString(6, bean.getPid());
+				pstmt.setInt(7, bean.getGroupno());
+				pstmt.setInt(8, bean.getOrderno());
+				pstmt.setInt(9, bean.getDepth());
 				
 				cnt = pstmt.executeUpdate() ; 
 				conn.commit(); 

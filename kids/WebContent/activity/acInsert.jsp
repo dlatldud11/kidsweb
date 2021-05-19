@@ -26,7 +26,7 @@
 			<div class="panel-body">
 				<form class="form-horizontal" action="<%=YesForm%>" method="post">
 					<input type="hidden" name="command" value="acInsert">
-					<input type="hidden" name="isCheck" value="fals">
+					<input type="hidden" name="idCheck" value="false">
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="writer">작성자</label>
 				      	<div class="col-sm-9">
