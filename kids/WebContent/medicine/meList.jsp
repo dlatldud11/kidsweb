@@ -24,11 +24,12 @@
    </style>
 </head>
 <body>
- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-   <div class="container col-sm-offset-4 col-sm-8">
-         <div class="panel panel-primary">
-            <div class="panel-heading">
-               <h4>투약의뢰서 목록</h4>
+<div class="container col-sm-offset-2 col-sm-10">
+ <div class="card shadow mb-4">
+            <div class="card-header py-3">
+               <h4 class="m-0 font-weight-bold text-primary">투약의뢰서 목록</h4>
+            </div>
+               <div class="card-body">
                <c:forEach var="bean" items="${requestScope.cn_lists}">
                		<c:if test="${whologin == 2}">
                			<c:if test="${loginfo.class_id == bean.class_id }">
@@ -84,27 +85,20 @@
 							</tr>	
 						</c:forEach>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td>
-						<!-- <c:if test="${whologin == 3 }"> 구현 완성하고 풀기 --> 
-							<button class="btn btn-info" onclick="location.href='<%=NoForm%>meInsert&pid=${sessionScope.loginfo.pid}&sid=${sessionScope.loginfo.sid}'">
+		 	</table>
+		 	<div style="float:right">
+							<a href='<%-- <%=NoForm%>meInsert&pid=${sessionScope.loginfo.pid}&sid=${sessionScope.loginfo.sid} --%>'>
+							<button class="btn btn-primary">
 								글쓰기
 							</button>
+							</a>
+							
+						<!-- <c:if test="${whologin == 3 }"> 구현 완성하고 풀기 --> 
 						<!-- </c:if> -->
-						</td>
-					</tr>
-				</tfoot>			
-		 	</table>
+				</div>		
         </div> 
-      </div>
     </div>
-
 </div>
-</body>
-</html>
-<html>
-<body>
 <%@ include file="./../common/footer.jsp" %>
 </body>
 </html>

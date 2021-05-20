@@ -53,6 +53,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			, parameters.getMonth()
 			, parameters.getPaid()
 			, parameters.getClass_name());
+	
 	System.out.println("비긴로" + pageInfo.getBeginRow() +"/" + "앤드로" + pageInfo.getEndRow());
 	System.out.println("board list count : " + lists.size());
 	

@@ -34,7 +34,7 @@
 							<th>이름</th>
 						</tr>
 						<tr>
-						<c:forEach var="bean" items="litst">
+						<c:forEach var="bean" items="${requestScope.beans}">
 							<td>${bean.regdate}</td>
 							<td>${bean.class_name}</td>
 							<td>${bean.sid}</td>
