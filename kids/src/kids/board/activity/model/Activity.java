@@ -28,8 +28,8 @@ public class Activity {
 		return subject_code;
 	}
 
-	public void setSubject_code(int subject_code) {
-		this.subject_code = subject_code;
+	public void setSubject_code(int string) {
+		this.subject_code = string;
 	}
 
 	public String getTitle() {

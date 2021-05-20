@@ -153,8 +153,14 @@ e
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="<%=NoForm%>meList">
                     		투약의뢰서</a>
-                    	<a class="collapse-item" href="tables.jsp">
-                    		귀가동의서</a>
+                    	<c:if test="${whologin == 2 }">
+                    		<a class="collapse-item" href="<%=NoForm%>hoList">
+                    			귀가동의서</a>
+                    	</c:if>
+                    	<c:if test="${whologin == 3}">
+                    		<a class="collapse-item" href="<%=NoForm%>hoList">
+                    			귀가동의서</a>
+                    	</c:if>
                     	<a class="collapse-item" href="<%=NoForm%>resList">
                     		상담예약확인</a>	
                     	<a class="collapse-item" href="<%=NoForm%>resAfterList">

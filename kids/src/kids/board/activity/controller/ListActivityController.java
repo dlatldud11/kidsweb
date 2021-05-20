@@ -1,6 +1,8 @@
 package kids.board.activity.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,12 +18,17 @@ public class ListActivityController extends SuperClass {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
+		Date date = new Date();
+		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd");
+		String today = form.format(date);
 		
-		
-		 ActivityDao dao = new ActivityDao(); List<Activity> lists =
-		 dao.SelectDataList(0, 0);
+		 ActivityDao dao = new ActivityDao(); 
+		 List<Activity> lists = dao.SelectDataList();
 		 
+		 request.setAttribute("today", today);
+		 request.setAttribute("lists", lists);
 		 
+		 System.out.println("lists sizs : " + lists.size());
 		
 		String gotopage = "/activity/acList.jsp" ;
 		super.GotoPage(gotopage);

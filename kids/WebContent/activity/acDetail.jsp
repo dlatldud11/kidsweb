@@ -46,11 +46,11 @@
 			$("#comment_list").append(litag);			
 		}
 		
-		function getListComment(){ /* 댓글 목록을 읽어 온다. */
+<%-- 		function getListComment(){ /* 댓글 목록을 읽어 온다. */
 			$("#comment_list").empty() ;
 			$.ajax({ /* 유효성 검사를 통과 했을 때 Ajax 함수 호출 */
 	            url: '<%=NoForm%>comList',
-	            data : 'no=' + '${bean.no}', 
+	            data : 'no=' + '${bean.actino}', 
 	    		type : "get",             
 	            dataType: "json",
 	            success: function (obj, textStatus) {
@@ -65,7 +65,7 @@
 		           	});
 	            }
 	        });
-		}
+		} --%>
 		
 		/** 삭제 버튼 클릭시에 항목 삭제하도록 "미리" 지정 */
 		$(document).on("click", ".delete_btn", function() {
@@ -73,7 +73,7 @@
 				
 				$.ajax({ /* 유효성 검사를 통과 했을 때 Ajax 함수 호출 */
 		            url: '<%=NoForm%>comDelete',
-		            data : 'cnum=' + $(this).attr('pmkey') + '&no=' + '${bean.no}',  
+		            data : 'cnum=' + $(this).attr('pmkey') + '&no=' + '${bean.actino}',  
 		    		type : "post",             
 		            dataType: "text",
 		            success: function (data, textStatus) { /* 댓글 삭제 */	            	
@@ -129,7 +129,7 @@
 					<table>
 						<tr>
 							<td>
-								<img src="${bean.files}" class="img-rounded" 
+								<img src="${bean.image}" class="img-rounded" 
 									alt="${bean.class_id}" width="200" height="200">		
 							</td>
 						</tr>
@@ -139,7 +139,7 @@
 					<table class="table table-bordered">
 						<tr>
 							<td width="25%" align="center">글 번호</td>
-							<td width="75%" align="left">${bean.notino}</td>
+							<td width="75%" align="left">${bean.actino}</td>
 						</tr>
 						<tr>
 							<td width="25%" align="center">제목</td>
@@ -187,7 +187,7 @@
 						<div class="form-group">
 							<label for="writer" class="col-xs-3 col-lg-3 control-label">작성자</label>
 							<div class="col-xs-4 col-lg-4">
-								<input type="hidden" name="no" value="${bean.no}" />
+								<input type="hidden" name="no" value="${bean.actino}" />
 								<input type="text" name="fakewriter" id="fakewriter" class="form-control" disabled="disabled" value="${sessionScope.loginfo.id}">								
 							</div><input type="hidden" name="writer" id="writer" value="${sessionScope.loginfo.id}">
 						</div>

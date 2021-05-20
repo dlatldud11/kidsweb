@@ -44,7 +44,7 @@ public class EmployeesDao extends SuperDao {
 				bean.setResponsibilities(rs.getString("responsibilities"));
 				bean.setClass_id(rs.getInt("class_id"));
 				bean.setSalary(rs.getInt("salary"));
-				
+				bean.setSubject_code(rs.getInt("subject_code"));
 			}
 		} catch (Exception e) {			
 			e.printStackTrace();

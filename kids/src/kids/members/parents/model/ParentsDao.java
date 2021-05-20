@@ -579,6 +579,7 @@ public class ParentsDao extends SuperDao {
 				plists.add(bean);
 				System.out.println("checkcheck4");
 				bean.setTid("parents");
+				bean.setClass_id(rs.getInt("class_id"));
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();
@@ -619,6 +620,8 @@ public class ParentsDao extends SuperDao {
 				bean.setSubmit(rs.getString("submit"));
 				bean.setPassword(rs.getString("password"));
 				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setTid("parents");
+				bean.setClass_id(rs.getInt("class_id"));
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();
@@ -660,6 +663,7 @@ public class ParentsDao extends SuperDao {
 				bean.setSubmit(rs.getString("submit"));
 				bean.setPassword(rs.getString("password"));
 				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setClass_id(rs.getInt("class_id"));
 				System.out.println("checkcheck3");
 				bean.setTid("parents");
 			}
@@ -746,6 +750,45 @@ public class ParentsDao extends SuperDao {
 			}
 		}
 		return cnt;
+	}
+
+	public List<ParentsMiniView> selectPidList(int sid) {
+		List<ParentsMiniView> plists = new ArrayList<ParentsMiniView>();
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
+		String sql = "select * from parentsminiview where sid = ?";
+		
+		try {
+			if(conn == null) {super.conn = super.getConnection() ; }
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setInt(1, sid);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ParentsMiniView bean = new ParentsMiniView();
+				bean.setClassname(rs.getString("classname"));
+				bean.setStname(rs.getString("stname"));
+				bean.setPid(rs.getString("pid"));
+				bean.setSid(rs.getInt("sid"));
+				bean.setName(rs.getString("name"));
+				bean.setHp(rs.getString("hp"));
+				bean.setRelationship(rs.getString("relationship"));
+				bean.setSubmit(rs.getString("submit"));
+				bean.setPassword(rs.getString("password"));
+				bean.setResponsibilities(rs.getString("responsibilities"));
+				bean.setClass_id(rs.getInt("class_id"));
+		} }catch (Exception e) {	
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();} 
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return plists;
 	}
 		
 }

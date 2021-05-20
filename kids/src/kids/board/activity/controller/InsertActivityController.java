@@ -28,19 +28,31 @@ public class InsertActivityController extends SuperClass {
 		public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			super.doPost(request, response);
 	
-			//MultipartRequest multi = (MultipartRequest)request.getAttribute("multi") ;
+			MultipartRequest multi = (MultipartRequest)request.getAttribute("multi") ;
 			
 			bean = new Activity() ;
-			bean.setTitle("title") ;
-			bean.setContent("content");
-			bean.setImage("image");
-			bean.setRegdate("date");
-			bean.setRemark("remark");
-			bean.setTid("tid");
 			
-			Activity dao = new Activity() ;
+			System.out.println(Integer.parseInt(multi.getParameter("subject_code")));
+			System.out.println(multi.getParameter("title"));
+			System.out.println(multi.getParameter("content"));
+			System.out.println(multi.getFilesystemName("image"));
+			System.out.println(multi.getParameter("remark"));
+			System.out.println(multi.getParameter("tid"));
+			System.out.println(Integer.parseInt(multi.getParameter("class_id")));
 			
-			int cnt = -99999;
+			
+			bean.setSubject_code(Integer.parseInt(multi.getParameter("subject_code"))) ;
+			bean.setTitle(multi.getParameter("title")) ;
+			bean.setContent(multi.getParameter("content"));
+			bean.setImage(multi.getFilesystemName("image"));
+			bean.setRemark(multi.getParameter("remark"));
+			bean.setTid(multi.getParameter("tid"));
+			bean.setClass_id(Integer.parseInt(multi.getParameter("class_id"))) ;
+			
+			ActivityDao adao = new ActivityDao();
+			int cnt = adao.insertData(bean);
+			
+//			int cnt = -99999;
 //			 cnt = dao.insertData(bean);
 //	        if(cnt == 1) {
 	        	System.out.println("activity입력 완료");
