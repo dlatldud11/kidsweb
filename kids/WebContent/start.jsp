@@ -95,8 +95,7 @@
 									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:white; font-weight:bolder; ">보호자</a>
 									    </li>
 									    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									    <li>
-									    </li>
+									   
 									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
 									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:white;">직원</a>
 									    </li>
