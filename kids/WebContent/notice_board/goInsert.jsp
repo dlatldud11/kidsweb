@@ -19,10 +19,10 @@
 					<input type="hidden" name="command" value="goInsert">
 					<input type="hidden" name="isCheck" value="fals">
 					<div class="form-group">
-				      	<label class="control-label col-sm-3" for="writer">작성자</label>
+				      	<label class="control-label col-sm-3" for="tid">작성자</label>
 				      	<div class="col-sm-9">
 				        	<input type="text" class="form-control" disabled="disabled" 
-				        		id="fakewriter" name="fakewriter"
+				        		id="faketid" name="faketid"
 				        		value="${sessionScope.loginfo.name}(${sessionScope.loginfo.tid})" >				        		
 				        	<input type="hidden" name="tid" value="${sessionScope.loginfo.tid}">
 				      	</div>

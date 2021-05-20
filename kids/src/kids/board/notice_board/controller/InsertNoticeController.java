@@ -44,7 +44,7 @@ public class InsertNoticeController extends SuperClass {
 		bean.setFiles(multi.getParameter("files"));
 		bean.setRegdate(multi.getParameter("regdate"));
 		bean.setTid(multi.getParameter("tid"));
-		bean.setTitle(multi.getParameter("title"));
+		bean.setTitle(multi.getFilesystemName("title"));
 		
 		if(this.validate(request) == true) {
 			System.out.println("글쓰기 성공");
