@@ -31,45 +31,34 @@
         <!-- w3school 예제에서 가져옴 -->
        	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  		<style type="text/css">
-  			#navtest{
-  				display:flex;
-  				justify-content:space-between;
-  			}
-  			#navtest li{
-  				padding: 3px 6px;
-  			} 
-  			#navtest li:hover{
-  				background-color:#d49466;
-  				border-radius: 4px;
-  			}
-  			.nav-item{
-  				display:flex;
-  				list-style:none;
-  				padding-left: 0;
-  			}
-  		</style>
-    </head>
+    <style>
+			    html, body {width:100%;height:100%;margin:0;padding:0;} 
+			    .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
+			    .radius_border{border:1px solid #919191;border-radius:5px;}     
+			    .custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+			    .custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+			    .custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}       
+			    .custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
+			    .custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}    
+			    .custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+			    .custom_typecontrol .selected_btn:hover {color:#fff;}   
+			    .custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;} 
+			    .custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
+			    .custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
+			    .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
+			    </style>
+	    </head>
   
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
   
  		<!-- Navigation-->
 		<nav class="navbar navbar-expand-sm navbar-dark fixed-top clear-fix d-flex justify-content-between" style="background:white; position:flex; justify-content:space-between;">  
 			<div class="form-inline">
 				<img alt="로고" src="./images/logo.png" width="50" height="50">
 				&nbsp;
-				<h6>아이하루 어린이집</h6>
+				<h6 style="margin-top: 0.3rem; margin-bottom: 0.5rem; font-weight: 700; line-height: 1.2;">아이하루 어린이집</h6>
 			</div>
-			<div class="float-right">
-			  <ul class="navbar-nav d-flex justify-content-between" id="navtest">
-			    <li class="nav-item">
-			      <a class="nav-link" href="#section2">Section 2</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="#section3">Section 3</a>
-			    </li>
-			  </ul>
-		  </div>
 		</nav>
   
         <!-- Masthead-->
@@ -195,7 +184,35 @@
         <!--  -->
         
         
-        
+           <!-- Testimonials-->
+        <section class="testimonials text-center bg-light">
+            <div class="container">
+                <h2 class="mb-5">유치원 식구들을 소개합니다</h2>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/teacherqueen.jpg" alt="..." />
+                            <h5>이사장님</h5>
+                            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/teacherman.jpg" alt="..." />
+                            <h5>원장님</h5>
+                            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/teacher4.jpg" alt="..." />
+                            <h5>원장님</h5>
+                            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
         <section class="features-icons bg-light text-center">
             <div class="container">
@@ -226,25 +243,56 @@
         </section>
         
         
+           <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="icon-screen-desktop m-auto text-primary"></i></div>
+                            <h3>Fully Responsive</h3>
+                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="icon-layers m-auto text-primary"></i></div>
+                            <h3>Bootstrap 4 Ready</h3>
+                            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="icon-check m-auto text-primary"></i></div>
+                            <h3>Easy to Use</h3>
+                            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+  
+        
+        
+        
         <!-- Image Showcases-->
         <section class="showcase">
             <div class="container-fluid p-0">
                 <div class="row no-gutters">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/bg-showcase-1.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/child.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>Fully Responsive Design</h2>
                         <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
                     </div>
                 </div>
                 <div class="row no-gutters">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/bg-showcase-2.jpg')"></div>
+                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/kindergarden4.jpg')"></div>
                     <div class="col-lg-6 my-auto showcase-text">
                         <h2>Updated For Bootstrap 4</h2>
                         <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
                     </div>
                 </div>
                 <div class="row no-gutters">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/bg-showcase-3.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/child2.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>Easy to Use & Customize</h2>
                         <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
@@ -252,34 +300,55 @@
                 </div>
             </div>
         </section>
-        <!-- Testimonials-->
+     
         <section class="testimonials text-center bg-light">
             <div class="container">
-                <h2 class="mb-5">What people are saying...</h2>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/testimonials-1.jpg" alt="..." />
-                            <h5>Margaret E.</h5>
-                            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/testimonials-2.jpg" alt="..." />
-                            <h5>Fred S.</h5>
-                            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/testimonials-3.jpg" alt="..." />
-                            <h5>Sarah W.</h5>
-                            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            	<h2 class="mb-3">오시는 길</h2>
+            	<div class="offset-3">
+	            	 <p class="font-weight-light mb-0 float-left"><font class="font-weight-bold" style="font-size:20px">주소 : </font> &nbsp;서울특별시 서초구 서초4동 강남대로 459&nbsp;&nbsp; </p> 
+	           		 <p class="font-weight-light mb-3 float-left"><font class="font-weight-bold " style="font-size:20px">☎TEL : </font> &nbsp; 02-2298-2277</p>
+           		  </div>
+    			<div class="mx-auto col-lg-12" id="map" style="width:800px;height:600px;"></div>
+		    </div>
+		    
+		    <div class="map_wrap">
+			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
+			</div>
+		    
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f916b3499c761c67ba93165b60cef596"></script>
+			
+			<script>
+				var container = document.getElementById('map');
+				var options = {
+					center: new kakao.maps.LatLng(37.50296156302804, 127.02428579999999),
+					level: 3
+				};
+		
+				var map = new kakao.maps.Map(container, options);
+				
+				// 마커가 표시될 위치입니다 
+				var markerPosition  = new kakao.maps.LatLng(37.50296156302804, 127.02428579999999); 
+
+				// 마커를 생성합니다
+				var marker = new kakao.maps.Marker({
+				    position: markerPosition
+				});
+
+				// 마커가 지도 위에 표시되도록 설정합니다
+				marker.setMap(map);
+
+				var iwContent = '<div style="padding:5px;">아이하루 어린이집<br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,37.50296156302804, 127.02428579999999" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				    iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+
+				// 인포윈도우를 생성합니다
+				var infowindow = new kakao.maps.InfoWindow({
+				    position : iwPosition, 
+				    content : iwContent 
+				});
+				  
+				// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+				infowindow.open(map, marker); 
+			</script>
         </section>
         <!-- Call to Action-->
         <section class="call-to-action text-white text-center">
@@ -298,7 +367,7 @@
 	                        	<br>
 	                        	<input class="form-control form-control-lg" type="date" name="resdate" placeholder="희망 상담일자를 입력하세요" />
 	                        	<br>
-	                        	<input class="form-control btn btn-primary" type="submit" value="상담예약" />
+	                        	<input class="form-control btn btn-default" type="submit" value="상담예약" style="background:#ffd700;"/>
                         	</form>
                         	
                     </div>
