@@ -46,7 +46,7 @@
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <div class="container col-sm-offset-4 col-sm-8">
          <div class="panel panel-primary">
-             <div class="card-header py-3" style="background-color:white;">
+             <div class="row card-header py-3" style="background-color:white;">
              	<br>
                <h4>직원 게시판</h4>
                <br>
@@ -66,14 +66,14 @@
 			                </tr>
 			            </table>
 			            <br>
-			            <input style="float:right;" type="submit" value="등록">
+			            <input style="float:right;" class="btn btn-primary" type="submit" value="등록">
 			        </form>
 			    </div>
 			    <!-- 글 등록 부분 끝-->
 			 
 			    <br><br>
 			    <!-- 글 목록 부분 시작 -->
-			    <div class="card-body" id="emploBoardList">
+			    <div class="row card-body" id="emploBoardList">
 			    	<form name="myform" method="post" action="<%=YesForm%>">
 			    	<input type="hidden" name="command" value="empbUpdate">
 			            <div id="comment">
@@ -92,7 +92,7 @@
 			                 </span>
 			                 </c:if>
 			                 <div id="UpdateContent${bean.empno}" >
-			                 	 <textarea class="form-alert-warning" rows="3" cols="120" readonly="readonly">${bean.content}</textarea>
+			                 	 <textarea class="form-control" style="background-color:#EDFFA9" rows="3" cols="100" readonly="readonly">${bean.content}</textarea>
 			                 </div>
 			                 <br>
 			                 </c:forEach>

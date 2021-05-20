@@ -12,27 +12,32 @@ import kids.management.reservation.model.Reservation;
 
 public class ComboDao  extends SuperDao {
 
-	public Medicine2 SelectMeData() {
+	public Medicine2 SelectMeData(String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " select m.meno, m.tid, s.name"
-				+ " from (select * from medicine where meno = (select max(meno) from medicine)) m inner join student s "
-				+ " on m.meno = s.sid ";
+		String sql = " select c.mmno, c.tti, s.name "
+				+ " from (select m.meno mmno, m.tid tti, p.sid ssi "
+				+ " from (select * from medicine where meno = (select max(meno) from medicine where tid = ? )) m inner join parents p "
+				+ " on m.pid = p.pid) c inner join student s "
+				+ " on c.ssi = s.sid ";
 		
 		Medicine2 bean = null;
 		
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }
 			pstmt = this.conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				bean = new Medicine2();
 				
 				bean.setName(rs.getString("name"));
-				bean.setMeno(rs.getInt("meno"));
-				bean.setTid(rs.getString("tid"));
+				bean.setMeno(rs.getInt("mmno"));
+				bean.setTid(rs.getString("tti"));
 				
 			}
 			
@@ -51,27 +56,32 @@ public class ComboDao  extends SuperDao {
 		return bean;
 	}
 
-	public Re_home SelectHoData() {
+	public Re_home SelectHoData(String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " select r.hono, r.tid, s.name "
-				+ " from (select * from re_home where hono = (select max(hono) from re_home)) r inner join student s "
-				+ " on r.sid = s.sid ";
+		String sql = " select c.reno, c.tti, s.name "
+				+ " from (select m.hono reno, m.tid tti, p.sid ssi "
+				+ " from (select * from re_home where hono = (select max(hono) from re_home where tid = ? )) m inner join parents p "
+				+ " on m.pid = p.pid) c inner join student s "
+				+ " on c.ssi = s.sid ";
 		
 		Re_home bean = null;
 		
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }
 			pstmt = this.conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				bean = new Re_home();
 				
 				bean.setName(rs.getString("name"));
-				bean.setHono(rs.getInt("hono"));
-				bean.setTid(rs.getString("tid"));
+				bean.setHono(rs.getInt("reno"));
+				bean.setTid(rs.getString("tti"));
 				
 			}
 			

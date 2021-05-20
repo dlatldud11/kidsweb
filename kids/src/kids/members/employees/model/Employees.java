@@ -19,8 +19,15 @@ public class Employees {
 	private String remark;
 	private String email;
 	private String zipcode;
+	private String pid;
 	
 	
+	public String getPid() {
+		return pid;
+	}
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 	public String getZipcode() {
 		return zipcode;
 	}
@@ -139,7 +146,7 @@ public class Employees {
 				+ ", salary=" + salary + ", image=" + image + ", birth=" + birth + ", hp=" + hp + ", address1="
 				+ address1 + ", address2=" + address2 + ", gender=" + gender + ", responsibilities=" + responsibilities
 				+ ", password=" + password + ", submit=" + submit + ", subject_code=" + subject_code + ", remark="
-				+ remark + ", email=" + email + ", zipcode=" + zipcode + "]";
+				+ remark + ", email=" + email + ", zipcode=" + zipcode + ", pid=" + pid + "]";
 	}
 	
 	

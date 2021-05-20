@@ -41,8 +41,8 @@
 				    </div>
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="files" >첨부 자료</label>
-				      	<div class="col-sm-9">
-				        	<input type="file" class="form-control" id="files" 
+				      	<div class="col-sm-3">
+				        	<input type="file" class="form" id="files" 
 				        		name="files" multiple>
 				      	</div>
 				    </div>

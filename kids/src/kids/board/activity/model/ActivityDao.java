@@ -99,7 +99,6 @@ public class ActivityDao extends SuperDao {
          conn.setAutoCommit( false );
          pstmt = super.conn.prepareStatement(sql) ;
          
-
          pstmt.setInt(1, bean.getSubject_code());
          pstmt.setString(2, bean.getTitle());
          pstmt.setString(3, bean.getContent());
@@ -259,4 +258,5 @@ public class ActivityDao extends SuperDao {
          return bean  ;
    
    }
+
 }

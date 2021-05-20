@@ -19,10 +19,10 @@
 					<input type="hidden" name="command" value="goInsert">
 					<input type="hidden" name="isCheck" value="fals">
 					<div class="form-group">
-				      	<label class="control-label col-sm-3" for="writer">작성자</label>
+				      	<label class="control-label col-sm-3" for="tid">작성자</label>
 				      	<div class="col-sm-9">
 				        	<input type="text" class="form-control" disabled="disabled" 
-				        		id="fakewriter" name="fakewriter"
+				        		id="faketid" name="faketid"
 				        		value="${sessionScope.loginfo.name}(${sessionScope.loginfo.tid})" >				        		
 				        	<input type="hidden" name="tid" value="${sessionScope.loginfo.tid}">
 				      	</div>
@@ -53,13 +53,13 @@
 							<span class="text-danger">${errclass_id}</span>
 						</div>
                	    </div>
-					<div class="form-group">
-				      	<label class="control-label col-sm-3" for="tiles">첨부 자료</label>
+				<!-- <div class="form-group">
+				      	<label class="control-label col-sm-3" for="files">첨부 자료</label>
 				      	<div class="col-sm-3">
 				        	<input type="file" class="form" id="files" 
-				        		name="files" value="${bean.files}">
+				        		name="files" multiple>
 				      	</div>
-				    </div>
+				    </div> -->	
 				    <div class="form-group">        
 				      	<div class="col-sm-offset-2 col-sm-8">
 				        	<button type="submit" class="btn btn-default">게시물 작성</button>

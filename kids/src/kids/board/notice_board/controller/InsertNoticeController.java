@@ -21,10 +21,10 @@ public class InsertNoticeController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		
+		System.out.println("gogo");
 		MyclassDao mdao = new MyclassDao();
 		List<Myclass> mlists = mdao.SelectDataList();
-		
+		System.out.println("gogo");
 		request.setAttribute("mlists", mlists);
 		
 		String gotopage = "/notice_board/goInsert.jsp" ;
@@ -44,7 +44,7 @@ public class InsertNoticeController extends SuperClass {
 		bean.setFiles(multi.getParameter("files"));
 		bean.setRegdate(multi.getParameter("regdate"));
 		bean.setTid(multi.getParameter("tid"));
-		bean.setTitle(multi.getParameter("title"));
+		bean.setTitle(multi.getFilesystemName("title"));
 		
 		if(this.validate(request) == true) {
 			System.out.println("글쓰기 성공");
@@ -52,8 +52,9 @@ public class InsertNoticeController extends SuperClass {
 			int cnt = -99999;
 			cnt = dao.InsertData(bean);
 			
-			new ListNoticeController().doGet(request, response);			
-			
+			String gotopage = "/common/conOK.jsp";
+			super.GotoPage(gotopage);
+//			new ListNoticeController().doGet(request, response);			
 		}else {
 			System.out.println("글쓰기 실패");
 			

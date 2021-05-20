@@ -18,7 +18,7 @@ public class DeleteActivityController extends SuperClass{
 		
 		ActivityDao dao = new ActivityDao();
 		int cnt = -99999 ;
-		cnt = dao.DeleteData(actino) ;
+//		cnt = dao.DeleteData(actino) ;
 		
 		new ListActivityController().doGet(request, response);
 	}

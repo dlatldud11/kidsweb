@@ -33,7 +33,7 @@ public class InsertDietController extends SuperClass{
 		
 		bean.setCategory(multi.getParameter("category"));
 		bean.setContent(multi.getParameter("content"));
-		bean.setFiles(multi.getParameter("files"));
+		bean.setFiles(multi.getFilesystemName("files"));
 		
 		if(this.validate(request) == true) {
 		DietDao dao = new DietDao();

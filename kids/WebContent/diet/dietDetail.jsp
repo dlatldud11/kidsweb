@@ -18,7 +18,7 @@
 					<table>
 						<tr>
 							<td>
-								<img src="${bean.files}" class="img-rounded" 
+								<img src="./upload/${bean.files}" class="img-rounded" 
 									alt="${bean.category}" width="200" height="200">		
 							</td>
 						</tr>
@@ -27,12 +27,14 @@
 				<div class="col-sm-8">
 					<table class="table table-bordered">
 						<tr>
-							<td width="25%" align="center">글 내용</td>
-							<td width="75%" align="left">${bean.content}</td>
+							<td width="25%" align="center">등록 일자</td>
+							<td width="75%" align="left">${bean.regdate}&nbsp;&nbsp;${bean.category}</td>
 						</tr>
 						<tr>
-							<td width="25%" align="center">등록 일자</td>
-							<td width="75%" align="left">${bean.regdate}${bean.dietno}</td>
+							<td width="25%" align="center" style="padding-top:9%;">식단 내용</td>
+							<td width="75%" align="left">
+							<textarea class="form-control" rows="5" cols="10" readonly="readonly">${bean.content}</textarea>
+							</td>
 						</tr>
 					</table>
 				</div>

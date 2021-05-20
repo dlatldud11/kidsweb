@@ -128,7 +128,7 @@ public class Activity_commentDao extends SuperDao {
 	}
 
 	public int InsertData(Activity_comment bean) {
-		String sql = "insert into activity_comment(activity_cmid, actino, actino, regdate, remark, tid, pid, groupno, orderno, depth)"
+		String sql = " insert into activity_comment(activity_cmid, actino, actino, regdate, remark, tid, pid, groupno, orderno, depth)"
 		           + " values (activity_cmid_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ;
 		 
 		 PreparedStatement pstmt = null ;

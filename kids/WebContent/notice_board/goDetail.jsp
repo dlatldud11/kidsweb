@@ -25,7 +25,7 @@
 							<tr>
 								<td width="25%" align="center" colspan="2">
 								<c:if test="${bean.files != null}">
-								<img src="${bean.files}" class="img-rounded" width="100%" height="500">
+								<img src="./upload/${bean.files}" class="img-rounded" width="100%" height="500">
 								</c:if>
 								<textarea class="form-control" readonly="readonly"style="float:left;width:100%;height:600px">${bean.content}</textarea></td>
 							</tr>
