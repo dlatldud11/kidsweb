@@ -111,8 +111,10 @@ e
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
              			  	<a class="collapse-item" href="<%=NoForm%>noList">알림장</a>
              			  	<a class="collapse-item" href="<%=NoForm%>acList">특별활동 게시판</a>
+             			  	<c:if test="${whologin != 0 || whologin != 3}">
                     		<a class="collapse-item" href="<%=NoForm%>empbList">
                     		직원 게시판</a>
+                    		</c:if>
                     </div>
                 </div>
             </li>
@@ -155,10 +157,12 @@ e
                     		투약의뢰서</a>
                     	<a class="collapse-item" href="tables.jsp">
                     		귀가동의서</a>
+                   		<c:if test="${whologin != 0 || whologin != 3}">
                     	<a class="collapse-item" href="<%=NoForm%>resList">
                     		상담예약확인</a>	
                     	<a class="collapse-item" href="<%=NoForm%>resAfterList">
                     		입소대기확인</a>	
+                    	</c:if>
                     </div>
                 </div>
             </li>
@@ -246,7 +250,8 @@ e
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                관리
+                               <img class="img-profile rounded-circle"
+                                    src="./upload/menu.jpg">
                             </a>
                              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -263,21 +268,27 @@ e
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     보호자 관리(테스트중)
                                 	  </a>  
-                                   <a class="dropdown-item" href="<%=NoForm%>stfList">
+                                  	<a class="dropdown-item" href="<%=NoForm%>stList">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    학생 관리
+                                  	</a>
+                                  	 <div class="dropdown-divider"></div>
+                                  	<a class="dropdown-item" href="<%=NoForm%>myclList">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    학급 관리
+                                  	</a>
+                                  	<a class="dropdown-item" href="<%=NoForm%>suList">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    과목 관리
+                                  	</a>
+                                  	 <div class="dropdown-divider"></div>
+                                  	 <a class="dropdown-item" href="<%=NoForm%>stfList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     원비 관리
                                  	 </a>
                                    <a class="dropdown-item" href="<%=NoForm%>salList">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     매출
-                                  	</a>
-                                  	<a class="dropdown-item" href="<%=NoForm%>stList">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    학생 목록
-                                  	</a>
-                                  	<a class="dropdown-item" href="<%=NoForm%>myclList">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    학급 관리
                                   	</a>
                              </div>
                              </c:if>
@@ -291,7 +302,7 @@ e
                                 </span>
                                 </c:if>
                                 <img class="img-profile rounded-circle"
-                                    src="<%=request.getContextPath()%>/bootstrap/undraw_profile.svg">
+                                    src="./upload/user.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

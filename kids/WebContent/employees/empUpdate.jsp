@@ -315,7 +315,7 @@
                <label for="class_id" class="form-control-label col-sm-0"></label>
                   <div class="col-8">
                      <select class="form-control" name="class_id" id="class_id">
-                        <option value="0">---선택하세요
+                        <option value="0" selected="selected">---선택하세요
                         <c:forEach var="clists" items="${requestScope.clists}">
                         <option value="${clists.class_id}">${clists.class_name}</option>
                         </c:forEach>
@@ -331,7 +331,7 @@
                   <label for="subject_code" class="form-control-label col-sm-0"></label>
                   <div class="col-8">
                      <select class="form-control" name="subject_code" id="subject_code">
-                        <option value="0">---선택하세요
+                        <option value="0" selected="selected">---선택하세요
                        <c:forEach var="slists" items="${requestScope.slists}">
                         <option value="${slists.subject_code}">${slists.subject}</option>
                         </c:forEach>

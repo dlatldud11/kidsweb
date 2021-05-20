@@ -30,6 +30,8 @@ public class EmployeesDao extends SuperDao {
 				System.out.println("sss");
 				bean = new Employees() ;
 				
+				
+				
 				bean.setAddress1(rs.getString("address1"));
 				bean.setAddress2(rs.getString("address2"));
 				bean.setBirth(rs.getString("birth"));
@@ -44,6 +46,7 @@ public class EmployeesDao extends SuperDao {
 				bean.setResponsibilities(rs.getString("responsibilities"));
 				bean.setClass_id(rs.getInt("class_id"));
 				bean.setSalary(rs.getInt("salary"));
+				bean.setPid("employees");
 				
 			}
 		} catch (Exception e) {			

@@ -156,14 +156,20 @@
                              <div class="h5 text-md font-weight-bold text-primary text-uppercase mb-1">
                                   Today Issue</div>
                                   <hr>
+                                  	<h5 class="font-weight-bold text-primary">투약의뢰서</h5>
                                		<c:if test="${sessionScope.mbean.tid == sessionScope.loginfo.tid}">
-                               		<h5 class="font-weight-bold text-primary">투약의뢰서</h5>
                                		<div onclick="location.href='<%=NoForm%>meDetail&meno=${sessionScope.mbean.meno}'" style="cursor:pointer;">-${sessionScope.mbean.name}님 의 투약의뢰서</div><br>
                                		</c:if>
+                               		<c:if test="${sessionScope.mbean.tid != sessionScope.loginfo.tid}">
+                               			등록된 투약의뢰서가 없습니다.<br>
+                               		</c:if>
                                		<br>
-                               		<c:if test="${sessionScope.hbean.tid == sessionScope.loginfo.tid}">
                                		<h5 class="font-weight-bold text-primary">귀가동의서</h5>
+                               		<c:if test="${sessionScope.hbean.tid == sessionScope.loginfo.tid}">
                                		<div onclick="location.href='<%=NoForm%>hoDetail&hono=${sessionScope.hbean.hono}'" style="cursor:pointer;">-${sessionScope.hbean.name}님 의 귀가동의서</div><br>
+                               		</c:if>
+                               		<c:if test="${sessionScope.hbean.tid != sessionScope.loginfo.tid}">
+                               			등록된 귀가동의서가 없습니다.<br>
                                		</c:if>
                                		<br>
                                		<h5 class="font-weight-bold text-primary">금일 상담 일정</h5>
