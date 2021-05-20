@@ -343,5 +343,50 @@ public class StudentDao extends SuperDao2{
 	      return bean;
 	   }
 
+
+	public List<Student> selectDataList(int class_id) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		
+		String sql = "select * from student where class_id = ?" ;
+
+		List<Student> lists = new ArrayList<Student>() ;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;
+			pstmt.setInt(1, class_id);
+			
+			rs = pstmt.executeQuery() ; 
+			
+			while ( rs.next() ) {
+				Student bean = new Student() ; 
+			
+			bean.setSid(rs.getInt("sid"));
+			bean.setAddress1(rs.getString("address1"));
+			bean.setAddress2(rs.getString("address2"));
+			bean.setBirth(rs.getString("birth"));
+			bean.setGender(rs.getString("gender"));
+			bean.setHp(rs.getString("hp"));
+			bean.setImage(rs.getString("image"));
+			bean.setName(rs.getString("name"));
+			bean.setClass_id(rs.getInt("class_id"));
+			bean.setZipcode(rs.getString("zipcode"));
+				lists.add( bean ) ; 
+			}
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null){ rs.close(); } 
+				if( pstmt != null){ pstmt.close(); } 
+				this.closeConnection() ;
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		} 		
+		return lists  ;
+	}
+
 	
 }

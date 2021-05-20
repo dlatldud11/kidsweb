@@ -11,9 +11,17 @@ public class ParentsMiniView {
 	private String responsibilities;
 	private int sid;
 	private String password;
-	private String tid;
+	private int class_id;
+	private String tid;//
 	
 	
+	
+	public int getClass_id() {
+		return class_id;
+	}
+	public void setClass_id(int class_id) {
+		this.class_id = class_id;
+	}
 	public String getTid() {
 		return tid;
 	}
