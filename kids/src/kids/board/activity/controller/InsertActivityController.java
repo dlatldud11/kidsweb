@@ -10,10 +10,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import kids.board.activity.model.Activity;
 import kids.board.activity.model.ActivityDao;
-import kids.board.timetable.controller.ListTimeTableController;
-import kids.board.timetable.model.TimetableDao;
 import kids.common.controller.SuperClass;
-import kids.management.myclass.controller.ListMyclassController;
 
 public class InsertActivityController extends SuperClass {
 	private Activity bean = null ;
