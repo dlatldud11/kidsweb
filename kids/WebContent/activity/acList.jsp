@@ -76,8 +76,8 @@
 					</thead>
 			  	 <tbody>
 						<c:forEach var="bean" items="${requestScope.lists}">
-							<tr onclick="location.href='<%=NoForm%>acDetail&notino=${bean.notino}&${requestScope.parameters}'">
-								<td>${bean.notino}</td>
+							<tr onclick="location.href='<%=NoForm%>acDetail&actino=${bean.actino}&${requestScope.parameters}'">
+								<td>${bean.actino}</td>
 								<td>${bean.class_id}</td>
 								<td>${bean.title}</td>
 								<td>${bean.tid}</td>
@@ -91,6 +91,7 @@
 				<button class="btn btn-primary" onclick="location.href='<%=NoForm%>acInsert&tid=${sessionScope.loginfo.tid}'">글쓰기</button>
 		       &nbsp;&nbsp;
         </div> 
+        
       </div>
     </div>
 

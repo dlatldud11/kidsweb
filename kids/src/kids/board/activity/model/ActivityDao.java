@@ -8,18 +8,89 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kids.common.model.SuperDao;
+import kids.members.employees.model.Employees;
 
 
 public class ActivityDao extends SuperDao {
 
    public int DeleteData(int actino) {
-      // TODO Auto-generated method stub
-      return 0;
-   }
+	   String sql = "";
+		PreparedStatement pstmt = null;
+		int cnt = -99999;
+		
+		try {
+			if(conn == null ) {super.conn = super.getConnection();}
+			conn.setAutoCommit(false);
+			
+			//remark
+			sql += " update Activity_comment set remark = ? ";
+			sql += " where actino = ? ";
+			pstmt = super.conn.prepareStatement(sql);
+			
+			Activity bean = this.SelectDataByPk(actino);
+			
+			String imsi = bean.getTid() + " ( " + bean.getActino() + " ) " + "과목이 삭제 되었습니다.";
+			
+			pstmt.setString(1, imsi);
+			pstmt.setInt(2, actino);
+			
+			cnt = pstmt.executeUpdate() ;
+			conn.commit();
+			if(pstmt != null) {pstmt.close();}
+			
+			sql += " update Subject set remark = ? ";
+			sql += " where actino = ? ";
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setString(1, imsi);
+			pstmt.setInt(2, actino);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			sql += " update Employees set remark = ? ";
+			sql += " where actino = ? ";
+			pstmt = super.conn.prepareStatement(sql);
+			
+			pstmt.setString(1, imsi);
+			pstmt.setInt(2, actino);
+			
+			cnt = pstmt.executeUpdate() ;
+			if(pstmt != null) {pstmt.close();}
+			
+			//삭제
+			if(conn == null ) {super.conn = super.getConnection();}
+			conn.setAutoCommit(false);
+			
+			sql += " delete from activity where actino = ? ";
+			pstmt = super.conn.prepareStatement(sql);
+			pstmt.setInt(1, actino);
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} 		
+		return cnt  ; 
+	}
 
    public int insertData(Activity bean) {
       String sql = " insert into activity(actino, subject_code, title, content, image, regdate, remark, tid, class_id, readhit)" 
-    		    +  " values(actino_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?) " ;
+    		    +  " values(actino_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?, ?, 0) " ;
       
       PreparedStatement pstmt = null ;
       int cnt = -99999 ;
@@ -33,11 +104,9 @@ public class ActivityDao extends SuperDao {
          pstmt.setString(2, bean.getTitle());
          pstmt.setString(3, bean.getContent());
          pstmt.setString(4, bean.getImage());
-         pstmt.setString(5, bean.getRegdate());
-         pstmt.setString(6, bean.getRemark());
-         pstmt.setString(7, bean.getTid());
-         pstmt.setInt(8, bean.getClass_id());
-         pstmt.setInt(9, bean.getReadhit());
+         pstmt.setString(5, bean.getRemark());
+         pstmt.setString(6, bean.getTid());
+         pstmt.setInt(7, bean.getClass_id());
          
          cnt = pstmt.executeUpdate() ; 
          conn.commit(); 
@@ -61,7 +130,7 @@ public class ActivityDao extends SuperDao {
       return cnt ;
       }
 
-   public List<Activity> SelectDataList(int i, int j) {
+   public List<Activity> SelectDataList() {
       PreparedStatement pstmt = null ;
       ResultSet rs = null ;
       
