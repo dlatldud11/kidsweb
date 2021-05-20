@@ -53,13 +53,13 @@
 							<span class="text-danger">${errclass_id}</span>
 						</div>
                	    </div>
-				<!-- <div class="form-group">
+				<div class="form-group">
 				      	<label class="control-label col-sm-3" for="files">첨부 자료</label>
 				      	<div class="col-sm-3">
 				        	<input type="file" class="form" id="files" 
 				        		name="files" multiple>
 				      	</div>
-				    </div> -->	
+				    </div>
 				    <div class="form-group">        
 				      	<div class="col-sm-offset-2 col-sm-8">
 				        	<button type="submit" class="btn btn-default">게시물 작성</button>
