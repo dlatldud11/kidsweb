@@ -28,7 +28,7 @@
 <html lang="en">
 <%
 	/* position for grid system */	
-	int offset = 2 ;
+	int offset = 1 ;
 	int mywidth = 12 - 2 * offset ;
 	int formleft = 3 ;
 	int formright = 12 - formleft ;
@@ -97,10 +97,11 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 <body>
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<div class="container col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h4>원비 납부 관리</h4>
-				</div>
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+               <h4 class="m-0 font-weight-bold text-primary">원비 납부 관리</h4>
+            </div>
+               <div class="card-body">
 						<tr>
 							<td align="center" colspan="11">
 								<form action="<%=YesForm%>" class="form-inline" role="form" name="myform"
@@ -162,7 +163,7 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							</td>
 						</tr>
 					<div class="panel-body">
-						<form action="<%=YesForm%>" class="form-inline"  method="get">
+						<form action="<%=YesForm%>" class="form-inline"  method="post">
 						<input type="hidden" id="command" name="command" value="stfUpdate">
 						<table class="table table-hover">
 							<thead>
@@ -179,13 +180,27 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							<tbody>
 							 	<c:forEach var="bean" items="${requestScope.lists}">		
 							<tr>
-								<td><input type="checkbox" name="payno" id="payno" value="${bean.payno}"></td>
+								<c:choose>
+								<c:when test="${bean.paid == '완납'}">
+									<td><input type="checkbox" name="payno" id="payno" value="${bean.payno}" disabled></td>
+								</c:when>
+								<c:when test="${bean.paid == '분납' || bean.paid == '미납부' }">
+									<td><input type="checkbox" name="payno" id="payno" value="${bean.payno}"></td>
+								</c:when>
+								</c:choose>
 								<td>${bean.month}</td>
 								<td>${bean.name}</td>
 								<td>${bean.class_name}</td>
 								<td>${bean.paid}</td>
-								<td>${bean.unpaid}</td>
-								<td>${bean.remark}</td>
+								<td>
+								<fmt:formatNumber value="${bean.unpaid}" pattern="###,###"/> 원
+								</td>
+								<td>
+								<fmt:formatNumber value="${bean.remark}" pattern="###,###"/> 
+								<c:if test="${not empty bean.remark}">
+									<c:out value="원"/>
+								</c:if>
+								</td>
 							</tr>
 								</c:forEach> 
 							</tbody>
@@ -193,8 +208,8 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 							<tr>
 								<td colspan="7">
 								<select id="state" name="state" class="form-control">
-											<option value="완납" selected="selected">완납
-											<option value="분납">분납
+									<option value="완납" selected="selected">완납
+									<option value="분납">분납
 								</select>
 								<input type="text" name="remark" id="remark" disabled>
 								<button class="btn btn-primary" type="submit">납부 내역 추가</button>
@@ -221,7 +236,6 @@ location.href='<%=NoForm%>stfList'+'&month='+month+'&paid='+paid+'&class_name='+
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 		<br>
 		<br>

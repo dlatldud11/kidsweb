@@ -103,11 +103,11 @@ public class Stu_feeDao extends SuperDao {
 		}
 		return cnt ;
 	}	
-	
-	public int InsertData( Stu_fee bean ){
-		String sql = " insert into Stu_fees(no, subject, writer, password, content, groupno ) " ;
-		sql += " values(myStu_fee.nextval, ?, ?, ?, ?, myStu_fee.currval) " ;
-
+	*/
+	public int InsertData( int payno, int remark ){ //state 분납일 때 실
+		String sql = " update stu_fee set month = to_char(sysdate,'mm/dd'), unpaid = 10000 - ? , remark = ?, state='분납' ";
+		sql += " where payno = ? ";
+		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ;
 		try {
@@ -115,10 +115,9 @@ public class Stu_feeDao extends SuperDao {
 			conn.setAutoCommit( false );
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setString(1, bean.getSubject());
-			pstmt.setString(2, bean.getWriter());
-			pstmt.setString(3, bean.getPassword());
-			pstmt.setString(4, bean.getContent());
+			pstmt.setInt(1, remark);
+			pstmt.setInt(2, remark);
+			pstmt.setInt(3, payno);
 		
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -140,7 +139,48 @@ public class Stu_feeDao extends SuperDao {
 			}
 		}
 		return cnt ;
-	}*/
+	}
+	public int UpdateData( int payno, int remark ){
+		
+		String sql = " insert into stu_fee (payno, sid, month, unpaid, remark, state) ";
+		sql += " values(payno_seq.nextval, ";
+		sql += " (select sid from stu_fee where payno = ?), ";
+		sql += " to_char(sysdate,'mm/dd'),(select unpaid from stu_fee where payno = ?) - ?,?,'분납') ";
+		
+		PreparedStatement pstmt = null ;
+		int cnt = -99999 ;
+		try {
+			if( conn == null ){ super.conn = super.getConnection() ; }
+			conn.setAutoCommit( false );
+			pstmt = super.conn.prepareStatement(sql) ;
+			
+				pstmt.setInt(1, payno);
+				pstmt.setInt(2, payno);
+				pstmt.setInt(3, remark);
+				pstmt.setInt(4, remark);
+				
+				cnt = pstmt.executeUpdate() ; 
+				conn.commit(); 
+			
+		} catch (Exception e) {
+			SQLException err = (SQLException)e ;			
+			cnt = - err.getErrorCode() ;			
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally{
+			try {
+				if( pstmt != null ){ pstmt.close(); }
+				super.closeConnection(); 
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
+	}
 	public int UpdateData( String[] payno ){
 		String sql = " update stu_fee set unpaid = 0, month = to_char(sysdate,'mm/dd'), state = '완납' ";
 		sql	+= " where payno = ? " ;
@@ -257,7 +297,7 @@ public class Stu_feeDao extends SuperDao {
 		ResultSet rs = null ;				
 		
 		String sql = " select * from Stu_fee " ;
-		sql += " where payno = ? and status = '분납' " ;
+		sql += " where payno = ? and state = '분납' " ;
 		
 		int cnt = -99999;
 		try {
@@ -590,6 +630,38 @@ public class Stu_feeDao extends SuperDao {
 			}
 		}
 		return cnt ; */
+
+	public int SelectDataByPk(String a) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;				
+		
+		String sql = " select * from Stu_fee " ;
+		sql += " where payno = ? and state = '분납' " ;
+		
+		int cnt = -99999;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;			
+				pstmt.setInt( 1, Integer.parseInt(a) ); 
+				
+				rs = pstmt.executeQuery() ; 
+				
+				if ( rs.next() ) { 
+					cnt = 1;
+			}
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null){ rs.close(); } 
+				if( pstmt != null){ pstmt.close(); } 
+				this.closeConnection() ;
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		} 		
+		return cnt;
+	}
 	}
 
 

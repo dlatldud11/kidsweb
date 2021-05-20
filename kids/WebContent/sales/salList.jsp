@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <%@include file="./../common/common.jsp"%>
 <%
-	int offset = 2; //오프 셋 
+	int offset = 1; //오프 셋 
 	int content = 12 - 2 * offset; //12 - 2 * 오프셋
 %>
 <html>
@@ -28,17 +28,19 @@
 		</c:if>
 	</c:if>
 </c:if>
-
 	<div class="container col-md-offset-<%=offset%> col-md-<%=content%>">
-		<h1>아이하루 어린이집 매출 내역</h1>
-		<hr>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+               <h4 class="m-0 font-weight-bold text-primary">아이하루 어린이집 매출 내역</h4>
+        </div>
+        <div class="card-body">
 		<p>아이하루 어린이집 &nbsp; <strong>5월</strong>&nbsp;매출 내역입니다.
 		</p>
 		<hr>
 
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">5월</h3>
+				<h4 class="panel-title">5월</h4>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -69,12 +71,13 @@
 									<td class="text-center">
 										<c:set var="amount" value="${salesinfo.sales}"/>
 										<c:set var="totalAmount" value="${totalAmount + amount}"/>
-										<td class="text-center">${salesinfo.remark}
+										${salesinfo.remark}
 										<%-- <fmt:formatNumber value="${amount}" pattern="###,###"/> 원 --%>
 									</td>
 								</tr>
 							</c:forEach>
 							<tr>
+								<td class="thick-line"></td>
 								<td class="thick-line"></td>
 								<td class="thick-line"></td>
 								<td class="thick-line"></td>
@@ -119,6 +122,8 @@
 						</tbody>
 					</table>
 				</div>
+			</div>
+			</div>
 			</div>
 		</div>
 <!--  
