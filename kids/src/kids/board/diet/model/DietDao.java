@@ -108,11 +108,13 @@ public class DietDao extends SuperDao {
 			while ( rs.next() ) { 
 				bean = new Diet();
 				
-				bean.setCategory(rs.getString("category"));
+				String str=rs.getString("regdate");
+				String str2 = rs.getString("category");
+				bean.setCategory(str2.substring(1));
 				bean.setContent(rs.getString("content"));
 				bean.setDietno(rs.getInt("dietno"));
 				bean.setFiles(rs.getString("files"));
-				bean.setRegdate(rs.getString("regdate"));
+				bean.setRegdate(str.substring(0, 10));
 				bean.setRemark(rs.getString("remark"));
 				
 			}

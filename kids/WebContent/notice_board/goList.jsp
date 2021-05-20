@@ -76,7 +76,7 @@
 				<tfoot>
 					<tr>
 						<td colspan="6" align="center">
-							<button class="btn btn-primary" style="float:right;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">글쓰기</button>
+							<button class="btn btn-primary" type="button" style="float:right;" onclick="location.href='<%=NoForm%>goInsert&tid=${sessionScope.loginfo.tid}'">글쓰기</button>
 						</td>
 					</tr>
 				</tfoot>

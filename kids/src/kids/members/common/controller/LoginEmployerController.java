@@ -55,8 +55,8 @@ public class LoginEmployerController extends SuperClass {
 			System.out.println("로그인에 성공하셨습니다.");
 			
 			ComboDao cdao = new ComboDao();
-			Medicine2 mbean = cdao.SelectMeData();
-			Re_home hbean = cdao.SelectHoData();
+			Medicine2 mbean = cdao.SelectMeData(id);
+			Re_home hbean = cdao.SelectHoData(id);
 			List<Reservation> rbean = cdao.SelectReData();
 			
 			Date date = new Date();

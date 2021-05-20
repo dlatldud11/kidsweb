@@ -135,7 +135,7 @@
                                  		</a>
                                  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 		<a href="<%=NoForm%>resList" class="btn btn-danger btn-icon-split btn-lg">
+                                 		<a href="<%=NoForm%>resList" class="btn btn-primary btn-icon-split btn-lg">
                                      		<span class="icon text-white-50">
                                          <i class="fas fa-plus"></i>
                                     		 	</span>
@@ -153,19 +153,23 @@
                        <div class="card-body">
                          <div class="row no-gutters align-items-center">
                            <div class="col mr-2">
-                             <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
+                             <div class="h5 text-md font-weight-bold text-primary text-uppercase mb-1">
                                   Today Issue</div>
                                   <hr>
-                               <div class=" row h5 mb-0 font-weight-bold text-gray-800"></div>
                                		<c:if test="${sessionScope.mbean.tid == sessionScope.loginfo.tid}">
-                               		<a href="#">${sessionScope.mbean.name}님 의 투약의뢰서</a><br>
+                               		<h5 class="font-weight-bold text-primary">투약의뢰서</h5>
+                               		<div onclick="location.href='<%=NoForm%>meDetail&meno=${sessionScope.mbean.meno}'" style="cursor:pointer;">-${sessionScope.mbean.name}님 의 투약의뢰서</div><br>
                                		</c:if>
+                               		<br>
                                		<c:if test="${sessionScope.hbean.tid == sessionScope.loginfo.tid}">
-                               		<a href="#">${sessionScope.hbean.name}님 의 귀가동의서</a><br>
+                               		<h5 class="font-weight-bold text-primary">귀가동의서</h5>
+                               		<div onclick="location.href='<%=NoForm%>hoDetail&hono=${sessionScope.hbean.hono}'" style="cursor:pointer;">-${sessionScope.hbean.name}님 의 귀가동의서</div><br>
                                		</c:if>
+                               		<br>
+                               		<h5 class="font-weight-bold text-primary">금일 상담 일정</h5>
                                		<c:forEach var="rbean" items="${sessionScope.rbean}">
                                		<c:if test="${rbean.res_date == sessionScope.today && rbean.status == '상담대기'}">
-                               		<a href="#">${rbean.name}</a><br>
+                               		<div onclick="location.href='<%=NoForm%>resUpdate&rid=${rbean.rid}'" style="cursor:pointer;margin-bottom:-25px;">-${rbean.name}님의 상담이 예정되어 있습니다.</div><br>
                                		</c:if>
                                		</c:forEach>
                              </div>
