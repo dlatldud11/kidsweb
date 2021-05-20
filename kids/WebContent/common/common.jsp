@@ -109,7 +109,7 @@ e
                 <div id="collapseCommunity" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
-             			  	<a class="collapse-item" href="<%=NoForm%>noList">알림장</a>
+             			  	<a class="collapse-item" href="<%=NoForm%>sthwList&sid=${sessionScope.loginfo.sid}">알림장</a>
              			  	<a class="collapse-item" href="<%=NoForm%>acList">특별활동 게시판</a>
                     		<a class="collapse-item" href="<%=NoForm%>empbList">
                     		직원 게시판</a>

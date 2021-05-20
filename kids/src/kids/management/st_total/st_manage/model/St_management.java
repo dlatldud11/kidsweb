@@ -10,7 +10,7 @@ public class St_management {
 	private String healthy ;
 	private int medicine_id ;
 	private String attendance ;
-	private Date regdate ;
+	private String regdate ;
 	private String sleep ;
 	private String condition ;
 	private String meal ;
@@ -68,11 +68,11 @@ public class St_management {
 		this.attendance = attendance;
 	}
 
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 
