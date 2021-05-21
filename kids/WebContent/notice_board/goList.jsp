@@ -27,8 +27,9 @@
 <body>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<div class="container col-sm-offset-2 col-sm-10">
+	   <div class="card shadow mb-4">
 		<div class="card-header py-3" style="background-color:white;">
-			<h4>공지 사항</h4>
+			<h4 class="font-weight-bold text-primary">공지 사항</h4>
 			<form action="#" class="form-inline" role="form" name="myform" method="get">
 				<div class="form-group">
 					${pageInfo.pagingStatus}&nbsp;&nbsp;
@@ -85,6 +86,7 @@
 		<div style="width: 30%; float:none; margin:0 auto" >
 		<p style="width: 100%">${pageInfo.pagingHtml}</p>
 	  </div>
+	</div>
 	</div>
 </div>
 </body>
