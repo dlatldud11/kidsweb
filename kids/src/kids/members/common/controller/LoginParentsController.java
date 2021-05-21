@@ -50,7 +50,7 @@ public class LoginParentsController extends SuperClass {
 			super.session.setAttribute("plists", plists);
 			super.session.setAttribute("loginfo", plists.get(0));
 			
-			gotopage = "/common/main.jsp" ;
+			gotopage = "/common/main2.jsp" ;
 			super.GotoPage(gotopage);
 		}
 		

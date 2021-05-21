@@ -240,7 +240,7 @@
                                 	  </a>
                                     <a class="dropdown-item" href="<%=NoForm%>paList">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    보호자 관리(테스트중)
+                                    보호자 관리
                                 	  </a>  
                                   	<a class="dropdown-item" href="<%=NoForm%>stList">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -301,7 +301,7 @@
                                 </a>
                                 </c:if>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<%=NoForm %>logout" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="<%=NoForm %>logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

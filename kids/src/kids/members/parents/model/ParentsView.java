@@ -20,6 +20,14 @@ public class ParentsView {
 	private String image;
 	private String remark;
 	private String zipcode;
+	private String tid;
+	
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 	public String getClassname() {
 		return classname;
 	}

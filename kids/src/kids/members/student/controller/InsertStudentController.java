@@ -19,14 +19,7 @@ public class InsertStudentController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		String imsirid = request.getParameter("rid");
-		if(imsirid == null || imsirid.equals("null") || imsirid.equals("")) {
-			imsirid="0";
-		}
-		int rid = Integer.parseInt(imsirid);
-		ReservationDao rdao = new ReservationDao();
-		Reservation bean = rdao.selectDataByPk(rid);
-		request.setAttribute("rbaen", bean);
+
 		
 		String gotopage = "/student/stlInsert.jsp" ;
 		super.GotoPage(gotopage);

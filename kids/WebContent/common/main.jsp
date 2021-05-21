@@ -127,7 +127,7 @@
                                      <div class="col mr-2">
                                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                              </div>
-                                         <a class="btn btn-danger btn-icon-split btn-lg" onclick="location.href='<%=NoForm%>stlInsert';">
+                                         <a class="btn btn-danger btn-icon-split btn-lg" onclick="location.href='<%=NoForm%>stInsert';">
                                      		<span class="icon text-white-50">
                                          <i class="fas fa-plus"></i>
                                     		 	</span>

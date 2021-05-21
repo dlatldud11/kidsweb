@@ -50,7 +50,7 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4>아이들 목록 보기</h4>
-					<tbody class="search">
+					<table>
 						<tr>
 							<td align="center" colspan="11">
 								<form action="" class="form-inline" role="form" name="myform"
@@ -76,7 +76,7 @@
 								</form>
 							</td>
 						</tr>
-						</tbody>
+						</table>
 						<br>
 					<div class="panel-body">
 						<table class="table table-hover">
