@@ -34,9 +34,9 @@
 							<th>이름</th>
 						</tr>
 						<tr>
-						<c:forEach var="bean" items="litst">
+						<c:forEach var="bean" items="beans">
 							<td>${bean.regdate}</td>
-							<td>${bean.class_name}</td>
+							<td>${sessionScope.loginfo.classname}</td>
 							<td>${bean.sid}</td>
 						</c:forEach>
 						</tr>

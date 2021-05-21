@@ -7,22 +7,22 @@
 
 <!-- 05.11컨텐트 지움 176 줄-->
 <!-- 로그인 상태 정보 -->
-<c:set var="whologin" value="0" /> 
+<c:set var="whologin" value="0" scope="session" /> 
 <c:if test="${empty sessionScope.loginfo}">
-	<c:set var="whologin" value="0" />
+	<c:set var="whologin" value="0" scope="session"/>
 </c:if>
 <c:if test="${not empty sessionScope.loginfo}">
 	<c:if test="${sessionScope.loginfo.responsibilities == '원장'}">
-		<c:set var="whologin" value="1" />
+		<c:set var="whologin" value="1" scope="session"/>
 	</c:if>
 	<c:if test="${sessionScope.loginfo.responsibilities == '직원'}">
-		<c:set var="whologin" value="2" />
+		<c:set var="whologin" value="2" scope="session"/>
 	</c:if>
 	<c:if test="${sessionScope.loginfo.responsibilities == '보호자'}">
-		<c:set var="whologin" value="3" />
+		<c:set var="whologin" value="3" scope="session"/>
 	</c:if>
 	<c:if test="${sessionScope.loginfo.responsibilities == '특별'}">
-		<c:set var="whologin" value="4" />
+		<c:set var="whologin" value="4" scope="session"/>
 	</c:if>
 </c:if>
 
@@ -97,7 +97,7 @@
                 <div id="collapseCommunity" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">소분류필요하면 쓰기</h6>
-             			  	<a class="collapse-item" href="<%=NoForm%>">알림장</a>
+             			  	<a class="collapse-item" href="<%=NoForm%>sthwList">알림장</a>
              			  	<a class="collapse-item" href="<%=NoForm%>acList">특별활동 게시판</a>
              			  	<c:if test="${whologin != 0 || whologin != 3}">
                     		<a class="collapse-item" href="<%=NoForm%>empbList">

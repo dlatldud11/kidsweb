@@ -33,19 +33,29 @@
 							<th>반 이름</th>
 							<th>이름</th>
 						</tr>
+						<c:forEach var="bean" items="${requestScope.lists}">
 						<tr>
-						<c:forEach var="bean" items="${requestScope.beans}">
 							<td>${bean.regdate}</td>
 							<td>${bean.class_name}</td>
-							<td>${bean.sid}</td>
+							<td>${bean.name}</td>
+						</tr>
 						</c:forEach>
-						</tr>
-						<tr>
-							<button type="button" class="form-control" onclick="location.href='<%=NoForm%>noInsert&tid=${sessionScope.loginfo.tid}&${requestScope.parameters}'">글쓰기</button>
-						</tr>
-						<tr>
-							<td>dddd</td>
-						</tr>
+							<c:choose>
+								<c:when test="${whologin == 2 || whologin == 1 }"> <!--직원 -->
+								<tr>
+								<td colspan="3">
+									<button type="button" class="form-control" onclick="location.href='<%=NoForm%>sthwInsert&tid=${sessionScope.loginfo.tid}&${requestScope.parameters}'">글쓰기</button>
+								</td>
+								</tr>
+								</c:when>
+								<c:when test="${whologin == 3 }">
+								<tr>
+								<td colspan="3">
+									<button type="button" class="form-control" onclick="location.href='<%=NoForm%>sthwInsert&pid=${sessionScope.loginfo.pid}&${requestScope.parameters}'">글쓰기</button>
+								</td>
+								</tr>
+								</c:when>
+							</c:choose>
 					</table>
 				</div>
 			</div>
