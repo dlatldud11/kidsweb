@@ -75,7 +75,7 @@
 								<td>${bean.gender}</td>
 								<td>${bean.hp}</td>
 								<td>${bean.email}</td>
-								<td>${bean.class_id}</td>
+								<td>${bean.class_name}</td>
 								<td>${bean.responsibilities}</td>
 							</tr>	
 						</c:forEach>

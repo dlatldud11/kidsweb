@@ -34,14 +34,18 @@
 							<td width="25%" align="center">아이디</td>
 							<td width="75%" align="left">${bean.tid}</td>
 						</tr>
+						<c:if test="${bean.responsibilities == '직원'}">
 						<tr>
 							<td width="25%" align="center">담당 학급</td>
-							<td width="75%" align="left">${bean.class_id}</td>
+							<td width="75%" align="left">${bean.class_name}</td>
 						</tr>
+						</c:if>
+						<c:if test="${bean.responsibilities == '특별'}">
 						<tr>
 							<td width="25%" align="center">담당 과목</td>
-							<td width="75%" align="left">${bean.subject_code}</td>
+							<td width="75%" align="left">${bean.subject}</td>
 						</tr>
+						</c:if>
 						<tr>
 							<td width="25%" align="center">성별</td>
 							<td width="75%" align="left">${bean.gender}</td>

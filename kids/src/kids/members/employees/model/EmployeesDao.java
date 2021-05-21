@@ -358,8 +358,13 @@ public class EmployeesDao extends SuperDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " select * from employees ";
-		sql += " where tid = ? ";
+		String sql = " select * from (select e.tid, e.class_id, e.name, e.join_date, e.salary, e.image, e.birth, e.hp, e.address1, "
+				+ " e.address2, e.gender, e.responsibilities, e.password, e.subject_code, e.email, e.zipcode, e.remark, e.subject, c.class_name "
+				+ " from ( select e.tid, e.class_id, e.name, e.join_date, e.salary, e.image, e.birth, e.hp, e.address1, "
+				+ " e.address2, e.gender, e.responsibilities, e.password, e.subject_code, e.email, e.zipcode, e.remark, s.subject "
+				+ " from employees e inner join subject s "
+				+ " on e.subject_code = s.subject_code ) e inner join myclass c "
+				+ " on e.class_id = c.class_id) where tid = ? ";
 		
 		Employees bean = null;
 		
@@ -393,6 +398,8 @@ public class EmployeesDao extends SuperDao {
 				bean.setSubject_code(rs.getInt("subject_code"));
 				bean.setRemark(rs.getString("remark"));
 				bean.setZipcode(rs.getString("zipcode"));
+				bean.setClass_name(rs.getString("class_name"));
+				bean.setSubject(rs.getString("subject"));
 				
 			}
 		} catch (Exception e) {

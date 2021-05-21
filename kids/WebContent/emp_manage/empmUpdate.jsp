@@ -204,7 +204,7 @@
                   <div class="col-8">
                      <select class="form-control" name="responsibilities" id="responsibilities">
                         <option value="미정">---선택하세요
-                        <option value="직원">직원</option>
+                        <option value="직원">담임</option>
                         <option value="특별">특별</option>
                      </select>
                   </div>

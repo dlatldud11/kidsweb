@@ -20,8 +20,22 @@ public class Employees {
 	private String email;
 	private String zipcode;
 	private String pid;
+	private String class_name;
+	private String subject;
 	
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getClass_name() {
+		return class_name;
+	}
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
 	public String getPid() {
 		return pid;
 	}
@@ -146,9 +160,8 @@ public class Employees {
 				+ ", salary=" + salary + ", image=" + image + ", birth=" + birth + ", hp=" + hp + ", address1="
 				+ address1 + ", address2=" + address2 + ", gender=" + gender + ", responsibilities=" + responsibilities
 				+ ", password=" + password + ", submit=" + submit + ", subject_code=" + subject_code + ", remark="
-				+ remark + ", email=" + email + ", zipcode=" + zipcode + ", pid=" + pid + "]";
+				+ remark + ", email=" + email + ", zipcode=" + zipcode + ", pid=" + pid + ", class_name=" + class_name
+				+ ", subject=" + subject + "]";
 	}
-	
-	
 	
 }
