@@ -21,7 +21,7 @@
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <div class="container col-sm-offset-2 col-sm-10">
          <div class="panel panel-primary">
-            <div class="panel-heading">
+            <div class="card-header">
                <h4>${ebean.name}님의 출결</h4>
                <table class="table table-hover">
 					<thead>
@@ -51,6 +51,7 @@
 					</tr>
 				</tbody>	
 			</table>
+			<div class="card-body">
 			<table class="table table-hover">
 				<tr>
 					<div class="form-group">
@@ -100,6 +101,7 @@
 	        </div> 
 	      </div>
 	    </div>	
+	</div>    
 </div>
 </body>
 </html>
