@@ -127,7 +127,7 @@
                                      <div class="col mr-2">
                                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                              </div>
-                                         <a class="btn btn-danger btn-icon-split btn-lg" onclick="location.href='<%=NoForm%>stlInsert';">
+                                         <a class="btn btn-danger btn-icon-split btn-lg" onclick="location.href='<%=NoForm%>stInsert';">
                                      		<span class="icon text-white-50">
                                          <i class="fas fa-plus"></i>
                                     		 	</span>
@@ -141,6 +141,22 @@
                                     		 	</span>
                                      	<span class="text">예약목록</span>
                                  		</a>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                      <div class="col-xl-6 col-md-6 mb-3">
+                         <div class="card border-left-primary shadow h-100 py-2">
+                             <div class="card-body" onclick="location.href='<%=NoForm%>timeInsert';">
+                                 <div class="row no-gutters align-items-center">
+                                     <div class="col mr-2">
+                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            </div>
+                                         <div class="h5 mb-0 font-weight-bold text-primary">시간표 <br>입력하기</div>
+                                     </div>
+                                     <div class="col-auto">
+                                         <i class="far fa-plus-square fa-2x text-gray-300"></i>
                                      </div>
                                  </div>
                              </div>

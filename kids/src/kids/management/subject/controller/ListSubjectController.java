@@ -18,8 +18,10 @@ public class ListSubjectController extends SuperClass {
 		
 		SubjectDao dao = new SubjectDao();
 		List<Subject> lists = dao.SelectDataList() ;
+		System.out.println("list size :"+lists.size());
+		request.setAttribute("lists", lists);
 		
-		String gotopage = "/subject/ListSubject.jsp" ;
+		String gotopage = "/subject/suList.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	

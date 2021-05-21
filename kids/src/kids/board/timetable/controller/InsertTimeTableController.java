@@ -18,7 +18,7 @@ public class InsertTimeTableController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		String gotopage = "/timetable/timeinsert.jsp" ;
+		String gotopage = "/timetable/timeInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}
 

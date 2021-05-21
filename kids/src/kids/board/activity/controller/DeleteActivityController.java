@@ -15,10 +15,10 @@ public class DeleteActivityController extends SuperClass{
 		super.doGet(request, response);
 		
 		int actino = Integer.parseInt(request.getParameter("actino")) ;
-		
+		System.out.println("actino :" + actino);
 		ActivityDao dao = new ActivityDao();
 		int cnt = -99999 ;
-//		cnt = dao.DeleteData(actino) ;
+		cnt = dao.DeleteData(actino) ;
 		
 		new ListActivityController().doGet(request, response);
 	}
