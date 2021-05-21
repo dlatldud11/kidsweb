@@ -38,7 +38,7 @@
                		</c:if>
                </c:forEach>
                <c:if test="${whologin == 3}">
-               <h2>${class_name}반</h2>
+               <h2>${sessionScope.loginfo.classname}반</h2>
                </c:if>
                <div class="search">
                   <tr>
@@ -76,23 +76,42 @@
 						</tr>
 					</thead>
 			  	 <tbody>
-						<c:forEach var="bean" items="${requestScope.lists}">
+						<c:choose>
+							<c:when test="${whologin == 2 }">
+							<c:forEach var="bean" items="${requestScope.lists}">
+							<c:if test="${sessionScope.loginfo.tid == bean.tid}">
 							<tr onclick="location.href='<%=NoForm%>meDetail&meno=${bean.meno}'">
 								<td>${bean.meno}</td>
 								<td>${bean.regdate}</td>
 								<td>${bean.name}</td>
 								<td>${bean.checks}</td>
-							</tr>	
-						</c:forEach>
+							</tr>
+							</c:if>	
+							</c:forEach>
+							</c:when>
+							<c:when test="${whologin == 3 }">
+							<c:forEach var="bean" items="${requestScope.lists}">
+							<c:if test="${sessionScope.loginfo.pid == bean.pid}">
+							<tr onclick="location.href='<%=NoForm%>meDetail&meno=${bean.meno}'">
+								<td>${bean.meno}</td>
+								<td>${bean.regdate}</td>
+								<td>${bean.name}</td>
+								<td>${bean.checks}</td>
+							</tr>
+							</c:if>	
+							</c:forEach>
+							</c:when>
+						</c:choose>
 				</tbody>
 		 	</table>
 		 	<div style="float:right">
-							<a href='<%-- <%=NoForm%>meInsert&pid=${sessionScope.loginfo.pid}&sid=${sessionScope.loginfo.sid} --%>'>
-							<button class="btn btn-primary">
-								글쓰기
-							</button>
-							</a>
-							
+							<c:choose>
+								<c:when test="${whologin == 3}"> <!--학부모-->
+									<button class="btn btn-primary" onclick="location.href='<%=NoForm%>meInsert'">
+									글쓰기
+									</button>
+								</c:when>
+							</c:choose>
 						<!-- <c:if test="${whologin == 3 }"> 구현 완성하고 풀기 --> 
 						<!-- </c:if> -->
 				</div>		

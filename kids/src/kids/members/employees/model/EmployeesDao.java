@@ -34,7 +34,7 @@ public class EmployeesDao extends SuperDao {
 				
 				bean.setAddress1(rs.getString("address1"));
 				bean.setAddress2(rs.getString("address2"));
-				bean.setBirth(rs.getString("birth"));
+				bean.setBirth(String.valueOf(rs.getDate("birth")));
 				bean.setEmail(rs.getString("email"));
 				bean.setGender(rs.getString("gender"));
 				bean.setHp(rs.getString("hp"));

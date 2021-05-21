@@ -11,23 +11,7 @@
 </head>
 <body>
 	       <!-- 로그인 상태 정보 -->
-<c:set var="whologin" value="0" /> 
-<c:if test="${empty sessionScope.loginfo}">
-	<c:set var="whologin" value="0" />
-</c:if>
-<c:if test="${not empty sessionScope.loginfo}">
-	<c:if test="${sessionScope.loginfo.responsibilities == '원장'}">
-		<c:set var="whologin" value="1" />
-	</c:if>
-	<c:if test="${sessionScope.loginfo.responsibilities == '직원'}">
-		<c:set var="whologin" value="2" />
-	</c:if>
-	<c:if test="${sessionScope.loginfo.responsibilities != '원장'}">
-		<c:if test="${sessionScope.loginfo.responsibilities != '직원'}">
-			<c:set var="whologin" value="3" />
-		</c:if>
-	</c:if>
-</c:if>
+
 	<div class="container col-md-offset-<%=offset%> col-md-<%=content%>">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
@@ -90,9 +74,9 @@
 							</tr>
 						</tbody>
 					</table>
-					<div align="center">
+					<%-- <div align="center">
 						<footer>${pageInfo.pagingHtml}</footer>
-					</div>
+					</div> --%>
 				</div>
 			</div>
 		</div>
