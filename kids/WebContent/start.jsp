@@ -35,7 +35,7 @@
 			    html, body {width:100%;height:100%;margin:0;padding:0;} 
 			    .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
 			    .radius_border{border:1px solid #919191;border-radius:5px;}     
-			    .active{
+			    #navtest .container tab-pane active{
 			    	border-bottom: 6px outset red;
 			  		border-style: outset;border-width: medium;}
 			    }     
@@ -77,15 +77,14 @@
 									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
 									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:white; font-weight:bolder; ">보호자</a>
 									    </li>
-									    
-									   
+									    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
 									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:white;">직원</a>
 									    </li>
 									  </ul>
 									
 										 <!-- Tab panes -->
-										 <div class="tab-content">
+										 <div class="tab-content" id="navtest">
 										    <!-- 홈 : 보호자 -->
 										    
 										    <div id="home" class="container tab-pane active"><br>
@@ -140,8 +139,97 @@
               </div><!-- header container 끝 -->
         </header>
 
+        <section class="testimonials text-center bg-light">
+            <div class="container">
+                <h2 class="mb-1">행복이 모이는</h2>
+                <h2 class="mb-5"><font color="#ffd700">아이하루 어린이집</font>에 오신것을 환영합니다</h2>
+                
+           		 <p class="font-weight-light mb-0">유아기는 자아가 형성되며 지적, 정서적, 사회적 등</p>
+           		 <p class="font-weight-light mb-0">전인간적인 기초가 이루어지는 매우 중요한 시기입니다.</p>
+           		 <br>
+           		 <p class="font-weight-light mb-0">더욱이 세계화, 지식산업화 시대의 주역으로 살아갈 우리 어린아이들에게</p>
+           		 <p class="font-weight-light mb-0">수준이 갖추어진 교육환경의 제공은 학부모, 교사를 비롯한 우리 어른들의 의무이며 책임입니다.</p>
+           		 <br>
+             	 <p class="font-weight-light mb-0">교사가 무엇을(what) 가르치려 하기 보다 아이들이 <span style="color:#d61d4e; font-weight:bold;">스스로 호기심을 갖고 문제를 인식(why)</span>하게 도와주며</p>
+           		 <p class="font-weight-light mb-0"><span style="color:#d61d4e; font-weight:bold;">지혜롭고 창의롭게 해결하는 방법(how)</span>을 습득하는 아이들로 교육하고자 합니다.</p>
+           		 <br>
+           		 <br>
+           		 <img alt="유치원메인" class="rounded-lg" src="<%=request.getContextPath()%>/bootstrap2/assets/img/kindergardenmain.jpg">
+              		
+             </div>
+           </section>
+           
+         <section class="text-center bg-light">
+            <div class="container">
+                <h2 class="mb-5">유치원 시설 소개</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid mb-3 rounded" style="width:400px; height:300px;" src="<%=request.getContextPath()%>/bootstrap2/assets/img/kindergarden.jpg" alt="..." />
+                            <h5>특별활동실(미술)</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid mb-3 rounded" style="width:400px; height:300px;" src="<%=request.getContextPath()%>/bootstrap2/assets/img/kindergarden2.jpg" alt="..." />
+                            <h5>식당</h5>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-lg-6">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid mb-3 rounded" style="width:400px; height:300px;" src="<%=request.getContextPath()%>/bootstrap2/assets/img/kindergarden1.jpg" alt="..." />
+                            <h5>놀이방</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid mb-3 rounded" style="width:400px; height:300px;" src="<%=request.getContextPath()%>/bootstrap2/assets/img/kindergarden10.jpg" alt="..." />
+                            <h5>놀이방2</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-           <!-- Testimonials-->
+        <section class="testimonials text-center bg-light">
+            <div class="container">
+              		  <h2 class="mb-5">선생님 소개</h2>
+              		 <div class="row">
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/teacherqueen.jpg" alt="..." />
+                            <h5>이사장님</h5>
+                            <p class="font-weight-light mb-0">서울시 교육위원회 북부교육구청장상</p>
+                            <p class="font-weight-light mb-0">아이하루 어린이집 설립, 원장역임</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/teacherman.jpg" alt="..." />
+                            <h5>원장님</h5>
+                            <p class="font-weight-light mb-0">서울시 교육감 표창장 1992</p>
+                            <p class="font-weight-light mb-0">대한민국 교육인적자원부 장관상 2005</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" src="<%=request.getContextPath()%>/bootstrap2/assets/img/teacher4.jpg" alt="..." />
+                            <h5>교사</h5>
+                            <p class="font-weight-light mb-0">덕성여대 유아교육과 졸업</p>
+                            <p class="font-weight-light mb-0">이화여대 교육대학원 유아교육과 석사</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+           <!-- Testimonials--><!--
         <section class="testimonials text-center bg-light">
             <div class="container">
                 <h2 class="mb-5">유치원 식구들을 소개합니다</h2>
@@ -170,36 +258,8 @@
                 </div>
             </div>
         </section>
-        
-        <section class="features-icons bg-light text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="icon-screen-desktop m-auto text-primary"></i></div>
-                            <h3>Fully Responsive</h3>
-                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="icon-layers m-auto text-primary"></i></div>
-                            <h3>Bootstrap 4 Ready</h3>
-                            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="icon-check m-auto text-primary"></i></div>
-                            <h3>Easy to Use</h3>
-                            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        
+        -->  
+        <!-- 
            <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
@@ -227,8 +287,7 @@
                 </div>
             </div>
         </section>
-  
-        
+  		 -->
         
         
         <!-- Image Showcases-->
@@ -237,22 +296,33 @@
                 <div class="row no-gutters">
                     <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/child.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Fully Responsive Design</h2>
-                        <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+                        <h2>연령에 따라 발달에 적합한 프로그램 운영</h2>
+                        <br>
+                        <p class="lead mb-0">
+                        따뜻한 마음으로 신체적 접촉을 많이 하는 기본 교사상을 바탕으로
+                        아이의 자신감을 증진시킬 수 있는 다양한 프로그램을 계획되어 운영되며 
+                        영아들에게 최적의 경험과 환경을 제공하기 위해 아이에게 일어나는 일상생활과 
+                        환경변화, 흥미를 중심으로 연간보육을 운영합니다.</p>
                     </div>
                 </div>
                 <div class="row no-gutters">
                     <div class="col-lg-6 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/kindergarden4.jpg')"></div>
                     <div class="col-lg-6 my-auto showcase-text">
-                        <h2>Updated For Bootstrap 4</h2>
-                        <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
+                        <h2>사회관계 · 의사소통 중점 프로그램 운영</h2>
+                        <br>
+                        <p class="lead mb-0">아이들이 스스로 할 수 있게 하여 자신감을 향상시키고,
+                         다양한 경험을 통해 새로운 사실을 배우게 합니다.</p>
+                         <p class="lead mb-0">집단 규칙을 따르는 기본 생활 습관과 창의 · 인성 지도를 강조하는
+                         지식 구성, 토의 협동 학습 프로그램을 운영합니다.</p>
                     </div>
                 </div>
                 <div class="row no-gutters">
                     <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('<%=request.getContextPath()%>/bootstrap2/assets/img/child2.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Easy to Use & Customize</h2>
-                        <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+                        <h2>예술경험 · 자연탐구 중점 프로그램 운영</h2>
+                        <br>
+                        <p class="lead mb-0">주변 환경에서 아름다움을 찾고 창의적으로 표현하며 감상할 줄 알고, 일상생활에 호기심을 갖고 스스로 탐구하는 경험을 주는 프로그램을 운영합니다.</p>
+                        <p class="lead mb-0"></p>
                     </div>
                 </div>
             </div>
