@@ -29,8 +29,10 @@
 		</c:if>
 	</c:if>
 </c:if>
+
 </head>
 <body>
+
   <!-- Begin Page Content -->
   <div class="container-fluid">
    <!-- 메인 네가지 박스 -->
@@ -61,7 +63,7 @@
                         	</div>
                   		  </div>
                        	<div class="col-xl-6">
-                  		     <div class="h5 mb-0 font-weight-bold text-gray-800 ">현재시간<br>01:01</div>
+                  		     <div class="h5 mb-0 font-weight-bold text-gray-800 ">현재시간<br><%= sf.format(nowTime)%></div>
                         </div>
                       </div>
                		</div>

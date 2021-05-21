@@ -64,8 +64,8 @@ public class StudentDao extends SuperDao2{
 	
 
 	public int insertData(Student bean) {
-		String sql = "insert into student (sid, name, hp, birth, address1, address2, gender, textarea, image)"
-				+ " values( sid_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)" ;
+		String sql = "insert into student (sid, name, hp, birth, address1, address2, gender, textarea, image,zipcode,regdate)"
+				+ " values( sid_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?,?,to_char(sysdate,'yyyy/mm/dd')) " ;
 		
 		PreparedStatement pstmt = null ;
 		int cnt = -99999 ; 
@@ -74,19 +74,15 @@ public class StudentDao extends SuperDao2{
 			conn.setAutoCommit( false );
 			pstmt = super.conn.prepareStatement(sql) ;
 			
-			pstmt.setInt(1, bean.getSid());
-			pstmt.setInt(2, bean.getClass_id());
-			pstmt.setString(3, bean.getName());
-			pstmt.setString(4, bean.getHp());
-			pstmt.setString(5, bean.getBirth());
-			pstmt.setString(6, bean.getAddress1());
-			pstmt.setString(7, bean.getAddress2());
-			pstmt.setString(8, bean.getGender());
-			pstmt.setString(9, bean.getRegdate());
-			pstmt.setString(10, bean.getTextarea());
-			pstmt.setString(11, bean.getImage());
-			pstmt.setString(12, bean.getRemark());
-			pstmt.setString(13, bean.getZipcode());
+			pstmt.setString(1, bean.getName());
+			pstmt.setString(2, bean.getHp());
+			pstmt.setString(3, bean.getBirth());
+			pstmt.setString(4, bean.getAddress1());
+			pstmt.setString(5, bean.getAddress2());
+			pstmt.setString(6, bean.getGender());
+			pstmt.setString(7, bean.getTextarea());
+			pstmt.setString(8, bean.getImage());
+			pstmt.setString(9, bean.getZipcode());
 		
 			cnt = pstmt.executeUpdate() ; 
 			conn.commit(); 
@@ -444,6 +440,51 @@ public class StudentDao extends SuperDao2{
 		} 		
 		return lists  ;
 	}
+	public List<Student> selectDataList(int BeginRow, 
+			int EndRow, 
+			String Mode, 
+			String keyword ) {
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		
+		String sql = "select * from student where class_id = ?" ;
 
+		List<Student> lists = new ArrayList<Student>() ;
+		try {
+			if( this.conn == null ){ this.conn = this.getConnection() ; }			
+			pstmt = this.conn.prepareStatement(sql) ;
+			
+			rs = pstmt.executeQuery() ; 
+			
+			while ( rs.next() ) {
+				Student bean = new Student() ; 
+			
+			bean.setSid(rs.getInt("sid"));
+			bean.setAddress1(rs.getString("address1"));
+			bean.setAddress2(rs.getString("address2"));
+			bean.setBirth(rs.getString("birth"));
+			bean.setGender(rs.getString("gender"));
+			bean.setHp(rs.getString("hp"));
+			bean.setImage(rs.getString("image"));
+			bean.setName(rs.getString("name"));
+			bean.setClass_id(rs.getInt("class_id"));
+			bean.setZipcode(rs.getString("zipcode"));
+				lists.add( bean ) ; 
+			}
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally{
+			try {
+				if( rs != null){ rs.close(); } 
+				if( pstmt != null){ pstmt.close(); } 
+				this.closeConnection() ;
+			} catch (Exception e2) {
+				e2.printStackTrace(); 
+			}
+		} 		
+		return lists  ;
+	}
+	
 	
 }

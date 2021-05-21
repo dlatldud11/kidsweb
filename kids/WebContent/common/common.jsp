@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!-- 05.11컨텐트 지움 176 줄-->
 <!-- 로그인 상태 정보 -->
 <c:set var="whologin" value="0" scope="session" /> 
@@ -32,6 +33,10 @@
 	
 	String YesForm = contextPath + mappingName ;
 	String NoForm = contextPath + mappingName + "?command=" ;
+	
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("a hh:mm");
+
 %>
 
 <!DOCTYPE html>

@@ -43,7 +43,7 @@ public class ListStudentController extends SuperClass {
 							parameters.getMode(), 
 							parameters.getKeyword()) ;	 	
 	    
-	List<Student> lists = dao.SelectDataList(
+	List<Student> lists = dao.selectDataList(
 				pageInfo.getBeginRow(), 
 				pageInfo.getEndRow(), 
 				parameters.getMode(), 

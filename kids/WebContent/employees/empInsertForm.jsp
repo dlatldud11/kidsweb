@@ -241,7 +241,7 @@
 <body>
    <br>
    <div class="container" align="center">
-      <img alt="로고" src="./../images/아이하루 로고.png" width="75" height="50">
+      <img alt="로고" src="./../images/logo.png" width="100" height="100">
    </div>
    <br>
    <div class="card card-primary offset-sm-3 col-sm-6" id="empInsert">

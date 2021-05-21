@@ -28,7 +28,7 @@ public class paChangeLoginfoController extends SuperClass{
 			System.out.println("bean null");
 		}else {
 			super.session.setAttribute("loginfo", bean);
-			String gotopage = "/common/main.jsp" ;
+			String gotopage = "/common/main2.jsp" ;
 			//String gotopage = "/parents/historyback.jsp"; //데이터가 보존되지 않는다.
 			super.GotoPage(gotopage);
 		}

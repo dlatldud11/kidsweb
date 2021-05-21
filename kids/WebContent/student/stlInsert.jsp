@@ -46,6 +46,8 @@
 			            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 			            document.getElementById('fakezipcode').value = data.zonecode;
 			            document.getElementById("fakeaddress1").value = addr;
+			            document.getElementById("address1").value = addr;
+			            document.getElementById("zipcode").value = addr;
 			            // 커서를 상세주소 필드로 이동한다.
 			            document.getElementById("address2").focus();
 			        	}
@@ -122,7 +124,7 @@
 				      	<div class="col-sm-<%=formright-rightButton%>">
 				        	<input type="text" class="form-control" disabled="disabled" 
 				        		id="fakezipcode" name="fakezipcode">
-				        	<input type="hidden" name="zipcode">
+				        	<input type="hidden" name="zipcode" id="zipcode">
 				        	<p class="text-danger">${errzipcode}</p>
 				      	</div>
 				      	<div class="col-sm-<%=rightButton%>">
@@ -137,7 +139,7 @@
 				      	<div class="col-sm-<%=formright%>">
 				        	<input type="text" class="form-control" disabled="disabled" 
 				        		id="fakeaddress1" name="fakeaddress1">
-				        	<input type="hidden" name="address1">
+				        	<input type="hidden" name="address1" id="address1">
 				        	<p class="text-danger">${erraddress1}</p>
 				      	</div>
 				    </div>
