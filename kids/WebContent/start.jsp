@@ -31,21 +31,15 @@
         <!-- w3school 예제에서 가져옴 -->
        	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
+   		<style>
 			    html, body {width:100%;height:100%;margin:0;padding:0;} 
 			    .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
 			    .radius_border{border:1px solid #919191;border-radius:5px;}     
-			    .custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
-			    .custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
-			    .custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}       
-			    .custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
-			    .custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}    
-			    .custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
-			    .custom_typecontrol .selected_btn:hover {color:#fff;}   
-			    .custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;} 
-			    .custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
-			    .custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
-			    .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}            
+			    .active{
+			    	border-bottom: 6px outset red;
+			  		border-style: outset;border-width: medium;}
+			    }     
+			       
 			    </style>
 	    </head>
   
@@ -83,7 +77,7 @@
 									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
 									      <a class="navbar-toggler active mx-auto" data-toggle="pill" href="#home" style="color:white; font-weight:bolder; ">보호자</a>
 									    </li>
-									    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									    
 									   
 									    <li class="nav-item rounded-lg " style="width:25%; background:white; height:50px; padding:0.5rem; border: 1px solid #ffd700; background:#ffd700;">
 									      <a class="navbar-toggler" data-toggle="pill" href="#menuemp" style="color:white;">직원</a>
@@ -145,43 +139,7 @@
                 </div><!-- row 끝 -->
               </div><!-- header container 끝 -->
         </header>
-        
-        
-        
-        
-        
-        <!-- 참고로 잠시 둠 -->
-        
-        <div id="section1" class="container-fluid bg-success" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 1</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section2" class="container-fluid bg-warning" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section3" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 3</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section41" class="container-fluid bg-danger" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 4 Submenu 1</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section42" class="container-fluid bg-info" style="padding-top:70px;padding-bottom:70px">
-  <h1>Section 4 Submenu 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-        
-        
-        
-        <!--  -->
-        
+
         
            <!-- Testimonials-->
         <section class="testimonials text-center bg-light">
@@ -304,19 +262,58 @@
             <div class="container">
             	<h2 class="mb-3">오시는 길</h2>
             	<div class="offset-3">
-	            	 <p class="font-weight-light mb-0 float-left"><font class="font-weight-bold" style="font-size:20px">주소 : </font> &nbsp;서울특별시 서초구 서초4동 강남대로 459&nbsp;&nbsp; </p> 
-	           		 <p class="font-weight-light mb-3 float-left"><font class="font-weight-bold " style="font-size:20px">☎TEL : </font> &nbsp; 02-2298-2277</p>
+	            	 <p class="font-weight-light mb-0 float-left"><font class="font-weight-bold" style="font-size:20px">주소 : </font> &nbsp;서울특별시 서초구 서초4동 강남대로 459&nbsp;&nbsp;&nbsp;&nbsp; </p> 
+	           		 <p class="font-weight-light mb-3 float-left"><font class="font-weight-bold " style="font-size:20px">TEL : </font> &nbsp; 02-2298-2277</p>
            		  </div>
     			<div class="mx-auto col-lg-12" id="map" style="width:800px;height:600px;"></div>
 		    </div>
-		    
-		    <div class="map_wrap">
-			    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div> 
-			</div>
-		    
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f916b3499c761c67ba93165b60cef596"></script>
-			
-			<script>
+        </section>
+        <!-- Call to Action-->
+        <section class="call-to-action text-white text-center">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto"><h2 class="mb-4">상담문의</h2></div>
+                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                       	<form action="<%=YesForm %>" method="post">
+                       		<input type="hidden" name="command" value="resInsert">
+                        	<input class="form-control form-control-lg" name="name"type="text" placeholder="원아 이름을 입력하세요" />
+                        	<br>
+                        	<input class="form-control form-control-lg" type="text" name="hp" placeholder="휴대폰 번호를 입력하세요" />
+                        	<br>
+                        	<input class="form-control form-control-lg" type="date" name="resdate" placeholder="희망 상담일자를 입력하세요" />
+                        	<br>
+                        	<input class="form-control btn btn-default" type="submit" value="상담예약" style="background:#ffd700;"/>
+                       	</form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 h-100 text-center my-auto ">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a class="text-warning" href="#!">개인정보처리방침</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a class="text-warning" href="#!">이메일 무단수집 거부</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a class="text-warning" href="#!">저작권 보호 정책</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">Copyright(c) 아이하루 어린이집. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+ 
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="<%=request.getContextPath()%>/bootstrap2/js/scripts.js"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f916b3499c761c67ba93165b60cef596"></script>
+        <script>
 				var container = document.getElementById('map');
 				var options = {
 					center: new kakao.maps.LatLng(37.50296156302804, 127.02428579999999),
@@ -347,70 +344,6 @@
 				  
 				// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 				infowindow.open(map, marker); 
-			</script>
-        </section>
-        <!-- Call to Action-->
-        <section class="call-to-action text-white text-center">
-            <div class="overlay"></div>
-            <div class="container">
-            
-                <div class="row">
-                    <div class="col-xl-9 mx-auto"><h2 class="mb-4">상담문의</h2></div>
-                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                        	
-                        	<form action="<%=YesForm %>" method="post">
-                        		<input type="hidden" name="command" value="resInsert">
-	                        	<input class="form-control form-control-lg" name="name"type="text" placeholder="원아 이름을 입력하세요" />
-	                        	<br>
-	                        	<input class="form-control form-control-lg" type="text" name="hp" placeholder="휴대폰 번호를 입력하세요" />
-	                        	<br>
-	                        	<input class="form-control form-control-lg" type="date" name="resdate" placeholder="희망 상담일자를 입력하세요" />
-	                        	<br>
-	                        	<input class="form-control btn btn-default" type="submit" value="상담예약" style="background:#ffd700;"/>
-                        	</form>
-                        	
-                    </div>
-                </div>
-            </div>
-          
-        </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                        <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                        </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">© Your Website 2021. All Rights Reserved.</p>
-                    </div>
-                    <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item mr-3">
-                                <a href="#!"><i class="fab fa-facebook fa-2x fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item mr-3">
-                                <a href="#!"><i class="fab fa-twitter-square fa-2x fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!"><i class="fab fa-instagram fa-2x fa-fw"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
- 
-        <!-- Bootstrap core JS-->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="<%=request.getContextPath()%>/bootstrap2/js/scripts.js"></script>
+		</script>
     </body>
 </html>
