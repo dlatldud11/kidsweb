@@ -52,7 +52,6 @@ public class InsertNoticeController extends SuperClass {
 			int cnt = -99999;
 			cnt = dao.InsertData(bean);
 			
-			
 			new ListNoticeController().doGet(request, response);			
 		}else {
 			System.out.println("글쓰기 실패");

@@ -10,17 +10,17 @@
 </head>
 <body>
 	<div class="container col-sm-offset-2 col-sm-8">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h4>게시물 등록</h4>
+		<div class="card shadow mb-4">
+			<div class="card-header">
+				<h4 class="font-weight-bold text-primary">게시물 등록</h4>
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<form class="form-horizontal" action="<%=YesForm%>" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="goInsert">
 					<input type="hidden" name="isCheck" value="fals">
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="tid">작성자</label>
-				      	<div class="col-sm-9">
+				      	<div class="col-sm-12">
 				        	<input type="text" class="form-control" disabled="disabled" 
 				        		id="faketid" name="faketid"
 				        		value="${sessionScope.loginfo.name}(${sessionScope.loginfo.tid})" >				        		
@@ -29,7 +29,7 @@
 				    </div>
 				    <div class="form-group">
 						<label class="control-label col-sm-3" for="title">글 제목</label>
-				      	<div class="col-sm-9">
+				      	<div class="col-sm-12">
 				        	<input type="text" class="form-control" id="title" 
 				        	name="title" value="${bean.title}">
 				        	<span class="err">${errtitle}</span>
@@ -37,13 +37,13 @@
 				    </div>	
 					<div class="form-group">
 				      	<label class="control-label col-sm-3" for="content">글 내용</label>
-				      	<div class="col-sm-9">
+				      	<div class="col-sm-12">
 				        	<textarea rows="13" cols="400" class="form-control" id="content" 
 				        	name="content"></textarea>
 				      	</div>
 				    </div>
 				    <div class="form-group">
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
 							<select class="form-control" id="class_id" name="class_id">
 				        		<option value="0" selected="selected">--- 학급명을 선택해 주세요.</option>
 							    <c:forEach var="mlists" items="${requestScope.mlists}">
@@ -60,12 +60,12 @@
 				        		name="files" multiple>
 				      	</div>
 				    </div>
-				    <div class="form-group">        
-				      	<div class="col-sm-offset-2 col-sm-8">
-				        	<button type="submit" class="btn btn-default">게시물 작성</button>
+				    <div class="form-group" style="float:right;">        
+				      	<span class="col-sm-offset-2 col-sm-8">
+				        	<button type="submit" class="btn btn-primary">게시물 작성</button>
 				        	&nbsp;&nbsp;&nbsp;
-				        	<button type="reset" class="btn btn-default">초기화</button>
-				      	</div>
+				        	<button type="reset" class="btn btn-primary">초기화</button>
+				      	</span>
 				    </div>
 				</form>
 			</div>

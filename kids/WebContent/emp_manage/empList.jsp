@@ -25,12 +25,12 @@
 </head>
 <body>
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-   <div class="container col-sm-offset-4 col-sm-8">
-         <div class="panel panel-primary">
-            <div class="panel-heading">
-               <h4>직원 목록</h4>
-               <div class="search">
-                <table class="table table-hover">
+   <div class="container col-sm-offset-2 col-sm-10">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+               <h4 class="font-weight-bold text-primary">직원 목록</h4>
+               <div class="card-body">
+                <table class="table">
                 <thead>
                   <tr>
                   	 <td align="center" colspan="11">

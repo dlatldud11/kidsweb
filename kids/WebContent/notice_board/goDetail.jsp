@@ -9,9 +9,9 @@
 </head>
 <body>
 	<div class="container-fluid col-sm-offset-2 col-sm-8">
-		<div class="panel panel-primary">
+		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h4>공지 사항</h4>
+				<h4 class="font-weight-bold text-primary">공지 사항</h4>
 				</div>
 					<div class="card-body">
 						<div class="table-responsive">

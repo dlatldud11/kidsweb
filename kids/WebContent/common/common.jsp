@@ -74,21 +74,8 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">아이하루<br>&nbsp;&nbsp;&nbsp;&nbsp;어린이집 </div>
             </a>
-e
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.jsp">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-           <!-- Heading -->
-            
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -100,6 +87,7 @@ e
                     <i class="fas fa-fw fa-table"></i>
                     <span>공지사항</span></a>
             </li>
+            <hr class="sidebar-divider my-0">
              <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCommunity"
                     aria-expanded="true" aria-controls="collapsePages">
@@ -117,33 +105,19 @@ e
                     		</c:if>
                     </div>
                 </div>
-            </li>
+				<hr class="sidebar-divider my-0">
               <li class="nav-item">
                 <a class="nav-link" href="<%=NoForm%>dietList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>식단표</span></a>
             </li>
+            <hr class="sidebar-divider my-0">
             <li class="nav-item">
                 <a class="nav-link" href="<%=NoForm%>timeList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>시간표</span></a>
             </li>
-             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEduprogram"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>일정표</span>
-                </a>
-                <div id="collapseEduprogram" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        	<a class="collapse-item" href="tables.jsp">
-                    		직원 일정표</a>
-                    			<a class="collapse-item" href="tables.jsp">
-                    		어린이집 일정표</a>
-                    </div>
-                </div>
-            </li>
+            <hr class="sidebar-divider my-0">
              <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseManagement"
                     aria-expanded="true" aria-controls="collapsePages">
@@ -155,10 +129,8 @@ e
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="<%=NoForm%>meList">
                     		투약의뢰서</a>
-                    		<a class="collapse-item" href="<%=NoForm%>hoList">
-                    			귀가동의서</a>
-                    	<a class="collapse-item" href="tables.jsp">
-                    		귀가동의서</a>
+                   		<a class="collapse-item" href="<%=NoForm%>hoList">
+                   			귀가동의서</a>
                    		<c:if test="${whologin != 0 || whologin != 3}">
                     	<a class="collapse-item" href="<%=NoForm%>resList">
                     		상담예약확인</a>	
@@ -328,14 +300,6 @@ e
                                     Profile
                                 </a>
                                 </c:if>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<%=NoForm %>logout" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
