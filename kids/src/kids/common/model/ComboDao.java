@@ -123,7 +123,7 @@ public class ComboDao  extends SuperDao {
 				bean.setName(rs.getString("name"));
 				bean.setTid(rs.getString("tid"));
 				bean.setStatus(rs.getString("status"));
-				bean.setRes_date(str.substring(0, 10));
+				bean.setRes_date(String.valueOf(rs.getDate("res_date")));
 				bean.setRid(rs.getInt("rid"));
 				bean.setRemark(rs.getString("remark"));
 				
