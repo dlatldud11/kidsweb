@@ -2,6 +2,7 @@ package kids.management.st_total.st_manage.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,46 +12,53 @@ import kids.members.employees.model.Employees;
 
 public class St_managementDao extends SuperDao {
 	
-//		public int InsertData(St_management bean){
-//			PreparedStatement pstmt = null;
-//			String sql = " insert into noti_no_board values (dailyno_seq.nextval, ?, ?, ? ,? ";
-//				sql	+= " , sysdate, '안읽음', ?,null )" ;
-//				System.out.println(sql);
-//				int cnt = -99999;
-//				System.out.println(bean);
-//				try {
-//					if( conn == null ) { super.conn = super.getConnection();}
-//					conn.setAutoCommit(false);
-//					pstmt = super.conn.prepareStatement(sql);
-//					
-//					pstmt.setInt(1, bean.getClass_id());
-//					pstmt.setString(2, bean.getPid());
-//					pstmt.setString(3, bean.getContents());
-//					pstmt.setString(4, bean.getImage());
-//					pstmt.setInt(5, bean.getSend());
-//					
-//					cnt = pstmt.executeUpdate() ; 
-//					conn.commit();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//					try {
-//						conn.rollback();
-//					} catch (SQLException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//				}finally {
-//					try {
-//						if( pstmt != null ){ pstmt.close(); }
-//						super.closeConnection(); 
-//					} catch (Exception e2) {
-//						e2.printStackTrace();
-//					}
-//				}
-//				
-//				return cnt;
-//			}
-//		
+		public int InsertData(St_management bean){
+			PreparedStatement pstmt = null;
+			String sql = " insert into st_manage (stno, sid, poop, healthy, medicine_id, attendance, regdate,sleep,condition,meal,height,weight,remark) ";
+			sql += " values(stno_seq.nextval, ?,?,?,?,?,to_char(sysdate,'yyyy/mm/dd'),?,?,?,?,?,?) ";
+			
+				System.out.println(sql);
+				int cnt = -99999;
+				System.out.println(bean);
+				try {
+					if( conn == null ) { super.conn = super.getConnection();}
+					conn.setAutoCommit(false);
+					pstmt = super.conn.prepareStatement(sql);
+					
+					pstmt.setInt(1,bean.getSid());
+					pstmt.setInt(2, bean.getPoop());
+					pstmt.setString(3, bean.getHealthy());
+					pstmt.setInt(4, bean.getMedicine_id());
+					pstmt.setString(5, bean.getAttendance());
+					pstmt.setString(6, bean.getSleep());
+					pstmt.setString(7, bean.getCondition());
+					pstmt.setString(8, bean.getMeal());
+					pstmt.setString(9, bean.getHeight());
+					pstmt.setString(10, bean.getWeight());
+					pstmt.setString(11, bean.getRemark());
+					
+					cnt = pstmt.executeUpdate() ; 
+					conn.commit();
+				} catch (Exception e) {
+					e.printStackTrace();
+					try {
+						conn.rollback();
+					} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}finally {
+					try {
+						if( pstmt != null ){ pstmt.close(); }
+						super.closeConnection(); 
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+				
+			return cnt;
+			}
+		
 		public List<Notification_board> getListByRecent(String pid, int class_id, int number){
 			List<Notification_board> list = null;
 			PreparedStatement pstmt = null;

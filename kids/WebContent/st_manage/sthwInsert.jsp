@@ -49,17 +49,17 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	<form class="form-horizontal" action="<%=YesForm%>" method="post" >
 		<input type="hidden" name="command" value="sthwInsert">
-		<input type="hidden" name="isCheck" value="fals">
+		<!--<input type="hidden" name="isCheck" value="fals">-->
 		<tr>
 			<th>아동명</th>
 			<c:choose>
-			<c:when test="${ sessionScope.whologin == 1 || sessionScope.whologin == 2 }"><!--원장,직원  -->
+			<c:when test="${ whologin == 1 || whologin == 2 }"><!--원장,직원  -->
 				<td>
+				<select>
 				<c:forEach var="bean" items="${sbean}">
-					<select>
-						<option id="name" name="name" value="${bean.sid}">${bean.name}</option> <!-- 이름 고르면 sid 들어오 -->
-					</select>
+						<option id="sid" name="sid" value="${bean.sid}">${bean.name}</option> <!-- 이름 고르면 sid 들어오 -->
 				</c:forEach>
+				</select>
 				</td>
 			</c:when>
 			<c:when test="${whlogin == 3 }"><!-- 학부모 -->

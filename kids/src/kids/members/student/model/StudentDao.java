@@ -305,8 +305,12 @@ public class StudentDao extends SuperDao2{
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;	
 		
-		String sql = " select * from students " ;
-		sql += " where class_id = ? " ;
+		String sql = " select * from student " ;
+		if(no == 0) {
+			
+		}else {
+			sql += " where class_id = ? " ;
+		}
 		
 		List<Student> lists = new ArrayList<Student>();
 		Student bean = null;
@@ -314,11 +318,16 @@ public class StudentDao extends SuperDao2{
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
 			pstmt = this.conn.prepareStatement(sql) ;			
 			
-			pstmt.setInt(1, no);
+			if(no == 0) {
+				
+			}else {
+				pstmt.setInt(1, no);
+			}	
+			
 			
 			rs = pstmt.executeQuery() ; 
 			
-			if ( rs.next() ) { 
+			while ( rs.next() ) { 
 				bean = new Student() ;
 				
 				bean.setName(rs.getString("name"));
