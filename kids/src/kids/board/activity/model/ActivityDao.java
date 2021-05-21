@@ -22,55 +22,57 @@ public class ActivityDao extends SuperDao {
 			if(conn == null ) {super.conn = super.getConnection();}
 			conn.setAutoCommit(false);
 			
-			//remark
-			sql += " update Activity_comment set remark = ? ";
-			sql += " where actino = ? ";
-			pstmt = super.conn.prepareStatement(sql);
-			
-			Activity bean = this.SelectDataByPk(actino);
-			
-			String imsi = bean.getTid() + " ( " + bean.getActino() + " ) " + "과목이 삭제 되었습니다.";
-			
-			pstmt.setString(1, imsi);
-			pstmt.setInt(2, actino);
-			
-			cnt = pstmt.executeUpdate() ;
-			conn.commit();
-			if(pstmt != null) {pstmt.close();}
-			
-			sql += " update Subject set remark = ? ";
-			sql += " where actino = ? ";
-			pstmt = super.conn.prepareStatement(sql);
-			
-			pstmt.setString(1, imsi);
-			pstmt.setInt(2, actino);
-			
-			cnt = pstmt.executeUpdate() ;
-			if(pstmt != null) {pstmt.close();}
-			
-			sql += " update Employees set remark = ? ";
-			sql += " where actino = ? ";
-			pstmt = super.conn.prepareStatement(sql);
-			
-			pstmt.setString(1, imsi);
-			pstmt.setInt(2, actino);
-			
-			cnt = pstmt.executeUpdate() ;
-			if(pstmt != null) {pstmt.close();}
+//			//remark
+//			sql = " update Activity_comment set remark = ? ";
+//			sql += " where actino = ? ";
+//			pstmt = super.conn.prepareStatement(sql);
+//			
+//			Activity bean = this.SelectDataByPk(actino);
+//			
+//			String imsi = bean.getTid() + " ( " + bean.getActino() + " ) " + "과목이 삭제 되었습니다.";
+//			
+//			pstmt.setString(1, imsi);
+//			pstmt.setInt(2, actino);
+//			
+//			cnt = pstmt.executeUpdate() ;
+//			//conn.commit();
+//			if(pstmt != null) {pstmt.close();}
+//			
+//			sql = " update Subject set remark = ? ";
+//			sql += " where actino = ? ";
+//			
+//			if(conn == null ) {super.conn = super.getConnection();}
+//			pstmt = super.conn.prepareStatement(sql);
+//			
+//			pstmt.setString(1, imsi);
+//			pstmt.setInt(2, actino);
+//			
+//			cnt = pstmt.executeUpdate() ;
+//			if(pstmt != null) {pstmt.close();}
+//			
+//			sql += " update Employees set remark = ? ";
+//			sql += " where actino = ? ";
+//			pstmt = super.conn.prepareStatement(sql);
+//			
+//			pstmt.setString(1, imsi);
+//			pstmt.setInt(2, actino);
+//			
+//			cnt = pstmt.executeUpdate() ;
+//			if(pstmt != null) {pstmt.close();}
 			
 			//삭제
-			if(conn == null ) {super.conn = super.getConnection();}
-			conn.setAutoCommit(false);
+//			if(conn == null ) {super.conn = super.getConnection();}
+//			conn.setAutoCommit(false);
 			
-			sql += " delete from activity where actino = ? ";
+			sql = " delete from Activity where actino = ? ";
 			pstmt = super.conn.prepareStatement(sql);
 			pstmt.setInt(1, actino);
 			cnt = pstmt.executeUpdate();
 			conn.commit();
 			
 		} catch (Exception e) {
-			SQLException err = (SQLException)e ;			
-			cnt = - err.getErrorCode() ;			
+			//SQLException err = (SQLException)e ;			
+			//cnt = - err.getErrorCode() ;			
 			e.printStackTrace();
 			try {
 				conn.rollback(); 

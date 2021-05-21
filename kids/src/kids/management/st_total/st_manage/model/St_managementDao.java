@@ -1,15 +1,12 @@
-package kids.management.st_total.st_manage.controller;
+package kids.management.st_total.st_manage.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import kids.board.notification_board.model.Notification_board;
 import kids.common.model.SuperDao;
-import kids.management.st_total.st_manage.model.St_management;
 import kids.members.employees.model.Employees;
 
 public class St_managementDao extends SuperDao {
@@ -103,7 +100,58 @@ public class St_managementDao extends SuperDao {
 				return list ;
 		}
 		
-		
+		public List<St_management> getList(){
+			List<St_management> list = null;
+			PreparedStatement pstmt = null;
+			St_management2 bean = null;
+			ResultSet rs = null;
+			String sql = " select a.attendance, a.condition, a.healthy, a.meal, a.medicine_id, a.poop, ";
+			sql += " a.regdate, a.remark, a.sid, a.sleep, a.stno, a.weight, a.height, b.name, c.class_name from ";
+			sql += " (st_manage a join student b ";
+			sql += " on a.sid = b.sid ";
+			sql += " join myclass c ";
+			sql += " on b.class_id = c.class_id) ";
+			sql += " order by stno desc ";
+				
+				try {
+					if(conn == null) {super.conn = super.getConnection() ; }
+					pstmt = conn.prepareStatement(sql) ;
+					
+					
+					rs = pstmt.executeQuery() ; 
+					list = new ArrayList<St_management>();
+					while(rs.next()) {
+						bean = new St_management2();
+						bean.setAttendance(rs.getString("attendance"));
+						bean.setCondition(rs.getString("condition"));
+						bean.setHealthy(rs.getString("healthy"));
+						bean.setMeal(rs.getString("meal"));
+						bean.setMedicine_id(rs.getInt("medicine_id"));
+						bean.setPoop(rs.getInt("poop"));
+						bean.setRegdate(String.valueOf(rs.getDate("regdate")));
+						bean.setRemark(rs.getString("remark"));
+						bean.setSid(rs.getInt("sid"));
+						bean.setSleep(rs.getString("sleep"));
+						bean.setStno(rs.getInt("stno"));
+						bean.setWeight(rs.getString("weight"));
+						bean.setHeight(rs.getString("height"));
+						bean.setName(rs.getString("name"));
+						bean.setClass_name(rs.getString("class_name"));
+						list.add(bean);
+					}
+				} catch (Exception e) {			
+					e.printStackTrace();
+					bean = null ; 
+				}finally {
+					try {
+						if(rs != null) {rs.close();}
+						if(pstmt != null) {pstmt.close();} 
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+				return list ;
+		}
 		public List<St_management> getListById(int sid){
 			List<St_management> list = null;
 			PreparedStatement pstmt = null;
@@ -128,7 +176,7 @@ public class St_managementDao extends SuperDao {
 						bean.setMeal(rs.getString("meal"));
 						bean.setMedicine_id(rs.getInt("medicine_id"));
 						bean.setPoop(rs.getInt("poop"));
-						bean.setRegdate(rs.getString("regdate"));
+						bean.setRegdate(String.valueOf(rs.getDate("regdate")));
 						bean.setRemark(rs.getString("remark"));
 						bean.setSid(rs.getInt("rs"));
 						bean.setSleep(rs.getString("sleep"));

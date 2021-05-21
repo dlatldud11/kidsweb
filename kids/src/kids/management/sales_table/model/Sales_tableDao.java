@@ -307,7 +307,7 @@ public class Sales_tableDao extends SuperDao {
 		String sql = " select inputdate, class_name, name, sales, return, remark, payno, salesno ";
 		sql += " from (select a.inputdate, d.class_name, c.name, a.sales, a.return, ";
 		sql	+= " a.payno, a.salesno, a.remark,rank() over ";
-		sql += " (order by a.inputdate desc, d.class_name asc, c.name asc) as ranking ";
+		sql += " (order by inputdate desc, class_name asc, name asc) as ranking ";
 		sql += " from ";
 		sql += " sales_table a left outer join stu_fee b ";
 		sql += " on a.payno = b.payno ";
@@ -320,15 +320,15 @@ public class Sales_tableDao extends SuperDao {
 			sql += " where " + mode + " like '%" + keyword + "%' " ;
 		}
 				sql += " ) ";
-				sql += " where ranking between ? and ? ";
+				sql += " order by ranking asc ";
 					
 		List<Sales_table2> lists = new ArrayList<Sales_table2>() ;
 		try {
 			if( this.conn == null ){ this.conn = this.getConnection() ; }			
 			pstmt = this.conn.prepareStatement(sql) ;	
 			
-			pstmt.setInt(1, beginRow);
-			pstmt.setInt(2, endRow); 
+			//pstmt.setInt(1, beginRow);
+			//pstmt.setInt(2, endRow); 
 			
 			System.out.println(sql);	
 			rs = pstmt.executeQuery() ; 

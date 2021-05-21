@@ -50,8 +50,8 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4>과목 목록 보기</h4>
-					<tbody class="search">
-						<tr>
+					<table>
+					<tr>
 							<td align="center" colspan="11">
 								<form action="" class="form-inline" role="form" name="myform"
 									method="get">
@@ -76,36 +76,33 @@
 								</form>
 							</td>
 						</tr>
-						</tbody>
+						</table>
 						<br>
 					<div class="panel-body">
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>담당 선생님</th>
-									<th>과목</th>
-									<th>학급</th>
-									<th>시간</th>
-									<th>장소</th>
+									<th>과목코드</th>
+									<th>과목명</th>
+									<th>설명</th>
+									<th>삭제</th>
 								</tr>
 							</thead>
-							
-							</table>	
-							 	<c:forEach var="bean" items="${requestScope.lists}">		
+						<c:forEach var="bean" items="${requestScope.lists}">		
 							<tr>
-								<td>${bean.name}</td>
-								<td>${bean.gender}</td>
-								<td>${bean.birth}</td>
-								<td>${bean.textarea}</td>
-								<td>${bean.place}</td>
+								<td>${bean.subject_code}</td>
+								<td>${bean.subject}</td>
+								<td>${bean.remark}</td>
 								<td>
-									<a href="<%=NoForm%>&no=${bean.no}&${requestScope.parameters}">
+									<a href="<%=NoForm%>&${requestScope.parameters}">
 											삭제
 									</a>
 								</td>
 							</tr>
 						</c:forEach> 
 						
+						</table>	
+							 	
 					</div>
 				
 					

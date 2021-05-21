@@ -75,7 +75,7 @@
 				      	<div class="row">
 				      	<div class="col-sm-<%=formright%>">
 				        	<input type="text" class="form-control" id="name" 
-				        		name="name"  value="${bean.name}${rbean.name}">
+				        		name="name"  value="${bean.name}">
 				        	<p class="text-danger">${errname}</p>
 				      	</div>
 				    </div>
@@ -100,7 +100,7 @@
 				      	<div class="row">
 				      	<div class="col-sm-<%=formright%>">
 				        	<input type="number" class="form-control" id="hp" 
-				        		name="hp" value="${bean.hp}${rbean.hp}">
+				        		name="hp" value="${bean.hp}">
 				        	<p class="text-danger">${errhp}</p>
 				      	</div>
 				    </div>
