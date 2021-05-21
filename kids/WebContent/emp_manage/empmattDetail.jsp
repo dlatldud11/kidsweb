@@ -52,15 +52,13 @@
 				</tbody>	
 			</table>
 			<div class="card-body">
+				<div>
+					<input type="date" id="datefr" value="2021-05-01" />
+					<input type="date" id="dateto" value="2021-05-31" />
+					<input type="hidden" id="tid" value="${ebean.tid}" />
+					<button class="btn btn-info" type="button" onclick="period();">찾기</button>
+				</div>
 			<table class="table table-hover">
-				<tr>
-					<div class="form-group">
-						<input type="date" id="datefr" value="2021-05-01" />
-						<input type="date" id="dateto" value="2021-05-31" />
-						<input type="hidden" id="tid" value="${ebean.tid}" />
-						<button class="btn btn-info" type="button" onclick="period();">찾기</button>
-					</div>
-				</tr>
 				<tr>
 					<td>월</td>
 					<td>화</td>
@@ -93,7 +91,6 @@
 							</tr>
 							<tr>
 						</c:if>
-						
 					</c:forEach>
 					</td>
 					</tr>
