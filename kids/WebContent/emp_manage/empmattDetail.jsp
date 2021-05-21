@@ -1,4 +1,4 @@
-x<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
 <!DOCTYPE html>
@@ -6,6 +6,14 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<script type="text/javascript">
+		function period(){
+			var datefr = $('#datefr').val();
+			var dateto = $('#dateto').val();
+			var tid = $('#tid').val();
+			location.href='<%=NoForm%>empmAtt'+'&datefr='+datefr+'&dateto='+dateto+'&tid='+tid;
+		}
+	</script>
 <c:set var="i" value="0" />
 <c:set var="j" value="0" />
 </head>
@@ -44,10 +52,13 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 				</tbody>	
 			</table>
 			<table class="table table-hover">
-			
 				<tr>
-					<input type="date" id="datefr" value="2021-05-01" />
-					<input type="date" id="dateto" value="2021-05-31" />
+					<div class="form-group">
+						<input type="date" id="datefr" value="2021-05-01" />
+						<input type="date" id="dateto" value="2021-05-31" />
+						<input type="hidden" id="tid" value="${ebean.tid}" />
+						<button class="btn btn-info" type="button" onclick="period();">찾기</button>
+					</div>
 				</tr>
 				<tr>
 					<td>월</td>
@@ -61,8 +72,7 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<c:if test="${j == 0}">
 							<c:forEach var="j" begin="1" end="${lists.regday}">
 								<c:if test="${lists.regday > 1}">
-								<td>
-								</td>
+								<td/>
 								</c:if>
 								<c:if test="${j == lists.regday}">
 									<td>
@@ -76,7 +86,9 @@ x<%@ page language="java" contentType="text/html; charset=UTF-8"
 							<td>
 							<c:set var="i" value="${lists.regday}" />
 						</c:if>
-							<div>${lists.regdate}${lists.attendance}</div>
+						<a href="<%=NoForm%>empmUpdate&emp_mno=${lists.emp_mno}">
+							${lists.regdate}${lists.attendance}
+						</a><br>
 						<c:if test="${i%5 == 0}">
 							</tr>
 							<tr>
