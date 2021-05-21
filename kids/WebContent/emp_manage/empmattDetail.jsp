@@ -86,9 +86,8 @@
 							<td>
 							<c:set var="i" value="${lists.regday}" />
 						</c:if>
-						<a href="<%=NoForm%>empmUpdate&emp_mno=${lists.emp_mno}">
-							${lists.regdate}${lists.attendance}
-						</a><br>
+						<div>${lists.regdate}${lists.attendance}</div>
+						<br>
 						<c:if test="${i%5 == 0}">
 							</tr>
 							<tr>
