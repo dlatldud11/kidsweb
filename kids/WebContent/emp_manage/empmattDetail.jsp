@@ -6,23 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<script type="text/javascript">
-		function period(){
-			var datefr = $('#datefr').val();
-			var dateto = $('#dateto').val();
-			var tid = $('#tid').val();
-			location.href='<%=NoForm%>empmAtt'+'&datefr='+datefr+'&dateto='+dateto+'&tid='+tid;
-		}
-	</script>
 <c:set var="i" value="0" />
 <c:set var="j" value="0" />
 </head>
 <body>
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <div class="container col-sm-offset-2 col-sm-10">
-         <div class="card shadow mb-4">
-            <div class="card-header">
-               <h4 class="font-weight-bold text-primary">${ebean.name}님의 출결</h4>
+         <div class="panel panel-primary">
+            <div class="panel-heading">
+               <h4>${ebean.name}님의 출결</h4>
                <table class="table table-hover">
 					<thead>
 						<tr>
@@ -51,15 +43,11 @@
 					</tr>
 				</tbody>	
 			</table>
-			<div class="card-body">
 			<table class="table table-hover">
+			
 				<tr>
-					<div class="form-group">
-						<input type="date" id="datefr" value="2021-05-01" />
-						<input type="date" id="dateto" value="2021-05-31" />
-						<input type="hidden" id="tid" value="${ebean.tid}" />
-						<button class="btn btn-info" type="button" onclick="period();">찾기</button>
-					</div>
+					<input type="date" id="datefr" value="2021-05-01" />
+					<input type="date" id="dateto" value="2021-05-31" />
 				</tr>
 				<tr>
 					<td>월</td>
@@ -97,9 +85,14 @@
 					</td>
 					</tr>
 				</table>
-		</div>
-       </div> 
-     </div>
-   </div>	
+	        </div> 
+	      </div>
+	    </div>	
+</div>
+</body>
+</html>
+<html>
+<body>
+<%@ include file="./../common/footer.jsp" %>
 </body>
 </html>
