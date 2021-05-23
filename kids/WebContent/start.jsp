@@ -382,7 +382,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="<%=request.getContextPath()%>/bootstrap2/js/scripts.js"></script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f916b3499c761c67ba93165b60cef596"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6b95ec568d65d02e07d199c7f320337d"></script>
         <script>
 				var container = document.getElementById('map');
 				var options = {
