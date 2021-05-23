@@ -46,8 +46,8 @@
         </div>
 	<div class="card-body">
     <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	<form class="form-horizontal" action="<%=YesForm%>" method="post" >
+    <table class="table table-bordered" width="100%" cellspacing="0" action="<%=YesForm%>" method="post">
+	<form>
 		<input type="hidden" name="command" value="sthwInsert">
 		<!--<input type="hidden" name="isCheck" value="fals">-->
 		<tr>
@@ -66,7 +66,6 @@
 				<td>${loginfo.stname}</td>
 			</c:when>
 			</c:choose>
-			<td></td>
 			<th>투약의뢰서</th>
 			<td></td>
 		</tr>
@@ -120,7 +119,7 @@
 		</tr>
 		<tr>
 		<td colspan="4">
-		<button type="submit">제출</button>
+		<input type="submit" formmethod="post" value="전송">
 		</td>
 		</tr>
 	</form>	
