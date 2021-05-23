@@ -19,8 +19,8 @@ public class InsertStudentController extends SuperClass {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
-		
-		String gotopage = "/student/stlInsert.jsp" ;
+
+		String gotopage = "/student/stInsert.jsp" ;
 		super.GotoPage(gotopage);
 	}
 	

@@ -421,6 +421,7 @@ public class ParentsDao extends SuperDao {
 				bean.setImage(rs.getString("image"));
 				bean.setRemark("remark");
 				bean.setZipcode("zipcode");
+				bean.setTid("employees");
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();
