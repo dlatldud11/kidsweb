@@ -43,7 +43,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		super.doPost(request, response);
 		St_management bean = null;
 		int cnt = -99999;
-		bean.setSid(Integer.parseInt(request.getParameter("sid")));
+		int sid = (Integer.parseInt(request.getParameter("sid")));
+		bean.setSid(sid);
 		bean.setPoop(Integer.parseInt(request.getParameter("poop")));
 		bean.setHealthy(request.getParameter("healthy"));
 		//메디슨 생략

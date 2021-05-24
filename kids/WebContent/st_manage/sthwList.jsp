@@ -27,7 +27,6 @@
 		<div class="panel panel-primary">
 			<div class="row panel-body">
 				<div class="col-sm-8">
-					<table class="table table-bordered">
 						<tr>
 							<th>날짜</th>
 							<th>반 이름</th>
@@ -56,7 +55,6 @@
 								</tr>
 								</c:when>
 							</c:choose>
-					</table>
 				</div>
 			</div>
 		</div>
